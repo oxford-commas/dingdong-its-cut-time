@@ -4,14 +4,7 @@ import { IUserInformationData } from '../../interfaces';
 
 @Component({
   selector: 'signin-form',
-  template: `
-    Login Page
-    <div>{{logo}}</div>
-    <username-password
-      (onInputsChange)="setUserData($event)"
-    >
-    </username-password>
-  `
+  templateUrl: './signin-form.component.html'
 })
 export class SignInFormComponent {
   public logo: string = 'placeholder for logo url';

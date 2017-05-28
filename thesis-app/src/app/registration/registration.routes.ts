@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
 import { SignInFormComponent } from './components';
-import { SignInInputComponent } from './components';
 
 export const registrationRoutes: Routes = [
   {
