@@ -3,18 +3,7 @@ import { IUserInformationData } from '../../interfaces';
 
 @Component({
   selector: 'username-password',
-  template: `
-    <signin-input
-      header="Username"
-      (onInputChange)="emitUsernameInputChange($event)"
-    >
-    </signin-input>
-    <signin-input
-      header="Password"
-      (onInputChange)="emitPasswordInputChange($event)"
-    >
-    </signin-input>
-  `
+  templateUrl: './username-password.component.html'
 })
 export class UsernamePasswordComponent {
   @Output() public onInputsChange = new EventEmitter<IUserInformationData>();

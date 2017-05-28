@@ -1,0 +1,1 @@
+export * from './registration-header.component';

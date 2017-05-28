@@ -5,7 +5,9 @@ import {
   SignInFormComponent,
   SignInInputComponent,
   UsernamePasswordComponent,
-  SignUpButtonComponent
+  SignUpButtonComponent,
+  SignUpCustomerFormComponent,
+  RegistrationHeaderComponent
 } from './components';
 
 
@@ -17,7 +19,9 @@ import {
     SignInFormComponent,
     SignInInputComponent,
     UsernamePasswordComponent,
-    SignUpButtonComponent
+    SignUpButtonComponent,
+    SignUpCustomerFormComponent,
+    RegistrationHeaderComponent
   ],
   exports: [
     SignInFormComponent

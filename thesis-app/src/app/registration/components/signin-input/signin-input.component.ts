@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'signin-input',
   template: `
-    <div>{{header}}</div>
+    <div>{{headerText}}</div>
     <input
       #input
       (change)="onInputChange.emit(input.value)"
@@ -11,6 +11,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   `
 })
 export class SignInInputComponent {
-  @Input() public header: string;
+  @Input() public headerText: string;
   @Output() public onInputChange = new EventEmitter();
 }

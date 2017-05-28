@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'signin-button',
-  template: `<button (click)="handleClick.emit($event)">{{buttonText}}</button>`
+  selector: 'signup-button',
+  template: `<button>{{buttonText}}</button>`
 })
 export class SignUpButtonComponent {
   @Input() public buttonText: string;
