@@ -1,6 +1,6 @@
 <registration-header headerText="Login Page" logo="insert logo url here"></registration-header>
 <signup-button [routerLink]="['/customerSignUp']" buttonText="Signup as Customer"></signup-button>
-<signup-button buttonText="Signup as Stylist"></signup-button>
+<signup-button [routerLink]="['/stylistSignUp']" buttonText="Signup as Stylist"></signup-button>
 <username-password (onInputsChange)="setUserData($event)"></username-password>
 <signup-button buttonText="Login"></signup-button>
 <div>
