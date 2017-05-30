@@ -1,7 +1,14 @@
 <h1>StylistProfileName's Profile</h1>
-<div>
-  Services I will provide
-  <div *ngFor="let style of ['hard', 'coded', 'styles']">
-    {{style}}
-  </div>
+<img src="https://qph.ec.quoracdn.net/main-qimg-3b0b70b336bbae35853994ce0aa25013-c" />
+<p>Location</p>
+<div>Display stylist.location</div>
+<p>Services I will provide</p>
+<div *ngFor="let style of ['hard', 'coded', 'styles']">
+  {{style}}
 </div>
+<p>Gender</p>
+<div>If stylistprofile.name === 'male', change style accordingly</div>
+<div>If stylistprofile.name === 'female', change style accordingly</div>
+<p>Link to personal site</p>
+<div>Display link to personal site</div>
+<button (click)="handleRequestCut()">Request a cut</button>

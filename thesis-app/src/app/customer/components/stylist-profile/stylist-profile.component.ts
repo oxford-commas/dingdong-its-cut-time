@@ -12,4 +12,8 @@ export class StylistProfileComponent {
   @Input() private stylistId: number;
 
   public stylistProfile: any; // TODO: interface this
+
+  handleRequestCut() {
+
+  }
 }
