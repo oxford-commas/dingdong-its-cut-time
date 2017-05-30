@@ -1,1 +1,29 @@
-<h1>customer map component</h1>
+<div class="map-container">
+
+  <h2 class="map-title">{{title}}</h2>
+
+  <sebm-google-map
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoom"
+    [disableDefaultUI]="false"
+    [zoomControl]="false"
+    (mapClick)="mapClicked($event)">
+
+    <sebm-google-map-marker
+        *ngFor="let marker of markers; let i = index;"
+        (markerClick)="clickedMarker(marker.label, i)"
+        [latitude]="marker.lat"
+        [longitude]="marker.lng"
+        [label]="marker.label"
+        [iconUrl]="icon">
+
+      <sebm-google-map-info-window>
+        <strong>{{marker.label.text}} Info</strong>
+      </sebm-google-map-info-window>
+
+    </sebm-google-map-marker>
+
+  </sebm-google-map>
+
+</div>
