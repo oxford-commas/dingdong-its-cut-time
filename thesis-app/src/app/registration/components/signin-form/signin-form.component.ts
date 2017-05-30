@@ -11,7 +11,13 @@ export class SignInFormComponent {
   private userInformationData: IUserInformationData;
 
   setUserData(userInput: IUserInformationData) {
-    this.userInformationData = userInput;
-    console.log(this.userInformationData);
+    this.userInformationData = {
+      ...this.userInformationData,
+      ...userInput
+    };
+  }
+
+  handleLogin() {
+    console.log('TODO: authorize user ', this.userInformationData);
   }
 }

@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { rootRoutes } from './root.routes';
 
 import { RegistrationModule } from '../registration/registration.module';
+import { CustomerModule } from '../customer/customer.module';
 
 import { RootComponent } from './components';
 
@@ -18,7 +19,8 @@ import { RootComponent } from './components';
     FormsModule,
     HttpModule,
     RouterModule.forRoot(rootRoutes),
-    RegistrationModule
+    RegistrationModule,
+    CustomerModule
   ],
   providers: [],
   bootstrap: [RootComponent]
