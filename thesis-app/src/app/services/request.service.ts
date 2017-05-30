@@ -7,31 +7,11 @@ export class RequestService {
 
   }
   postLocation() {
-
+    const headers = new Headers({'Content-Type': 'application/json'})
+    this.http.post('/location', '....', {headers: headers})
   }
 
 }
-
-// app.post('/location', function(req, res) {
-//   var location = req.body.location;
-//   var p = 'https://maps.googleapis.com/maps/api/geocode/json?address='+location+'&key=AIzaSyAODMU1aRyby6iXc5iv4-LXBq_Wb5hRZCA'
-
-//   https.get(p, (res) => {
-//     var st = '';
-//     var lat;
-//     var lng;
-//       res.on('data', (chunk) => {
-//         st += chunk;
-//       });
-//       res.on('end', ()=> {
-//         var data = JSON.parse(st);
-//         lat = data.results[0].geometry.location.lat;
-//         lng = data.results[0].geometry.location.lng;
-//         helpers.addLocation(lng);
-//       })
-//   });
-//   res.sendStatus(201);
-// })
 
 // app.get('/api/userStylist/:id', function(req, res){
 //   var userid = req.params.id;
