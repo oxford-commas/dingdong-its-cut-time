@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RequestService } from '../../../services/request.service';
 
 import { IAccountInformation, IUserInformationData, IStylistInformationData, createDefaultUserInformationData } from '../../interfaces/registration-data';
 
@@ -8,7 +9,7 @@ import { IAccountInformation, IUserInformationData, IStylistInformationData, cre
 })
 export class SignUpFormComponent {
   constructor() {
-    console.log('TODO: make service to GET request to get styling options for dropdown');
+    console.log(this.userInformationData)
   }
 
   // hardcoded styling data
