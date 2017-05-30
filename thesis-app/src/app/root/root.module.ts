@@ -8,6 +8,8 @@ import { rootRoutes } from './root.routes';
 import { RegistrationModule } from '../registration/registration.module';
 import { CustomerModule } from '../customer/customer.module';
 
+import { RequestService } from '../services/request.service';
+
 import { RootComponent } from './components';
 
 @NgModule({
@@ -22,7 +24,7 @@ import { RootComponent } from './components';
     RegistrationModule,
     CustomerModule
   ],
-  providers: [],
+  providers: [RequestService],
   bootstrap: [RootComponent]
 })
 export class RootModule { }
