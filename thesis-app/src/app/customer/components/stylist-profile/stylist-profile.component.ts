@@ -1,12 +1,15 @@
 import { Component, Input } from '@angular/core';
 
+import { RequestService } from '../../../services';
+
 @Component({
   selector: 'stylist-profile',
   templateUrl: './stylist-profile.component.html'
 })
 export class StylistProfileComponent {
-  constructor() {
-    console.log('make GET request for this stylist with stylist ID', this.stylistId, ' and assign to stylistProfile', this.stylistProfile);
+  constructor(private _requestService: RequestService) {
+    this.stylistProfile = _requestService.getStylistById(this.stylistId).subscribe();
+    console.log('initializing stylistProfile: ', this.stylistProfile);
   }
 
   @Input() private stylistId: number;
