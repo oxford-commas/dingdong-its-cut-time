@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RequestService } from '../../../services/request.service';
 
 import { IAccountInformation, IUserInformationData, IStylistInformationData, createDefaultUserInformationData } from '../../interfaces/registration-data';
 
@@ -7,8 +8,8 @@ import { IAccountInformation, IUserInformationData, IStylistInformationData, cre
   templateUrl: './signup-form.component.html'
 })
 export class SignUpFormComponent {
-  constructor() {
-    console.log('TODO: make service to GET request to get styling options for dropdown');
+
+  constructor(private requestService: RequestService) {
   }
 
   // hardcoded styling data
@@ -31,7 +32,11 @@ export class SignUpFormComponent {
   }
 
   public handleSignUp() {
-    console.log('TODO: make POST request to create new account', this.userInformationData);
+    this.requestService.postStylist(this.userInformationData)
+      .subscribe(
+        (res) => console.log(res),
+        (err) => console.log(err)
+      )
   }
 
   public clearForm() {

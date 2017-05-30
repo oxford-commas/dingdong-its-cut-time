@@ -1,28 +1,30 @@
-<registration-header headerText="Sign Up Page" logo="placeholder logo url"></registration-header>
-<form #signUpFormData="ngForm">
-  Signup as Customer
-  <input
-    name="type"
-    type="radio"
-    checked="checked"
-    value="customer"
-    [(ngModel)]="userInformationData.type"
-    (change)="clearForm()"
-  >
-  Signup as Stylist
-  <input
-    name="type"
-    type="radio"
-    value="stylist"
-    [(ngModel)]="userInformationData.type"
-    (change)="clearForm()"
-  >
-  <username-password (onInputsChange)="handleAccountInput($event)"></username-password>
-  <signup-stylist-form
-    *ngIf="this.userInformationData.type==='stylist'"
-    (handleStylistFormChange)="handleStylistInput($event)"
-    [styling]="styling"
-  >
-  </signup-stylist-form>
-  <button (click)="handleSignUp()">Register</button>
-</form>
+<div class="container">
+  <registration-header headerText="Sign Up Page" logo="placeholder logo url"></registration-header>
+  <form (ngSubmit)="handleSignUp(signUpFormData)" #signUpFormData="ngForm">
+    Signup as Customer
+    <input
+      name="type"
+      type="radio"
+      checked="checked"
+      value="customer"
+      [(ngModel)]="userInformationData.type"
+      (change)="clearForm()"
+    >
+    Signup as Stylist
+    <input
+      name="type"
+      type="radio"
+      value="stylist"
+      [(ngModel)]="userInformationData.type"
+      (change)="clearForm()"
+    >
+    <username-password (onInputsChange)="handleAccountInput($event)"></username-password>
+    <signup-stylist-form
+      *ngIf="this.userInformationData.type==='stylist'"
+      (handleStylistFormChange)="handleStylistInput($event)"
+      [styling]="styling"
+    >
+    </signup-stylist-form>
+    <button type="submit">Register</button>
+  </form>
+</div>

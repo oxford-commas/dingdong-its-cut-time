@@ -9,12 +9,12 @@ export class RequestService {
   }
   postLocation(location: string) {
     const headers = new Headers({'Content-Type': 'application/json'});
-    this.http.post('/location', location, {headers: headers})
+    return this.http.post('/location', location, {headers: headers})
   }
 
   postStylist(stylist: {}) {
     const headers = new Headers({'Content-Type': 'application/json'});
-    this.http.post('/api/userstylist', stylist, {headers: headers});
+    return this.http.post('/api/userstylist', stylist, {headers: headers});
   }
 
   getStylistById(id: number) {
