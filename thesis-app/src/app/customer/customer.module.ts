@@ -11,7 +11,8 @@ import {
   CustomerBookingListComponent,
   CustomerMapComponent,
   CustomerMessageComponent,
-  CustomerInboxComponent
+  CustomerInboxComponent,
+  StylistProfileComponent
 } from './components';
 
 @NgModule({
@@ -29,7 +30,8 @@ import {
     CustomerBookingListComponent,
     CustomerMapComponent,
     CustomerMessageComponent,
-    CustomerInboxComponent
+    CustomerInboxComponent,
+    StylistProfileComponent
   ]
 })
 
