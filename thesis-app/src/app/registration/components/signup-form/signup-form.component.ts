@@ -8,8 +8,8 @@ import { IAccountInformation, IUserInformationData, IStylistInformationData, cre
   templateUrl: './signup-form.component.html'
 })
 export class SignUpFormComponent {
-  constructor() {
-    console.log(this.userInformationData)
+
+  constructor(private requestService: RequestService) {
   }
 
   // hardcoded styling data
@@ -32,6 +32,11 @@ export class SignUpFormComponent {
   }
 
   public handleSignUp() {
+    this.requestService.postStylist(this.userInformationData)
+      .subscribe(
+        (res) => console.log(res),
+        (err) => console.log(err)
+      )
     console.log('TODO: make POST request to create new account', this.userInformationData);
   }
 
