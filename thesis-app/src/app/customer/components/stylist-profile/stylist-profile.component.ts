@@ -38,17 +38,8 @@ export class StylistProfileComponent {
   public hideModal() {
     this.isShowModal = false;
   }
-}
 
-// `id` INTEGER NOT NULL AUTO_INCREMENT,
-//   `type` INTEGER NOT NULL,
-//   `name` VARCHAR(35) NOT NULL,
-//   `password` VARCHAR(35) NOT NULL,
-//   `billingaddress` TEXT DEFAULT NULL,
-//   `phonenumber` VARCHAR(30) DEFAULT NULL,
-//   `email` VARCHAR(30) DEFAULT NULL,
-//   `longitude` DOUBLE DEFAULT NULL,
-//   `latitude` DOUBLE DEFAULT NULL,
-//   `site_url` VARCHAR(35) DEFAULT NULL,
-//   `gender` VARCHAR(8) DEFAULT NULL,
-//   `image_url` VARCHAR(45) DEFAULT NULL,
+  public submitMessage(message) {
+    console.log('submit message ', message);
+  }
+}

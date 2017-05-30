@@ -15,5 +15,11 @@
 </div>
 <button (click)="showModal()">Request a cut</button>
 <div *ngIf="isShowModal">
-  show modal
+  <form #directMessage="ngForm">
+    <input name="subjectHeading" placeholder="Subject Heading" ngModel/>
+    Location: <input name="location" ngModel/>
+    Time: <input name="time" ngModel />
+    <textarea name="body" ngModel>Body of the message</textarea>
+    <button (click)="submitMessage(directMessage.value)">Send</button>
+  </form>
 </div>
