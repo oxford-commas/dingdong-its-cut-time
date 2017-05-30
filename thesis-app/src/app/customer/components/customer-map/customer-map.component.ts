@@ -11,11 +11,11 @@ export class CustomerMapComponent {
   title: string = 'Stylists in your area';
 
   // initial center position for the map
-  lat: number = 37.7632355;
-  lng: number = -122.4637079;
+  public lat: number = 37.7632355;
+  public lng: number = -122.4637079;
 
   // initial zoom value for the map
-  zoom: number = 14;
+  public zoom: number = 14;
 
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`)
