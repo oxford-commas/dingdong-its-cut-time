@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
+import 'rxjs/Rx';
 
 @Injectable()
 export class RequestService {
@@ -14,6 +15,15 @@ export class RequestService {
   postStylist(stylist: {}) {
     const headers = new Headers({'Content-Type': 'application/json'});
     this.http.post('/api/userstylist', stylist, {headers: headers});
+  }
+
+  getStylistById(id: number) {
+    return this.http.get(`/api/userStylist/${id}`)
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      )
   }
 
 }
