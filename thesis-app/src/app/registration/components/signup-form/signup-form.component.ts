@@ -37,7 +37,6 @@ export class SignUpFormComponent {
         (res) => console.log(res),
         (err) => console.log(err)
       )
-    console.log('TODO: make POST request to create new account', this.userInformationData);
   }
 
   public clearForm() {
