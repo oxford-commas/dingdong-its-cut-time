@@ -26,14 +26,11 @@ export class RequestService {
       )
   }
 
-}
+  getStylistByLocation(location: string) {
 
-// app.get('/api/userStylist/:id', function(req, res){
-//   var userid = req.params.id;
-//   helpers.getUser(userid, function(data) {
-//     res.status(200).json(data[0]);
-//   });
-// });
+  }
+
+}
 
 // // get all stylists close to the user location --- completed
 // app.get('/api/stylists/:location', function(req, res) {
