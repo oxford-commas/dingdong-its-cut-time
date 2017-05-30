@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { SignInFormComponent } from './components';
+import { SignUpCustomerFormComponent } from './components';
 
 export const registrationRoutes: Routes = [
   {
@@ -14,5 +15,9 @@ export const registrationRoutes: Routes = [
     children: [
       // insert children routes eg. ...childrenRoute
     ]
+  },
+  {
+    path:'customerSignUp',
+    component: SignUpCustomerFormComponent
   }
 ]
