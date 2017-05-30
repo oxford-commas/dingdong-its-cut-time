@@ -27,33 +27,11 @@ export class RequestService {
   }
 
   getStylistByLocation(location: string) {
-
+    return this.http.get(`/api/stylists/location`)
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      )
   }
-
 }
-
-// // get all stylists close to the user location --- completed
-// app.get('/api/stylists/:location', function(req, res) {
-//   var location = req.params.location;
-//   console.log(location);
-//   services.getLocationPoints(location, function(points) {
-//     var lat = points[0];
-//     var lng = points[1];
-//     console.log('lat', lat, 'lng', lng)
-//     helpers.getAllStylists(function(result) {
-//       var data = [];
-//       result.forEach(function(el) {
-//         var lat2 = el.latitude;
-//         var lng2 = el.longitude;
-//         var distance = helpers.calculateDistance(lat, lng, lat2, lng2, 'M');
-//         console.log(distance);
-//         if (distance <= 15) {
-//           data.push(el);
-//         }
-//       });
-//       res.status(200).json(data);
-
-//     });
-//   });
-// });
-
