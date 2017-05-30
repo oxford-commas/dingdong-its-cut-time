@@ -8,7 +8,8 @@ import {
   CustomerDropDownComponent,
   CustomerBookingListComponent,
   CustomerMapComponent,
-  CustomerMessageComponent
+  CustomerMessageComponent,
+  CustomerInboxComponent
 } from './components';
 
 @NgModule({
@@ -22,7 +23,8 @@ import {
     CustomerDropDownComponent,
     CustomerBookingListComponent,
     CustomerMapComponent,
-    CustomerMessageComponent
+    CustomerMessageComponent,
+    CustomerInboxComponent
   ]
 })
 export class CustomerModule{}
