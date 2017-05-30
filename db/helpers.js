@@ -18,6 +18,12 @@ var getUser = function(userId, callback) {
   });
 }
 
+// stylists are saved in database with type 0
+var getAllStylists = function(callback) {
+  model.con.query('SELECT * FROM `users_stylists` WHERE `type` = 0', function(error, results, fields) {
+    callback(results);
+  });
+}
 
 var addLocation = function (latitude, longitude, id, callback) {
   //var sql = "INSERT INTO users_stylists (latitude, longitude) VALUES (?, ? )";
@@ -30,9 +36,23 @@ var addLocation = function (latitude, longitude, id, callback) {
   });
 }
 
+var calculateDistance = function distance(lat1, lon1, lat2, lon2, unit) {
+  var radlat1 = Math.PI * lat1/180
+  var radlat2 = Math.PI * lat2/180
+  var theta = lon1-lon2
+  var radtheta = Math.PI * theta/180
+  var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+  dist = Math.acos(dist)
+  dist = dist * 180/Math.PI
+  dist = dist * 60 * 1.1515
+  if (unit=="K") { dist = dist * 1.609344 }
+  if (unit=="N") { dist = dist * 0.8684 }
+  return dist
+}
+
 module.exports.addLocation = addLocation;
 module.exports.addUserStylist = addUserStylist;
 module.exports.getUser = getUser;
+module.exports.getAllStylists = getAllStylists;
+module.exports.calculateDistance = calculateDistance;
 
-//connection.query('UPDATE users SET Name = ? WHERE UserID = ?', [name, userId])
-//var query = 'UPDATE employee SET profile_name = ?, phone =?, .. WHERE id=?';

@@ -8,17 +8,15 @@ var services = require('./locationServices.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// get all users and stylists given user or stylist id
+// get all users and stylists given user or stylist id --- completed
 app.get('/api/userStylist/:id', function(req, res){
   var userid = req.params.id;
   helpers.getUser(userid, function(data) {
-    console.log('this is data', data[0])
     res.status(200).json(data[0]);
   });
 });
 
-// get all stylists close to the user location
+// get all stylists close to the user location --- completed
 app.get('/api/stylists/:location', function(req, res) {
   var location = req.params.location;
   console.log(location);
@@ -26,12 +24,24 @@ app.get('/api/stylists/:location', function(req, res) {
     var lat = points[0];
     var lng = points[1];
     console.log('lat', lat, 'lng', lng)
-  });
+    helpers.getAllStylists(function(result) {
+      var data = [];
+      result.forEach(function(el) {
+        var lat2 = el.latitude;
+        var lng2 = el.longitude;
+        var distance = helpers.calculateDistance(lat, lng, lat2, lng2, 'M');
+        console.log(distance);
+        if (distance <= 15) {
+          data.push(el);
+        }
+      });
+      res.status(200).json(data);
 
-  res.sendStatus(200);
+    });
+  });
 });
 
-// adds users or stylist information in the database
+// adds users or stylist information in the database --- completed
 app.post('/api/userstylist', function (req, res) {
   var type = req.body.type;
   var name = req.body.name;
@@ -45,7 +55,7 @@ app.post('/api/userstylist', function (req, res) {
   var location = req.body.location;
   helpers.addUserStylist(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, function(result) {
     console.log('this is result from adding', result.insertId);
-    // Get id from results
+    // Get id from result
     var id = result.insertId;
     // get location points/add longitude and latitude in stylists/users profile in database based on location provided
     services.getLocationPoints(location, function(points) {
