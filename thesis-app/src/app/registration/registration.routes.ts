@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { SignInFormComponent } from './components';
 import { SignUpCustomerFormComponent } from './components';
+import { SignUpStylistFormComponent } from './components';
 
 export const registrationRoutes: Routes = [
   {
@@ -17,7 +18,11 @@ export const registrationRoutes: Routes = [
     ]
   },
   {
-    path:'customerSignUp',
+    path: 'customerSignUp',
     component: SignUpCustomerFormComponent
+  },
+  {
+    path: 'stylistSignUp',
+    component: SignUpStylistFormComponent
   }
 ]

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
 
 import {
   SignInFormComponent,
@@ -7,13 +9,15 @@ import {
   UsernamePasswordComponent,
   SignUpButtonComponent,
   SignUpCustomerFormComponent,
-  RegistrationHeaderComponent
+  RegistrationHeaderComponent,
+  SignUpStylistFormComponent
 } from './components';
 
 
 @NgModule({
   imports: [
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   declarations: [
     SignInFormComponent,
@@ -21,7 +25,8 @@ import {
     UsernamePasswordComponent,
     SignUpButtonComponent,
     SignUpCustomerFormComponent,
-    RegistrationHeaderComponent
+    RegistrationHeaderComponent,
+    SignUpStylistFormComponent
   ],
   exports: [
     SignInFormComponent
