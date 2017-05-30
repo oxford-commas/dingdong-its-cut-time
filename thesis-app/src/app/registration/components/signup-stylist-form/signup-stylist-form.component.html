@@ -1,39 +1,44 @@
-<registration-header headerText="Signup page for stylists" logo="insert logo url here"></registration-header>
-<username-password (onInputsChange)="handleAccountInput($event)"></username-password>
-<div>
-  Where are you servicing?
-  <input
-    #serviceLocation
-    (change)="handleServiceLocationChange(serviceLocation.value)">
-</div>
-<div>
-  Gender Male
-  <input
-    type="radio"
-    name="gender"
-    value="male"
-    #genderMale
-    (click)="handleGenderChange(genderMale.value)"
-  >
-  Female
-  <input type="radio"
-    name="gender"
-    value="female"
-    #genderFemale
-    (click)="handleGenderChange(genderFemale.value)"
-  >
-</div>
-<div>
-  Link to personal site (Optional)
-  <input
-    #personalUrl
-    (change)="handlePersonalUrlChange(personalUrl.value)"
-  >
-</div>
-<div>
+<form
+  #stylistForm="ngForm"
+  (change)="handleStylistFormChange.emit(stylistForm.value)"
+>
+  <div>
+    Where are you servicing?
+    <input
+      name="serviceLocation"
+      ngModel
+    >
+  </div>
+  <div>
+    Gender Male
+    <input
+      type="radio"
+      name="gender"
+      value="male"
+      ngModel
+    >
+    Female
+    <input type="radio"
+      name="gender"
+      value="female"
+      ngModel
+    >
+  </div>
+  <div>
+    Link to personal site (Optional)
+    <input
+      ngModel
+      name="personalUrl"
+    >
+  </div>
   Styling
-  <select>
-    <option>Populate with GET request</option>
-  </select>
-</div>
-<button (click)="handleStylistSignUp()">Submit</button>
+  <div *ngFor="let style of styling; let index = index" name="style">
+    <input
+      name="styleType"
+      type="checkbox"
+      [value]="styling[index]"
+      (change)="onChange(stylistForm.value, $event.target.value, index)"
+    >
+    <label for="style">{{style}}</label>
+  </div>
+</form>

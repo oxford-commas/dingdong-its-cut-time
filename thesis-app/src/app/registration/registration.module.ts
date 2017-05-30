@@ -1,38 +1,36 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
+import { FormBuilder } from '@angular/forms';
 
 import {
   SignInFormComponent,
   SignInInputComponent,
   UsernamePasswordComponent,
-  SignUpButtonComponent,
-  SignUpCustomerFormComponent,
   RegistrationHeaderComponent,
-  SignUpStylistFormComponent
+  SignUpStylistFormComponent,
+  SignUpFormComponent
 } from './components';
 
 
 @NgModule({
   imports: [
     RouterModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   declarations: [
     SignInFormComponent,
     SignInInputComponent,
     UsernamePasswordComponent,
-    SignUpButtonComponent,
-    SignUpCustomerFormComponent,
     RegistrationHeaderComponent,
-    SignUpStylistFormComponent
+    SignUpStylistFormComponent,
+    SignUpFormComponent
   ],
-  exports: [
-    SignInFormComponent
+  providers: [
+    FormBuilder
   ]
 })
 
-export class RegistrationModule {
-
-}
+export class RegistrationModule {}

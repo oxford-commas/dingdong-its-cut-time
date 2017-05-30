@@ -1,12 +1,13 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { IUserInformationData } from '../../interfaces';
+
+import { IAccountInformation } from '../../interfaces/registration-data';
 
 @Component({
   selector: 'username-password',
   templateUrl: './username-password.component.html'
 })
 export class UsernamePasswordComponent {
-  @Output() public onInputsChange = new EventEmitter<IUserInformationData>();
+  @Output() public onInputsChange = new EventEmitter<IAccountInformation>();
 
   private username: string;
   private password: string;

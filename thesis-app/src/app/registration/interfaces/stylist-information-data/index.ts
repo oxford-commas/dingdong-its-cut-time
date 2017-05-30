@@ -1,1 +1,0 @@
-export * from './stylist-information-data.interface';
