@@ -1,4 +1,4 @@
 export interface IAccountInformation {
-  username: string;
+  name: string;
   password: string;
 }
