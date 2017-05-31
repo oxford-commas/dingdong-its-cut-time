@@ -5,14 +5,35 @@ var app = express();
 var bodyParser = require('body-parser');
 var helpers = require('./db/helpers.js');
 var services = require('./locationServices.js');
-var cors = require('cors');
+const cors = require('cors');
 app.use(cors());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'thesis-app/dist')));
 
-app.get('*', function(req, res) {
- res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
+});
+
+app.post('/api/stripe', function(req, res) {
+  // Set your secret key: remember to change this to your live secret key in production
+  // See your keys here: https://dashboard.stripe.com/account/apikeys
+  var stripe = require("stripe")("sk_test_y4yKjgB2RSkeKtTOmg6eXotO");
+  console.log('HELLO!!', req.body);
+  // Token is created using Stripe.js or Checkout!
+  // Get the payment token submitted by the form:
+  var token = req.body.stripeToken; // Using Express
+  // Charge the user's card:
+  var charge = stripe.charges.create({
+    amount: 1000,
+    currency: "cad",
+    description: "Example charge",
+    source: token,
+  }, function(err, charge) {
+  // asynchronously called
+  console.log('error charging card ', err, charge);
+  });
 });
 
 // get all users and stylists given user or stylist id --- completed
