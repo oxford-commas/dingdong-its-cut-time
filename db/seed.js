@@ -225,19 +225,37 @@ var stylistArray = [
 ]
 
 stylistArray.forEach(stylist => {
-  console.log(stylist)
+  helpers.addUserStylist(
+    stylist.id,
+    stylist.username,
+    stylist.password,
+    stylist.location,
+    stylist.phoneNumber,
+    stylist.email,
+    stylist.website,
+    stylist.type,
+    stylist.update, (res) => {
+      var id = result.insertId;
+      services.getLocationPoints(stylist.location, (points) => {
+        let lat = points[0];
+        let lng = points[1];
+        helpers.addLocation(lat, lng, id, (res) => {
+          console.log(res);
+        })
+      })
+    }
 })
 
-helpers.addUserStylist(id, username, password, location, phoneNumber, email, website, type, update, (result) => {
-  var id = result.insertId
-  services.getLocationPoints(location, (points) => {
-    let lat = points[0];
-    let lng = points[1];
-    helpers.addLocation(lat, lng, id, (res) => {
-      console.log(res);
-    })
-  });
-}
+// helpers.addUserStylist(id, username, password, location, phoneNumber, email, website, type, update, (result) => {
+//   var id = result.insertId
+//   services.getLocationPoints(location, (points) => {
+//     let lat = points[0];
+//     let lng = points[1];
+//     helpers.addLocation(lat, lng, id, (res) => {
+//       console.log(res);
+//     })
+//   });
+// });
 
 // helpers.addUserStylist(0, 'Shari', 'ShariPassword', 'San Ramon, CA, CA', '967-890-7890', 'Shari.gmail.com', 'ShariStylists.com', 'F', 'update me', function(result) {
 //   console.log('this is result from adding', result.insertId);
