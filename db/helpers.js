@@ -10,10 +10,6 @@ var addUserStylist = function(type, name, password, billingaddress, phonenumber,
 
 var getUser = function(userId, callback) {
   model.con.query('SELECT * FROM `users_stylists` WHERE `id` = ?', [userId], function (error, results, fields) {
-  // error will be an Error if one occurred during the query
-  // results will contain the results of the query
-  // fields will contain information about the returned results fields (if any)
-    //console.log('results is this ', results);
     callback(results);
   });
 }
@@ -26,8 +22,6 @@ var getAllStylists = function(callback) {
 }
 
 var addLocation = function (latitude, longitude, id, callback) {
-  //var sql = "INSERT INTO users_stylists (latitude, longitude) VALUES (?, ? )";
-  //console.log('I am in updates');
   var sql = 'UPDATE users_stylists SET latitude = ?, longitude = ? WHERE id = ?'
   model.con.query(sql, [latitude, longitude, id],function (err, result) {
     if (err) throw err;
@@ -50,9 +44,25 @@ var calculateDistance = function distance(lat1, lon1, lat2, lon2, unit) {
   return dist
 }
 
+var addToBookings = function(userId, stylistId, isConfirmed, time, location, callback) {
+  var sql = "INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, location) VALUES (?, ?, ?, ?, ?)";
+  model.con.query(sql, [userId, stylistId, isConfirmed, time, location],function (err, result) {
+    if (err) throw err;
+    callback(result);
+  });
+}
+
+var getStylistBookings = function(stylistId, callback) {
+  model.con.query('SELECT * FROM `bookings` WHERE `id_stylists` = ?', [stylistId], function (error, results, fields) {
+    callback(results);
+  });
+}
+
 module.exports.addLocation = addLocation;
 module.exports.addUserStylist = addUserStylist;
 module.exports.getUser = getUser;
 module.exports.getAllStylists = getAllStylists;
 module.exports.calculateDistance = calculateDistance;
+module.exports.addToBookings = addToBookings;
+module.exports.getStylistBookings = getStylistBookings;
 

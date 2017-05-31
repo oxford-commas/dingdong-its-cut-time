@@ -66,30 +66,38 @@ app.post('/api/userstylist', function (req, res) {
       });
     });
   });
+});
 
-})
-
-app.post('/location', function(req, res) {
+// updates location end points for a given userID  ----completed
+app.post('/api/location', function(req, res) {
   var location = req.body.location;
-  var p = 'https://maps.googleapis.com/maps/api/geocode/json?address='+location+'&key=AIzaSyAODMU1aRyby6iXc5iv4-LXBq_Wb5hRZCA'
-
-  https.get(p, (res) => {
-    var st = '';
-    var lat;
-    var lng;
-      res.on('data', (chunk) => {
-        st += chunk;
-      });
-      res.on('end', ()=> {
-        var data = JSON.parse(st);
-        lat = data.results[0].geometry.location.lat;
-        lng = data.results[0].geometry.location.lng;
-        helpers.addLocation(lng);
-      })
+  var id = req.body.id;
+  services.getLocationPoints(location, function(points) {
+    var lat = points[0];
+    var lng = points[1];
+    console.log(lat);
+    console.log(lng)
+    console.log(id)
+    helpers.addLocation(lat, lng, id, function() {
+      res.sendStatus(201);
+    });
   });
-  res.sendStatus(201);
+
+});
+
+// add bookings to the database
+app.post('/api/bookings', function(req, res) {
+  helpers.addToBookings(req.body.userid, req.body.stylistid, req.body.isConfirmed, req.body.time, req.body.location, function() {
+    res.sendStatus(201);
+  });
+});
+
+// given stylistId, get all users  who are booked with this stylist)
+app.get('/api/bookings/:stylistid', function(req, res) {
+
 })
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
-})
+
+app.listen(4200, function () {
+  console.log('Example app listening on port 4200!')
+});
