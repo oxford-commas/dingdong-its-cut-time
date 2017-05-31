@@ -12,10 +12,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'thesis-app/dist')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
-});
-
 app.post('/api/stripe', function(req, res) {
   // Set your secret key: remember to change this to your live secret key in production
   // See your keys here: https://dashboard.stripe.com/account/apikeys
@@ -125,6 +121,10 @@ app.get('/api/bookings/:stylistid', function(req, res) {
 
 })
 
-app.listen(1337, function () {
-  console.log('Example app listening on port 1337!')
+app.listen(4200, function () {
+  console.log('Example app listening on port 4200!')
+});
+
+app.get('*', function(req, res) {
+ res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
 });
