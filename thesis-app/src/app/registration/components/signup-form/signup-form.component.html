@@ -6,7 +6,7 @@
       name="type"
       type="radio"
       checked="checked"
-      value="customer"
+      [value]="1"
       [(ngModel)]="userInformationData.type"
       (change)="clearForm()"
     >
@@ -14,13 +14,13 @@
     <input
       name="type"
       type="radio"
-      value="stylist"
+      [value]="0"
       [(ngModel)]="userInformationData.type"
       (change)="clearForm()"
     >
     <username-password (onInputsChange)="handleAccountInput($event)"></username-password>
     <signup-stylist-form
-      *ngIf="this.userInformationData.type==='stylist'"
+      *ngIf="this.userInformationData.type===0"
       (handleStylistFormChange)="handleStylistInput($event)"
       [styling]="styling"
     >
