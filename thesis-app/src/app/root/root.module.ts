@@ -7,7 +7,6 @@ import { rootRoutes } from './root.routes';
 
 import { RegistrationModule } from '../registration/registration.module';
 import { CustomerModule } from '../customer/customer.module';
-import { PaymentModule } from '../ui/ui.module';
 
 import { RequestService } from '../services/request.service';
 

@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { UiModule } from '../ui/ui.module';
 
+import { StripeService } from '../services';
+
 import {
   CustomerHomeComponent,
   CustomerNavbarComponent,
@@ -38,7 +40,8 @@ import {
     CustomerInboxComponent,
     StylistProfileComponent,
     CustomerProfileComponent
-  ]
+  ],
+  providers: [StripeService]
 })
 
 export class CustomerModule {}
