@@ -1,6 +1,4 @@
-<select>
-  <option value="Home">Home</option>
-  <option value="Messages">Messages</option>
-  <option value="Settings">Settings</option>
-  <option value="Logout">Logout</option>
+<select (change)="onSelect($event.target.value)">
+  <option *ngFor="let item of items">
+   {{item.value}}</option>
 </select>
