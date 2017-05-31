@@ -1,14 +1,10 @@
 import { Component, Input } from '@angular/core';
 
-import { StripeService } from '../../../services';
-
 @Component({
   selector: 'customer-profile',
   templateUrl: './customer-profile.component.html'
 })
 export class CustomerProfileComponent {
-  constructor(private _stripeService: StripeService) {
-  }
   // @Input() customerProfile: any; // TODO: interface
   @Input() customerProfile: any = {
     name: 'andrew',
@@ -34,26 +30,5 @@ export class CustomerProfileComponent {
 
   public handleSaveChanges() {
     console.log('TODO: PUT the changes');
-  }
-
-  public openCheckout() {
-    const that = this._stripeService
-    var handler = (<any>window).StripeCheckout.configure({
-      key: 'pk_test_sQaWXln9tozJFEdLFrFHgNUU',
-      locale: 'auto',
-      token: function (token: any) {
-        // You can access the token ID with `token.id`.
-        // Get the token ID to your server-side code for use.
-        console.log('token: ', token.id);
-        that.postToken(token.id);
-      }
-    });
-
-    handler.open({
-      name: 'Demo Site',
-      description: '2 widgets',
-      amount: 2000
-    });
-
   }
 }

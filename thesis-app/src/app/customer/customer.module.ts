@@ -40,7 +40,7 @@ import {
     CustomerInboxComponent,
     StylistProfileComponent,
     CustomerProfileComponent
-  ]
+  ],
   providers: [StripeService]
 })
 
