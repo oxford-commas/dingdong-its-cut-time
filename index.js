@@ -3,7 +3,7 @@ var https = require('https');
 var path = require('path');
 var app = express();
 var bodyParser = require('body-parser');
-var helpers = require('../db/helpers.js');
+var helpers = require('./db/helpers.js');
 var services = require('./locationServices.js');
 
 app.use(bodyParser.json());
