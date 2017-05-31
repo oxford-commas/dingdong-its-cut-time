@@ -10,9 +10,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'thesis-app/dist')));
 
-app.get('*', function(req, res) {
- res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
-});
 
 // get all users and stylists given user or stylist id --- completed
 app.get('/api/userStylist/:id', function(req, res) {
@@ -105,4 +102,8 @@ app.get('/api/bookings/:stylistid', function(req, res) {
 
 app.listen(1337, function () {
   console.log('Example app listening on port 1337!')
+});
+
+app.get('*', function(req, res) {
+ res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
 });
