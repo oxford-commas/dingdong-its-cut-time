@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import {
   CustomerHomeComponent,
@@ -9,13 +12,18 @@ import {
   CustomerBookingListComponent,
   CustomerMapComponent,
   CustomerMessageComponent,
-  CustomerInboxComponent
+  CustomerInboxComponent,
+  StylistProfileComponent
 } from './components';
 
 @NgModule({
   imports: [
     RouterModule,
-    CommonModule
+    CommonModule,
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAkYemtun-klcWc0toJ5R7gLtmHuPO32Xk' // TODO: Hide key
+    })
   ],
   declarations: [
     CustomerHomeComponent,
@@ -24,7 +32,9 @@ import {
     CustomerBookingListComponent,
     CustomerMapComponent,
     CustomerMessageComponent,
-    CustomerInboxComponent
+    CustomerInboxComponent,
+    StylistProfileComponent
   ]
 })
-export class CustomerModule{}
+
+export class CustomerModule {}

@@ -5,3 +5,4 @@ export * from './customer-booking-list';
 export * from './customer-map';
 export * from './customer-message';
 export * from './customer-inbox';
+export * from './stylist-profile';

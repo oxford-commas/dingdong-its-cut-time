@@ -97,7 +97,6 @@ app.get('/api/bookings/:stylistid', function(req, res) {
 
 })
 
-
 app.listen(4200, function () {
   console.log('Example app listening on port 4200!')
 });

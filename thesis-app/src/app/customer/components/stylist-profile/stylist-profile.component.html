@@ -1,0 +1,25 @@
+<div (click)="hideModal()">
+  <h1>{{stylistProfile.name}}'s Profile</h1>
+  <img [src]=stylistProfile.image_url />
+  <p>Location</p>
+  <div>Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}}</div>
+  <p>Services I will provide</p>
+  <div *ngFor="let style of ['hard', 'coded', 'styles']">
+    {{style}}
+  </div>
+  <p>Gender:</p>
+  <div *ngIf="stylistProfile.gender==='male'">Male</div>
+  <div *ngIf="stylistProfile.gender==='female'">Female</div>
+  <p>Link to personal site:</p>
+  <div>{{stylistProfile.site_url}}</div>
+</div>
+<button (click)="showModal()">Request a cut</button>
+<div *ngIf="isShowModal">
+  <form #directMessage="ngForm">
+    <input name="subjectHeading" placeholder="Subject Heading" ngModel/>
+    Location: <input name="location" ngModel/>
+    Time: <input name="time" ngModel />
+    <textarea name="body" ngModel>Body of the message</textarea>
+    <button (click)="submitMessage(directMessage.value)">Send</button>
+  </form>
+</div>
