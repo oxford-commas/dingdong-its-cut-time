@@ -90,6 +90,6 @@ app.post('/location', function(req, res) {
   res.sendStatus(201);
 })
 
-app.listen(3000, function () {
+app.listen(4200, function () {
   console.log('Example app listening on port 3000!')
 })
