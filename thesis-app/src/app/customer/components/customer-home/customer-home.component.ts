@@ -5,5 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: 'customer-home.component.html'
 })
 export class CustomerHomeComponent {
-
+  constructor() {
+    console.log('loading...');
+  }
 }
