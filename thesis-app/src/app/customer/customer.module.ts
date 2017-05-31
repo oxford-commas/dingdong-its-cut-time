@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import { UiModule } from '../ui/ui.module';
 
 import {
   CustomerHomeComponent,
@@ -24,7 +25,8 @@ import {
     FormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAkYemtun-klcWc0toJ5R7gLtmHuPO32Xk' // TODO: Hide key
-    })
+    }),
+    UiModule
   ],
   declarations: [
     CustomerHomeComponent,

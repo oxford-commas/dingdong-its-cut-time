@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 
-@NgModule({
-  imports: [
+import { PaymentInputComponent } from './components';
 
+@NgModule({
+  declarations: [
+    PaymentInputComponent
   ]
 })
 export class PaymentModule { }
