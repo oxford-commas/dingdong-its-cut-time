@@ -8,8 +8,14 @@ var services = require('./locationServices.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'thesis-app/dist')));
+
+app.get('*', function(req, res) {
+ res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
+});
+
 // get all users and stylists given user or stylist id --- completed
-app.get('/api/userStylist/:id', function(req, res){
+app.get('/api/userStylist/:id', function(req, res) {
   var userid = req.params.id;
   helpers.getUser(userid, function(data) {
     res.status(200).json(data[0]);
