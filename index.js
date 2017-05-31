@@ -36,10 +36,8 @@ app.post('/api/stripe', function(req, res) {
   });
 });
 
-
-
 // get all users and stylists given user or stylist id --- completed
-app.get('/api/userStylist/:id', function(req, res){
+app.get('/api/userStylist/:id', function(req, res) {
   var userid = req.params.id;
   helpers.getUser(userid, function(data) {
     res.status(200).json(data[0]);
@@ -127,6 +125,6 @@ app.get('/api/bookings/:stylistid', function(req, res) {
 
 })
 
-app.listen(4200, function () {
-  console.log('Example app listening on port 4200!')
+app.listen(1337, function () {
+  console.log('Example app listening on port 1337!')
 });
