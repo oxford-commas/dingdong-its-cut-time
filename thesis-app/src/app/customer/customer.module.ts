@@ -13,7 +13,8 @@ import {
   CustomerMapComponent,
   CustomerMessageComponent,
   CustomerInboxComponent,
-  StylistProfileComponent
+  StylistProfileComponent,
+  CustomerProfileComponent
 } from './components';
 
 @NgModule({
@@ -33,7 +34,8 @@ import {
     CustomerMapComponent,
     CustomerMessageComponent,
     CustomerInboxComponent,
-    StylistProfileComponent
+    StylistProfileComponent,
+    CustomerProfileComponent
   ]
 })
 
