@@ -1,4 +1,4 @@
-var express = require('express');
+dvar express = require('express');
 var https = require('https');
 var path = require('path');
 var app = express();
@@ -11,8 +11,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'thesis-app/dist')));
 
 app.get('*', function(req, res) {
+  console.log('ran');
  res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
 });
+
 
 // get all users and stylists given user or stylist id --- completed
 app.get('/api/userStylist/:id', function(req, res) {
@@ -102,6 +104,7 @@ app.post('/api/bookings', function(req, res) {
 app.get('/api/bookings/:stylistid', function(req, res) {
 
 })
+
 
 app.listen(1337, function () {
   console.log('Example app listening on port 1337!')
