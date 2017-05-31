@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var helpers = require('./db/helpers.js');
 var services = require('./locationServices.js');
 var cors = require('cors');
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
