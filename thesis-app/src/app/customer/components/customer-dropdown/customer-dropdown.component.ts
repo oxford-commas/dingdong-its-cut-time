@@ -23,7 +23,6 @@ export class CustomerDropDownComponent {
 
   public onSelect(item) {
     this.selected = item;
-    console.log(this.selected);
     switch (this.selected){
       case "Home":
         this.router.navigate(["/home"]);
