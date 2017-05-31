@@ -32,6 +32,7 @@ export class SignUpFormComponent {
   }
 
   public handleSignUp() {
+    console.log('posting ', this.userInformationData);
     this.requestService.postStylist(this.userInformationData)
       .subscribe(
         (res) => console.log(res),
