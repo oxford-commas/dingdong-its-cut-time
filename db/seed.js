@@ -36,7 +36,7 @@ const stylistArray = [
     'update': 'update me'
   },
   {
-    id: 0,
+    id: 1,
     'username': 'mrhighland',
     'password': 'highlandpassword',
     'location': '1851 Lexington Ave, San Mateo, CA',
@@ -58,7 +58,7 @@ const stylistArray = [
     'update': 'update me'
   },
   {
-    id: 0,
+    id: 1,
     'username': 'Big Bess',
     'password': 'BigBessington',
     'location': '506 N Delaware St, San Mateo, CA',
@@ -157,7 +157,7 @@ const stylistArray = [
     'update': 'update me'
   },
   {
-    id: 0,
+    id: 1,
     'username': 'dnalounge',
     'password': 'dnalounge',
     'location': '375 11th St, San Francisco, CA',
@@ -212,7 +212,7 @@ const stylistArray = [
     'update': 'update me'
   },
   {
-    id: 0,
+    id: 1,
     'username': 'palaceoffinearts',
     'password': 'palaceoffinearts',
     'location': '3301 Lyon St, San Francisco, CA',
@@ -226,69 +226,51 @@ const stylistArray = [
 
 const booksingsArray = [
   {
-    userid: 0,
-    stylistid: 01,
-    isconfirmed: 0,
-    time: Date.now(),
-    location: '1201 Mason St, San Francisco, CA'
-  },
-  {
-    userid: 1,
-    stylistid: 01,
-    isconfirmed: 0,
-    time: Date.now(),
-    location: 'Bush St & Grant Ave., San Francisco, CA'
-  },
-  {
-    userid: 2,
-    stylistid: 01,
-    isconfirmed: 0,
-    time: Date.now(),
-    location: '506 N Delaware St, San Mateo, CA'
-  },
-  {
-    userid: 2,
-    stylistid: 01,
-    isconfirmed: 0,
-    time: Date.now(),
-    location: 'Redwood Shores, Redwood City, CA',
-  },
-  {
-    userid: 3,
-    stylistid: 01,
-    isconfirmed: 0,
-    time: Date.now(),
-    location: '1851 Lexington Ave, San Mateo, CA'
-  },
-  {
+    name: 'Mateo',
     userid: 4,
-    stylistid: 01,
-    isconfirmed: 0,
-    time: Date.now(),
-    location: '1851 Lexington Ave, San Mateo, CA'
-  },
-  {
-    userid: 5,
-    stylistid: 01,
-    isconfirmed: 0,
-    time: Date.now(),
-    location: 'Brewer Subdivision, Hillsborough, CA'
-  },
-  {
-    userid: 6,
-    stylistid: 01,
+    stylistid: 2,
     isconfirmed: 0,
     time: Date.now(),
     location: 'San Mateo, CA, CA'
   },
   {
-    userid: 7,
-    stylistid: 01,
+    name: 'mrhighland',
+    userid: 4,
+    stylistid: 2,
+    isconfirmed: 1,
+    time: Date.now(),
+    location: '1851 Lexington Ave, San Mateo, CA'
+  },
+  {
+    name: 'bigbess',
+    userid: 6,
+    stylistid: 2,
     isconfirmed: 0,
     time: Date.now(),
-    location: 'San Ramon, CA, CA'
-  }
+    location: '506 N Delaware St, San Mateo, CA'
+  },
+  {
+    name: 'dnalounge',
+    userid: 15,
+    stylistid: 16,
+    isconfirmed: 0,
+    time: Date.now(),
+    location: '375 11th St, San Francisco, CA'
+  },
+   {
+    name: 'palaceoffinearts',
+    userid: 15,
+    stylistid: 19,
+    isconfirmed: 0,
+    time: Date.now(),
+    location: '3301 Lyon St, San Francisco, CA'
+  },
+
 ]
+
+// '900 North Point St, San Francisco, CA',
+// '45 Sausalito San Francisco Pier 41, San Francisco, CA',
+// '375 11th St, San Francisco, CA',
 
 stylistArray.forEach(stylist => {
   helpers.addUserStylist(
