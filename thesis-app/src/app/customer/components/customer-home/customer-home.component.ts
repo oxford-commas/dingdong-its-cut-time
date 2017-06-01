@@ -23,6 +23,7 @@ export class CustomerHomeComponent {
   public currentLocation: any;
 
   getLocation() {
+    console.log('Clicked!');
     this.currentLocation = this.locationService.getCurrentPosition().subscribe(res => res);
     console.log('Location is:', this.currentLocation);
   }

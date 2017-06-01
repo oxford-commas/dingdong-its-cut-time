@@ -4,19 +4,19 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable() export class LocationService {
   constructor() {}
-
-  // Try HTML5 geolocation, wrap the Geolocation API into an observable
-  // @return An observable of Position
+  // wraps the Geolocation API into an observable
+  // returns An observable of Position
   getCurrentPosition(): Observable<Position> {
     return new Observable((observer: Observer<Position>) => {
       navigator.geolocation.getCurrentPosition(
         (position: Position) => {
           observer.next(position);
+          console.log('Position is:', position);
           observer.complete();
-      },
-      (error: PositionError) => {
-        console.log('Geolocation service: ' + error.message);
-        observer.error(error);
+        },
+        (error: PositionError) => {
+          console.log('Geolocation service: ' + error.message);
+          observer.error(error);
       });
     });
   }
