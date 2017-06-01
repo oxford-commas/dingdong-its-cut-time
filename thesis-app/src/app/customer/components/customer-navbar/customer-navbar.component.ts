@@ -12,7 +12,7 @@ export class CustomerNavbarComponent {
   }
 
   public logo: string = 'put logo url here';
-  public currentCustomer: string = 'hardcoded currentCustomer name';
+  public currentCustomer: string = 'matt';
   public isDropDownHidden: boolean = true;
 
   public handleStreetAddressChange(streetAddress) {
