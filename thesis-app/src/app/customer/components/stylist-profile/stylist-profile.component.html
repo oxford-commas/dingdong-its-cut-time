@@ -14,12 +14,19 @@
   <div>{{stylistProfile.site_url}}</div>
 </div>
 <button (click)="showModal()">Request a cut</button>
-<div *ngIf="isShowModal">
+
+<div *ngIf="isShowModal" class="container row">
   <form #directMessage="ngForm">
-    <input name="subjectHeading" placeholder="Subject Heading" ngModel/>
-    Location: <input name="location" ngModel/>
-    Time: <input name="time" ngModel />
-    <textarea name="body" ngModel>Body of the message</textarea>
-    <button (click)="submitMessage(directMessage.value)">Send</button>
+    <div class="row location">
+      Location: <input name="location" ngModel/>
+    </div>
+    <div class="row heading">
+      <input name="subjectHeading" placeholder="Subject Heading" ngModel/>
+      Time: <input name="time" ngModel />
+    </div>
+    <div class="row message">
+      <textarea name="body" ngModel>Body of the message</textarea>
+      <button (click)="submitMessage(directMessage.value)">Send</button>
+    </div>
   </form>
 </div>

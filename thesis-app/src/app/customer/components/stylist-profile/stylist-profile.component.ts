@@ -4,7 +4,8 @@ import { RequestService } from '../../../services';
 
 @Component({
   selector: 'stylist-profile',
-  templateUrl: './stylist-profile.component.html'
+  templateUrl: './stylist-profile.component.html',
+  styleUrls: ['./stylist.profile.component.css']
 })
 export class StylistProfileComponent {
   constructor(private _requestService: RequestService) {
