@@ -1,20 +1,26 @@
 <div class="container row poppadiv" (click)="hideModal()">
-  <div class="container row">
+  <div class="container row profile" >
     <h1>{{stylistProfile.name}}'s Profile</h1>
     <img [src]=stylistProfile.image_url />
     <p>Location</p>
-      <div>Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}}</div>
+      <div>
+        Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}}
+      </div>
+      <div class="servicescontainer">
         <p>Services I will provide</p>
+        <div class="container row liststyles">
           <div *ngFor="let style of ['hard', 'coded', 'styles']">
-          {{style}}
+            {{style}}
           </div>
+        </div>
+      </div>
         <p>Gender:</p>
           <div *ngIf="stylistProfile.gender==='male'">Male</div>
           <div *ngIf="stylistProfile.gender==='female'">Female</div>
         <p>Link to personal site:</p>
       <div>{{stylistProfile.site_url}}</div>
     </div>
-  <button (click)="showModal()">Request a cut</button>
+    <button (click)="showModal()">Request a cut</button>
   </div>
 
 <div *ngIf="isShowModal" class="container row wrapper">

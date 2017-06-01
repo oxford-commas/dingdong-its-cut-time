@@ -7,6 +7,10 @@
   border: 2px solid red;
 }*/
 
+.profile {
+  border: 2px solid red;
+}
+
 .wrapper {
   display: flex;
   justify-content: center;
@@ -35,4 +39,16 @@ textarea {
 .button {
   flex: 1 1;
   align-self: right;
+}
+
+.servicescontainer {
+  border: 2px solid red;
+}
+
+.liststyles {
+  border: 2px solid green;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  flex-wrap: wrap;
 }
