@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { RequestService } from '../../../services/request.service';
 
 import { IAccountInformation, IUserInformationData, IStylistInformationData, createDefaultUserInformationData } from '../../interfaces/registration-data';
@@ -9,7 +11,7 @@ import { IAccountInformation, IUserInformationData, IStylistInformationData, cre
 })
 export class SignUpFormComponent {
 
-  constructor(private requestService: RequestService) {
+  constructor(private requestService: RequestService, private router: Router) {
   }
 
   // hardcoded styling data
@@ -35,8 +37,11 @@ export class SignUpFormComponent {
     console.log('posting ', this.userInformationData);
     this.requestService.postStylist(this.userInformationData)
       .subscribe(
-        (res) => console.log(res),
-        (err) => console.log(err)
+        res => {
+          console.log('Succesfully posted: ', res);
+          this.router.navigate(['/home']);
+        },
+        err => console.log('Error posting: ', err)
       )
   }
 
