@@ -10,6 +10,7 @@ var addUserStylist = function(type, name, password, billingaddress, phonenumber,
 
 var getUser = function(userId, callback) {
   model.con.query('SELECT * FROM `users_stylists` WHERE `id` = ?', [userId], function (error, results, fields) {
+    console.log(results)
     callback(results);
   });
 }

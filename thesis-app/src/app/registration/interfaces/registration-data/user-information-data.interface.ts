@@ -1,14 +1,14 @@
 import { IStylistInformationData } from './stylist-information-data.interface';
 
 export interface IUserInformationData {
-  username: string;
+  name: string;
   password: string;
   stylistInformation?: IStylistInformationData;
-  type: string;
+  type: number;
 }
 
 export const createDefaultUserInformationData: () => IUserInformationData = () => ({
-  username: null,
+  name: null,
   password: null,
-  type: 'customer'
+  type: 1
 });
