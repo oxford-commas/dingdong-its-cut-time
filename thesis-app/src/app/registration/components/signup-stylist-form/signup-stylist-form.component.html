@@ -4,31 +4,34 @@
     (change)="handleStylistFormChange.emit(stylistForm.value)"
   >
     <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">Where are you servicing?</span>
+      <span class="input-group-addon" id="basic-addon1">
+      Where are you servicing?
+      </span>
       <input
         class="form-control"
         name="serviceLocation"
         ngModel
       >
     </div>
-    <div>
-      <span class="input-group-addon">Gender Male
+    <!-- <div class="container row">
+      <span class="input-group-addon">
+      Gender Male
         <input
           type="radio"
           name="gender"
           value="male"
           ngModel
         >
-        Female
+      Gender Female
         <input type="radio"
           name="gender"
           value="female"
           ngModel
         >
       </span>
-    </div>
+    </div> -->
     <div>
-      <span class="input-group-addon">Link to personal site (Optional)</span>
+      <span class="input-group-addon"><h3>Link to personal site (Optional)</h3></span>
       <input
         class="form-control"
         ngModel
@@ -37,7 +40,7 @@
     </div>
     <div class="container row">
       <div class="input-group">
-        Styling
+        <h3>Styling</h3>
         <div *ngFor="let style of styling; let index = index" name="style">
           <span class="input-group-addon">
           <input
@@ -46,7 +49,9 @@
             [value]="styling[index]"
             (change)="onChange(stylistForm.value, $event.target.value, index)"
           >
-          <label for="style">{{style}}</label>
+          <label for="style">
+            <h4>{{style}}</h4>
+          </label>
           </span>
         </div>
       </div>
