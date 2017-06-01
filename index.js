@@ -30,6 +30,8 @@ app.post('/api/stripe', function(req, res) {
   // asynchronously called
   console.log('error charging card ', err, charge);
   });
+});
+
 
 
 // get all users and stylists given user or stylist id --- completed
@@ -105,7 +107,6 @@ app.post('/api/location', function(req, res) {
       res.sendStatus(201);
     });
   });
-
 });
 
 // add bookings to the database --- completed
@@ -122,7 +123,7 @@ app.get('/api/userbookings/:userid', function(req, res) {
   helpers.getUserBookings(req.params.userid, function(data) {
     res.status(200).json(data);
   });
-})
+});
 
 //given stylistId, get all stylists bookings
 app.get('/api/stylistbookings/:stylistid', function(req, res) {
@@ -130,13 +131,13 @@ app.get('/api/stylistbookings/:stylistid', function(req, res) {
   helpers.getStylistBookings(req.params.stylistid, function(data) {
     res.status(200).json(data);
   });
-})
+
+});
 
 app.get('*', function(req, res) {
  res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
 });
 
-app.listen(4200, function() {
+app.listen(4200, function () {
   console.log('Example app listening on port 4200!')
-})
-
+});
