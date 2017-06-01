@@ -1,6 +1,13 @@
-<h1>Closest to you</h1>
-<div *ngFor="let booking of bookings" [routerLink]="['/stylistProfile']">
-  <div>{{booking.name}}</div>
-  <div>{{booking.blurb}}</div>
-  <div>{{booking.styling}}</div>
+<div class="container" style="display: flex; flex-wrap: wrap;">
+  <div class="row" style="flex: 1 1 40%">
+    <h3 style="text-align: center">Here are the stylists closest to you:</h3>
+    <div *ngFor="let booking of bookings" [routerLink]="['/stylistProfile']">
+      <div>{{booking.name}}</div>
+      <div>{{booking.blurb}}</div>
+      <div>{{booking.styling}}</div>
+    </div>
+  </div>
+  <div class="row">
+    <customer-map [coordinates]="currentLocation"></customer-map>
+  </div>
 </div>
