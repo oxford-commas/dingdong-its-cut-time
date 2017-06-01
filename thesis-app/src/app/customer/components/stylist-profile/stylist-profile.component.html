@@ -1,25 +1,29 @@
 <div class="container row poppadiv" (click)="hideModal()">
   <div class="container row profile" >
-    <h1>{{stylistProfile.name}}'s Profile</h1>
-    <img [src]=stylistProfile.image_url />
-    <p>Location</p>
+    <div class="container locationwrapper">
+      <img [src]=stylistProfile.image_url />
+      <p>Location</p>
       <div>
         Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}}
       </div>
-      <div class="servicescontainer">
-        <p>Services I will provide</p>
-        <div class="container row liststyles">
-          <div class="styleitems" *ngFor="let style of ['hard', 'coded', 'styles']">
-            <h6>{{style}}</h6>
-          </div>
+    </div>
+
+    <div class="servicescontainer">
+      <p>Services I will provide</p>
+      <div class="container row liststyles">
+        <div class="styleitems" *ngFor="let style of ['hard', 'coded', 'styles']">
+          <h6>{{style}}</h6>
         </div>
       </div>
+    </div>
         <!-- <p>Gender:</p>
           <div *ngIf="stylistProfile.gender==='male'">Male</div>
           <div *ngIf="stylistProfile.gender==='female'">Female</div> -->
+    <div class="personalcontainer">
       <h5>Link to personal site:</h5>
-      <div class="row linktosite">
-        <a href="stylistProfile.site_url">{{stylistProfile.site_url}}</a>
+        <div class="row linktosite">
+          <a href="stylistProfile.site_url">{{stylistProfile.site_url}}</a>
+        </div>
       </div>
     </div>
     <button (click)="showModal()">Request a cut</button>

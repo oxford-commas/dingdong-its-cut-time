@@ -6,6 +6,24 @@
 
 .profile {
   border: 2px solid red;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.locationwrapper {
+  border: 3px solid purple;
+  flex: 1 1;
+  width: 30%;
+}
+
+.servicescontainer {
+  border: 2px solid red;
+  flex: 1 1;
+  width: 68%;
+}
+
+.personalcontainer {
+  border: 3px solid orange;
 }
 
 .wrapper {
@@ -61,3 +79,4 @@ textarea {
   justify-content: center;
   align-items: center;
 }
+
