@@ -4,13 +4,12 @@
     (change)="handleStylistFormChange.emit(stylistForm.value)"
   >
     <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">
-      Where are you servicing?
-      </span>
+      <span class="input-group-addon" id="basic-addon1"><h4>Where are you servicing?</h4></span>
       <input
         class="form-control"
         name="serviceLocation"
         ngModel
+        style="height: 55px"
       >
     </div>
     <!-- <div class="container row">
@@ -31,7 +30,7 @@
       </span>
     </div> -->
     <div>
-      <span class="input-group-addon"><h3>Link to personal site (Optional)</h3></span>
+      <span class="input-group-addon"><h4>Link to personal site (Optional)</h4></span>
       <input
         class="form-control"
         ngModel
@@ -40,7 +39,7 @@
     </div>
     <div class="container row">
       <div class="input-group">
-        <h3>Styling</h3>
+        <h4>Styling</h4>
         <div *ngFor="let style of styling; let index = index" name="style">
           <span class="input-group-addon">
           <input
