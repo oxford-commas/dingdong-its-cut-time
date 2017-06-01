@@ -7,6 +7,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 import { UiModule } from '../ui/ui.module';
 
 import { StripeService } from '../services';
+import { LocationService } from '../services';
 
 import {
   CustomerHomeComponent,
@@ -41,7 +42,10 @@ import {
     StylistProfileComponent,
     CustomerProfileComponent
   ],
-  providers: [StripeService]
+  providers: [
+    StripeService,
+    LocationService
+   ]
 })
 
 export class CustomerModule {}
