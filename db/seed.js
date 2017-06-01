@@ -299,6 +299,4 @@ booksingsArray.forEach(booking => {
     booking.location, (resultFromServer) => {
       console.log(resultFromServer);
     });
-})
-
-
+});

@@ -53,6 +53,13 @@ var addToBookings = function(userId, stylistId, isConfirmed, time, location, cal
   });
 }
 
+var getUserBookings = function(userId, callback) {
+  model.con.query('SELECT * FROM `bookings` WHERE `id_users` = ?', [userId], function(error, results, fields) {
+    //console.log(results);
+    callback(results);
+  });
+}
+
 var getStylistBookings = function(stylistId, callback) {
   model.con.query('SELECT * FROM `bookings` WHERE `id_stylists` = ?', [stylistId], function (error, results, fields) {
     callback(results);
@@ -66,4 +73,5 @@ module.exports.getAllStylists = getAllStylists;
 module.exports.calculateDistance = calculateDistance;
 module.exports.addToBookings = addToBookings;
 module.exports.getStylistBookings = getStylistBookings;
+module.exports.getUserBookings = getUserBookings;
 

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 import { IUserInformationData } from '../../interfaces';
 
 @Component({
@@ -7,6 +9,8 @@ import { IUserInformationData } from '../../interfaces';
   templateUrl: './signin-form.component.html'
 })
 export class SignInFormComponent {
+  constructor(private router: Router){}
+
   public logo: string = 'placeholder for logo url';
   private userInformationData: IUserInformationData;
 
@@ -19,5 +23,6 @@ export class SignInFormComponent {
 
   handleLogin() {
     console.log('TODO: authorize user ', this.userInformationData);
+    this.router.navigate(['/home']);
   }
 }

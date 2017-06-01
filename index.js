@@ -33,7 +33,6 @@ app.post('/api/stripe', function(req, res) {
   // asynchronously called
   console.log('error charging card ', err, charge);
   });
-});
 
 
 // get all users and stylists given user or stylist id --- completed
@@ -113,16 +112,28 @@ app.post('/api/location', function(req, res) {
 
 });
 
-// add bookings to the database
+// add bookings to the database --- completed
 app.post('/api/bookings', function(req, res) {
-  helpers.addToBookings(req.body.userid, req.body.stylistid, req.body.isConfirmed, req.body.time, req.body.location, function() {
+  console.log(req.body);
+  helpers.addToBookings(req.body.id_users, req.body.id_stylists, req.body.isconfirmed, req.body.time, req.body.location, function() {
     res.sendStatus(201);
   });
 });
 
-// given stylistId, get all users  who are booked with this stylist)
-app.get('/api/bookings/:stylistid', function(req, res) {
+// given userId, get all the user bookings
+app.get('/api/userbookings/:userid', function(req, res) {
+  console.log(req.params.userid);
+  helpers.getUserBookings(req.params.userid, function(data) {
+    res.status(200).json(data);
+  });
+})
 
+//given stylistId, get all stylists bookings
+app.get('/api/stylistbookings/:stylistid', function(req, res) {
+  console.log(req.params.userid);
+  helpers.getStylistBookings(req.params.stylistid, function(data) {
+    res.status(200).json(data);
+  });
 })
 
 app.get('*', function(req, res) {
