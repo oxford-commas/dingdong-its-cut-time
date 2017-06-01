@@ -131,8 +131,21 @@ app.get('/api/stylistbookings/:stylistid', function(req, res) {
   helpers.getStylistBookings(req.params.stylistid, function(data) {
     res.status(200).json(data);
   });
-
 });
+
+//given userId, delete user info from the database along with the bookings
+app.delete('/user/:userid', function (req, res) {
+  console.log(req.params.userid);
+  helpers.deleteUser(req.params.userid);
+  res.send('Got a DELETE request at /user')
+});
+
+//given stylistId, delete stylist info from the database along with the bookings(foreign key constraint)
+app.delete('/stylist/:stylistid', function (req, res) {
+  console.log(req.params.stylistid);
+  helpers.deleteUser(req.params.stylistid);
+  res.send('Got a DELETE request at /stylist')
+})
 
 app.get('*', function(req, res) {
  res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
