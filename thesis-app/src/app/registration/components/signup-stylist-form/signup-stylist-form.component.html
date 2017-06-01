@@ -1,44 +1,56 @@
-<form
-  #stylistForm="ngForm"
-  (change)="handleStylistFormChange.emit(stylistForm.value)"
->
-  <div>
-    Where are you servicing?
-    <input
-      name="serviceLocation"
-      ngModel
-    >
-  </div>
-  <div>
-    Gender Male
-    <input
-      type="radio"
-      name="gender"
-      value="male"
-      ngModel
-    >
-    Female
-    <input type="radio"
-      name="gender"
-      value="female"
-      ngModel
-    >
-  </div>
-  <div>
-    Link to personal site (Optional)
-    <input
-      ngModel
-      name="personalUrl"
-    >
-  </div>
-  Styling
-  <div *ngFor="let style of styling; let index = index" name="style">
-    <input
-      name="styleType"
-      type="checkbox"
-      [value]="styling[index]"
-      (change)="onChange(stylistForm.value, $event.target.value, index)"
-    >
-    <label for="style">{{style}}</label>
-  </div>
-</form>
+<div class="container row" style="padding-top: 20px;">
+  <form
+    #stylistForm="ngForm"
+    (change)="handleStylistFormChange.emit(stylistForm.value)"
+  >
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">Where are you servicing?</span>
+      <input
+        class="form-control"
+        name="serviceLocation"
+        ngModel
+      >
+    </div>
+    <div>
+      <span class="input-group-addon">Gender Male
+        <input
+          type="radio"
+          name="gender"
+          value="male"
+          ngModel
+        >
+        Female
+        <input type="radio"
+          name="gender"
+          value="female"
+          ngModel
+        >
+      </span>
+    </div>
+    <div>
+      <span class="input-group-addon">Link to personal site (Optional)</span>
+      <input
+        class="form-control"
+        ngModel
+        name="personalUrl"
+      >
+    </div>
+    <div class="container row">
+      <div class="input-group">
+        Styling
+        <div *ngFor="let style of styling; let index = index" name="style">
+          <span class="input-group-addon">
+          <input
+            name="styleType"
+            type="checkbox"
+            [value]="styling[index]"
+            (change)="onChange(stylistForm.value, $event.target.value, index)"
+          >
+          <label for="style">{{style}}</label>
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
