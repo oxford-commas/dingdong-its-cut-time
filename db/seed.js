@@ -1,7 +1,7 @@
-var helpers = require('./helpers.js');
-var services = require('../locationServices.js')
+const helpers = require('./helpers.js');
+const services = require('../locationServices.js')
 
-var stylistArray = [
+const stylistArray = [
   {
     id: 0,
     'username': 'Shari',
@@ -107,8 +107,8 @@ var stylistArray = [
     'password': 'cityhall',
     'location': '1 Dr Carlton B Goodlett Pl, San Francisco, CA',
     'phoneNumber': '415-554-4000',
-    'email': 'cityhalldontgotnotemail@gmail.com',
-    'website': 'wedontlbelieveintechnology.com',
+    'email': 'cityhall@gmail.com',
+    'website': 'cityhall.com',
     'style': 'P',
     'update': 'update me'
   },
@@ -180,47 +180,113 @@ var stylistArray = [
   },
   {
     id: 0,
-    'username': 'Shari',
-    'password': 'ShariPassword',
-    'location': 'San Ramon, CA, CA',
-    'phoneNumber': '967-890-7890',
-    'email': 'Shari@gmail.com',
-    'website': 'ShariStylists.com',
-    'style': 'F',
+    'username': 'acedemyofsciences',
+    'password': 'acedemyofsciences',
+    'location': '55 Music Concourse Dr, San Francisco, CA',
+    'phoneNumber': '415-379-8000',
+    'email': 'acedemyofsciences@gmail.com',
+    'website': 'acedemyofsciences.com',
+    'style': 'T',
     'update': 'update me'
   },
   {
     id: 0,
-    'username': 'Shari',
-    'password': 'ShariPassword',
-    'location': 'San Ramon, CA, CA',
-    'phoneNumber': '967-890-7890',
-    'email': 'Shari@gmail.com',
-    'website': 'ShariStylists.com',
-    'style': 'F',
+    'username': 'deyoung',
+    'password': 'deyoung',
+    'location': '50 Hagiwara Tea Garden Dr, San Francisco, CA',
+    'phoneNumber': '415-750-3600',
+    'email': 'deyoung@gmail.com',
+    'website': 'deyoung.famsf.org',
+    'style': 'T, P',
     'update': 'update me'
   },
   {
     id: 0,
-    'username': 'Shari',
-    'password': 'ShariPassword',
-    'location': 'San Ramon, CA, CA',
-    'phoneNumber': '967-890-7890',
-    'email': 'Shari@gmail.com',
-    'website': 'ShariStylists.com',
-    'style': 'F',
+    'username': 'kezarstadium',
+    'password': 'kezarstadium',
+    'location': '670 Kezar Dr, San Francisco, CA',
+    'phoneNumber': '415-831-5500',
+    'email': 'sfrecpark@gmail.com',
+    'website': 'sfrecpark.org',
+    'style': 'F, T, P',
     'update': 'update me'
   },
   {
     id: 0,
-    'username': 'Shari',
-    'password': 'ShariPassword',
-    'location': 'San Ramon, CA, CA',
-    'phoneNumber': '967-890-7890',
-    'email': 'Shari@gmail.com',
-    'website': 'ShariStylists.com',
+    'username': 'palaceoffinearts',
+    'password': 'palaceoffinearts',
+    'location': '3301 Lyon St, San Francisco, CA',
+    'phoneNumber': '415-563-6504',
+    'email': 'palaceoffinearts@gmail.com',
+    'website': 'palaceoffinearts.org',
     'style': 'F',
     'update': 'update me'
+  }
+]
+
+const booksingsArray = [
+  {
+    userid: 0,
+    stylistid: 01,
+    isconfirmed: 0,
+    time: Date.now(),
+    location: '1201 Mason St, San Francisco, CA'
+  },
+  {
+    userid: 1,
+    stylistid: 01,
+    isconfirmed: 0,
+    time: Date.now(),
+    location: 'Bush St & Grant Ave., San Francisco, CA'
+  },
+  {
+    userid: 2,
+    stylistid: 01,
+    isconfirmed: 0,
+    time: Date.now(),
+    location: '506 N Delaware St, San Mateo, CA'
+  },
+  {
+    userid: 2,
+    stylistid: 01,
+    isconfirmed: 0,
+    time: Date.now(),
+    location: 'Redwood Shores, Redwood City, CA',
+  },
+  {
+    userid: 3,
+    stylistid: 01,
+    isconfirmed: 0,
+    time: Date.now(),
+    location: '1851 Lexington Ave, San Mateo, CA'
+  },
+  {
+    userid: 4,
+    stylistid: 01,
+    isconfirmed: 0,
+    time: Date.now(),
+    location: '1851 Lexington Ave, San Mateo, CA'
+  },
+  {
+    userid: 5,
+    stylistid: 01,
+    isconfirmed: 0,
+    time: Date.now(),
+    location: 'Brewer Subdivision, Hillsborough, CA'
+  },
+  {
+    userid: 6,
+    stylistid: 01,
+    isconfirmed: 0,
+    time: Date.now(),
+    location: 'San Mateo, CA, CA'
+  },
+  {
+    userid: 7,
+    stylistid: 01,
+    isconfirmed: 0,
+    time: Date.now(),
+    location: 'San Ramon, CA, CA'
   }
 ]
 
@@ -245,3 +311,20 @@ stylistArray.forEach(stylist => {
       })
     });
 });
+
+
+// app.post('/api/bookings', function(req, res) {
+//   helpers.addToBookings(req.body.userid, req.body.stylistid, req.body.isConfirmed, req.body.time, req.body.location, function() {
+//     res.sendStatus(201);
+//   });
+// });
+
+// CREATE TABLE IF NOT EXISTS `bookings` (
+//   `id` INTEGER NOT NULL AUTO_INCREMENT,
+//   `id_users` INTEGER NOT NULL,
+//   `id_stylists` INTEGER NOT NULL,
+//   `isconfirmed` INTEGER NOT NULL,
+//   `time` VARCHAR(45) NOT NULL,
+//   `location` TEXT NOT NULL,
+//   PRIMARY KEY (`id`)
+// );
