@@ -10,6 +10,10 @@
   flex-wrap: wrap;
 }
 
+.profileimage {
+  border-radius: 100px;
+}
+
 .locationwrapper {
   border: 3px solid purple;
   flex: 1 1;
@@ -61,7 +65,8 @@ textarea {
 }
 
 .liststyles {
-  border: 2px solid green;
+  border-bottom: 2px solid black;
+  width: 100%;
   display: flex;
   justify-content: left;
   align-items: center;
@@ -69,8 +74,8 @@ textarea {
 }
 
 .styleitems {
-  padding: 5px;
-  margin: 5px;
+  padding: 3px;
+  margin: 3px;
 }
 
 .linktosite {
@@ -80,3 +85,8 @@ textarea {
   align-items: center;
 }
 
+.paragraph {
+  overflow: scroll;
+  width: 68%;
+  border: 2px solid;
+}
