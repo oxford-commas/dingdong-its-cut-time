@@ -290,7 +290,7 @@ stylistArray.forEach(stylist => {
     });
 });
 
-sbooksingsArray.forEach(booking => {
+booksingsArray.forEach(booking => {
   helpers.addToBookings(
     booking.userid,
     booking.stylistid,
@@ -299,4 +299,6 @@ sbooksingsArray.forEach(booking => {
     booking.location, (resultFromServer) => {
       console.log(resultFromServer);
     });
-});
+})
+
+

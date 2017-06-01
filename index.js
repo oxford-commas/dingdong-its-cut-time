@@ -125,10 +125,11 @@ app.get('/api/bookings/:stylistid', function(req, res) {
 
 })
 
-app.listen(4200, function () {
-  console.log('Example app listening on port 4200!')
-});
-
 app.get('*', function(req, res) {
  res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
 });
+
+app.listen(4200, function() {
+  console.log('Example app listening on port 4200!')
+})
+

@@ -7,6 +7,7 @@
         <!-- Signup as Customer -->
         <span class="input-group-addon">
           Signup as a Customer
+        </span>
           <input
             class="form-control"
             name="type"
@@ -16,10 +17,10 @@
             [(ngModel)]="userInformationData.type"
             (change)="clearForm()"
           >
-        </span>
         <!-- Signup as Stylist -->
         <span class="input-group-addon">
           Sign up as a Stylist
+        </span>
           <input
             class="form-control"
             name="type"
@@ -28,7 +29,6 @@
             [(ngModel)]="userInformationData.type"
             (change)="clearForm()"
           >
-        </span>
       </div>
       <username-password (onInputsChange)="handleAccountInput($event)"></username-password>
       <signup-stylist-form
