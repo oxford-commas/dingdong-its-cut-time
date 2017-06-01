@@ -31,14 +31,7 @@
   width: 100%;
 }
 
-.wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 250px;
-  width: 400px;
-  border: 2px solid;
-}
+
 .heading {
   flex: 1 1;
 }
@@ -90,4 +83,26 @@ textarea {
   width: 68%;
   border-top: 2px solid;
   /*border: 2px solid;*/
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  width: 1000px;
+  padding: 10px;
+  margin: 20px;
+}
+
+.modalContent {
+  border: 2px solid black;
+  width: 500px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.modeitem {
+  padding: 10px;
+  margin: 10px;
 }

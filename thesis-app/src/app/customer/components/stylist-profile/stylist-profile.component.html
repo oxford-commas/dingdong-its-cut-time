@@ -34,18 +34,20 @@
 </div>
 <div *ngIf="isShowModal" class="container row wrapper">
   <form #directMessage="ngForm">
-    <div class="row location">
-      Location: <input name="location" ngModel/>
-    </div>
-    <div class="row heading">
-      <input name="subjectHeading" placeholder="Subject Heading" ngModel/>
-      Time: <input name="time" ngModel />
-    </div>
-    <div class="row message">
-      <textarea name="body" ngModel>Body of the message</textarea>
-    </div>
-    <div class=" row button">
-      <button (click)="submitMessage(directMessage.value)">Send</button>
+    <div class="container row modalContent">
+      <div class="row location modeitem">
+        Location: <input name="location" ngModel/>
+      </div>
+      <div class="row heading modeitem">
+        <input name="subjectHeading" placeholder="Subject Heading" ngModel/>
+        Time: <input name="time" ngModel />
+      </div>
+      <div class="row message modeitem">
+        <textarea name="body" ngModel>Body of the message</textarea>
+        <button (click)="submitMessage(directMessage.value)">Send</button>
+      </div>
+      <div class=" row button">
+      </div>
     </div>
   </form>
 </div>
