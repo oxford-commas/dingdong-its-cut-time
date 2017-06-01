@@ -9,18 +9,18 @@ import { IAccountInformation } from '../../interfaces/registration-data';
 export class UsernamePasswordComponent {
   @Output() public onInputsChange = new EventEmitter<IAccountInformation>();
 
-  private username: string;
+  private name: string;
   private password: string;
 
   public emitInputChange() {
     this.onInputsChange.emit({
-      username: this.username,
+      name: this.name,
       password: this.password
     });
   }
 
-  public emitUsernameInputChange(username: string) {
-    this.username = username;
+  public emitUsernameInputChange(name: string) {
+    this.name = name;
     this.emitInputChange();
   }
 

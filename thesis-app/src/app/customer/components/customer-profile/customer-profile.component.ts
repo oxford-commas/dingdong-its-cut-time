@@ -31,5 +31,4 @@ export class CustomerProfileComponent {
   public handleSaveChanges() {
     console.log('TODO: PUT the changes');
   }
-
 }
