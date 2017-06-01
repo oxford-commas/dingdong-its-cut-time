@@ -229,7 +229,7 @@ const booksingsArray = [
     name: 'Mateo',
     userid: 4,
     stylistid: 2,
-    isconfirmed: 0,
+    isConfirmed: 0,
     time: Date.now(),
     location: 'San Mateo, CA, CA'
   },
@@ -237,7 +237,7 @@ const booksingsArray = [
     name: 'mrhighland',
     userid: 4,
     stylistid: 2,
-    isconfirmed: 1,
+    isConfirmed: 1,
     time: Date.now(),
     location: '1851 Lexington Ave, San Mateo, CA'
   },
@@ -245,7 +245,7 @@ const booksingsArray = [
     name: 'bigbess',
     userid: 6,
     stylistid: 2,
-    isconfirmed: 0,
+    isConfirmed: 0,
     time: Date.now(),
     location: '506 N Delaware St, San Mateo, CA'
   },
@@ -253,7 +253,7 @@ const booksingsArray = [
     name: 'dnalounge',
     userid: 15,
     stylistid: 16,
-    isconfirmed: 0,
+    isConfirmed: 0,
     time: Date.now(),
     location: '375 11th St, San Francisco, CA'
   },
@@ -261,16 +261,12 @@ const booksingsArray = [
     name: 'palaceoffinearts',
     userid: 15,
     stylistid: 19,
-    isconfirmed: 0,
+    isConfirmed: 0,
     time: Date.now(),
     location: '3301 Lyon St, San Francisco, CA'
-  },
-
+  }
 ]
 
-// '900 North Point St, San Francisco, CA',
-// '45 Sausalito San Francisco Pier 41, San Francisco, CA',
-// '375 11th St, San Francisco, CA',
 
 stylistArray.forEach(stylist => {
   helpers.addUserStylist(
@@ -294,19 +290,13 @@ stylistArray.forEach(stylist => {
     });
 });
 
-
-// app.post('/api/bookings', function(req, res) {
-//   helpers.addToBookings(req.body.userid, req.body.stylistid, req.body.isConfirmed, req.body.time, req.body.location, function() {
-//     res.sendStatus(201);
-//   });
-// });
-
-// CREATE TABLE IF NOT EXISTS `bookings` (
-//   `id` INTEGER NOT NULL AUTO_INCREMENT,
-//   `id_users` INTEGER NOT NULL,
-//   `id_stylists` INTEGER NOT NULL,
-//   `isconfirmed` INTEGER NOT NULL,
-//   `time` VARCHAR(45) NOT NULL,
-//   `location` TEXT NOT NULL,
-//   PRIMARY KEY (`id`)
-// );
+booksingsArray.forEach(booking => {
+  helpers.addToBookings(
+    booking.userid,
+    booking.stylistid,
+    booking.isConfirmed,
+    booking.time,
+    booking.location, (resultFromServer) => {
+      console.log(resultFromServer);
+    });
+});
