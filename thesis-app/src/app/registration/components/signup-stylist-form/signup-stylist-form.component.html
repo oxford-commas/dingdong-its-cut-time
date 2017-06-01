@@ -38,9 +38,9 @@
       >
     </div>
     <div class="container row">
-      <div class="input-group">
-        <h4>Styling</h4>
-        <div *ngFor="let style of styling; let index = index" name="style">
+
+      <div class="input-group" style="display: flex; flex-wrap: wrap; justify-content: center;">
+        <div style="flex 1 1; width: 33%" *ngFor="let style of styling; let index = index" name="style">
           <span class="input-group-addon">
           <input
             name="styleType"
@@ -54,6 +54,7 @@
           </span>
         </div>
       </div>
+
     </div>
   </form>
 </div>

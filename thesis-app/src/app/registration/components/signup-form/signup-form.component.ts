@@ -15,7 +15,7 @@ export class SignUpFormComponent {
   }
 
   // hardcoded styling data
-  public styling: Array<string> = ['hard', 'coded', 'styles'];
+  public styling: Array<string> = ['Fade', 'Perm', 'Hair Coloring', 'Taper Fade', 'Bangs', 'Buzz Cut', 'Pompadour'];
 
   private userInformationData: IUserInformationData = createDefaultUserInformationData();
 
