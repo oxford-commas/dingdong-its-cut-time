@@ -3,11 +3,15 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'signin-input',
   template: `
-    <div>{{headerText}}</div>
-    <input
-      #input
-      (change)="onInputChange.emit(input.value)"
-    />
+    <h2>{{headerText}}</h2>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">@</span>
+      <input
+        class="form-control"
+        #input
+        (change)="onInputChange.emit(input.value)"
+      />
+    </div>
   `
 })
 export class SignInInputComponent {

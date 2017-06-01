@@ -33,6 +33,7 @@ app.post('/api/stripe', function(req, res) {
 });
 
 
+
 // get all users and stylists given user or stylist id --- completed
 app.get('/api/userStylist/:id', function(req, res) {
   var userid = req.params.id;
@@ -61,7 +62,6 @@ app.get('/api/stylists/:location', function(req, res) {
         }
       });
       res.status(200).json(data);
-
     });
   });
 });
@@ -131,6 +131,7 @@ app.get('/api/stylistbookings/:stylistid', function(req, res) {
   helpers.getStylistBookings(req.params.stylistid, function(data) {
     res.status(200).json(data);
   });
+
 });
 
 app.get('*', function(req, res) {
@@ -140,4 +141,3 @@ app.get('*', function(req, res) {
 app.listen(4200, function () {
   console.log('Example app listening on port 4200!')
 });
-

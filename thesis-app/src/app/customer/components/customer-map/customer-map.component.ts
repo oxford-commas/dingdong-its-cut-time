@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'customer-map',
@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 
 export class CustomerMapComponent {
+
+  @Input() coordinates;
 
   title: string = 'Stylists in your area';
 
