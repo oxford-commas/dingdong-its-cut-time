@@ -15,7 +15,7 @@
 </div>
 <button (click)="showModal()">Request a cut</button>
 
-<div *ngIf="isShowModal" class="container row">
+<div *ngIf="isShowModal" class="container row wrapper">
   <form #directMessage="ngForm">
     <div class="row location">
       Location: <input name="location" ngModel/>
