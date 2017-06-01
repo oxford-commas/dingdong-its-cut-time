@@ -32,12 +32,9 @@ export class StylistProfileComponent {
   public stylistProfile: any; // TODO: interface this
   public isShowModal: boolean = false;
 
-  public showModal() {
-    this.isShowModal = true;
-  }
-
-  public hideModal() {
-    this.isShowModal = false;
+  public toggleModal() {
+    console.log(this.isShowModal, 'here')
+    this.isShowModal = !this.isShowModal;
   }
 
   public submitMessage(message) {

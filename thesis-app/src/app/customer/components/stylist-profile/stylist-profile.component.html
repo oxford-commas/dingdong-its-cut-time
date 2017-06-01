@@ -1,4 +1,4 @@
-<div class="container row poppadiv" (click)="hideModal()">
+<div class="container row poppadiv">
   <div class="container row profile" >
     <div class="container locationwrapper">
       <img class="profileimage" [src]=stylistProfile.image_url />
@@ -29,12 +29,9 @@
         <a href="stylistProfile.site_url">{{stylistProfile.site_url}}</a>
       </div>
     </div>
-        <!-- <p>Gender:</p>
-          <div *ngIf="stylistProfile.gender==='male'">Male</div>
-          <div *ngIf="stylistProfile.gender==='female'">Female</div> -->
   </div>
-      <button (click)="showModal()">Request a cut</button>
-
+  <button (click)="toggleModal()">Request a cut</button>
+</div>
 <div *ngIf="isShowModal" class="container row wrapper">
   <form #directMessage="ngForm">
     <div class="row location">
