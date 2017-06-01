@@ -1,26 +1,38 @@
-.wrapper {
+/*.poppadiv {
   display: flex;
-  border: 5px solid red;
   justify-content: center;
   align-items: center;
-  height: 300px;
+  flex-wrap: wrap;
+  height: 100vh;
+  border: 2px solid red;
+}*/
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  width: 400px;
+  border: 2px solid;
 }
 .heading {
-  border: 2px solid black;
   flex: 1 1;
 }
 
 .location {
-  border: 2px solid blue;
   flex: 1 1;
 }
 
 .message {
-  border: 2px solid green;
   flex: 1 1;
 }
 
 textarea {
   width: 300px;
   height: 100px;
+}
+
+.button {
+  flex: 1 1;
+  align-self: right;
 }
