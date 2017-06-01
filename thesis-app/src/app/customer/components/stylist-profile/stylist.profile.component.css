@@ -1,11 +1,8 @@
-/*.poppadiv {
+.poppadiv {
+  border: 5px solid yellow;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
-  height: 100vh;
-  border: 2px solid red;
-}*/
+}
 
 .profile {
   border: 2px solid red;
@@ -48,7 +45,19 @@ textarea {
 .liststyles {
   border: 2px solid green;
   display: flex;
-  justify-content: center;
-  align-self: center;
+  justify-content: left;
+  align-items: center;
   flex-wrap: wrap;
+}
+
+.styleitems {
+  padding: 5px;
+  margin: 5px;
+}
+
+.linktosite {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
