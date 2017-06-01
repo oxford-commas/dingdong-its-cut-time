@@ -59,7 +59,6 @@ app.get('/api/stylists/:location', function(req, res) {
         }
       });
       res.status(200).json(data);
-
     });
   });
 });
