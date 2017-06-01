@@ -12,7 +12,7 @@ export class StylistProfileComponent {
     this.stylistProfile = { // example stylist data
       id: 0,
       type: 0,
-      name: 'Momo',
+      name: 'Andrew',
       password: 'lol',
       billingaddress: '123 main street',
       phonenumber: '999 999 9999',
