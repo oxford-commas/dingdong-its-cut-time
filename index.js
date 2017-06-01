@@ -117,10 +117,18 @@ app.post('/api/bookings', function(req, res) {
   });
 });
 
-// given userId, get all stylists  who are booked with this stylist)
-app.get('/api/bookings/:userid', function(req, res) {
+// given userId, get all the user bookings
+app.get('/api/userbookings/:userid', function(req, res) {
   console.log(req.params.userid);
   helpers.getUserBookings(req.params.userid, function(data) {
+    res.status(200).json(data);
+  });
+})
+
+//given stylistId, get all stylists bookings
+app.get('/api/stylistbookings/:stylistid', function(req, res) {
+  console.log(req.params.userid);
+  helpers.getStylistBookings(req.params.stylistid, function(data) {
     res.status(200).json(data);
   });
 })
