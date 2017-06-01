@@ -1,30 +1,43 @@
 <div class="container">
   <registration-header headerText="Sign Up Page" logo="placeholder logo url"></registration-header>
-  <form (ngSubmit)="handleSignUp(signUpFormData)" #signUpFormData="ngForm">
-    Signup as Customer
-    <input
-      name="type"
-      type="radio"
-      checked="checked"
-      [value]="1"
-      [(ngModel)]="userInformationData.type"
-      (change)="clearForm()"
-    >
-    Signup as Stylist
-    <input
-      name="type"
-      type="radio"
-      [value]="0"
-      [(ngModel)]="userInformationData.type"
-      (change)="clearForm()"
-    >
-    <username-password (onInputsChange)="handleAccountInput($event)"></username-password>
-    <signup-stylist-form
-      *ngIf="this.userInformationData.type===0"
-      (handleStylistFormChange)="handleStylistInput($event)"
-      [styling]="styling"
-    >
-    </signup-stylist-form>
-    <button type="submit">Register</button>
-  </form>
+  <div class="container row" style="margin: auto">
+    <form
+      (ngSubmit)="handleSignUp(signUpFormData)" #signUpFormData="ngForm">
+      <div class="input-group">
+        <!-- Signup as Customer -->
+        <span class="input-group-addon" style="height: 10px;">
+          <h4>Signup as a Customer</h4>
+        </span>
+          <input
+            class="form-control"
+            name="type"
+            type="radio"
+            checked="checked"
+            [value]="1"
+            [(ngModel)]="userInformationData.type"
+            (change)="clearForm()"
+          >
+        <!-- Signup as Stylist -->
+        <span class="input-group-addon">
+          <h4>Sign up as a Stylist</h4>
+        </span>
+          <input
+            class="form-control"
+            name="type"
+            type="radio"
+            [value]="0"
+            [(ngModel)]="userInformationData.type"
+            (change)="clearForm()"
+          >
+      </div>
+      <username-password (onInputsChange)="handleAccountInput($event)"></username-password>
+      <signup-stylist-form
+        *ngIf="this.userInformationData.type===0"
+        (handleStylistFormChange)="handleStylistInput($event)"
+        [styling]="styling"
+      >
+      </signup-stylist-form>
+      <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+  </div>
 </div>

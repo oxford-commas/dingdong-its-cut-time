@@ -31,6 +31,7 @@ app.post('/api/stripe', function(req, res) {
   console.log('error charging card ', err, charge);
   });
 
+
 // get all users and stylists given user or stylist id --- completed
 app.get('/api/userStylist/:id', function(req, res) {
   var userid = req.params.id;
@@ -131,10 +132,11 @@ app.get('/api/stylistbookings/:stylistid', function(req, res) {
   });
 })
 
-app.listen(4200, function () {
-  console.log('Example app listening on port 4200!')
-});
-
 app.get('*', function(req, res) {
  res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
 });
+
+app.listen(4200, function() {
+  console.log('Example app listening on port 4200!')
+})
+
