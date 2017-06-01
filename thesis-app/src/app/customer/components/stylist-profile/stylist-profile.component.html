@@ -2,38 +2,38 @@
   <div class="container row profile" >
     <div class="container locationwrapper">
       <img class="profileimage" [src]=stylistProfile.image_url />
-      <p>Location</p>
-      <div>
+      <h5>You can find me @</h5>
+      <div class="container row">
         Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}}
       </div>
     </div>
 
     <div class="servicescontainer">
       <h5>Services I will provide</h5>
+
       <div class="container row liststyles">
         <div class="styleitems" *ngFor="let style of ['hard', 'coded', 'styles']">
           <h6>{{style}}</h6>
         </div>
       </div>
+
       <div class="container row">
         <h5>About Me</h5>
         <div class="paragraph">
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </div>
       </div>
+
+      <h5>Link to personal site:</h5>
+      <div class="container row personalcontainer">
+        <a href="stylistProfile.site_url">{{stylistProfile.site_url}}</a>
+      </div>
     </div>
         <!-- <p>Gender:</p>
           <div *ngIf="stylistProfile.gender==='male'">Male</div>
           <div *ngIf="stylistProfile.gender==='female'">Female</div> -->
-    <div class="personalcontainer">
-      <h5>Link to personal site:</h5>
-        <div class="row linktosite">
-          <a href="stylistProfile.site_url">{{stylistProfile.site_url}}</a>
-        </div>
-      </div>
-    </div>
-    <button (click)="showModal()">Request a cut</button>
   </div>
+      <button (click)="showModal()">Request a cut</button>
 
 <div *ngIf="isShowModal" class="container row wrapper">
   <form #directMessage="ngForm">
