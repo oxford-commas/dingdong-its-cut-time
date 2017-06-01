@@ -15,9 +15,9 @@ export class CustomerHomeComponent {
     ) {
 
     this.customerProfile = _requestService.getStylistById(0).subscribe(
-        res => console.log(res),
-        err => console.log(err)
-      );
+      res => console.log(res),
+      err => console.log(err)
+    );
   }
 
   public currentLocation: any;
