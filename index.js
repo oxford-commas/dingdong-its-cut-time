@@ -12,9 +12,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'thesis-app/dist')));
 
-app.get('*', function(req, res) {
-  console.log('ran');
- res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
 app.post('/api/stripe', function(req, res) {
   // Set your secret key: remember to change this to your live secret key in production
   // See your keys here: https://dashboard.stripe.com/account/apikeys
