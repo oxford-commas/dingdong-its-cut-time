@@ -1,3 +1,12 @@
-<div>{{logo}}</div>
-<div>Where are you located:<input placeholder="street address" #streetAddress (change)="handleStreetAddressChange(streetAddress.value)"></div>
-<div><button (click)="showDropDown()">{{currentCustomer}}</button></div>
+<div class="container row">
+  <h2>Ding Dong: It's Cut Time</h2>
+</div>
+<div>
+  <h3>Where are you located:</h3>
+  <input
+    placeholder="street address"
+    #streetAddress
+    (change)="handleStreetAddressChange(streetAddress.value)"
+  >
+  <button (click)="showDropDown()">{{currentCustomer}}</button>
+</div>
