@@ -1,10 +1,11 @@
 
 <registration-header headerText="Login Page" logo="insert logo url here"></registration-header>
-<div class="container row">
+<div class="container row centered">
+
   <username-password (onInputsChange)="setUserData($event)"></username-password>
 </div>
 
-<div class="container row">
+<div class="container row" style="padding-top: 20px">
   <button
     class="btn btn-primary btn-group"
     (click)="handleLogin()"
