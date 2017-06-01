@@ -1,7 +1,19 @@
+
 <registration-header headerText="Login Page" logo="insert logo url here"></registration-header>
-<username-password (onInputsChange)="setUserData($event)"></username-password>
-<button (click)="handleLogin()">Login</button>
-<button [routerLink]="['/signup']">Sign up</button>
+<div class="container row">
+  <username-password (onInputsChange)="setUserData($event)"></username-password>
+</div>
+
+<div class="container row">
+  <button
+    class="btn btn-primary btn-group"
+    (click)="handleLogin()"
+  >Login</button>
+  <button
+    class="btn btn-primary btn-group"
+    [routerLink]="['/signup']"
+  >Sign up</button>
+</div>
 <div>
   <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 </div>
