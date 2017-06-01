@@ -30,7 +30,6 @@ app.post('/api/stripe', function(req, res) {
   // asynchronously called
   console.log('error charging card ', err, charge);
   });
-});
 
 // get all users and stylists given user or stylist id --- completed
 app.get('/api/userStylist/:id', function(req, res) {
