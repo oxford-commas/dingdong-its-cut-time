@@ -1,14 +1,14 @@
 <div class="container" style="display: flex; flex-wrap: wrap;">
   <h3 style="text-align: center; align-self: center">Here are the stylists closest to you:</h3>
-  <div class="row" style="border: 2px solid blue; display: flex;">
-    <div class="container" style="border: 2px solid; flex: 1 1; width: 40%">
-      <div style="border: 2px solid red; width: 40%; flex: 1 1" *ngFor="let booking of bookings" [routerLink]="['/stylistProfile']">
+  <div class="row" style="display: flex; flex-wrap: wrap;">
+    <div class="container" style="border: 2px solid; flex: 1 1; width: 30%">
+      <div style="width: 100%" *ngFor="let booking of bookings" [routerLink]="['/stylistProfile']">
         <div>{{booking.name}}</div>
         <div>{{booking.blurb}}</div>
         <div>{{booking.styling}}</div>
       </div>
     </div>
 
-    <customer-map style="flex: 1 1 40%" [coordinates]="currentLocation"></customer-map>
+    <customer-map style="flex: 1 1; border: 2px solid black" [coordinates]="currentLocation"></customer-map>
   </div>
 </div>

@@ -5,7 +5,6 @@ import { Component, Input } from '@angular/core';
   template: `
     <div class="page-header" style="margin: auto; text-align: center">
       <h1>Ding Dong: It's Cut Time</h1>
-      <h2>Please Log in</h2>
     </div>
   `
 })
