@@ -1,5 +1,5 @@
 .poppaDiv {
-  border-bottom: 2px solid;
+  border-bottom: 2px yellow solid;
   height: 10vh;
   width: 100%;
   display: flex;
@@ -15,8 +15,36 @@
 }
 
 .superNav {
-/*  border: 2px solid;*/
+  border: 2px solid;
   width: 100%;
+}
+
+h2 {
+  border: 2px solid red;
+}
+
+li {
+  border: 2px solid blue;
+}
+
+li,
+.title {
+  width: 40%;
+}
+
+li,
+.formElement {
+  width: 40%;
+}
+
+li,
+.liDropdown {
+  width: 10%;
+}
+
+.form-control {
+  width: 250px;
+  border: 2px solid red;
 }
 
 .dropdown {

@@ -5,10 +5,10 @@
     <div class="container-fluid miniContainer">
       <nav class="navbar navbar-default superNav">
         <ul class="nav nav-pills">
-          <li>
+          <li class="title">
             <h4>Welcome {{ currentCustomer }}.  Where are you located?</h4>
           </li>
-          <li>
+          <li class="formElement">
             <form class="navbar-form navbar-left">
               <div class="form-group">
                 <input
@@ -21,7 +21,7 @@
               <button class="btn btn-default" (click)="showDropDown()">{{currentCustomer}}</button>
             </form>
           </li>
-          <li>
+          <li class="liDropdown">
             <div class="dropdown">
               <span class="caret">Username</span>
                 <div class="dropdown-content">
