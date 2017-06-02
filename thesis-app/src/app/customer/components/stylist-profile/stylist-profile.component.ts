@@ -10,6 +10,7 @@ import { RequestService } from '../../../services';
 export class StylistProfileComponent {
   constructor(private _requestService: RequestService) {
     // this.stylistProfile = _requestService.getStylistById(this.stylistId).subscribe();
+
     this.stylistProfile = { // example stylist data
       id: 0,
       type: 0,
@@ -31,13 +32,27 @@ export class StylistProfileComponent {
 
   public stylistProfile: any; // TODO: interface this
   public isShowModal: boolean = false;
+  public modalStyle: string = 'none';
 
   public toggleModal() {
-    console.log(this.isShowModal, 'here')
     this.isShowModal = !this.isShowModal;
   }
 
-  public submitMessage(message) {
+  public getStyle() {
+    if (this.isShowModal === false) {
+      return 'none';
+    } else {
+      return 'block';
+    }
+  }
+
+  public submitMessage(message: {}) {
     console.log('submit message ', message);
   }
 }
+
+// | 55 |    1 | dnalounge         | dnalounge         | 375 11th St, San Francisco, CA
+
+ // 56 |    0 | castro            | castro            | 429 Castro St, San Francisco, CA                      | 415-621-6120 | castrotheatre@gmail.com     | -122.4347591 | 37.7620333 | castrotheatre.com      | NULL   | update me |
+
+

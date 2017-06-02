@@ -85,14 +85,24 @@ textarea {
   /*border: 2px solid;*/
 }
 
-.wrapper {
+.modalWrapper {
   display: flex;
+  color: white;
   justify-content: center;
   align-items: center;
   height: 250px;
   width: 1000px;
-  padding: 10px;
-  margin: 20px;
+  padding-top: 20px;
+  margin-top: 30px;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(173, 216, 230, 0.9);
 }
 
 .modalContent {
