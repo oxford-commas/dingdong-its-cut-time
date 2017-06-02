@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'customer-navbar',
-  templateUrl: './customer-navbar.component.html'
+  templateUrl: './customer-navbar.component.html',
+  styleUrls: ['./customer-navbar.component.css']
 })
 export class CustomerNavbarComponent {
   constructor() {
@@ -12,7 +13,7 @@ export class CustomerNavbarComponent {
   }
 
   public logo: string = 'put logo url here';
-  public currentCustomer: string = 'matt';
+  public currentCustomer: string = 'Matt';
   public isDropDownHidden: boolean = true;
 
   public handleStreetAddressChange(streetAddress) {

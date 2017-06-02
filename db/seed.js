@@ -300,3 +300,6 @@ booksingsArray.forEach(booking => {
       console.log(resultFromServer);
     });
 });
+
+// helpers.addService('Hair Perm');
+// helpers.stylistservices(1, 17);

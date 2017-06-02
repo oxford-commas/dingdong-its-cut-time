@@ -7,7 +7,7 @@
   <div *ngFor="let stylist of stylistsCloseToYou">
     <close-to-you
       [stylistInformation]="stylist"
-      [routerLink]="['/stylistProfile', stylist.id]"
+      [routerLink]="['/stylistProfile/', stylist.id]"
     ></close-to-you>
   </div>
   <!-- <customer-map [coordinates]="currentLocation"></customer-map> -->

@@ -46,7 +46,7 @@ var calculateDistance = function distance(lat1, lon1, lat2, lon2, unit) {
 }
 
 var addToBookings = function(userId, stylistId, isConfirmed, time, location, callback) {
-  var sql = "INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, location) VALUES (?, ?, ?, ?, ?)";
+  var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, location) VALUES (?, ?, ?, ?, ?)';
   model.con.query(sql, [userId, stylistId, isConfirmed, time, location],function (err, result) {
     if (err) throw err;
     callback(result);
@@ -70,6 +70,21 @@ var deleteUser = function(userId) {
   model.con.query('delete from `users_stylists` where `id` = ?', [userId]);
 }
 
+// helper to add service to the services table in database
+var addService = function(serviceName) {
+  var sql = 'INSERT INTO services (servicename) VALUES (?)';
+  model.con.query(sql, [serviceName], function(err, results) {
+    if(err)  throw err;
+  });
+}
+
+var stylistservices = function(serviceId, stylistId) {
+  var sql = 'INSERT INTO stylists_services (id_services, id_users_stylists) VALUES (?, ?)';
+  model.con.query(sql, [serviceId, stylistId], function(err, results) {
+    if(err)  throw err;
+  });
+}
+
 module.exports.addLocation = addLocation;
 module.exports.addUserStylist = addUserStylist;
 module.exports.getUser = getUser;
@@ -79,3 +94,5 @@ module.exports.addToBookings = addToBookings;
 module.exports.getStylistBookings = getStylistBookings;
 module.exports.getUserBookings = getUserBookings;
 module.exports.deleteUser = deleteUser;
+module.exports.addService = addService;
+module.exports.stylistservices = stylistservices;

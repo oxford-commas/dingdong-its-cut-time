@@ -147,6 +147,9 @@ app.delete('/stylist/:stylistid', function (req, res) {
   res.send('Got a DELETE request at /stylist')
 })
 
+// given stylistId and serviceId, add services to the stylists_services linked with the stylist
+
+
 app.get('*', function(req, res) {
  res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
 });

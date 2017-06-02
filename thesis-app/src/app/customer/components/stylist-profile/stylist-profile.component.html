@@ -1,11 +1,11 @@
+<customer-navbar></customer-navbar>
 <div *ngIf="!!isProfileFetched">
   <div class="container row poppadiv">
     <div class="container row profile" >
-
       <div class="container locationwrapper">
         <img class="profileimage" [src]=stylistProfile.image_url />
         <h4>You can find me @</h4>
-        <div class="container row">
+        <div class="container row latLong">
           Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}}
         </div>
       </div>
@@ -33,9 +33,8 @@
       </div>
       <button (click)="toggleModal()">Request a cut</button>
     </div>
-    <p>Link to personal site:</p>
-    <div>{{stylistProfile.site_url}}</div>
   </div>
+</div>
 
   <div class="container row modalWrapper" [style.display]="getStyle()">
     <form #directMessage="ngForm" class="container row modalContent">
