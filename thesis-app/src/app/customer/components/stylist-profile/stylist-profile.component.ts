@@ -15,21 +15,21 @@ export class StylistProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-
-     this.stylistId = +params['id']; // (+) converts string 'id' to a number
-     this.requestService.getStylistById(this.stylistId)
-       .subscribe(
-         data => this.stylistProfile = data,
-         err => console.log(err)
-       );
-    });
+    this.route.params
+      .subscribe(
+        params => this.stylistId = +params['id'],
+        err => console.log(err)
+      );
+    this.requestService.getStylistById(this.stylistId)
+     .subscribe(
+       data => this.stylistProfile = data,
+       err => console.log(err)
+     );
   }
-
-  @Input() private stylistId: number;
 
   public stylistProfile: any; // TODO: interface this
   public isShowModal: boolean = false;
+  private stylistId: number;
 
   public showModal() {
     this.isShowModal = true;
