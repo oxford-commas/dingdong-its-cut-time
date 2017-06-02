@@ -20,26 +20,17 @@ export class CustomerHomeComponent {
     //   err => console.log(err)
     // );
 
+    // Default inititialization to sanfrancisco
     stylistService.getStylistsInLocation('sanfrancisco')
     .subscribe(data => {
       this.stylistsCloseToYou = data;
-      console.log('setting value ...', this.stylistsCloseToYou);
     }, err => console.log(err));
 
   }
 
   public currentLocation: any;
-  public customerProfile: any; //TODO: interface
+  public customerProfile: any;
   public stylistsCloseToYou: any;
-  //  = [{
-  //   name: 'Andrew',
-  //   blurb: 'i like to cut hair',
-  //   styling: ['perm', 'perm', 'perm']
-  // }, {
-  //   name: 'Bob',
-  //   blurb: 'i dont like to cut hair',
-  //   styling: ['merp', 'merp', 'merp']
-  // }];
 
   getLocation() {
     console.log('Clicked!');

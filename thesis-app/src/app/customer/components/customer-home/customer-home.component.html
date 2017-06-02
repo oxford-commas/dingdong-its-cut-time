@@ -5,7 +5,10 @@
 <div class="container row">
   Here are the stylists closest to you:
   <div *ngFor="let stylist of stylistsCloseToYou">
-    <close-to-you [stylistInformation]="stylist"></close-to-you>
+    <close-to-you
+      [stylistInformation]="stylist"
+      [routerLink]="['/stylistProfile', stylist.id]"
+    ></close-to-you>
   </div>
   <!-- <customer-map [coordinates]="currentLocation"></customer-map> -->
   <button (click)="getLocation()">See Coordinates</button>

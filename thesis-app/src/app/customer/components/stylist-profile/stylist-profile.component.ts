@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { ActivatedRoute } from '@angular/router';
 
 import { RequestService } from '../../../services';
 
@@ -6,24 +8,23 @@ import { RequestService } from '../../../services';
   selector: 'stylist-profile',
   templateUrl: './stylist-profile.component.html'
 })
-export class StylistProfileComponent {
-  constructor(private _requestService: RequestService) {
-    // this.stylistProfile = _requestService.getStylistById(this.stylistId).subscribe();
-    this.stylistProfile = { // example stylist data
-      id: 0,
-      type: 0,
-      name: 'Andrew',
-      password: 'lol',
-      billingaddress: '123 main street',
-      phonenumber: '999 999 9999',
-      email: 'momo@hotmail.com',
-      longitude: 3,
-      latitude: 3,
-      site_url: 'www.mysite.com',
-      gender: 'female',
-      image_url: 'https://qph.ec.quoracdn.net/main-qimg-3b0b70b336bbae35853994ce0aa25013-c'
-    };
-    console.log('initializing stylistProfile: ', this.stylistProfile);
+export class StylistProfileComponent implements OnInit {
+  constructor(
+    private requestService: RequestService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+
+     this.stylistId = +params['id']; // (+) converts string 'id' to a number
+
+     this.requestService.getStylistById(this.stylistId)
+       .subscribe(
+         data => this.stylistProfile = data,
+         err => console.log(err)
+       );
+    });
   }
 
   @Input() private stylistId: number;
