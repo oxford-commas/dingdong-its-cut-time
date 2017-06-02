@@ -1,21 +1,31 @@
 <div class="container row">
   <h2>Ding Dong: It's Cut Time</h2>
-  <ul class="nav nav-tabs">
-    <li role="presentation">
-      <h4>Where are you located:</h4>
-    </li>
-    <li role="presentation">
-      <input
-        placeholder="street address"
-        #streetAddress
-        (change)="handleStreetAddressChange(streetAddress.value)"
-      >
-    </li>
-    <li role="presentation">
-      <button (click)="showDropDown()">{{currentCustomer}}</button>
-    </li>
-    <li>
-      <customer-dropdown></customer-dropdown>
-    </li>
-  </ul>
+  <div class="container-fluid">
+    <nav class="navbar navbar-default">
+      <ul class="nav nav-pills">
+        <li role="presentation">
+          <h4>Where are you located:</h4>
+        </li>
+        <li role="presentation">
+          <input
+            placeholder="street address"
+            #streetAddress
+            (change)="handleStreetAddressChange(streetAddress.value)"
+          >
+        </li>
+        <li role="presentation">
+          <button (click)="showDropDown()">{{currentCustomer}}</button>
+        </li>
+
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Dropdown <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>Woo</li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>
