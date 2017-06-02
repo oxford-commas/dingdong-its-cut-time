@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { RequestService } from '../../../services';
 import { LocationService } from '../../../services';
-
+import { StylistService } from '../../../services';
 
 @Component({
   selector: 'customer-home',
@@ -10,17 +10,36 @@ import { LocationService } from '../../../services';
 })
 export class CustomerHomeComponent {
   constructor(
-    private _requestService: RequestService,
+    private requestService: RequestService,
     private locationService: LocationService,
-    ) {
+    private stylistService: StylistService
+  ) {
 
-    this.customerProfile = _requestService.getStylistById(0).subscribe(
-      res => console.log(res),
-      err => console.log(err)
-    );
+    // this.customerProfile = requestService.getStylistById(0).subscribe(
+    //   res => console.log(res),
+    //   err => console.log(err)
+    // );
+
+    stylistService.getStylistsInLocation('sanfrancisco')
+    .subscribe(data => {
+      this.stylistsCloseToYou = data;
+      console.log('setting value ...', this.stylistsCloseToYou);
+    }, err => console.log(err));
+
   }
 
   public currentLocation: any;
+  public customerProfile: any; //TODO: interface
+  public stylistsCloseToYou: any;
+  //  = [{
+  //   name: 'Andrew',
+  //   blurb: 'i like to cut hair',
+  //   styling: ['perm', 'perm', 'perm']
+  // }, {
+  //   name: 'Bob',
+  //   blurb: 'i dont like to cut hair',
+  //   styling: ['merp', 'merp', 'merp']
+  // }];
 
   getLocation() {
     console.log('Clicked!');
@@ -28,5 +47,4 @@ export class CustomerHomeComponent {
     console.log('Location is:', this.currentLocation);
   }
 
-  public customerProfile: any; //TODO: interface
 }

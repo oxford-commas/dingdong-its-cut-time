@@ -3,7 +3,10 @@
   <!-- <customer-dropdown></customer-dropdown> -->
 </div>
 <div class="container row">
-  <customer-booking-list></customer-booking-list>
+  Here are the stylists closest to you:
+  <div *ngFor="let stylist of stylistsCloseToYou">
+    <close-to-you [stylistInformation]="stylist"></close-to-you>
+  </div>
   <!-- <customer-map [coordinates]="currentLocation"></customer-map> -->
   <button (click)="getLocation()">See Coordinates</button>
-</div>
+<!-- </div> -->
