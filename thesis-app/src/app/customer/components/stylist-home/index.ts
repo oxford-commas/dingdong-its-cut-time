@@ -1,1 +1,1 @@
-export * from './stylist-home.component'
+export * from './stylist-home-component'

@@ -3,8 +3,9 @@ import { Routes } from '@angular/router';
 import {
   CustomerHomeComponent,
   CustomerMessageComponent,
+  CustomerProfileComponent,
   StylistProfileComponent,
-  CustomerProfileComponent
+  StylistHomeComponent
  } from './components';
 
 export const customerRoutes: Routes = [
@@ -23,5 +24,9 @@ export const customerRoutes: Routes = [
   {
     path: 'customerProfile',
     component: CustomerProfileComponent
+  },
+  {
+    path: 'stylistHome',
+    component: StylistHomeComponent
   }
 ]
