@@ -66,6 +66,10 @@ var getStylistBookings = function(stylistId, callback) {
   });
 }
 
+var deleteUser = function(userId) {
+  model.con.query('delete from `users_stylists` where `id` = ?', [userId]);
+}
+
 module.exports.addLocation = addLocation;
 module.exports.addUserStylist = addUserStylist;
 module.exports.getUser = getUser;
@@ -74,4 +78,4 @@ module.exports.calculateDistance = calculateDistance;
 module.exports.addToBookings = addToBookings;
 module.exports.getStylistBookings = getStylistBookings;
 module.exports.getUserBookings = getUserBookings;
-
+module.exports.deleteUser = deleteUser;

@@ -8,12 +8,13 @@ import { UiModule } from '../ui/ui.module';
 
 import { StripeService } from '../services';
 import { LocationService } from '../services';
+import { StylistService } from '../services';
 
 import {
   CustomerHomeComponent,
   CustomerNavbarComponent,
   CustomerDropDownComponent,
-  CustomerBookingListComponent,
+  CloseToYouComponent,
   CustomerMapComponent,
   CustomerMessageComponent,
   CustomerInboxComponent,
@@ -35,7 +36,7 @@ import {
     CustomerHomeComponent,
     CustomerNavbarComponent,
     CustomerDropDownComponent,
-    CustomerBookingListComponent,
+    CloseToYouComponent,
     CustomerMapComponent,
     CustomerMessageComponent,
     CustomerInboxComponent,
@@ -44,7 +45,8 @@ import {
   ],
   providers: [
     StripeService,
-    LocationService
+    LocationService,
+    StylistService
    ]
 })
 
