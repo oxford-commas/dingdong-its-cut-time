@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
-import { RequestService } from '../../../services';
+import { RequestService, DeletionService } from '../../../services';
 
 @Component({
   selector: 'customer-profile',
@@ -11,7 +11,9 @@ import { RequestService } from '../../../services';
 export class CustomerProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private requestService: RequestService
+    private requestService: RequestService,
+    private deletionService: DeletionService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -41,7 +43,12 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   public handleDeleteAccount() {
-    console.log('TODO: DELETE account');
+    this.deletionService.deleteAccount(this.customerId)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err),
+        () => this.router.navigate(["/login"])
+      );
   }
 
   public handleSaveChanges() {

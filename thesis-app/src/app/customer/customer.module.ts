@@ -9,6 +9,7 @@ import { UiModule } from '../ui/ui.module';
 import { StripeService } from '../services';
 import { LocationService } from '../services';
 import { StylistService } from '../services';
+import { DeletionService } from '../services';
 
 import {
   CustomerHomeComponent,
@@ -46,7 +47,8 @@ import {
   providers: [
     StripeService,
     LocationService,
-    StylistService
+    StylistService,
+    DeletionService
    ]
 })
 
