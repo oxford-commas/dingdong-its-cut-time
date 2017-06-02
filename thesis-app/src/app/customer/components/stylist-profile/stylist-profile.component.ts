@@ -18,7 +18,6 @@ export class StylistProfileComponent implements OnInit {
     this.route.params.subscribe(params => {
 
      this.stylistId = +params['id']; // (+) converts string 'id' to a number
-
      this.requestService.getStylistById(this.stylistId)
        .subscribe(
          data => this.stylistProfile = data,
