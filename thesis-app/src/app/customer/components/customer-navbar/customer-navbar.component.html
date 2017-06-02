@@ -1,24 +1,24 @@
-<div class="container row">
+<div class="container row poppaDiv">
   <h2>Ding Dong: It's Cut Time</h2>
-  <div class="container-fluid">
-    <nav class="navbar navbar-default">
+  <div class="container-fluid miniContainer">
+    <nav class="navbar navbar-default superNav">
       <ul class="nav nav-pills">
         <li>
           <h4>Welcome {{ currentCustomer }}.  Where are you located?</h4>
         </li>
-      </ul>
-        <form class="navbar-form navbar-left">
-          <div class="form-group">
-            <input
-              class="form-control"
-              placeholder="street address"
-              #streetAddress
-              (change)="handleStreetAddressChange(streetAddress.value)"
-            >
-          </div>
-          <button class="btn btn-default" (click)="showDropDown()">{{currentCustomer}}</button>
-        </form>
-      <ul>
+        <li>
+          <form class="navbar-form navbar-left">
+            <div class="form-group">
+              <input
+                class="form-control"
+                placeholder="street address"
+                #streetAddress
+                (change)="handleStreetAddressChange(streetAddress.value)"
+              >
+            </div>
+            <button class="btn btn-default" (click)="showDropDown()">{{currentCustomer}}</button>
+          </form>
+        </li>
         <li role="presentation" class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             Dropdown <span class="caret"></span>
