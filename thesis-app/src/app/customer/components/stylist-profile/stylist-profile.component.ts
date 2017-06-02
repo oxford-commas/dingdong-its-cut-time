@@ -39,7 +39,11 @@ export class StylistProfileComponent {
   }
 
   public getStyle() {
-    this.isShowModal === false ? 'home' : 'block';
+    if (this.isShowModal === false) {
+      return 'none';
+    } else {
+      return 'block';
+    }
   }
 
   public submitMessage(message: {}) {

@@ -36,8 +36,8 @@
 
 <div class="container row modalWrapper" [style.display]="getStyle()">
   <form #directMessage="ngForm" class="container row modalContent">
+    <span (click)="toggleModal()">&times;</span>
     <div class="container row miniWrapper">
-      <span class="close" (click)="toggleModal()">&times;</span>
       <h5>Send a message</h5>
       <div class="row location modeitem">
         Location: <input name="location" ngModel/>
@@ -53,4 +53,3 @@
     </div>
   </form>
 </div>
-

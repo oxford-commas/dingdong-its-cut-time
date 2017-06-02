@@ -113,9 +113,10 @@ textarea {
 .modalContent {
   border: 2px solid black;
   flex: 1 1;
-  width: 50%;
+  width: 400px;
   padding: 10px;
-  margin: 10px;
+  margin: 300px;
+  background-color: white;
 }
 
 .modeitem {
