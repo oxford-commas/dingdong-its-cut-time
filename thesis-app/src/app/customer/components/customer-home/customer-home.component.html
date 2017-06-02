@@ -1,5 +1,15 @@
-<customer-navbar></customer-navbar>
-<customer-dropdown></customer-dropdown>
-<customer-booking-list></customer-booking-list>
-<customer-map [coordinates]="currentLocation"></customer-map>
-<button (click)="getLocation()">See Coordinates</button>
+<div class="container row">
+  <customer-navbar></customer-navbar>
+  <!-- <customer-dropdown></customer-dropdown> -->
+</div>
+<div class="container row">
+  Here are the stylists closest to you:
+  <div *ngFor="let stylist of stylistsCloseToYou">
+    <close-to-you
+      [stylistInformation]="stylist"
+      [routerLink]="['/stylistProfile', stylist.id]"
+    ></close-to-you>
+  </div>
+  <!-- <customer-map [coordinates]="currentLocation"></customer-map> -->
+  <button (click)="getLocation()">See Coordinates</button>
+<!-- </div> -->
