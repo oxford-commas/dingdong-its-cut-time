@@ -1,7 +1,11 @@
 .poppadiv {
-  border: 2px solid black;
+  border: 10px solid black;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+  width: 100%;
 }
 
 .profile {
@@ -87,7 +91,7 @@ textarea {
 
 .modalWrapper {
   display: flex;
-  color: white;
+  color: black;
   justify-content: center;
   align-items: center;
   height: 250px;
@@ -105,9 +109,11 @@ textarea {
   background-color: rgba(173, 216, 230, 0.9);
 }
 
+
 .modalContent {
   border: 2px solid black;
-  width: 500px;
+  flex: 1 1;
+  width: 50%;
   padding: 10px;
   margin: 10px;
 }
