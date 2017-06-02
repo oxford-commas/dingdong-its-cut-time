@@ -3,20 +3,22 @@
   <div class="container-fluid">
     <nav class="navbar navbar-default">
       <ul class="nav nav-pills">
-        <li role="presentation">
-          <h4>Where are you located:</h4>
+        <li>
+          <h4>Welcome {{ currentCustomer }}.  Where are you located?</h4>
         </li>
-        <li role="presentation">
-          <input
-            placeholder="street address"
-            #streetAddress
-            (change)="handleStreetAddressChange(streetAddress.value)"
-          >
-        </li>
-        <li role="presentation">
-          <button (click)="showDropDown()">{{currentCustomer}}</button>
-        </li>
-
+      </ul>
+        <form class="navbar-form navbar-left">
+          <div class="form-group">
+            <input
+              class="form-control"
+              placeholder="street address"
+              #streetAddress
+              (change)="handleStreetAddressChange(streetAddress.value)"
+            >
+          </div>
+          <button class="btn btn-default" (click)="showDropDown()">{{currentCustomer}}</button>
+        </form>
+      <ul>
         <li role="presentation" class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             Dropdown <span class="caret"></span>
@@ -29,3 +31,4 @@
     </nav>
   </div>
 </div>
+
