@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
+import 'rxjs/Rx';
 
 import { LocationService } from './location.service';
 
@@ -11,9 +12,10 @@ export class StylistService {
     private locationService: LocationService
     ) {}
 
-  private url: string = '/api/stylists/:location';
+  private url: string = `/api/stylists/${location}`;
 
-  getStylistsInLocation() {
-    this.http.get(this.url)
+  getStylistsInLocation(location) {
+    return this.http.get(`/api/stylists/${location}`)
+      .map(res => res.json());
   }
 }

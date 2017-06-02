@@ -1,1 +1,0 @@
-export * from './customer-booking-list.component';
