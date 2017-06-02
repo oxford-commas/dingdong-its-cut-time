@@ -21,16 +21,36 @@
               <button class="btn btn-default" (click)="showDropDown()">{{currentCustomer}}</button>
             </form>
           </li>
-          <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              Dropdown <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li>Woo</li>
-            </ul>
+          <li>
+            <div class="dropdown">
+              <span class="caret">Username</span>
+                <div class="dropdown-content">
+                  <p>Hello World</p>
+                </div>
+            </div>
           </li>
         </ul>
       </nav>
     </div>
   </div>
 </div>
+
+
+  <!-- public onSelect(item) {
+    this.selected = item;
+    switch (this.selected){
+      case "Home":
+        this.router.navigate(["/home"]);
+        break;
+      case "Messages":
+        console.log('router', this.router)
+        this.router.navigate(["/messages"]);
+        break;
+      case "Settings":
+        this.router.navigate(["/customerProfile", this.customerId]);
+        break;
+      case "Logout":
+        this.router.navigate(["/login"]);
+        break;
+    }
+  } -->
