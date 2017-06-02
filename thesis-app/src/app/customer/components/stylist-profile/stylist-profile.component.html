@@ -3,29 +3,29 @@
 
     <div class="container locationwrapper">
       <img class="profileimage" [src]=stylistProfile.image_url />
-      <h5>You can find me @</h5>
+      <h4>You can find me @</h4>
       <div class="container row">
         Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}}
       </div>
     </div>
 
     <div class="servicescontainer">
-      <h5>Services I will provide</h5>
+      <h4>Services I provide</h4>
 
       <div class="container row liststyles">
         <div class="styleitems" *ngFor="let style of ['hard', 'coded', 'styles']">
-          <h6>{{style}}</h6>
+          <h5>{{style}}</h5>
         </div>
       </div>
 
       <div class="container row">
-        <h5>About Me</h5>
+        <h4>About Me</h4>
         <div class="paragraph">
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </div>
       </div>
 
-      <h5>Link to personal site:</h5>
+      <h4>Link to personal site:</h4>
       <div class="container row personalcontainer">
         <a href="stylistProfile.site_url">{{stylistProfile.site_url}}</a>
       </div>
@@ -38,7 +38,7 @@
   <form #directMessage="ngForm" class="container row modalContent">
     <span (click)="toggleModal()">&times;</span>
     <div class="container row miniWrapper">
-      <h5>Send a message</h5>
+      <h4>Send a message</h4>
       <div class="row location modeitem">
         Location: <input name="location" ngModel/>
       </div>
