@@ -23,6 +23,12 @@
   width: 30%;
 }
 
+.latLong {
+  border-top: 2px solid;
+  height: 50%;
+  width: 100%;
+}
+
 .servicescontainer {
   /*border: 2px solid red;*/
   flex: 1 1;

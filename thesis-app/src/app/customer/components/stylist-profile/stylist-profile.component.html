@@ -4,9 +4,9 @@
     <div class="container locationwrapper">
       <img class="profileimage" [src]=stylistProfile.image_url />
       <h4>You can find me @</h4>
-      <div class="container row">
-        Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}}
-      </div>
+        <div class="container row latLong">
+          Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}}
+        </div>
     </div>
 
     <div class="servicescontainer">
@@ -30,10 +30,10 @@
         <a href="stylistProfile.site_url">{{stylistProfile.site_url}}</a>
       </div>
     </div>
-    <button (click)="toggleModal()">Request a cut</button>
+      <div>
+        <button (click)="toggleModal()">Request a cut</button>
+      </div>
   </div>
-  <p>Link to personal site:</p>
-  <div>{{stylistProfile.site_url}}</div>
 </div>
 
 <div class="container row modalWrapper" [style.display]="getStyle()">
