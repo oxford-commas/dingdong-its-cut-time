@@ -5,5 +5,6 @@ export * from './close-to-you';
 export * from './customer-map';
 export * from './customer-message';
 export * from './customer-inbox';
-export * from './stylist-profile';
 export * from './customer-profile';
+export * from './stylist-profile';
+export * from './stylist-home';
