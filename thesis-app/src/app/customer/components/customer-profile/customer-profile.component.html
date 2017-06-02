@@ -1,30 +1,32 @@
-<h1>{{customerProfile.name}}'s profile</h1>
-<img [src]=customerProfile.image_url />
-<button>Edit</button>
-<p>Location</p>
-<div>
-  Longitude: {{customerProfile.longitude}},
-  Latitude: {{customerProfile.latitude}}
+<div *ngIf="!!isProfileFetched">
+  <h1>{{customerProfile.name}}'s profile</h1>
+  <img [src]=customerProfile.image_url />
   <button>Edit</button>
+  <p>Location</p>
+  <div>
+    Longitude: {{customerProfile.longitude}},
+    Latitude: {{customerProfile.latitude}}
+    <button>Edit</button>
+  </div>
+  <div>
+    <p (click)="showAccountView()">Edit your account information</p>
+    <p (click)="showPaymentView()">Payment methods</p>
+  </div>
+  <div *ngIf="showView">
+    Username<input name="username" ngModel />
+    Password<input name="password" ngModel />
+    <button (click)="handleDeleteAccount()">Delete my account</button>
+    <button (click)="handleSaveChanges()">Save changes</button>
+  </div>
+  <!-- <div *ngIf="!showView && customerProfile.payments.length > 0">
+    You don't have any payment methods
+    <button>Add a payment method</button>
+  </div>
+  <div *ngIf="!showView && customerProfile.payments.length === 0">
+    Render customerProfile.payments here
+    <button>Edit</button>
+    <button>Delete</button>
+    <button>Add a payment method</button>
+  </div> -->
+  <payment-input [customerName]="customerProfile.name"></payment-input>
 </div>
-<div>
-  <p (click)="showAccountView()">Edit your account information</p>
-  <p (click)="showPaymentView()">Payment methods</p>
-</div>
-<div *ngIf="showView">
-  Username<input name="username" ngModel />
-  Password<input name="password" ngModel />
-  <button (click)="handleDeleteAccount()">Delete my account</button>
-  <button (click)="handleSaveChanges()">Save changes</button>
-</div>
-<div *ngIf="!showView && customerProfile.payments.length > 0">
-  You don't have any payment methods
-  <button>Add a payment method</button>
-</div>
-<div *ngIf="!showView && customerProfile.payments.length === 0">
-  Render customerProfile.payments here
-  <button>Edit</button>
-  <button>Delete</button>
-  <button>Add a payment method</button>
-</div>
-<payment-input></payment-input>

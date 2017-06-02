@@ -21,7 +21,7 @@ export const customerRoutes: Routes = [
     component: StylistProfileComponent
   },
   {
-    path: 'customerProfile',
+    path: 'customerProfile/:id',
     component: CustomerProfileComponent
   }
 ]
