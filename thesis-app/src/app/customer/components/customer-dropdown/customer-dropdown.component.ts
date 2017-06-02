@@ -21,6 +21,8 @@ export class CustomerDropDownComponent {
 
   constructor(private router: Router) {}
 
+  @Input() customerId: number;
+
   public onSelect(item) {
     this.selected = item;
     switch (this.selected){
@@ -32,7 +34,7 @@ export class CustomerDropDownComponent {
         this.router.navigate(["/messages"]);
         break;
       case "Settings":
-        this.router.navigate(["/customerProfile"]);
+        this.router.navigate(["/customerProfile", this.customerId]);
         break;
       case "Logout":
         this.router.navigate(["/login"]);

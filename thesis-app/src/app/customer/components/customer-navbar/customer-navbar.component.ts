@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'customer-navbar',
@@ -11,6 +11,8 @@ export class CustomerNavbarComponent {
     console.log('GET the name of user logged in');
     console.log('GET the google map and populate it with stylist coordinates');
   }
+
+  @Input() customerId: number;
 
   public logo: string = 'put logo url here';
   public currentCustomer: string = 'Matt';
