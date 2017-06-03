@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IBookingInformation, createDefaultBookingInformation  } from '../../interfaces/';
 
 import { RequestService } from '../../../services';
 
@@ -9,7 +10,7 @@ import { RequestService } from '../../../services';
 export class BookingComponent implements OnInit{
   constructor(private requestService: RequestService) {}
 
-  @Input() bookingInformation: any; //TODO: interface this
+  @Input() bookingInformation: IBookingInformation = createDefaultBookingInformation();
   public isBookingNameFetched: boolean = false;
 
   ngOnInit() {
