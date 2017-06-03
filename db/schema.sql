@@ -29,7 +29,8 @@ CREATE TABLE IF NOT EXISTS `services` (
 CREATE TABLE IF NOT EXISTS `stylists_services` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `id_services` INTEGER NOT NULL ,
-  `id_users_stylists` INTEGER NOT NULL
+  `id_users_stylists` INTEGER NOT NULL,
+  PRIMARY KEY (`id`)
 );
 
 

@@ -13,7 +13,8 @@ import { StateService } from '../../../services';
 export class StylistProfileComponent implements OnInit {
   constructor(
     private requestService: RequestService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private stateService: StateService
   ) {}
 
   ngOnInit() {
@@ -26,7 +27,8 @@ export class StylistProfileComponent implements OnInit {
      .subscribe(
        data => {
         this.stylistProfile = data
-        console.log(this.stylistProfile)
+        this.stateService.addStylist(this.stylistProfile);
+        console.log(this.stateService, 'sp')
       },
        err => console.log(err),
        () => this.isProfileFetched = true
