@@ -167,11 +167,19 @@ app.post('/api/stylistServices', function(req, res) {
   });
 })
 
+// MESSAGE ROUTES //
+
+app.post('/api/messages/:custId/:stylistId', (req, res) => {
+  helpers.postMessage();
+});
+
 app.get('/api/messages/:id', (req, res) => {
   helpers.getMessages(req.params.id, (data) => {
+    console.log('hi',data);
     res.status(200).json(data);
   });
 });
+
 
 
 app.get('*', function(req, res) {

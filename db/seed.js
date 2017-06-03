@@ -302,6 +302,8 @@ const messagesArray = [
   }
 ];
 
+messagesArray.forEach(message => helpers.seedMessage(message.id_users, message.id_stylists, message.subjectHeading, message.body, message.time, message.location));
+
 const stylesArray = [
   'Afro',
   'Bangs',
@@ -599,20 +601,6 @@ stylesArray.forEach(style => {
 
 stylistServices.forEach(style => {
   helpers.stylistservices(style.styleId, style.stylistId, (res) => {
-    console.log(res)
-  })
-});
-
-messagesArray.forEach(message => {
-  console.log('asdfpojasdpfj[asdjfas', message);
-  helpers.addMessage(
-   message.id_users,
-   message.id_stylists,
-   message.subjectHeading,
-   message.body,
-   message.time,
-   message.location,
-   (res) => {
     console.log(res)
   })
 });
