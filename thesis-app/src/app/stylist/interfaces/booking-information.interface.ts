@@ -7,13 +7,3 @@ export interface IBookingInformation {
   name: string;
   time: string;
 }
-
-export const createDefaultBookingInformation: () => IBookingInformation = () => ({
-  id: 0,
-  id_stylists: 0,
-  id_users: 0,
-  isconfirmed: 0,
-  location: '',
-  name: '',
-  time: ''
-});
