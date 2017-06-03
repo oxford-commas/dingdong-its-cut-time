@@ -1,12 +1,16 @@
 <customer-navbar></customer-navbar>
 <div *ngIf="!!isProfileFetched">
   <div class="container row poppadiv">
+    <div>
+      <h2 class="name">{{ stylistProfile.name }}</h2>
+    </div>
     <div class="container row profile" >
       <div class="container locationwrapper">
         <img class="profileimage" [src]=stylistProfile.image_url />
         <h4>You can find me @</h4>
         <div class="container row latLong">
-          Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}}
+          <!-- Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}} -->
+          {{ stylistProfile.billingaddress }}
         </div>
       </div>
 
