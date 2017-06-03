@@ -44,6 +44,15 @@ CREATE TABLE IF NOT EXISTS `bookings` (
   PRIMARY KEY (`id`)
 );
 
+CREATE TABLE IF NOT EXISTS `messages` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `id_users` INTEGER NOT NULL,
+  `id_stylists` INTEGER NOT NULL,
+  `subjectHeading` VARCHAR(45) NOT NULL,
+  `body` VARCHAR(150) NOT NULL,
+  `time` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`)
+);
 
 ALTER TABLE `stylists_services` ADD FOREIGN KEY (id_services) REFERENCES `services` (`id`);
 ALTER TABLE `stylists_services` ADD FOREIGN KEY (id_users_stylists) REFERENCES `users_stylists` (`id`);
