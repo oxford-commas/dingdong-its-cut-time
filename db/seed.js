@@ -267,39 +267,160 @@ const booksingsArray = [
   }
 ]
 
+const stylesArray = [
+  'Afro',
+  'Bangs',
+  'Blow Out',
+  'Bowl Cut',
+  'Buzz Cut',
+  'Caesar',
+  'Conk',
+  'Cornrows',
+  'Crew Cut',
+  'Dreadlocks',
+  'Fade',
+  'Fauxhawk',
+  'Feathered Hair',
+  'Fishtail',
+  'Flattop',
+  'Frosted Tips',
+  'Highlights',
+  'Hime Cut',
+  'Intergalactic Waves',
+  'Layered Hair',
+  'Mullet',
+  'Pixie Cut',
+  'Pompadour',
+  'Quiff'
+]
 
-stylistArray.forEach(stylist => {
-  helpers.addUserStylist(
-    stylist.id,
-    stylist.username,
-    stylist.password,
-    stylist.location,
-    stylist.phoneNumber,
-    stylist.email,
-    stylist.website,
-    stylist.type,
-    stylist.update, (resultFromServer) => {
-      var id = resultFromServer.insertId;
-      services.getLocationPoints(stylist.location, (points) => {
-        let lat = points[0];
-        let lng = points[1];
-        helpers.addLocation(lat, lng, id, (res) => {
-          console.log(res);
-        })
-      })
-    });
-});
+const stylistServices = [
+  {
+    stylistId: 1,
+    styleId: 2
+  },
+  {
+    stylistId: 1,
+    styleId: 3
+  },
+  {
+    stylistId: 1,
+    styleId: 13
+  },
+  {
+    stylistId: 1,
+    styleId: 16
+  },
+  {
+    stylistId: 1,
+    styleId: 20
+  },
+  {
+    stylistId: 1,
+    styleId: 22,
+  },
+  {
+    stylistId: 1,
+    styleId: 24,
+  },
+  {
+    stylistId: 2,
+    styleId: 4
+  },
+  {
+    stylistId: 2,
+    styleId: 5
+  },
+  {
+    stylistId: 2,
+    styleId: 6
+  },
+  {
+    stylistId: 2,
+    styleId: 8
+  },
+  {
+    stylistId: 2,
+    styleId: 9
+  },
+  {
+    stylistId: 2,
+    styleId: 11
+  },
+  {
+    stylistId: 2,
+    styleId: 21
+  },
+  {
+    stylistId: 3,
+    styleId: 21
+  },
+  {
+    stylistId: 3,
+    styleId: 9
+  },
+  {
+    stylistId: 3,
+    styleId: 21
+  }
 
-booksingsArray.forEach(booking => {
-  helpers.addToBookings(
-    booking.userid,
-    booking.stylistid,
-    booking.isConfirmed,
-    booking.time,
-    booking.location, (resultFromServer) => {
-      console.log(resultFromServer);
-    });
-});
+]
+
+
+
+// stylistArray.forEach(stylist => {
+//   helpers.addUserStylist(
+//     stylist.id,
+//     stylist.username,
+//     stylist.password,
+//     stylist.location,
+//     stylist.phoneNumber,
+//     stylist.email,
+//     stylist.website,
+//     stylist.type,
+//     stylist.update, (resultFromServer) => {
+//       var id = resultFromServer.insertId;
+//       services.getLocationPoints(stylist.location, (points) => {
+//         let lat = points[0];
+//         let lng = points[1];
+//         helpers.addLocation(lat, lng, id, (res) => {
+//           console.log(res);
+//         })
+//       })
+//     });
+// });
+
+// booksingsArray.forEach(booking => {
+//   helpers.addToBookings(
+//     booking.userid,
+//     booking.stylistid,
+//     booking.isConfirmed,
+//     booking.time,
+//     booking.location, (resultFromServer) => {
+//       console.log(resultFromServer);
+//     });
+// });
+
+// stylesArray.forEach(style => {
+//   helpers.addService(style, (res) => {
+//     console.log(res);
+//   });
+// });
 
 // helpers.addService('Hair Perm');
 // helpers.stylistservices(1, 17);
+
+// helper to add service to the services table in database
+// var addService = function(serviceName) {
+//   var sql = 'INSERT INTO services (servicename) VALUES (?)';
+//   model.con.query(sql, [serviceName], function(err, results) {
+//     if(err)  throw err;
+//   });
+// }
+
+// var stylistservices = function(serviceId, stylistId) {
+//   var sql = 'INSERT INTO stylists_services (id_services, id_users_stylists) VALUES (?, ?)';
+//   model.con.query(sql, [serviceId, stylistId], function(err, results) {
+//     if(err)  throw err;
+//   });
+//}
