@@ -69,4 +69,11 @@ li,
 
 .dropdownUl * {
   list-style-type: none;
+  width: 100%;
+  box-shadow: 3px 3px 1px rgba(173, 216, 230, 0.9);
+}
+
+.dropdownUl *:hover {
+  list-style-type: none;
+  color: rgba(173, 216, 230, 0.9);
 }
