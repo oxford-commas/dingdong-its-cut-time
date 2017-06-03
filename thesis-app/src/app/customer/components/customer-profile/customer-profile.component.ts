@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { RequestService, DeletionService } from '../../../services';
+import { RequestService, DeletionService, StateService } from '../../../services';
 
 @Component({
   selector: 'customer-profile',
@@ -13,6 +13,7 @@ export class CustomerProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private requestService: RequestService,
     private deletionService: DeletionService,
+    private stateService: StateService,
     private router: Router
   ) {}
 
