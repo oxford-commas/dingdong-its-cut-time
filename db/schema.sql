@@ -58,6 +58,7 @@ ALTER TABLE `stylists_services` ADD FOREIGN KEY (id_services) REFERENCES `servic
 ALTER TABLE `stylists_services` ADD FOREIGN KEY (id_users_stylists) REFERENCES `users_stylists` (`id`);
 ALTER TABLE `bookings` ADD FOREIGN KEY (id_users) REFERENCES `users_stylists` (`id`) ON DELETE CASCADE;
 ALTER TABLE `bookings` ADD FOREIGN KEY (id_stylists) REFERENCES `users_stylists` (`id`) ON DELETE CASCADE;
+ALTER TABLE `bookings` ADD FOREIGN KEY (time) REFERENCES `messages` (`time`) ON DELETE CASCADE;
 
 commit;
 
