@@ -98,7 +98,7 @@ var stylistservices = function(serviceId, stylistId, callback) {
 
 var getStylistServices = function(stylistId, callback) {
   model.con.query('select `servicename` from `stylists_services` as ss, `services` as s  where `id_users_stylists`= ? and ss.id_services = s.id', [stylistId], function(err, results) {
-      callback(results);
+    callback(results);
   });
 }
 
@@ -114,5 +114,8 @@ module.exports.deleteUser = deleteUser;
 module.exports.addService = addService;
 module.exports.stylistservices = stylistservices;
 module.exports.getStylistServices = getStylistServices;
+<<<<<<< HEAD
 module.exports.updateProfile = updateProfile;
 
+=======
+>>>>>>> c237633c668117895274ae03531b1b95d794cf17
