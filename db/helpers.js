@@ -45,6 +45,15 @@ var calculateDistance = function distance(lat1, lon1, lat2, lon2, unit) {
   return dist
 }
 
+var updateProfile = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, callback) {
+  var sql = 'UPDATE users_stylists SET type = ?, name = ?, password = ?, billingaddress = ?, phonenumber = ?, email = ?, site_url = ?, gender = ?, image_url = ? WHERE id = ?'
+  model.con.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id],function (err, result) {
+    if (err) throw err;
+    console.log("1 record updated");
+    callback();
+  });
+}
+
 var addToBookings = function(userId, stylistId, isConfirmed, time, location, callback) {
   var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, location) VALUES (?, ?, ?, ?, ?)';
   model.con.query(sql, [userId, stylistId, isConfirmed, time, location],function (err, result) {
@@ -105,4 +114,5 @@ module.exports.deleteUser = deleteUser;
 module.exports.addService = addService;
 module.exports.stylistservices = stylistservices;
 module.exports.getStylistServices = getStylistServices;
+module.exports.updateProfile = updateProfile;
 

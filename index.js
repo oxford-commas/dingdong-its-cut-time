@@ -94,9 +94,22 @@ app.post('/api/userstylist', function (req, res) {
 });
 
 // updates users or stylists information in the database
-app.put('/api/userstylist', function (req, res) {
-  res.send('Got a PUT request at /user')
-})
+app.put('/api/userstylist/:id', function (req, res) {
+  var id = req.params.id;
+  var type = req.body.type;
+  var name = req.body.name;
+  var password = req.body.password;
+  var billingaddress = req.body.billingaddress;
+  var phonenumber = req.body.phonenumber;
+  var email = req.body.email;
+  var site_url = req.body.site_url;
+  var gender = req.body.gender;
+  var image_url = req.body.image_url;
+  var location = req.body.location;
+  helpers.updateProfile(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, function() {
+    res.send('Got a PUT request at /api/userstylist/' + req.params.id);
+  });
+});
 
 // updates location end points for a given userID  ----completed
 app.post('/api/location', function(req, res) {
