@@ -1,2 +1,2 @@
 export * from './stylist-home';
-export * from './booking.component';
+export * from './booking';

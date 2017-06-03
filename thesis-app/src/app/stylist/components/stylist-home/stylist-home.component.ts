@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { RequestService} from '../services';
+import { RequestService, BookingService} from '../../../services';
 
 @Component({
    selector: 'stylist-home',
@@ -16,14 +16,14 @@ export class StylistHomeComponent implements OnInit {
     this.requestService.getStylistById(1)
       .subscribe(
         data => this.hardCodedStylistProfile = data,
-        err => console.log(err),
-        () => isProfileFetched = true
+        err => console.log(err)
       );
 
     this.bookingService.fetchBookingsForStylist(1)
       .subscribe(
         data => this.bookings = data,
-        err => console.log(err)
+        err => console.log(err),
+        () => this.isProfileFetched = true
       );
   }
 
