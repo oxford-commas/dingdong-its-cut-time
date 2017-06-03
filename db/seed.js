@@ -523,66 +523,47 @@ const stylistServices = [
 
 
 
-// stylistArray.forEach(stylist => {
-//   helpers.addUserStylist(
-//     stylist.id,
-//     stylist.username,
-//     stylist.password,
-//     stylist.location,
-//     stylist.phoneNumber,
-//     stylist.email,
-//     stylist.website,
-//     stylist.type,
-//     stylist.update, (resultFromServer) => {
-//       var id = resultFromServer.insertId;
-//       services.getLocationPoints(stylist.location, (points) => {
-//         let lat = points[0];
-//         let lng = points[1];
-//         helpers.addLocation(lat, lng, id, (res) => {
-//           console.log(res);
-//         })
-//       })
-//     });
-// });
+stylistArray.forEach(stylist => {
+  helpers.addUserStylist(
+    stylist.id,
+    stylist.username,
+    stylist.password,
+    stylist.location,
+    stylist.phoneNumber,
+    stylist.email,
+    stylist.website,
+    stylist.type,
+    stylist.update, (resultFromServer) => {
+      var id = resultFromServer.insertId;
+      services.getLocationPoints(stylist.location, (points) => {
+        let lat = points[0];
+        let lng = points[1];
+        helpers.addLocation(lat, lng, id, (res) => {
+          console.log(res);
+        })
+      })
+    });
+});
 
-// booksingsArray.forEach(booking => {
-//   helpers.addToBookings(
-//     booking.userid,
-//     booking.stylistid,
-//     booking.isConfirmed,
-//     booking.time,
-//     booking.location, (resultFromServer) => {
-//       console.log(resultFromServer);
-//     });
-// });
+booksingsArray.forEach(booking => {
+  helpers.addToBookings(
+    booking.userid,
+    booking.stylistid,
+    booking.isConfirmed,
+    booking.time,
+    booking.location, (resultFromServer) => {
+      console.log(resultFromServer);
+    });
+});
 
-// stylesArray.forEach(style => {
-//   helpers.addService(style, (res) => {
-//     console.log(res);
-//   });
-// });
+stylesArray.forEach(style => {
+  helpers.addService(style, (res) => {
+    console.log(res);
+  });
+});
 
 stylistServices.forEach(style => {
-  console.log(style);
   helpers.stylistservices(style.styleId, style.stylistId, (res) => {
     console.log(res)
   })
-})
-
-// helpers.addService('Hair Perm');
-// helpers.stylistservices(1, 17);
-
-// helper to add service to the services table in database
-// var addService = function(serviceName) {
-//   var sql = 'INSERT INTO services (servicename) VALUES (?)';
-//   model.con.query(sql, [serviceName], function(err, results) {
-//     if(err)  throw err;
-//   });
-// }
-
-// var stylistservices = function(serviceId, stylistId) {
-//   var sql = 'INSERT INTO stylists_services (id_services, id_users_stylists) VALUES (?, ?)';
-//   model.con.query(sql, [serviceId, stylistId], function(err, results) {
-//     if(err)  throw err;
-//   });
-//}
+});
