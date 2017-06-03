@@ -26,6 +26,10 @@ export class RequestService {
       )
   }
 
+  // getStylistByName(name: string, password: string) {
+  //   return this.http.get(`/api/user/${name}`)
+  // }
+
   getStylistByLocation(location: string) {
     return this.http.get(`/api/stylists/location`)
       .map(
