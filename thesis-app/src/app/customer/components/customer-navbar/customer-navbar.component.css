@@ -1,5 +1,4 @@
 .poppaDiv {
-  border-bottom: 2px yellow solid;
   height: 10vh;
   width: 100%;
   display: flex;
@@ -9,22 +8,22 @@
 }
 .container-fluid,
 .miniContainer {
-  /*border: 2px solid red;*/
   width: 100%;
   height: 25%;
 }
 
 .superNav {
-  border: 2px solid;
   width: 100%;
 }
 
-h2 {
-  border: 2px solid red;
+.unorderedList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 li {
-  border: 2px solid blue;
+  /*border: 2px solid blue;*/
 }
 
 li,
@@ -34,22 +33,17 @@ li,
 
 li,
 .formElement {
-  width: 40%;
-}
-
-li,
-.liDropdown {
-  width: 10%;
+  width: 49%;
 }
 
 .form-control {
   width: 250px;
-  border: 2px solid red;
 }
 
 .dropdown {
   position: relative;
   display: inline-block;
+  width: 10%;
 }
 
 .dropdown-content {

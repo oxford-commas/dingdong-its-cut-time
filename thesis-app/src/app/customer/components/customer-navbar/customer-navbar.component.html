@@ -4,7 +4,7 @@
     <h2 [routerLink]="['/home']">Ding Dong: It's Cut Time</h2>
     <div class="container-fluid miniContainer">
       <nav class="navbar navbar-default superNav">
-        <ul class="nav nav-pills">
+        <ul class="nav nav-pills unorderedList">
           <li class="title">
             <h4>Welcome {{ currentCustomer }}.  Where are you located?</h4>
           </li>
@@ -21,14 +21,14 @@
               <button class="btn btn-default" (click)="showDropDown()">{{currentCustomer}}</button>
             </form>
           </li>
-          <li class="liDropdown">
+          <!-- <li class="liDropdown"> -->
             <div class="dropdown">
               <span class="caret">Username</span>
                 <div class="dropdown-content">
                   <p>Hello World</p>
                 </div>
             </div>
-          </li>
+          <!-- </li> -->
         </ul>
       </nav>
     </div>
