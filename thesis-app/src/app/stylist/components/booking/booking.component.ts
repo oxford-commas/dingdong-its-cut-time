@@ -5,5 +5,5 @@ import { Component, Input } from '@angular/core';
   templateUrl: './booking.component.html'
 })
 export class BookingComponent {
-  @Input()
+  @Input() bookingInformation: any; //TODO: interface this
 }
