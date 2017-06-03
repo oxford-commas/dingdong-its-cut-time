@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RequestService } from '../../../services';
 import { LocationService } from '../../../services';
 import { StylistService } from '../../../services';
+import { StateService } from '../../../services';
 
 @Component({
   selector: 'customer-home',
@@ -12,7 +13,8 @@ export class CustomerHomeComponent implements OnInit {
   constructor(
     private requestService: RequestService,
     private locationService: LocationService,
-    private stylistService: StylistService
+    private stylistService: StylistService,
+    private stateService: StateService
   ) {
 
     // this.customerProfile = requestService.getStylistById(0).subscribe(
@@ -35,8 +37,9 @@ export class CustomerHomeComponent implements OnInit {
     this.requestService.getStylistById(1)
       .subscribe(
         data => {
-          this.customerProfile = data;
-          console.log('fetch customer profile with hardcoded id 1: ', this.customerProfile);
+          this.stateService.addCustomer(data);
+          this.customerProfile = this.stateService.customerProfile[0]
+          console.log(this.customerProfile);
         },
         err => console.log(err),
         () => this.isProfileFetched = true);

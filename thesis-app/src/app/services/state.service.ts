@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class StateService {
-  stylistProfile = [
+  customerProfile = [
   ];
+
+  // currentCustomerProfile: number;
 
   constructor() {}
 
-  addStylist(stylist: any)
+  addCustomer(stylist: any)
   // (
   //   billingaddress: string,
   //   email: string,
@@ -23,7 +25,7 @@ export class StateService {
   //   type: number
   //   )
   {
-    this.stylistProfile.push({
+    this.customerProfile.push({
       billingaddress: stylist.billingaddress,
       email: stylist.email,
       gender: stylist.gender,

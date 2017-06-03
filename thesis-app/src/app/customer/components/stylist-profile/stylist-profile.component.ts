@@ -3,7 +3,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { RequestService } from '../../../services';
-import { StateService } from '../../../services';
 
 @Component({
   selector: 'stylist-profile',
@@ -13,8 +12,7 @@ import { StateService } from '../../../services';
 export class StylistProfileComponent implements OnInit {
   constructor(
     private requestService: RequestService,
-    private route: ActivatedRoute,
-    private stateService: StateService
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -27,8 +25,6 @@ export class StylistProfileComponent implements OnInit {
      .subscribe(
        data => {
         this.stylistProfile = data
-        this.stateService.addStylist(this.stylistProfile);
-        console.log(this.stateService, 'sp')
       },
        err => console.log(err),
        () => this.isProfileFetched = true
