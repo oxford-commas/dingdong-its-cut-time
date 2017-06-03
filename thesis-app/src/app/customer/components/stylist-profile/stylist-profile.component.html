@@ -1,57 +1,58 @@
-<div class="container row poppadiv">
-  <div class="container row profile" >
-
-    <div class="container locationwrapper">
-      <img class="profileimage" [src]=stylistProfile.image_url />
-      <h4>You can find me @</h4>
-      <div class="container row">
-        Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}}
-      </div>
-    </div>
-
-    <div class="servicescontainer">
-      <h4>Services I provide</h4>
-
-      <div class="container row liststyles">
-        <div class="styleitems" *ngFor="let style of ['hard', 'coded', 'styles']">
-          <h5>{{style}}</h5>
+<customer-navbar></customer-navbar>
+<div *ngIf="!!isProfileFetched">
+  <div class="container row poppadiv">
+    <div class="container row profile" >
+      <div class="container locationwrapper">
+        <img class="profileimage" [src]=stylistProfile.image_url />
+        <h4>You can find me @</h4>
+        <div class="container row latLong">
+          Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}}
         </div>
       </div>
 
-      <div class="container row">
-        <h4>About Me</h4>
-        <div class="paragraph">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      <div class="servicescontainer">
+        <h4>Services I provide</h4>
+
+        <div class="container row liststyles">
+          <div class="styleitems" *ngFor="let style of ['hard', 'coded', 'styles']">
+            <h5>{{style}}</h5>
+          </div>
+        </div>
+
+        <div class="container row">
+          <h4>About Me</h4>
+          <div class="paragraph">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+          </div>
+        </div>
+
+        <h4>Link to personal site:</h4>
+        <div class="container row personalcontainer">
+          <a href="stylistProfile.site_url">{{stylistProfile.site_url}}</a>
         </div>
       </div>
-
-      <h4>Link to personal site:</h4>
-      <div class="container row personalcontainer">
-        <a href="stylistProfile.site_url">{{stylistProfile.site_url}}</a>
-      </div>
+      <button (click)="toggleModal()">Request a cut</button>
     </div>
-    <button (click)="toggleModal()">Request a cut</button>
   </div>
-  <p>Link to personal site:</p>
-  <div>{{stylistProfile.site_url}}</div>
 </div>
 
-<div class="container row modalWrapper" [style.display]="getStyle()">
-  <form #directMessage="ngForm" class="container row modalContent">
-    <span (click)="toggleModal()">&times;</span>
-    <div class="container row miniWrapper">
-      <h4>Send a message</h4>
-      <div class="row location modeitem">
-        Location: <input name="location" ngModel/>
+  <div class="container row modalWrapper" [style.display]="getStyle()">
+    <form #directMessage="ngForm" class="container row modalContent">
+      <span (click)="toggleModal()">&times;</span>
+      <div class="container row miniWrapper">
+        <h4>Send a message</h4>
+        <div class="row location modeitem">
+          Location: <input name="location" ngModel/>
+        </div>
+        <div class="row heading modeitem">
+          <input name="subjectHeading" placeholder="Subject Heading" ngModel/>
+          Time: <input name="time" ngModel />
+        </div>
+        <div class="row message modeitem">
+          <textarea name="body" ngModel>Body of the message</textarea>
+          <button (click)="submitMessage(directMessage.value)">Send</button>
+        </div>
       </div>
-      <div class="row heading modeitem">
-        <input name="subjectHeading" placeholder="Subject Heading" ngModel/>
-        Time: <input name="time" ngModel />
-      </div>
-      <div class="row message modeitem">
-        <textarea name="body" ngModel>Body of the message</textarea>
-        <button (click)="submitMessage(directMessage.value)">Send</button>
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>

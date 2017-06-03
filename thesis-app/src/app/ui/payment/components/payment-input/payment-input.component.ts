@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { StripeService } from '../../../../services';
 
@@ -7,11 +7,12 @@ import { StripeService } from '../../../../services';
   template: `<button (click)="openCheckout()">Purchase</button>`
 })
 export class PaymentInputComponent {
-  constructor(private _stripeService: StripeService) {
-  }
+  constructor(private stripeService: StripeService) {}
+
+  @Input() customerName: string;
 
   public openCheckout() {
-    const stripeService = this._stripeService;
+    const stripeService = this.stripeService;
     var handler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_sQaWXln9tozJFEdLFrFHgNUU',
       locale: 'auto',
@@ -23,8 +24,8 @@ export class PaymentInputComponent {
     });
 
     handler.open({
-      name: 'Demo Site',
-      description: '2 widgets',
+      name: 'Ding Dong It\'s Cut Time',
+      description: `Payment method for: ${this.customerName}`,
       amount: 2000
     });
 

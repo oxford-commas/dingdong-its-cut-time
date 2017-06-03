@@ -7,6 +7,7 @@ import { rootRoutes } from './root.routes';
 
 import { RegistrationModule } from '../registration/registration.module';
 import { CustomerModule } from '../customer/customer.module';
+import { StylistHomeModule } from '../stylist/stylist.module';
 
 import { RequestService } from '../services/request.service';
 
@@ -22,7 +23,8 @@ import { RootComponent } from './components';
     HttpModule,
     RouterModule.forRoot(rootRoutes),
     RegistrationModule,
-    CustomerModule
+    CustomerModule,
+    StylistHomeModule
   ],
   providers: [RequestService],
   bootstrap: [RootComponent]

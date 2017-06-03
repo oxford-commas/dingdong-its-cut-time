@@ -24,10 +24,12 @@ export class StylistProfileComponent implements OnInit {
     this.requestService.getStylistById(this.stylistId)
      .subscribe(
        data => this.stylistProfile = data,
-       err => console.log(err)
+       err => console.log(err),
+       () => this.isProfileFetched = true
      );
   }
 
+  public isProfileFetched: boolean = false;
   public stylistProfile: any; // TODO: interface this
   public isShowModal: boolean = false;
   public modalStyle: string = 'none';

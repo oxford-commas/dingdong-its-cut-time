@@ -1,19 +1,37 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { RequestService, DeletionService } from '../../../services';
 
 @Component({
   selector: 'customer-profile',
   templateUrl: './customer-profile.component.html'
 })
-export class CustomerProfileComponent {
-  // @Input() customerProfile: any; // TODO: interface
-  @Input() customerProfile: any = {
-    name: 'andrew',
-    image_url: 'https://qph.ec.quoracdn.net/main-qimg-3b0b70b336bbae35853994ce0aa25013-c',
-    longitude: 3,
-    latitude: 3,
-    payments: ['creditcard1', 'creditcard2']
+export class CustomerProfileComponent implements OnInit {
+  constructor(
+    private route: ActivatedRoute,
+    private requestService: RequestService,
+    private deletionService: DeletionService,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    this.route.params.subscribe(params =>
+      this.customerId = +params['id']
+    );
+
+    this.requestService.getStylistById(this.customerId)
+      .subscribe(
+        data => this.customerProfile = data,
+        err => console.log(err),
+        () => this.isProfileFetched = true
+      );
   }
 
+  public isProfileFetched: boolean = false;
+  public customerProfile: any; // TODO: INTERFACE THIS
+  public customerId: number;
   public showView: boolean = true;
 
   public showAccountView() {
@@ -25,7 +43,12 @@ export class CustomerProfileComponent {
   }
 
   public handleDeleteAccount() {
-    console.log('TODO: DELETE account');
+    this.deletionService.deleteAccount(this.customerId)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err),
+        () => this.router.navigate(["/login"])
+      );
   }
 
   public handleSaveChanges() {

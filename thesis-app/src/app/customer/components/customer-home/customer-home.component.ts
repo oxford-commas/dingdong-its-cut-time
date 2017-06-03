@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { RequestService } from '../../../services';
 import { LocationService } from '../../../services';
@@ -8,7 +8,7 @@ import { StylistService } from '../../../services';
   selector: 'customer-home',
   templateUrl: 'customer-home.component.html'
 })
-export class CustomerHomeComponent {
+export class CustomerHomeComponent implements OnInit {
   constructor(
     private requestService: RequestService,
     private locationService: LocationService,
@@ -20,14 +20,30 @@ export class CustomerHomeComponent {
     //   err => console.log(err)
     // );
 
-    // Default inititialization to sanfrancisco
+    // Default location inititialization to sanfrancisco
     stylistService.getStylistsInLocation('sanfrancisco')
-    .subscribe(data => {
-      this.stylistsCloseToYou = data;
-    }, err => console.log(err));
+      .subscribe(data => {
+        this.stylistsCloseToYou = data;
+      }, err => console.log(err));
+
 
   }
 
+  ngOnInit() {
+    // Fetch the currently logged in user
+    // TODO: get id from router params passed down from login navigation
+    this.requestService.getStylistById(1)
+      .subscribe(
+        data => {
+          this.customerProfile = data;
+          console.log('fetch customer profile with hardcoded id 1: ', this.customerProfile);
+        },
+        err => console.log(err),
+        () => this.isProfileFetched = true);
+
+  }
+
+  public isProfileFetched = false;
   public currentLocation: any;
   public customerProfile: any;
   public stylistsCloseToYou: any;
