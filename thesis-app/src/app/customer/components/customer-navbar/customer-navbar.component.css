@@ -3,8 +3,14 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
+}
+
+h2 {
+  padding-left: 20px;
+  text-shadow: 3px 3px 1px rgba(173, 216, 230, 0.9);
+  width: 30vh;
 }
 .container-fluid,
 .miniContainer {
@@ -14,6 +20,7 @@
 
 .superNav {
   width: 100%;
+  box-shadow: 5px 5px 3px rgba(173, 216, 230, 0.9);
 }
 
 .unorderedList {
