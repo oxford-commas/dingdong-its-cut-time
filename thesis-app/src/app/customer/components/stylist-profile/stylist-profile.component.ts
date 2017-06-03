@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { RequestService } from '../../../services';
+import { StateService } from '../../../services';
 
 @Component({
   selector: 'stylist-profile',
