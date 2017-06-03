@@ -89,10 +89,23 @@ var stylistservices = function(serviceId, stylistId, callback) {
 
 var getStylistServices = function(stylistId, callback) {
   model.con.query('select `servicename` from `stylists_services` as ss, `services` as s  where `id_users_stylists`= ? and ss.id_services = s.id', [stylistId], function(err, results) {
-  
+
     callback(results);
 
   });
+}
+
+var getMessages = (id, callback) => {
+  model.con.query(
+    `SELECT * FROM 'messages' WHERE 'id_users' = ? OR 'id_stylists' = ?`,
+    [id],
+    (err, results) => callback(results)
+  );
+};
+
+var addMessage = (id_users, id_stylists, subjectHeading, body, time, location, callback) => {
+  var sql = 'INSERT INTO messages (id_users, id_stylists, subjectHeading, body, time, location) VALUES (?, ?, ?, ?, ?, ?)';
+  model.con.query(sql, [id_users, id_stylists, subjectHeading, body, time, location], (err, results) => callback(results));
 }
 
 module.exports.addLocation = addLocation;
@@ -107,3 +120,6 @@ module.exports.deleteUser = deleteUser;
 module.exports.addService = addService;
 module.exports.stylistservices = stylistservices;
 module.exports.getStylistServices = getStylistServices;
+module.exports.getMessages = getMessages;
+module.exports.addMessage = addMessage;
+

@@ -167,6 +167,12 @@ app.post('/api/stylistServices', function(req, res) {
   });
 })
 
+app.get('/api/messages/:id', (req, res) => {
+  helpers.getMessages(req.params.id, (data) => {
+    res.status(200).json(data);
+  });
+});
+
 
 app.get('*', function(req, res) {
  res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));

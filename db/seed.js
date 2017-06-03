@@ -267,6 +267,41 @@ const booksingsArray = [
   }
 ]
 
+const messagesArray = [
+  {
+    id_users: 1,
+    id_stylists: 1,
+    subjectHeading: 'This is a subject heading',
+    body: 'Give me a fade bro!!!',
+    time: Date.now(),
+    location: 'Toronto'
+  },
+  {
+    id_users: 2,
+    id_stylists: 2,
+    subjectHeading: 'This is another subject heading',
+    body: 'Duuuuuuuuuuude i need a haircut!',
+    time: Date.now(),
+    location: 'Seatte'
+  },
+  {
+    id_users: 3,
+    id_stylists: 3,
+    subjectHeading: 'Read my message',
+    body: 'I want to color my hair pink',
+    time: Date.now(),
+    location: 'San Francisco'
+  },
+  {
+    id_users: 4,
+    id_stylists: 4,
+    subjectHeading: 'This is a subject heading',
+    body: 'Give me a fade bro!!!',
+    time: Date.now(),
+    location: 'Los Angeles'
+  }
+];
+
 const stylesArray = [
   'Afro',
   'Bangs',
@@ -564,6 +599,20 @@ stylesArray.forEach(style => {
 
 stylistServices.forEach(style => {
   helpers.stylistservices(style.styleId, style.stylistId, (res) => {
+    console.log(res)
+  })
+});
+
+messagesArray.forEach(message => {
+  console.log('asdfpojasdpfj[asdjfas', message);
+  helpers.addMessage(
+   message.id_users,
+   message.id_stylists,
+   message.subjectHeading,
+   message.body,
+   message.time,
+   message.location,
+   (res) => {
     console.log(res)
   })
 });
