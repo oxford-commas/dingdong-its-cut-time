@@ -93,6 +93,11 @@ app.post('/api/userstylist', function (req, res) {
   });
 });
 
+// updates users or stylists information in the database
+app.put('/api/userstylist', function (req, res) {
+  res.send('Got a PUT request at /user')
+})
+
 // updates location end points for a given userID  ----completed
 app.post('/api/location', function(req, res) {
   var location = req.body.location;

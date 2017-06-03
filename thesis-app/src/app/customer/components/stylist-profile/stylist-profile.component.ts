@@ -23,7 +23,10 @@ export class StylistProfileComponent implements OnInit {
       );
     this.requestService.getStylistById(this.stylistId)
      .subscribe(
-       data => this.stylistProfile = data,
+       data => {
+        this.stylistProfile = data
+        console.log(this.stylistProfile)
+      },
        err => console.log(err),
        () => this.isProfileFetched = true
      );

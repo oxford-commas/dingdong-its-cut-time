@@ -1,20 +1,79 @@
 .poppaDiv {
-  border-bottom: 2px solid;
   height: 10vh;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
+}
+
+h2 {
+  padding-left: 20px;
+  text-shadow: 3px 3px 1px rgba(173, 216, 230, 0.9);
+  width: 30vh;
 }
 .container-fluid,
 .miniContainer {
-  /*border: 2px solid red;*/
   width: 100%;
   height: 25%;
 }
 
 .superNav {
-/*  border: 2px solid;*/
   width: 100%;
+  box-shadow: 5px 5px 3px rgba(173, 216, 230, 0.9);
+}
+
+.unorderedList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+li {
+  /*border: 2px solid blue;*/
+}
+
+li,
+.title {
+  width: 40%;
+}
+
+li,
+.formElement {
+  width: 49%;
+}
+
+.form-control {
+  width: 250px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 10%;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdownUl * {
+  list-style-type: none;
+  width: 100%;
+  box-shadow: 3px 3px 1px rgba(173, 216, 230, 0.9);
+}
+
+.dropdownUl *:hover {
+  list-style-type: none;
+  color: rgba(173, 216, 230, 0.9);
 }
