@@ -18,9 +18,11 @@ export class CustomerProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe(params =>
-      this.customerId = +params['id']
-    );
+
+    // this.route.params.subscribe(params =>
+    //   this.customerId = +params['id']
+    // );
+    this.customerId = this.stateService.customerProfile[0].id;
 
     this.requestService.getStylistById(this.customerId)
       .subscribe(

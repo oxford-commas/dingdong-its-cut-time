@@ -1,4 +1,4 @@
-<customer-navbar></customer-navbar>
+<customer-navbar [customerId]="customerId"></customer-navbar>
 <div *ngIf="!!isProfileFetched">
   <h1>{{customerProfile.name}}'s profile</h1>
   <img [src]=customerProfile.image_url />
