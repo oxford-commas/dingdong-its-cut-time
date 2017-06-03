@@ -1,7 +1,7 @@
 <!--   <customer-dropdown [customerId]="customerId"></customer-dropdown> -->
 <div class="poppaDiv">
   <div class="container row">
-    <h2 [routerLink]="['/home']">Ding Dong: It's Cut Time</h2>
+    <h2>Ding Dong: It's Cut Time</h2>
     <div class="container-fluid miniContainer">
       <nav class="navbar navbar-default superNav">
         <ul class="nav nav-pills unorderedList">
@@ -25,7 +25,12 @@
             <div class="dropdown">
               <span class="caret">Username</span>
                 <div class="dropdown-content">
-                  <p>Hello World</p>
+                  <ul class="dropdownUl">
+                    <li [routerLink]="['/home']">Home</li>
+                    <li [routerLink]="['/messages']">Message</li>
+                    <li [routerLink]="['/customerProfile']">Settings</li>
+                    <li [routerLink]="['/login']">Logout</li>
+                  </ul>
                 </div>
             </div>
           <!-- </li> -->
@@ -34,23 +39,3 @@
     </div>
   </div>
 </div>
-
-
-  <!-- public onSelect(item) {
-    this.selected = item;
-    switch (this.selected){
-      case "Home":
-        this.router.navigate(["/home"]);
-        break;
-      case "Messages":
-        console.log('router', this.router)
-        this.router.navigate(["/messages"]);
-        break;
-      case "Settings":
-        this.router.navigate(["/customerProfile", this.customerId]);
-        break;
-      case "Logout":
-        this.router.navigate(["/login"]);
-        break;
-    }
-  } -->

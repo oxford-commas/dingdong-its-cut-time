@@ -59,3 +59,7 @@ li,
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+.dropdownUl * {
+  list-style-type: none;
+}
