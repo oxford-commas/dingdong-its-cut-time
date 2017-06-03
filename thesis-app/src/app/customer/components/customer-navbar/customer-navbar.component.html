@@ -1,14 +1,14 @@
 <!--   <customer-dropdown [customerId]="customerId"></customer-dropdown> -->
 <div class="poppaDiv">
   <div class="container row">
-    <h2 [routerLink]="['/home']">Ding Dong: It's Cut Time</h2>
+    <h2>Ding Dong: It's Cut Time</h2>
     <div class="container-fluid miniContainer">
       <nav class="navbar navbar-default superNav">
-        <ul class="nav nav-pills">
-          <li>
+        <ul class="nav nav-pills unorderedList">
+          <li class="title">
             <h4>Welcome {{ currentCustomer }}.  Where are you located?</h4>
           </li>
-          <li>
+          <li class="formElement">
             <form class="navbar-form navbar-left">
               <div class="form-group">
                 <input
@@ -21,14 +21,19 @@
               <button class="btn btn-default" (click)="showDropDown()">{{currentCustomer}}</button>
             </form>
           </li>
-          <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              Dropdown <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li>Woo</li>
-            </ul>
-          </li>
+
+          <div class="dropdown">
+            <span class="caret">Username</span>
+              <div class="dropdown-content">
+                <ul class="dropdownUl">
+                  <li [routerLink]="['/home']"><h4>Home</h4></li>
+                  <li [routerLink]="['/messages']"><h4>Messages</h4></li>
+                  <li [routerLink]="['/customerProfile', customerId]"><h4>Settings</h4></li>
+                  <li [routerLink]="['/login']"><h4>Logout</h4></li>
+                </ul>
+              </div>
+          </div>
+
         </ul>
       </nav>
     </div>

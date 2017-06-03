@@ -50,7 +50,10 @@ export class CustomerHomeComponent implements OnInit {
 
   getLocation() {
     console.log('Clicked!');
-    this.currentLocation = this.locationService.getCurrentPosition().subscribe(res => res);
+    this.currentLocation = this.locationService.getCurrentPosition()
+      .subscribe(res =>  {
+        console.log(res)
+      });
     console.log('Location is:', this.currentLocation);
   }
 
