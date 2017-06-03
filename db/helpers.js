@@ -71,19 +71,17 @@ var deleteUser = function(userId) {
 }
 
 // helper to add service to the services table in database
-var addService = function(serviceName, callback) {
+var addService = function(serviceName) {
   var sql = 'INSERT INTO services (servicename) VALUES (?)';
   model.con.query(sql, [serviceName], function(err, results) {
     if(err)  throw err;
-    callback(results);
   });
 }
 
-var stylistservices = function(serviceId, stylistId, callback) {
+var stylistservices = function(serviceId, stylistId) {
   var sql = 'INSERT INTO stylists_services (id_services, id_users_stylists) VALUES (?, ?)';
   model.con.query(sql, [serviceId, stylistId], function(err, results) {
     if(err)  throw err;
-    callback(results);
   });
 }
 
