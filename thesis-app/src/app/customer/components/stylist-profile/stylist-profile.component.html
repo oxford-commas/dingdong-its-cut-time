@@ -1,12 +1,17 @@
 <customer-navbar></customer-navbar>
 <div *ngIf="!!isProfileFetched">
   <div class="container row poppadiv">
+    <div>
+      <h2 class="name">{{ stylistProfile.name }}</h2>
+    </div>
     <div class="container row profile" >
       <div class="container locationwrapper">
         <img class="profileimage" [src]=stylistProfile.image_url />
         <h4>You can find me @</h4>
         <div class="container row latLong">
-          Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}}
+          <!-- Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}} -->
+          <p>{{ stylistProfile.billingaddress }}</p>
+          <p>{{ stylistProfile.phonenumber }}</p>
         </div>
       </div>
 
@@ -31,27 +36,29 @@
           <a href="stylistProfile.site_url">{{stylistProfile.site_url}}</a>
         </div>
       </div>
-      <button (click)="toggleModal()">Request a cut</button>
+      <div>
+        <button (click)="toggleModal()">Request a cut</button>
+      </div>
     </div>
   </div>
 </div>
 
-  <div class="container row modalWrapper" [style.display]="getStyle()">
-    <form #directMessage="ngForm" class="container row modalContent">
-      <span (click)="toggleModal()">&times;</span>
-      <div class="container row miniWrapper">
-        <h4>Send a message</h4>
-        <div class="row location modeitem">
-          Location: <input name="location" ngModel/>
-        </div>
-        <div class="row heading modeitem">
-          <input name="subjectHeading" placeholder="Subject Heading" ngModel/>
-          Time: <input name="time" ngModel />
-        </div>
-        <div class="row message modeitem">
-          <textarea name="body" ngModel>Body of the message</textarea>
-          <button (click)="submitMessage(directMessage.value)">Send</button>
-        </div>
+<div class="container row modalWrapper" [style.display]="getStyle()">
+  <form #directMessage="ngForm" class="container row modalContent">
+    <span (click)="toggleModal()">&times;</span>
+    <div class="container row miniWrapper">
+      <h4>Send a message</h4>
+      <div class="row location modeitem">
+        Location: <input name="location" ngModel/>
       </div>
-    </form>
-  </div>
+      <div class="row heading modeitem">
+        <input name="subjectHeading" placeholder="Subject Heading" ngModel/>
+        Time: <input name="time" ngModel />
+      </div>
+      <div class="row message modeitem">
+        <textarea name="body" ngModel>Body of the message</textarea>
+        <button (click)="submitMessage(directMessage.value)">Send</button>
+      </div>
+    </div>
+  </form>
+</div>
