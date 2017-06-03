@@ -1,5 +1,7 @@
 .poppadiv {
-  border: 7px solid black;
+  border: 3px solid black;
+  border-radius: 20px;
+  box-shadow: 10px 10px 5px rgba(173, 216, 230, 0.9);
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
