@@ -95,3 +95,4 @@ module.exports.getStylistBookings = getStylistBookings;
 module.exports.getUserBookings = getUserBookings;
 module.exports.deleteUser = deleteUser;
 module.exports.addService = addService;
+module.exports.stylistservices = stylistservices;
