@@ -8,6 +8,7 @@ import { StylistService } from '../../../services';
   selector: 'customer-home',
   templateUrl: 'customer-home.component.html'
 })
+
 export class CustomerHomeComponent implements OnInit {
   constructor(
     private requestService: RequestService,
@@ -25,7 +26,6 @@ export class CustomerHomeComponent implements OnInit {
       .subscribe(data => {
         this.stylistsCloseToYou = data;
       }, err => console.log(err));
-
 
   }
 
