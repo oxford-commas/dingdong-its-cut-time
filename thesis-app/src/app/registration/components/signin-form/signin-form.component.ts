@@ -32,6 +32,6 @@ export class SignInFormComponent {
 
   handleLogin() {
     console.log('TODO: authorize user ', this.userInformationData);
-    this.router.navigate(['/home']);
+    // this.router.navigate(['/home']);
   }
 }

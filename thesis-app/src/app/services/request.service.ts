@@ -28,6 +28,11 @@ export class RequestService {
 
   // getStylistByName(name: string, password: string) {
   //   return this.http.get(`/api/user/${name}`)
+  //     .map(
+  //       (response: Response) => {
+  //         return response.json();
+  //       }
+  //     )
   // }
 
   getStylistByLocation(location: string) {

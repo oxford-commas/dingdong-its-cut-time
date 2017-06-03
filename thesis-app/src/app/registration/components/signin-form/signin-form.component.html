@@ -2,12 +2,22 @@
 <div class="container row" style="text-align: center; margin: auto">
   <!-- <username-password (onInputsChange)="setUserData($event)"></username-password> -->
   <div class="container row">
-    <form>
-      Username<input>
-      Password<input>
+    <form (ngSubmit)="handleLogin()" #f="ngForm">
+      <label for="form-group">Username</label>
+        <input
+          type="text"
+          id="username"
+          ngModel
+          name="username">
+      <label for="form-group">Password</label>
+        <input
+          type="text"
+          id="password"
+          ngModel
+          name="password">
       <button
         class="btn btn-primary btn-group"
-        (click)="handleLogin()"
+        type="submit"
       >Login</button>
     </form>
   </div>
