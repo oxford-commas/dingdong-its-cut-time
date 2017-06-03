@@ -78,10 +78,17 @@ var addService = function(serviceName) {
   });
 }
 
-var stylistservices = function(serviceId, stylistId) {
+var stylistservices = function(serviceId, stylistId, callback) {
   var sql = 'INSERT INTO stylists_services (id_services, id_users_stylists) VALUES (?, ?)';
   model.con.query(sql, [serviceId, stylistId], function(err, results) {
     if(err)  throw err;
+    callback();
+  });
+}
+
+var getStylistServices = function(stylistId, callback) {
+  model.con.query('select `servicename` from `stylists_services` as ss, `services` as s  where `id_users_stylists`= ? and ss.id_services = s.id', [stylistId], function(err, results) {
+      callback(results);
   });
 }
 
@@ -96,3 +103,5 @@ module.exports.getUserBookings = getUserBookings;
 module.exports.deleteUser = deleteUser;
 module.exports.addService = addService;
 module.exports.stylistservices = stylistservices;
+module.exports.getStylistServices = getStylistServices;
+
