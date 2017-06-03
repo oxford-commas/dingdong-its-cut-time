@@ -512,12 +512,12 @@ const stylistServices = [
     styleId: 1
   },
   {
-    stylistId: 19,
-    styleId: 2
+    styleId: 2,
+    stylistId: 19
   },
   {
-    stylistId: 19,
-    styleId: 3
+    styleId: 3,
+    stylistId: 19
   }
 ]
 
@@ -564,6 +564,9 @@ const stylistServices = [
 
 stylistServices.forEach(style => {
   console.log(style);
+  helpers.stylistservices(style.styleId, style.stylistId, (res) => {
+    console.log(res)
+  })
 })
 
 // helpers.addService('Hair Perm');
