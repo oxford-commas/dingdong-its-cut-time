@@ -296,220 +296,220 @@ const stylesArray = [
 
 const stylistServices = [
   {
-    stylistId: 1,
-    styleId: 2
+    styleId: 2,
+    stylistId: 1
   },
   {
-    stylistId: 1,
-    styleId: 3
+    styleId: 3,
+    stylistId: 1
   },
   {
-    stylistId: 1,
-    styleId: 13
+    styleId: 13,
+    stylistId: 1
   },
   {
-    stylistId: 1,
-    styleId: 16
+    styleId: 16,
+    stylistId: 1
   },
   {
-    stylistId: 1,
-    styleId: 20
+    styleId: 20,
+    stylistId: 1
   },
   {
-    stylistId: 1,
     styleId: 22,
+    stylistId: 1
   },
   {
-    stylistId: 1,
     styleId: 24,
+    stylistId: 1
   },
   {
-    stylistId: 2,
-    styleId: 4
+    styleId: 4,
+    stylistId: 2
   },
   {
-    stylistId: 2,
-    styleId: 5
+    styleId: 5,
+    stylistId: 2
   },
   {
-    stylistId: 2,
-    styleId: 6
+    styleId: 6,
+    stylistId: 2
   },
   {
-    stylistId: 2,
-    styleId: 8
+    styleId: 8,
+    stylistId: 2
   },
   {
-    stylistId: 2,
-    styleId: 9
+    styleId: 9,
+    stylistId: 2
   },
   {
-    stylistId: 2,
-    styleId: 11
+    styleId: 11,
+    stylistId: 2
   },
   {
-    stylistId: 2,
-    styleId: 6
+    styleId: 6,
+    stylistId: 2
   },
   {
-    stylistId: 3,
-    styleId: 21
+    styleId: 21,
+    stylistId: 3
   },
   {
-    stylistId: 3,
-    styleId: 9
+    styleId: 9,
+    stylistId: 3
   },
   {
-    stylistId: 3,
-    styleId: 24
+    styleId: 24,
+    stylistId: 3
   },
   {
-    stylistId: 5,
-    styleId: 24
+    styleId: 24,
+    stylistId: 5
   },
   {
-    stylistId: 5,
-    styleId: 9
+    styleId: 9,
+    stylistId: 5
   },
   {
-    stylistId: 5,
-    styleId: 11
+    styleId: 11,
+    stylistId: 5
   },
   {
-    stylistId: 7,
-    styleId: 2
+    styleId: 2,
+    stylistId: 7
   },
   {
-    stylistId: 7,
-    styleId: 3
+    styleId: 3,
+    stylistId: 7
   },
   {
-    stylistId: 7,
-    styleId: 16
+    styleId: 16,
+    stylistId: 7
   },
   {
-    stylistId: 8,
-    styleId: 6
+    styleId: 6,
+    stylistId: 8
   },
   {
-    stylistId: 8,
-    styleId: 8
+    styleId: 8,
+    stylistId: 8
   },
   {
-    stylistId: 8,
-    styleId: 9
+    styleId: 9,
+    stylistId: 8
   },
   {
-    stylistId: 9,
-    styleId: 20
+    styleId: 20,
+    stylistId: 9
   },
   {
-    stylistId: 9,
-    styleId: 4
+    styleId: 4,
+    stylistId: 9
   },
   {
-    stylistId: 9,
-    styleId: 5
+    styleId: 5,
+    stylistId: 9
   },
   {
-    stylistId: 10,
-    styleId: 20
+    styleId: 20,
+    stylistId: 10
   },
   {
-    stylistId: 10,
-    styleId: 4
+    styleId: 4,
+    stylistId: 10
   },
   {
-    stylistId: 10,
-    styleId: 5
+    styleId: 5,
+    stylistId: 10
   },
   {
-    stylistId: 11,
-    styleId: 5
+    styleId: 5,
+    stylistId: 11
   },
   {
-    stylistId: 11,
-    styleId: 11
+    styleId: 11,
+    stylistId: 11
   },
   {
-    stylistId: 11,
-    styleId: 21
+    styleId: 21,
+    stylistId: 11
   },
   {
-    stylistId: 12,
-    styleId: 24
+    styleId: 24,
+    stylistId: 12
   },
   {
-    stylistId: 12,
-    styleId: 9
+    styleId: 9,
+    stylistId: 12
   },
   {
-    stylistId: 12,
-    styleId: 11
+    styleId: 11,
+    stylistId: 12
   },
   {
-    stylistId: 13,
-    styleId: 9
+    styleId: 9,
+    stylistId: 13
   },
   {
-    stylistId: 13,
-    styleId: 5
+    styleId: 5,
+    stylistId: 13
   },
   {
-    stylistId: 13,
-    styleId: 4
+    styleId: 4,
+    stylistId: 13
   },
   {
-    stylistId: 14,
-    styleId: 9
+    styleId: 9,
+    stylistId: 14
   },
   {
-    stylistId: 14,
-    styleId: 6
+    styleId: 6,
+    stylistId: 14
   },
   {
-    stylistId: 14,
-    styleId: 4
+    styleId: 4,
+    stylistId: 14
   },
   {
-    stylistId: 16,
-    styleId: 3
+    styleId: 3,
+    stylistId: 16
   },
   {
-    stylistId: 16,
-    styleId: 15
+    styleId: 15,
+    stylistId: 16
   },
   {
-    stylistId: 16,
-    styleId: 19
+    styleId: 19,
+    stylistId: 16
   },
   {
-    stylistId: 17,
-    styleId: 1
+    styleId: 1,
+    stylistId: 17
   },
   {
-    stylistId: 17,
-    styleId: 11
+    styleId: 11,
+    stylistId: 17
   },
   {
-    stylistId: 17,
-    styleId: 23
+    styleId: 23,
+    stylistId: 17
   },
   {
-    stylistId: 18,
-    styleId: 5
+    styleId: 5,
+    stylistId: 18
   },
   {
-    stylistId: 18,
-    styleId: 17
+    styleId: 17,
+    stylistId: 18
   },
   {
-    stylistId: 18,
-    styleId: 16
+    styleId: 16,
+    stylistId: 18
   },
   {
-    stylistId: 19,
-    styleId: 1
+    styleId: 1,
+    stylistId: 19
   },
   {
     styleId: 2,
