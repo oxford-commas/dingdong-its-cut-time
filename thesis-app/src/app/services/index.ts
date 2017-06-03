@@ -4,3 +4,4 @@ export * from './location.service';
 export * from './stylist.service';
 export * from './deletion.service';
 export * from './booking.service';
+export * from './message.service';
