@@ -2,7 +2,7 @@
 <div class="container row" style="text-align: center; margin: auto">
   <!-- <username-password (onInputsChange)="setUserData($event)"></username-password> -->
   <div class="container row">
-    <form (ngSubmit)="handleLogin()" #f="ngForm">
+    <form (ngSubmit)="handleLogin(f)" #f="ngForm">
       <label for="form-group">Username</label>
         <input
           type="text"

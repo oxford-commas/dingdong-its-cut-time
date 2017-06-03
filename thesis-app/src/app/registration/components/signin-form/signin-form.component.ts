@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 import { Router } from '@angular/router';
 
@@ -30,7 +31,8 @@ export class SignInFormComponent {
     };
   }
 
-  handleLogin() {
+  handleLogin(form: NgForm) {
+    console.log(form.value)
     console.log('TODO: authorize user ', this.userInformationData);
     // this.router.navigate(['/home']);
   }
