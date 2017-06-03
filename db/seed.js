@@ -302,7 +302,7 @@ const messagesArray = [
   }
 ];
 
-messagesArray.forEach(message => helpers.seedMessage(message.id_users, message.id_stylists, message.subjectHeading, message.body, message.time, message.location));
+messagesArray.forEach(message => helpers.postMessage(message.id_users, message.id_stylists, message.subjectHeading, message.body, message.time, message.location));
 
 const stylesArray = [
   'Afro',

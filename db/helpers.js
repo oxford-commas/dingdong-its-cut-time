@@ -98,6 +98,11 @@ var getStylistServices = function(stylistId, callback) {
 /////////////////////
 // MESSAGE HELPERS //
 /////////////////////
+var postMessage = (id_users, id_stylists, subjectHeading, body, time, location, callback) => {
+  var sql = 'INSERT INTO messages (id_users, id_stylists, subjectHeading, body, time, location) VALUES (?, ?, ?, ?, ?, ?)';
+  model.con.query(sql, [id_users, id_stylists, subjectHeading, body, time, location]);
+};
+
 var getMessages = (id, callback) => {
   model.con.query(
     `SELECT * FROM messages WHERE id_users = ${id} OR id_stylists = ${id}`,
@@ -105,10 +110,6 @@ var getMessages = (id, callback) => {
   );
 };
 
-var seedMessage = (id_users, id_stylists, subjectHeading, body, time, location, callback) => {
-  var sql = 'INSERT INTO messages (id_users, id_stylists, subjectHeading, body, time, location) VALUES (?, ?, ?, ?, ?, ?)';
-  model.con.query(sql, [id_users, id_stylists, subjectHeading, body, time, location]);
-}
 
 module.exports.addLocation = addLocation;
 module.exports.addUserStylist = addUserStylist;
@@ -123,5 +124,4 @@ module.exports.addService = addService;
 module.exports.stylistservices = stylistservices;
 module.exports.getStylistServices = getStylistServices;
 module.exports.getMessages = getMessages;
-module.exports.seedMessage = seedMessage;
-
+module.exports.postMessage = postMessage;
