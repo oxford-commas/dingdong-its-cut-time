@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 
-import { StylistHomeComponent } from './components';
+import { StylistHomeComponent, BookingComponent } from './components';
 
 @NgModule({
   declarations: [
-    StylistHomeComponent
+    StylistHomeComponent,
+    BookingComponent
   ]
 })
 export class StylistHomeModule {
