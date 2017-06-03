@@ -12,14 +12,19 @@ export class StylistHomeComponent implements OnInit {
     private bookingService: BookingService
   ) {}
 
+  @Input() stylistProfile;
+
+  public isProfileFetched: boolean = false;
+  public bookings: any;
+
   ngOnInit() {
-    this.requestService.getStylistById(1)
+    this.requestService.getStylistById(2)
       .subscribe(
-        data => this.hardCodedStylistProfile = data,
+        data => this.stylistProfile = data,
         err => console.log(err)
       );
 
-    this.bookingService.fetchBookingsForStylist(1)
+    this.bookingService.fetchBookingsForStylist(2)
       .subscribe(
         data => this.bookings = data,
         err => console.log(err),
@@ -27,8 +32,5 @@ export class StylistHomeComponent implements OnInit {
       );
   }
 
-  @Input() stylistProfile
-  public isProfileFetched: boolean = false;
-  public hardCodedStylistProfile: any;
-  public bookings: any;
+
 }
