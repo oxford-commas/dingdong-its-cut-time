@@ -10,6 +10,7 @@ import { StripeService } from '../services';
 import { LocationService } from '../services';
 import { StylistService } from '../services';
 import { DeletionService } from '../services';
+import { StateService } from '../services';
 
 import {
   CustomerHomeComponent,
@@ -48,7 +49,8 @@ import {
     StripeService,
     LocationService,
     StylistService,
-    DeletionService
+    DeletionService,
+    StateService
    ]
 })
 
