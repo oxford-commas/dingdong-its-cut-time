@@ -147,7 +147,25 @@ app.delete('/stylist/:stylistid', function (req, res) {
   res.send('Got a DELETE request at /stylist')
 })
 
-// given stylistId and serviceId, add services to the stylists_services linked with the stylist
+//given stylistId, get all services for the stylists --- completed
+app.get('/api/stylistServices/:id', function(req, res) {
+  var s = [];
+  helpers.getStylistServices(req.params.id, function(data) {
+    console.log(data);
+    data.forEach(function(el) {
+      s.push(el.servicename);
+    });
+     res.status(200).json(s);
+  });
+});
+
+// given stylistId and serviceId, add new service to the stylists_services for the stylist
+app.post('/api/stylistServices', function(req, res) {
+  helpers.stylistservices(req.body.serviceid, req.body.stylistid, function() {
+    console.log('hey')
+    res.sendStatus(201);
+  });
+})
 
 
 app.get('*', function(req, res) {

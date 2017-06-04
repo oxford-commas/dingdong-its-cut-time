@@ -267,6 +267,261 @@ const booksingsArray = [
   }
 ]
 
+const stylesArray = [
+  'Afro',
+  'Bangs',
+  'Blow Out',
+  'Bowl Cut',
+  'Buzz Cut',
+  'Caesar',
+  'Conk',
+  'Cornrows',
+  'Crew Cut',
+  'Dreadlocks',
+  'Fade',
+  'Fauxhawk',
+  'Feathered Hair',
+  'Fishtail',
+  'Flattop',
+  'Frosted Tips',
+  'Highlights',
+  'Hime Cut',
+  'Intergalactic Waves',
+  'Layered Hair',
+  'Mullet',
+  'Pixie Cut',
+  'Pompadour',
+  'Quiff'
+]
+
+const stylistServices = [
+  {
+    styleId: 2,
+    stylistId: 1
+  },
+  {
+    styleId: 3,
+    stylistId: 1
+  },
+  {
+    styleId: 13,
+    stylistId: 1
+  },
+  {
+    styleId: 16,
+    stylistId: 1
+  },
+  {
+    styleId: 20,
+    stylistId: 1
+  },
+  {
+    styleId: 22,
+    stylistId: 1
+  },
+  {
+    styleId: 24,
+    stylistId: 1
+  },
+  {
+    styleId: 4,
+    stylistId: 2
+  },
+  {
+    styleId: 5,
+    stylistId: 2
+  },
+  {
+    styleId: 6,
+    stylistId: 2
+  },
+  {
+    styleId: 8,
+    stylistId: 2
+  },
+  {
+    styleId: 9,
+    stylistId: 2
+  },
+  {
+    styleId: 11,
+    stylistId: 2
+  },
+  {
+    styleId: 6,
+    stylistId: 2
+  },
+  {
+    styleId: 21,
+    stylistId: 3
+  },
+  {
+    styleId: 9,
+    stylistId: 3
+  },
+  {
+    styleId: 24,
+    stylistId: 3
+  },
+  {
+    styleId: 24,
+    stylistId: 5
+  },
+  {
+    styleId: 9,
+    stylistId: 5
+  },
+  {
+    styleId: 11,
+    stylistId: 5
+  },
+  {
+    styleId: 2,
+    stylistId: 7
+  },
+  {
+    styleId: 3,
+    stylistId: 7
+  },
+  {
+    styleId: 16,
+    stylistId: 7
+  },
+  {
+    styleId: 6,
+    stylistId: 8
+  },
+  {
+    styleId: 8,
+    stylistId: 8
+  },
+  {
+    styleId: 9,
+    stylistId: 8
+  },
+  {
+    styleId: 20,
+    stylistId: 9
+  },
+  {
+    styleId: 4,
+    stylistId: 9
+  },
+  {
+    styleId: 5,
+    stylistId: 9
+  },
+  {
+    styleId: 20,
+    stylistId: 10
+  },
+  {
+    styleId: 4,
+    stylistId: 10
+  },
+  {
+    styleId: 5,
+    stylistId: 10
+  },
+  {
+    styleId: 5,
+    stylistId: 11
+  },
+  {
+    styleId: 11,
+    stylistId: 11
+  },
+  {
+    styleId: 21,
+    stylistId: 11
+  },
+  {
+    styleId: 24,
+    stylistId: 12
+  },
+  {
+    styleId: 9,
+    stylistId: 12
+  },
+  {
+    styleId: 11,
+    stylistId: 12
+  },
+  {
+    styleId: 9,
+    stylistId: 13
+  },
+  {
+    styleId: 5,
+    stylistId: 13
+  },
+  {
+    styleId: 4,
+    stylistId: 13
+  },
+  {
+    styleId: 9,
+    stylistId: 14
+  },
+  {
+    styleId: 6,
+    stylistId: 14
+  },
+  {
+    styleId: 4,
+    stylistId: 14
+  },
+  {
+    styleId: 3,
+    stylistId: 16
+  },
+  {
+    styleId: 15,
+    stylistId: 16
+  },
+  {
+    styleId: 19,
+    stylistId: 16
+  },
+  {
+    styleId: 1,
+    stylistId: 17
+  },
+  {
+    styleId: 11,
+    stylistId: 17
+  },
+  {
+    styleId: 23,
+    stylistId: 17
+  },
+  {
+    styleId: 5,
+    stylistId: 18
+  },
+  {
+    styleId: 17,
+    stylistId: 18
+  },
+  {
+    styleId: 16,
+    stylistId: 18
+  },
+  {
+    styleId: 1,
+    stylistId: 19
+  },
+  {
+    styleId: 2,
+    stylistId: 19
+  },
+  {
+    styleId: 3,
+    stylistId: 19
+  }
+]
+
+
 
 stylistArray.forEach(stylist => {
   helpers.addUserStylist(
@@ -301,5 +556,14 @@ booksingsArray.forEach(booking => {
     });
 });
 
-// helpers.addService('Hair Perm');
-// helpers.stylistservices(1, 17);
+stylesArray.forEach(style => {
+  helpers.addService(style, (res) => {
+    console.log(res);
+  });
+});
+
+stylistServices.forEach(style => {
+  helpers.stylistservices(style.styleId, style.stylistId, (res) => {
+    console.log(res)
+  })
+});
