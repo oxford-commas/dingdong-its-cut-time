@@ -12,7 +12,7 @@ export class MessageService {
   }
 
   getMessages(id: number) {
-    return this.http.get('/api/messages/${id}')
+    return this.http.get(`/api/messages/${id}`)
       .map(res => res.json());
   }
 }

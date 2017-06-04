@@ -7,9 +7,7 @@ import { ICustomerMessage } from '../../interfaces';
   templateUrl: './customer-message.component.html'
 })
 export class CustomerMessageComponent implements OnInit {
-  constructor(private messageService: MessageService) {
-    console.log('Stretch goal: GET and POST messages');
-  }
+  constructor(private messageService: MessageService) {}
 
   @Input() messages: Array<ICustomerMessage>;
 
