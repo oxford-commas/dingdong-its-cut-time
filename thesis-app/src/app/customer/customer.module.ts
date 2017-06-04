@@ -6,10 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { UiModule } from '../ui/ui.module';
 
-import { StripeService } from '../services';
-import { LocationService } from '../services';
-import { StylistService } from '../services';
-import { DeletionService } from '../services';
+import {
+  StripeService,
+  LocationService,
+  StylistService,
+  DeletionService,
+  MessageService
+} from '../services';
 
 import {
   CustomerHomeComponent,
@@ -48,7 +51,8 @@ import {
     StripeService,
     LocationService,
     StylistService,
-    DeletionService
+    DeletionService,
+    MessageService
    ]
 })
 

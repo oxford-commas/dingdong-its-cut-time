@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-
 import { ActivatedRoute } from '@angular/router';
 
-import { RequestService } from '../../../services';
+import { RequestService, MessageService } from '../../../services';
+import { ICustomerMessage } from '../../interfaces';
 
 @Component({
   selector: 'stylist-profile',
@@ -12,7 +12,8 @@ import { RequestService } from '../../../services';
 export class StylistProfileComponent implements OnInit {
   constructor(
     private requestService: RequestService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -50,8 +51,14 @@ export class StylistProfileComponent implements OnInit {
     }
   }
 
-  public submitMessage(message: {}) {
-    console.log('submit message ', message);
+  public submitMessage(message: ICustomerMessage) {
+    message.id_users = 1;
+    message.id_stylists = this.stylistId;
+    this.messageService.postMessage(message)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err)
+      );
   }
 }
 

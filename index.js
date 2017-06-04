@@ -170,7 +170,7 @@ app.post('/api/stylistServices', function(req, res) {
 // MESSAGE ROUTES //
 
 app.post('/api/messages', (req, res) => {
-  helpers.postMessage(req.body.message, (data) => {
+  helpers.postMessage(req.body, (data) => {
     res.status(200).json(data);
   });
 });

@@ -1,6 +1,6 @@
 export interface ICustomerMessage {
-  id_users: string;
-  id_stylists: string;
+  id_users: number;
+  id_stylists: number;
   subjectHeading: string;
   body: string;
   time: number;

@@ -99,6 +99,7 @@ var getStylistServices = function(stylistId, callback) {
 // MESSAGE HELPERS //
 /////////////////////
 var postMessage = (message, callback) => {
+  console.log('received message', message);
   var sql = 'INSERT INTO messages (id_users, id_stylists, subjectHeading, body, time, location) VALUES (?, ?, ?, ?, ?, ?)';
   model.con.query(sql, [message.id_users, message.id_stylists, message.subjectHeading, message.body, message.time, message.location]);
 };
