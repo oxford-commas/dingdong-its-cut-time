@@ -278,8 +278,8 @@ const messagesArray = [
   },
   {
     id_sender: 2,
-    id_recipient: 11,
-    subjectHeading: 'Mateo to ladiespainted',
+    id_recipient: 1,
+    subjectHeading: 'Mateo to Shari',
     body: 'Duuuuuuuuuuude i need a haircut!',
     time: Date.now(),
     location: 'Seatte'
