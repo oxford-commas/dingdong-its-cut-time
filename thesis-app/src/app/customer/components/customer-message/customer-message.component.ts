@@ -14,7 +14,7 @@ export class CustomerMessageComponent implements OnInit {
   ngOnInit() {
     this.messageService.getMessages(1)
       .subscribe(
-        data => this.messages = data,
+        data => console.log(data),
         err => console.log(err)
       );
   }

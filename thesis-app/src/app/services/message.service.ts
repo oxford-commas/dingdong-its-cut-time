@@ -13,6 +13,6 @@ export class MessageService {
 
   getMessages(id: number) {
     return this.http.get(`/api/messages/${id}`)
-      .map(res => res.json());
+      .map(res => {console.log(res.json());res.json();});
   }
 }

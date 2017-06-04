@@ -271,7 +271,7 @@ const messagesArray = [
   {
     id_sender: 1,
     id_recipient: 13,
-    subjectHeading: 'This is a subject heading',
+    subjectHeading: 'Shari to ghirardelli',
     body: 'Give me a fade bro!!!',
     time: Date.now(),
     location: 'Toronto'
@@ -279,7 +279,7 @@ const messagesArray = [
   {
     id_sender: 2,
     id_recipient: 11,
-    subjectHeading: 'This is another subject heading',
+    subjectHeading: 'Mateo to ladiespainted',
     body: 'Duuuuuuuuuuude i need a haircut!',
     time: Date.now(),
     location: 'Seatte'
@@ -287,7 +287,7 @@ const messagesArray = [
   {
     id_sender: 3,
     id_recipient: 10,
-    subjectHeading: 'Read my message',
+    subjectHeading: 'Ricflair to cityhall',
     body: 'I want to color my hair pink',
     time: Date.now(),
     location: 'San Francisco'
@@ -295,7 +295,7 @@ const messagesArray = [
   {
     id_sender: 1,
     id_recipient: 6,
-    subjectHeading: 'This is a subject heading',
+    subjectHeading: 'Shari to big bess',
     body: 'Give me a fade bro!!!',
     time: Date.now(),
     location: 'Los Angeles'

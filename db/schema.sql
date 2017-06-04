@@ -20,8 +20,10 @@ CREATE TABLE IF NOT EXISTS `users_stylists` (
 );
 
 CREATE TABLE IF NOT EXISTS `recipients` (
+  `messageId` INTEGER NOT NULL AUTO_INCREMENT,
   `id` INTEGER NOT NULL,
-  `name` VARCHAR(35) NOT NULL
+  `name` VARCHAR(35) NOT NULL,
+  PRIMARY KEY (`messageId`)
 );
 
 CREATE TABLE IF NOT EXISTS `services` (
@@ -63,6 +65,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
 ALTER TABLE `stylists_services` ADD FOREIGN KEY (id_services) REFERENCES `services` (`id`);
 ALTER TABLE `stylists_services` ADD FOREIGN KEY (id_users_stylists) REFERENCES `users_stylists` (`id`);
 ALTER TABLE `recipients` ADD FOREIGN KEY (id) REFERENCES `users_stylists` (`id`);
+ALTER TABLE `recipients` ADD FOREIGN KEY (messageId) REFERENCES `messages` (`id`);
 
 commit;
 
