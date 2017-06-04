@@ -10,4 +10,9 @@ export class MessageService {
   postMessage(message: ICustomerMessage) {
     return this.http.post('/api/messages', message);
   }
+
+  getMessages(id: number) {
+    return this.http.get('/api/messages/${id}')
+      .map(res => res.json());
+  }
 }
