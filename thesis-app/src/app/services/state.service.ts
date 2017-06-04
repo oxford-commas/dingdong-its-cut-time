@@ -5,26 +5,9 @@ export class StateService {
   customerProfile = [
   ];
 
-  // currentCustomerProfile: number;
-
   constructor() {}
 
-  addCustomer(stylist: any)
-  // (
-  //   billingaddress: string,
-  //   email: string,
-  //   gender: any,
-  //   id: number,
-  //   image_url: string,
-  //   latitude: number,
-  //   longitude: number,
-  //   name: string,
-  //   password: string,
-  //   phonenumber: string,
-  //   site_url: string,
-  //   type: number
-  //   )
-  {
+  addCustomer(stylist: any) {
     this.customerProfile.push({
       billingaddress: stylist.billingaddress,
       email: stylist.email,

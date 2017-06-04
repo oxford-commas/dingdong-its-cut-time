@@ -32,8 +32,12 @@ export class SignInFormComponent {
   }
 
   handleLogin(form: NgForm) {
-    console.log(form.value)
-    console.log('TODO: authorize user ', this.userInformationData);
-    // this.router.navigate(['/home']);
+    this.requestService.getStylistById(1)
+      .subscribe(
+        data => {
+          this.stateService.addCustomer(data);
+          this.router.navigate(['/home']);
+        }
+      )
   }
 }

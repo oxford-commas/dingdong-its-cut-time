@@ -10,6 +10,12 @@ import { StateService } from '../../../services';
   templateUrl: 'customer-home.component.html'
 })
 export class CustomerHomeComponent implements OnInit {
+  public isProfileFetched = false;
+  public currentLocation: any;
+  public customerProfile: any;
+  public stylistsCloseToYou: any;
+  userProfile: any
+
   constructor(
     private requestService: RequestService,
     private locationService: LocationService,
@@ -17,39 +23,17 @@ export class CustomerHomeComponent implements OnInit {
     private stateService: StateService
   ) {
 
-    // this.customerProfile = requestService.getStylistById(0).subscribe(
-    //   res => console.log(res),
-    //   err => console.log(err)
-    // );
-
-    // Default location inititialization to sanfrancisco
-    stylistService.getStylistsInLocation('sanfrancisco')
-      .subscribe(data => {
-        this.stylistsCloseToYou = data;
-      }, err => console.log(err));
-
-
   }
 
   ngOnInit() {
-    // Fetch the currently logged in user
-    // TODO: get id from router params passed down from login navigation
-    this.requestService.getStylistById(1)
-      .subscribe(
-        data => {
-          this.stateService.addCustomer(data);
-          this.customerProfile = this.stateService.customerProfile[0]
-          console.log(this.customerProfile);
-        },
-        err => console.log(err),
-        () => this.isProfileFetched = true);
-
+    this.customerProfile = this.stateService.customerProfile[0];
+    this.isProfileFetched = true;
+    // // Default location inititialization to sanfrancisco
+    this.stylistService.getStylistsInLocation(this.stateService.customerProfile[0].billingaddress)
+      .subscribe(data => {
+        this.stylistsCloseToYou = data;
+      }, err => console.log(err));
   }
-
-  public isProfileFetched = false;
-  public currentLocation: any;
-  public customerProfile: any;
-  public stylistsCloseToYou: any;
 
   getLocation() {
     console.log('Clicked!');

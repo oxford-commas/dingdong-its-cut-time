@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormBuilder } from '@angular/forms';
 
-import { StateService } from '../services'
+import { StateService } from '../services';
 
 import {
   SignInFormComponent,
