@@ -269,32 +269,32 @@ const booksingsArray = [
 
 const messagesArray = [
   {
-    id_users: 1,
-    id_stylists: 1,
+    id_sender: 1,
+    id_recipient: 13,
     subjectHeading: 'This is a subject heading',
     body: 'Give me a fade bro!!!',
     time: Date.now(),
     location: 'Toronto'
   },
   {
-    id_users: 2,
-    id_stylists: 2,
+    id_sender: 2,
+    id_recipient: 11,
     subjectHeading: 'This is another subject heading',
     body: 'Duuuuuuuuuuude i need a haircut!',
     time: Date.now(),
     location: 'Seatte'
   },
   {
-    id_users: 3,
-    id_stylists: 3,
+    id_sender: 3,
+    id_recipient: 10,
     subjectHeading: 'Read my message',
     body: 'I want to color my hair pink',
     time: Date.now(),
     location: 'San Francisco'
   },
   {
-    id_users: 4,
-    id_stylists: 4,
+    id_sender: 1,
+    id_recipient: 6,
     subjectHeading: 'This is a subject heading',
     body: 'Give me a fade bro!!!',
     time: Date.now(),
@@ -302,7 +302,7 @@ const messagesArray = [
   }
 ];
 
-messagesArray.forEach(message => helpers.postMessage(message.id_users, message.id_stylists, message.subjectHeading, message.body, message.time, message.location));
+messagesArray.forEach(message => helpers.postMessage(message));
 
 const stylesArray = [
   'Afro',

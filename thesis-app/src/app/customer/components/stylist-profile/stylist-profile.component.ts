@@ -52,8 +52,6 @@ export class StylistProfileComponent implements OnInit {
   }
 
   public submitMessage(message: ICustomerMessage) {
-    message.id_users = 1;
-    message.id_stylists = this.stylistId;
     this.messageService.postMessage(message)
       .subscribe(
         res => console.log(res),

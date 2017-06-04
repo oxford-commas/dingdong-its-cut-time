@@ -99,17 +99,18 @@ var getStylistServices = function(stylistId, callback) {
 // MESSAGE HELPERS //
 /////////////////////
 var postMessage = (message, callback) => {
-  console.log('received message', message);
-  var sql = 'INSERT INTO messages (id_users, id_stylists, subjectHeading, body, time, location) VALUES (?, ?, ?, ?, ?, ?)';
-  model.con.query(sql, [message.id_users, message.id_stylists, message.subjectHeading, message.body, message.time, message.location]);
+  var sql = 'INSERT INTO messages (id_sender, id_recipient, subjectHeading, body, time, location) VALUES (?, ?, ?, ?, ?, ?)';
+  model.con.query(sql, [message.id_sender, message.id_recipient, message.subjectHeading, message.body, message.time, message.location],
+    (err, results) => model.con.query(
+    `INSERT INTO recipients (id, name)
+    VALUES (?, (SELECT name FROM users_stylists WHERE users_stylists.id = ?))`, [message.id_recipient, message.id_recipient]));
 };
 
 var getMessages = (id, callback) => {
   model.con.query(
-    `SELECT us.name, m.subjectHeading, m.body, m.time, m.location
-    FROM messages m INNER JOIN users_stylists us
-    ON m.id_users = ${id} OR m.id_stylists = ${id}
-    WHERE m.id_users = us.id OR m.id_stylists = us.id`,
+    `SELECT r.name, us.name, m.subjectHeading, m.body, m.time, m.location
+    FROM messages m INNER JOIN users_stylists us INNER JOIN recipients r
+    WHERE m.id_sender = ${id} AND us.id = ${id}`,
     (err, results) => callback(results)
   );
 };
