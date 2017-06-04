@@ -106,7 +106,10 @@ var postMessage = (message, callback) => {
 
 var getMessages = (id, callback) => {
   model.con.query(
-    `SELECT * FROM messages WHERE id_users = ${id} OR id_stylists = ${id}`,
+    `SELECT us.name, m.subjectHeading, m.body, m.time, m.location
+    FROM messages m INNER JOIN users_stylists us
+    ON m.id_users = ${id} OR m.id_stylists = ${id}
+    WHERE m.id_users = us.id OR m.id_stylists = us.id`,
     (err, results) => callback(results)
   );
 };
