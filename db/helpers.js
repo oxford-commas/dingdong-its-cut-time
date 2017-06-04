@@ -101,11 +101,13 @@ var getStylistServices = function(stylistId, callback) {
 var postMessage = (message, callback) => {
   var sql = 'INSERT INTO messages (id_sender, id_recipient, subjectHeading, body, time, location) VALUES (?, ?, ?, ?, ?, ?)';
   model.con.query(sql, [message.id_sender, message.id_recipient, message.subjectHeading, message.body, message.time, message.location],
-    (err, results) => model.con.query(
-      `INSERT INTO recipients (id, name)
-      VALUES (?, (SELECT name FROM users_stylists WHERE users_stylists.id = ?))`,
-      [message.id_sender, message.id_recipient]
-    ));
+    (err, results) => {
+      console.log('inserting into recipients...', message);
+      model.con.query(
+        `INSERT INTO recipients (id, name)
+        VALUES (?, (SELECT name FROM users_stylists WHERE users_stylists.id = ?))`,
+        [message.id_sender, message.id_recipient]
+    )});
 };
 
 var getMessages = (id, callback) => {

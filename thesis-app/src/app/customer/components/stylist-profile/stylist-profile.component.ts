@@ -51,13 +51,24 @@ export class StylistProfileComponent implements OnInit {
     }
   }
 
+  public decorateSenderAndRecipient(message: ICustomerMessage) {
+    message = {
+      ...message,
+     id_sender: 1, //hardcoded logged in user
+     id_recipient: this.stylistId
+   };
+   return message;
+  }
+
   public submitMessage(message: ICustomerMessage) {
+    message = this.decorateSenderAndRecipient(message);
     this.messageService.postMessage(message)
       .subscribe(
         res => console.log(res),
         err => console.log(err)
       );
   }
+
 }
 
 // | 55 |    1 | dnalounge         | dnalounge         | 375 11th St, San Francisco, CA

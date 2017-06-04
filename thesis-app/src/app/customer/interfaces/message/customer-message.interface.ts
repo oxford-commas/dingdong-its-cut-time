@@ -1,7 +1,7 @@
 export interface ICustomerMessage {
   name: string;
-  recipient: string;
-  subjectHeading: string;
+  id_recipient?: number;
+  id_sender?: number;
   body: string;
   time: number;
   location: string;
