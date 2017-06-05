@@ -23,7 +23,8 @@ import {
   CustomerMessageComponent,
   CustomerInboxComponent,
   StylistProfileComponent,
-  CustomerProfileComponent
+  CustomerProfileComponent,
+  ChatHistoryComponent
 } from './components';
 
 @NgModule({
@@ -45,7 +46,8 @@ import {
     CustomerMessageComponent,
     CustomerInboxComponent,
     StylistProfileComponent,
-    CustomerProfileComponent
+    CustomerProfileComponent,
+    ChatHistoryComponent
   ],
   providers: [
     StripeService,

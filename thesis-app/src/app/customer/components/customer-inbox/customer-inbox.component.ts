@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 import { ICustomerMessage } from '../../interfaces';
 
@@ -6,6 +6,9 @@ import { ICustomerMessage } from '../../interfaces';
   selector: 'customer-inbox',
   templateUrl: './customer-inbox.component.html'
 })
-export class CustomerInboxComponent {
-  @Input() messages: Array<ICustomerMessage>;
+export class CustomerInboxComponent implements OnInit{
+
+  @Input() public messages: Array<ICustomerMessage>;
+  @Output() public openHistory = new EventEmitter();
+
 }

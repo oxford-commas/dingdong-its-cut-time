@@ -270,35 +270,43 @@ const booksingsArray = [
 const messagesArray = [
   {
     id_sender: 1,
-    id_recipient: 13,
-    subjectHeading: 'Shari to ghirardelli',
+    id_recipient: 2,
+    subjectHeading: 'Shari to mateo',
     body: 'Give me a fade bro!!!',
     time: Date.now(),
-    location: 'Toronto'
+    location: '320 Front St W, Toronto'
   },
   {
     id_sender: 2,
     id_recipient: 1,
     subjectHeading: 'Mateo to Shari',
-    body: 'Duuuuuuuuuuude i need a haircut!',
+    body: 'yea, i gotchu girl, lets meet there',
     time: Date.now(),
-    location: 'Seatte'
+    location: '320 Front St W, Toronto'
   },
   {
-    id_sender: 3,
+    id_sender: 1,
     id_recipient: 10,
-    subjectHeading: 'Ricflair to cityhall',
+    subjectHeading: 'Shari to cityhall',
     body: 'I want to color my hair pink',
     time: Date.now(),
     location: 'San Francisco'
   },
   {
-    id_sender: 1,
-    id_recipient: 6,
-    subjectHeading: 'Shari to big bess',
-    body: 'Give me a fade bro!!!',
+    id_sender: 10,
+    id_recipient: 1,
+    subjectHeading: 'cityhall to shari',
+    body: 'can do',
     time: Date.now(),
-    location: 'Los Angeles'
+    location: 'San francisco'
+  },
+  {
+    id_sender: 2,
+    id_recipient: 3,
+    subjectHeading: 'idk',
+    body: 'idk',
+    time: Date.now(),
+    location: 'San Jose'
   }
 ];
 

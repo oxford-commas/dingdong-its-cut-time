@@ -102,7 +102,6 @@ var postMessage = (message, callback) => {
   var sql = 'INSERT INTO messages (id_sender, id_recipient, subjectHeading, body, time, location) VALUES (?, ?, ?, ?, ?, ?)';
   model.con.query(sql, [message.id_sender, message.id_recipient, message.subjectHeading, message.body, message.time, message.location],
     (err, results) => {
-      console.log('inserting into recipients...', message);
       model.con.query(
         `INSERT INTO recipients (id, name)
         VALUES (?, (SELECT name FROM users_stylists WHERE users_stylists.id = ?))`,
@@ -112,9 +111,10 @@ var postMessage = (message, callback) => {
 
 var getMessages = (id, callback) => {
   model.con.query(
-    `SELECT r.name as recipient, m.subjectHeading, m.body, m.time, m.location, m.id, m.id_sender
+    `SELECT r.name as recipient, us.name, m.subjectHeading, m.body, m.time, m.location, m.id, m.id_sender, m.id_recipient
     FROM messages m
-    INNER JOIN recipients r ON (m.id_recipient = ${id} OR m.id_sender = ${id}) AND m.id = r.messageId`,
+    INNER JOIN recipients r ON (m.id_recipient = ${id} OR m.id_sender = ${id}) AND m.id = r.messageId
+    INNER JOIN users_stylists us ON us.id = ${id}`,
     (err, results) => callback(results)
   );
 };

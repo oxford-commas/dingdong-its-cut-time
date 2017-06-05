@@ -1,4 +1,6 @@
 <pre>{{messages | json}}</pre>
 <div *ngFor="let message of messages">
-
+  <div (click)="openHistory.emit($event)">
+  To: {{message.recipient}} <button>Delete</button>
+  </div>
 </div>

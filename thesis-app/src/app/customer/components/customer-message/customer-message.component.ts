@@ -14,8 +14,12 @@ export class CustomerMessageComponent implements OnInit {
   ngOnInit() {
     this.messageService.getMessages(1)
       .subscribe(
-        data => console.log(data),
+        data => this.messages = data,
         err => console.log(err)
       );
+  }
+
+  showHistory(event) {
+    console.log('show history', event);
   }
 }

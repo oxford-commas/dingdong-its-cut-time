@@ -177,6 +177,26 @@ app.post('/api/messages', (req, res) => {
 
 app.get('/api/messages/:id', (req, res) => {
   helpers.getMessages(req.params.id, (data) => {
+    let messages = {};
+    data.forEach(message => {
+      let convo = [message.id_sender, message.id_recipient];
+      // check if convo or convo reverse is already a key in messages
+      if (messages.hasOwnProperty(convo) || messages.hasOwnProperty(convo.reverse())) {
+        // if convo exists in messages
+        if (messages[convo]) {
+          // push message into that
+          messages[convo].push(message);
+        } else {
+        // if convo reverse exists in messages
+          // push message into that
+          messages[convo.reverse()].push(message);
+        }
+      } else {
+        //initialize convo at message as empty array
+        messages[convo] = [];
+        messages[convo].push(message);
+      }
+    });
     res.status(200).json(data);
   });
 });
