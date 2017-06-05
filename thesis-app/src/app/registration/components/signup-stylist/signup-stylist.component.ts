@@ -17,8 +17,6 @@ export class SignupStylistComponent {
     private router: Router) {}
 
   handleSignup(form: NgForm) {
-    console.log(this.requestService);
-    console.log(form.value, 'ran');
     let newStylist = {
       name: form.value.username,
       password: form.value.password,
