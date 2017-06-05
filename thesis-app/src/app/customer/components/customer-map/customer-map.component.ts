@@ -1,4 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LocationService } from '../../../services';
+import { StylistService } from '../../../services';
 
 @Component({
   selector: 'customer-map',
@@ -7,17 +10,49 @@ import { Component, Input } from '@angular/core';
 })
 
 export class CustomerMapComponent {
+  constructor(
+    private locationService: LocationService,
+    private stylistService: StylistService,
+    private router: Router
+  ) {
+    stylistService.getStylistsInLocation('sanfrancisco')
+      .subscribe(data => {
+        this.stylists = data;
+        this.stylists.map(stylist => {
+          stylist.label = {
+            color: 'black',
+            fontWeight: 'bold',
+            text: stylist.name
+          }
+        })
+      }, err => console.log(err));
+
+    // sets the initial center position for the map
+    this.getLatLng();
+  }
 
   @Input() coordinates;
 
   title: string = 'Stylists in your area';
 
-  // initial center position for the map
-  public lat: number = 37.7632355;
-  public lng: number = -122.4637079;
+  public lat: number;
+  public lng: number;
 
   // initial zoom value for the map
   public zoom: number = 14;
+
+  getLatLng() {
+    this.locationService.getCurrentPosition()
+      .subscribe(res =>  {
+        this.lat = res.coords.latitude;
+        this.lng = res.coords.longitude;
+        console.log(`Latitude is: ${this.lat}, longitude is: ${this.lng}`);
+      });
+  }
+
+  goToStylist(id) {
+    this.router.navigateByUrl(`/stylistProfile/${id}`);
+  }
 
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`)
@@ -30,53 +65,7 @@ export class CustomerMapComponent {
     console.log(`lat: ${lat}, lng: ${lng}`);
   }
 
-  markers: marker[] = [
-    {
-      lat: 37.75990516443671,
-      lng: -122.44880676269531,
-      label: {
-        color: 'black',
-        fontWeight: 'bold',
-        text: 'Stylist A'
-      }
-    },
-    {
-      lat: 37.75556223086148,
-      lng: -122.47598919677734,
-      label: {
-        color: 'black',
-        fontWeight: 'bold',
-        text: 'Stylist B'
-      }
-    },
-    {
-      lat: 37.772357937683546,
-      lng: -122.4686336517334,
-      label: {
-        color: 'black',
-        fontWeight: 'bold',
-        text: 'Stylist C'
-      }
-    },
-    {
-      lat: 37.76268722227398,
-      lng: -122.46271133422852,
-      label: {
-        color: 'black',
-        fontWeight: 'bold',
-        text: 'Stylist D'
-      }
-    },
-    {
-      lat: 37.75359425514886,
-      lng: -122.45790481567383,
-      label: {
-        color: 'black',
-        fontWeight: 'bold',
-        text: 'Stylist E'
-      }
-    }
-  ]
+  public stylists: any
 
   icon: icon = {
     url: "https://maxcdn.icons8.com/Share/icon/Healthcare//scissors1600.png",
@@ -94,12 +83,6 @@ export class CustomerMapComponent {
 
 // interfaces for type safety
 // TODO: Separate these to their own files under interfaces folder
-
-interface marker {
-  lat: number;
-  lng: number;
-  label?: label;
-}
 
 interface label {
   color: string;

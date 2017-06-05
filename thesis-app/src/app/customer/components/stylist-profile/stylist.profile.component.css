@@ -9,7 +9,7 @@
   align-items: center;
   height: 35vh;
   width: 95%;
-  margin: 20px;
+  margin: 5ch;
 }
 
 .name {
@@ -25,7 +25,7 @@
 
 .profileimage {
   border-radius: 150px;
-  padding-top: 10px;
+  padding-top: 5ch;
 }
 
 .locationwrapper {
@@ -65,8 +65,8 @@
 }
 
 textarea {
-  width: 300px;
-  height: 100px;
+  width: 75ch;
+  height: 25ch;
 }
 
 .button {
@@ -128,8 +128,8 @@ textarea {
 .modalContent {
   border: 2px solid black;
   flex: 1 1;
-  width: 400px;
-  padding: 10px;
+  width: 95ch;
+  padding: 5ch;
   position: absolute;
   margin-left: -150px;
   margin-top: -150px;
@@ -139,6 +139,6 @@ textarea {
 }
 
 .modeitem {
-  padding: 10px;
-  margin: 10px;
+  padding: 5ch;
+  margin: 5ch;
 }

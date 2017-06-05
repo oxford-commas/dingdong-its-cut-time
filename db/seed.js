@@ -1,6 +1,7 @@
 const helpers = require('./helpers.js');
 const services = require('../locationServices.js')
 
+
 const stylistArray = [
   {
     id: 0,

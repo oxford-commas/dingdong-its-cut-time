@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
       navigator.geolocation.getCurrentPosition(
         (position: Position) => {
           observer.next(position);
-          console.log(`Position is ${position}`);
+          console.log(`Position is ${JSON.stringify(position)}`);
           observer.complete();
         },
         (error: PositionError) => {

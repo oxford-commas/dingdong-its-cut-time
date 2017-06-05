@@ -62,8 +62,10 @@ CREATE TABLE IF NOT EXISTS `messages` (
   PRIMARY KEY (`id`)
 );
 
-ALTER TABLE `stylists_services` ADD FOREIGN KEY (id_services) REFERENCES `services` (`id`);
-ALTER TABLE `stylists_services` ADD FOREIGN KEY (id_users_stylists) REFERENCES `users_stylists` (`id`);
+ALTER TABLE `stylists_services` ADD FOREIGN KEY (id_services) REFERENCES `services` (`id`) ON DELETE CASCADE;
+ALTER TABLE `stylists_services` ADD FOREIGN KEY (id_users_stylists) REFERENCES `users_stylists` (`id`) ON DELETE CASCADE;
+ALTER TABLE `bookings` ADD FOREIGN KEY (id_users) REFERENCES `users_stylists` (`id`) ON DELETE CASCADE;
+ALTER TABLE `bookings` ADD FOREIGN KEY (id_stylists) REFERENCES `users_stylists` (`id`) ON DELETE CASCADE;
 ALTER TABLE `recipients` ADD FOREIGN KEY (id) REFERENCES `users_stylists` (`id`) ON DELETE CASCADE;
 ALTER TABLE `recipients` ADD FOREIGN KEY (messageId) REFERENCES `messages` (`id`) ON DELETE CASCADE;
 
