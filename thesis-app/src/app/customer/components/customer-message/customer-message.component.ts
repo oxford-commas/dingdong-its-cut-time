@@ -1,35 +1,39 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-import { ICustomerMessage } from '../../interfaces';
-
-import { StateService } from '../../../services';
+import { MessageService, StateService } from '../../../services';
+import { IMessage } from '../../interfaces';
 
 @Component({
   selector: 'customer-message',
   templateUrl: './customer-message.component.html'
 })
 export class CustomerMessageComponent implements OnInit {
-  @Input() messages: Array<ICustomerMessage> = [{
-    customer: 'Andrew',
-    stylist: 'Jojo',
-    subjectHeading: 'this is a subject heading',
-    body: 'cut my hair bro',
-    time: 1900
-  },
-  {
-    customer: 'Andrew',
-    stylist: 'Mama',
-    subjectHeading: 'this is a another subject heading',
-    body: 'give me a fade sir',
-    time: 800
-  }];
+  constructor(private messageService: MessageService) {}
 
-  constructor(private stateService: StateService) {
-    console.log('Stretch goal: GET and POST messages');
-  }
+  @Input() messages: Array<Array<IMessage>>;
+  public currentChat;
 
   ngOnInit() {
-    console.log(this.stateService)
+    this.messageService.getMessages(1)
+      .subscribe(
+        data => this.messages = data,
+        err => console.log(err)
+      );
+  }
+
+  setCurrentChat(conversation) {
+    this.currentChat = conversation;
+    console.log('setting current chat...', conversation);
+  }
+
+  deleteChat(conversation) {
+    const messageIds = conversation.map(message => {
+      return message.id;
+    });
+    this.messageService.deleteChatHistory(messageIds)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err)
+      );
   }
 
 }

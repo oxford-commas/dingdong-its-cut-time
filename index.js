@@ -211,6 +211,47 @@ app.post('/api/stylistServices', function(req, res) {
   });
 })
 
+// MESSAGE ROUTES //
+
+app.post('/api/messages', (req, res) => {
+  helpers.postMessage(req.body, (data) => {
+    res.status(200).json(data);
+  });
+});
+
+app.get('/api/messages/:id', (req, res) => {
+  helpers.getMessages(req.params.id, (data) => {
+    let messages = {};
+    data.forEach(message => {
+      let convo = [message.sender, message.recipient];
+      // check if convo or convo reverse is already a key in messages
+      if (messages.hasOwnProperty(convo) || messages.hasOwnProperty(convo.reverse())) {
+        // if convo exists in messages
+        if (messages[convo]) {
+          // push message into that
+          messages[convo].push(message);
+        } else {
+        // if convo reverse exists in messages
+          // push message into that
+          messages[convo.reverse()].push(message);
+        }
+      } else {
+        //initialize convo at message as empty array
+        messages[convo] = [];
+        messages[convo].push(message);
+      }
+    });
+    res.status(200).json(messages);
+  });
+});
+
+app.delete('/api/messages', (req, res) => {
+  var messageIds = req.body;
+  helpers.deleteChat(messageIds, results => res.status(200).json(results));
+});
+
+
+
 
 app.get('*', function(req, res) {
  res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));

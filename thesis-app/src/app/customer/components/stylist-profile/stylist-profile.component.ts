@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-
 import { ActivatedRoute } from '@angular/router';
 
-import { RequestService } from '../../../services';
+import { RequestService, MessageService } from '../../../services';
+import { IMessage } from '../../interfaces';
 
 @Component({
   selector: 'stylist-profile',
@@ -12,7 +12,8 @@ import { RequestService } from '../../../services';
 export class StylistProfileComponent implements OnInit {
   constructor(
     private requestService: RequestService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -49,9 +50,24 @@ export class StylistProfileComponent implements OnInit {
     }
   }
 
-  public submitMessage(message: {}) {
-    console.log('submit message ', message);
+  public decorateSenderAndRecipient(message: IMessage) {
+    message = {
+      ...message,
+     id_sender: 1, //hardcoded logged in user
+     id_recipient: this.stylistId
+   };
+   return message;
   }
+
+  public submitMessage(message: IMessage) {
+    message = this.decorateSenderAndRecipient(message);
+    this.messageService.postMessage(message)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err)
+      );
+  }
+
 }
 
 // | 55 |    1 | dnalounge         | dnalounge         | 375 11th St, San Francisco, CA

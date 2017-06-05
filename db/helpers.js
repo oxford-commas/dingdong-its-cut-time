@@ -106,6 +106,34 @@ var getStylistServices = function(stylistId, callback) {
   });
 }
 
+/////////////////////
+// MESSAGE HELPERS //
+/////////////////////
+var postMessage = (message, callback) => {
+  var sql = 'INSERT INTO messages (id_sender, id_recipient, subjectHeading, body, time, location) VALUES (?, ?, ?, ?, ?, ?)';
+  model.con.query(sql, [message.id_sender, message.id_recipient, message.subjectHeading, message.body, message.time, message.location],
+    (err, results) => {
+      model.con.query(
+        `INSERT INTO recipients (id, name)
+        VALUES (?, (SELECT name FROM users_stylists WHERE users_stylists.id = ?))`,
+        [message.id_sender, message.id_recipient]
+    )});
+};
+
+var getMessages = (id, callback) => {
+  model.con.query(
+    `SELECT r.name as recipient, us.name as sender, m.subjectHeading, m.body, m.time, m.location, m.id, m.id_sender, m.id_recipient
+    FROM messages m
+    INNER JOIN recipients r ON (m.id_recipient = ${id} OR m.id_sender = ${id}) AND m.id = r.messageId
+    INNER JOIN users_stylists us ON us.id = m.id_sender`,
+    (err, results) => callback(results)
+  );
+};
+
+var deleteChat = (ids, callback) => {
+  model.con.query(`DELETE FROM messages WHERE id in (${ids})`, (err, results) => callback(results));
+};
+
 var validateUser = (username, password, callback) => {
   var sql = 'SELECT * FROM users_stylists WHERE name = ? AND password = ?';
   model.con.query(sql, [username, password],(err, results) => callback(results));
@@ -123,6 +151,9 @@ module.exports.deleteUser = deleteUser;
 module.exports.addService = addService;
 module.exports.stylistservices = stylistservices;
 module.exports.getStylistServices = getStylistServices;
+module.exports.getMessages = getMessages;
+module.exports.postMessage = postMessage;
+module.exports.deleteChat = deleteChat;
 module.exports.updateProfile = updateProfile;
 module.exports.deleteBooking = deleteBooking;
 module.exports.validateUser = validateUser;

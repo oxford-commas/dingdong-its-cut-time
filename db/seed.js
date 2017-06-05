@@ -268,6 +268,51 @@ const booksingsArray = [
   }
 ]
 
+const messagesArray = [
+  {
+    id_sender: 1,
+    id_recipient: 2,
+    subjectHeading: 'Shari to mateo',
+    body: 'Give me a fade bro!!!',
+    time: Date.now(),
+    location: '320 Front St W, Toronto'
+  },
+  {
+    id_sender: 2,
+    id_recipient: 1,
+    subjectHeading: 'Mateo to Shari',
+    body: 'yea, i gotchu girl, lets meet there',
+    time: Date.now(),
+    location: '320 Front St W, Toronto'
+  },
+  {
+    id_sender: 1,
+    id_recipient: 10,
+    subjectHeading: 'Shari to cityhall',
+    body: 'I want to color my hair pink',
+    time: Date.now(),
+    location: 'San Francisco'
+  },
+  {
+    id_sender: 10,
+    id_recipient: 1,
+    subjectHeading: 'cityhall to shari',
+    body: 'can do',
+    time: Date.now(),
+    location: 'San francisco'
+  },
+  {
+    id_sender: 2,
+    id_recipient: 3,
+    subjectHeading: 'idk',
+    body: 'idk',
+    time: Date.now(),
+    location: 'San Jose'
+  }
+];
+
+messagesArray.forEach(message => helpers.postMessage(message));
+
 const stylesArray = [
   'Afro',
   'Bangs',
