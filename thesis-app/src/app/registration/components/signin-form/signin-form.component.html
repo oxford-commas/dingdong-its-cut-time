@@ -1,16 +1,33 @@
 <registration-header headerText="Login Page" logo="insert logo url here"></registration-header>
 <div class="container row" style="text-align: center; margin: auto">
-  <username-password (onInputsChange)="setUserData($event)"></username-password>
-  <div class="container row" style="padding-top: 20px; padding-bottom: 20px; text-align: center; margin: auto">
-    <button
-      class="btn btn-primary btn-group"
-      (click)="handleLogin()"
-    >Login</button>
+  <!-- <username-password (onInputsChange)="setUserData($event)"></username-password> -->
+  <div class="container row">
+    <form (ngSubmit)="handleLogin(f)" #f="ngForm">
+      <label for="form-group">Username</label>
+        <input
+          type="text"
+          id="username"
+          ngModel
+          name="username">
+      <label for="form-group">Password</label>
+        <input
+          type="text"
+          id="password"
+          ngModel
+          name="password">
+      <button
+        class="btn btn-primary btn-group"
+        type="submit"
+      >Login</button>
+    </form>
+  </div>
+  <!-- <div class="container row" style="padding-top: 20px; padding-bottom: 20px; text-align: center; margin: auto">
+
     <button
       class="btn btn-primary btn-group"
       [routerLink]="['/signup']"
     >Sign up</button>
-  </div>
+  </div> -->
   <div class="container row panel panel-default" style="margin: auto">
     <p class="panel-body" style="text-align: center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
   </div>

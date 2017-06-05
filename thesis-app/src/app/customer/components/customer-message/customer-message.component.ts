@@ -1,16 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { ICustomerMessage } from '../../interfaces';
+
+import { StateService } from '../../../services';
 
 @Component({
   selector: 'customer-message',
   templateUrl: './customer-message.component.html'
 })
-export class CustomerMessageComponent {
-  constructor() {
-    console.log('Stretch goal: GET and POST messages');
-  }
-
+export class CustomerMessageComponent implements OnInit {
   @Input() messages: Array<ICustomerMessage> = [{
     customer: 'Andrew',
     stylist: 'Jojo',
@@ -25,4 +23,13 @@ export class CustomerMessageComponent {
     body: 'give me a fade sir',
     time: 800
   }];
+
+  constructor(private stateService: StateService) {
+    console.log('Stretch goal: GET and POST messages');
+  }
+
+  ngOnInit() {
+    console.log(this.stateService)
+  }
+
 }
