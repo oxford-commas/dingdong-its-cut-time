@@ -1,0 +1,21 @@
+h3 {
+  flex: 1 1 100%;
+}
+
+.poppaDiv {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.myForm {
+  height: 75%;
+  flex: 1 1 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

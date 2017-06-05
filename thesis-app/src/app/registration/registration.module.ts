@@ -12,7 +12,9 @@ import {
   UsernamePasswordComponent,
   RegistrationHeaderComponent,
   SignUpStylistFormComponent,
-  SignUpFormComponent
+  SignUpFormComponent,
+  SignupUserComponent,
+  SignupStylistComponent
 } from './components';
 
 
@@ -28,7 +30,9 @@ import {
     UsernamePasswordComponent,
     RegistrationHeaderComponent,
     SignUpStylistFormComponent,
-    SignUpFormComponent
+    SignUpFormComponent,
+    SignupUserComponent,
+    SignupStylistComponent
   ],
   providers: [
     FormBuilder,

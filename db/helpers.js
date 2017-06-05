@@ -134,6 +134,10 @@ var deleteChat = (ids, callback) => {
   model.con.query(`DELETE FROM messages WHERE id in (${ids})`, (err, results) => callback(results));
 };
 
+var validateUser = (username, password, callback) => {
+  var sql = 'SELECT * FROM users_stylists WHERE name = ? AND password = ?';
+  model.con.query(sql, [username, password],(err, results) => callback(results));
+}
 
 module.exports.addLocation = addLocation;
 module.exports.addUserStylist = addUserStylist;
@@ -152,4 +156,5 @@ module.exports.postMessage = postMessage;
 module.exports.deleteChat = deleteChat;
 module.exports.updateProfile = updateProfile;
 module.exports.deleteBooking = deleteBooking;
+module.exports.validateUser = validateUser;
 

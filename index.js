@@ -12,6 +12,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'thesis-app/dist')));
 
+/// placeholder validation for auth 0//
+app.get('/api/validate/:username/:password', function(req, res) {
+  var username = req.params.username;
+  var password = req.params.password;
+  helpers.validateUser(username, password, profile => {
+    profile && res.status(200).json(profile);
+  });
+})
+
+/////////
 app.post('/api/stripe', function(req, res) {
   // Set your secret key: remember to change this to your live secret key in production
   // See your keys here: https://dashboard.stripe.com/account/apikeys
