@@ -106,6 +106,10 @@ var getStylistServices = function(stylistId, callback) {
   });
 }
 
+var getAllStyles = (callback) => {
+  model.con.query('SELECT * FROM services', (err, results) => callback(results));
+};
+
 /////////////////////
 // MESSAGE HELPERS //
 /////////////////////
@@ -157,4 +161,4 @@ module.exports.deleteChat = deleteChat;
 module.exports.updateProfile = updateProfile;
 module.exports.deleteBooking = deleteBooking;
 module.exports.validateUser = validateUser;
-
+module.exports.getAllStyles = getAllStyles;
