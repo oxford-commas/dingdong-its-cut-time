@@ -1,6 +1,5 @@
-<pre>{{messages | json}}</pre>
 <div *ngFor="let conversation of messages">
-  <div (click)="openHistory.emit(conversation)">
-  Conversation with: {{conversation[0].recipient}} <button>Delete</button>
+  <div (click)="openHistory.emit(conversation.slice().reverse())">
+  <span>Conversation with: {{conversation[0].recipient}}</span><button>Delete</button>
   </div>
 </div>

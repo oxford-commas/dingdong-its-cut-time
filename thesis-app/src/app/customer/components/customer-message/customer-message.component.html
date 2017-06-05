@@ -2,5 +2,10 @@
 <customer-dropdown></customer-dropdown> -->
 <customer-navbar ></customer-navbar>
 <h1>Inbox</h1>
-<customer-inbox [messages]="messages" (openHistory)="showHistory($event)"></customer-inbox>
-<chat-history></chat-history>
+<customer-inbox
+  [messages]="messages"
+  (openHistory)="setCurrentChat($event)"
+>
+</customer-inbox>
+<h1>Chat Log</h1>
+<chat-history [chatHistory]="currentChat"></chat-history>

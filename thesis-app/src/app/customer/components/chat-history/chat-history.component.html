@@ -1,1 +1,8 @@
-<h1>chathistorycomponent</h1>
+<div *ngFor="let chat of chatHistory">
+  <span>Subject: {{chat.subjectHeading}}</span>
+  <span>From: {{chat.sender}}</span>
+  <span>To: {{chat.recipient}}</span>
+  <span>Location: {{chat.location}}</span>
+  <span>Time: {{chat.time}}</span>
+  <span>Body: {{chat.body}}</span>
+</div>

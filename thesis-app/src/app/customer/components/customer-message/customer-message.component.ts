@@ -10,23 +10,19 @@ export class CustomerMessageComponent implements OnInit {
   constructor(private messageService: MessageService) {}
 
   @Input() messages: Array<Array<IMessage>>;
+  public currentChat;
 
   ngOnInit() {
     this.messageService.getMessages(1)
       .subscribe(
-        data => {
-          this.messages = this.convertToArray(data);
-          console.log('....',this.messages);
-        },
+        data => this.messages = data,
         err => console.log(err)
       );
   }
 
-  showHistory(conversation) {
-    console.log('show history', conversation);
+  setCurrentChat(conversation) {
+    this.currentChat = conversation;
+    console.log('setting current chat...', conversation);
   }
 
-  convertToArray(obj) {
-    return Object.keys(obj).map(key => obj[key]);
-  }
 }
