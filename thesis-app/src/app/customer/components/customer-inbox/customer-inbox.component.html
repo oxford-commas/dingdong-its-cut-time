@@ -1,6 +1,8 @@
-<div *ngFor="let conversation of messages">
-  <span (click)="openHistory.emit(conversation.slice().reverse())">
-    Conversation with: {{conversation[0].recipient}}
-  </span>
-  <button (click)="deleteChat.emit(conversation)">Delete</button>
+<div *ngFor="let conversation of messages" class="panel panel-default">
+  <div class="panel-body">
+    <span (click)="openHistory.emit(conversation.slice().reverse())">
+      <span>{{conversation[0].recipient}}</span>
+    </span>
+    <button (click)="deleteChat.emit(conversation)">Delete</button>
+  </div>
 </div>
