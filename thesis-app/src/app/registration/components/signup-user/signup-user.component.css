@@ -13,9 +13,11 @@ h3 {
 
 .myForm {
   height: 75%;
+  width: 75%;
   flex: 1 1 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  border: 2px solid;
 }

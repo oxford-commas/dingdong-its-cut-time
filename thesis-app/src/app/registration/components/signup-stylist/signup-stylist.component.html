@@ -1,5 +1,8 @@
 <div class="container poppaDiv">
-  <registration-header headerText="Login Page" logo="insert logo url here"></registration-header>
+  <registration-header
+    [routerLink]="['/login']"
+    headerText="Login Page"
+    logo="insert logo url here"></registration-header>
   <form class="myForm" (ngSubmit)="handleSignup(f)" #f="ngForm">
     <div>
       <h3>Please Enter Your User Info</h3>
