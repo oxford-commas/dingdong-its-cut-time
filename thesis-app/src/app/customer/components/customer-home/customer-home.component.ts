@@ -9,6 +9,7 @@ import { StateService } from '../../../services';
   selector: 'customer-home',
   templateUrl: 'customer-home.component.html'
 })
+
 export class CustomerHomeComponent implements OnInit {
   public isProfileFetched = false;
   public currentLocation: any;
