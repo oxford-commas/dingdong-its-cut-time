@@ -119,6 +119,10 @@ var getMessages = (id, callback) => {
   );
 };
 
+var deleteChat = (ids, callback) => {
+  model.con.query(`DELETE FROM messages WHERE id in (${ids})`, (err, results) => callback(results));
+};
+
 
 module.exports.addLocation = addLocation;
 module.exports.addUserStylist = addUserStylist;
@@ -134,3 +138,4 @@ module.exports.stylistservices = stylistservices;
 module.exports.getStylistServices = getStylistServices;
 module.exports.getMessages = getMessages;
 module.exports.postMessage = postMessage;
+module.exports.deleteChat = deleteChat;

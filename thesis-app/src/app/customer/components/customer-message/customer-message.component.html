@@ -5,6 +5,7 @@
 <customer-inbox
   [messages]="messages"
   (openHistory)="setCurrentChat($event)"
+  (deleteChat)="deleteChat($event)"
 >
 </customer-inbox>
 <h1>Chat Log</h1>

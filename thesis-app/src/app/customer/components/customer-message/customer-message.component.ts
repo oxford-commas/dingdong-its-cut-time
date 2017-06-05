@@ -25,4 +25,15 @@ export class CustomerMessageComponent implements OnInit {
     console.log('setting current chat...', conversation);
   }
 
+  deleteChat(conversation) {
+    const messageIds = conversation.map(message => {
+      return message.id;
+    });
+    this.messageService.deleteChatHistory(messageIds)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err)
+      );
+  }
+
 }

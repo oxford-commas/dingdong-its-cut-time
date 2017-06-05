@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, RequestOptions, Response } from '@angular/http';
 import { IMessage } from '../customer/interfaces';
 import 'rxjs/Rx';
 
@@ -14,6 +14,11 @@ export class MessageService {
   getMessages(id: number) {
     return this.http.get(`/api/messages/${id}`)
       .map(res => this.convertToArray(res.json()));
+  }
+
+  deleteChatHistory(ids) {
+    const requestOptions = new RequestOptions({body: ids});
+    return this.http.delete('/api/messages', requestOptions);
   }
 
   convertToArray(obj) {

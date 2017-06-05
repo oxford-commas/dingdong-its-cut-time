@@ -10,5 +10,5 @@ export class CustomerInboxComponent {
 
   @Input() public messages: Array<IMessage>;
   @Output() public openHistory = new EventEmitter();
-
+  @Output() public deleteChat = new EventEmitter();
 }

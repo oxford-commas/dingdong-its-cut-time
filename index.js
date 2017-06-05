@@ -201,6 +201,11 @@ app.get('/api/messages/:id', (req, res) => {
   });
 });
 
+app.delete('/api/messages', (req, res) => {
+  var messageIds = req.body;
+  helpers.deleteChat(messageIds, results => res.status(200).json(results));
+});
+
 
 
 
