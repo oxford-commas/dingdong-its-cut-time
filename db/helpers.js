@@ -106,6 +106,11 @@ var getStylistServices = function(stylistId, callback) {
   });
 }
 
+var validateUser = (username, password, callback) => {
+  var sql = 'SELECT * FROM users_stylists WHERE name = ? AND password = ?';
+  model.con.query(sql, [username, password],(err, results) => callback(results));
+}
+
 module.exports.addLocation = addLocation;
 module.exports.addUserStylist = addUserStylist;
 module.exports.getUser = getUser;
@@ -120,4 +125,5 @@ module.exports.stylistservices = stylistservices;
 module.exports.getStylistServices = getStylistServices;
 module.exports.updateProfile = updateProfile;
 module.exports.deleteBooking = deleteBooking;
+module.exports.validateUser = validateUser;
 
