@@ -10,6 +10,8 @@ import { RequestService } from '../../../services';
   styleUrls: ['./signup-stylist.component.css']
 })
 export class SignupStylistComponent {
+  private stylesPlaceHolder = ['fade', 'mullet', 'bowl cut']
+
   constructor(
     private requestService: RequestService) {}
 

@@ -32,6 +32,18 @@
         ngModel
         name="url">
     <br>
+    <label for="form-group">Please select a list of services you offer</label>
+      <span class="spanContainer">
+        <span *ngFor="let service of stylesPlaceHolder">
+          <input
+            type="checkbox"
+            id="service"
+            ngModel
+            name="service"
+          >{{ service }}
+        </span>
+    </span>
+<!-- <div *ngFor="let stylist of stylistsCloseToYou"> -->
     <button
       class="btn btn-primary btn-group"
       type="submit"

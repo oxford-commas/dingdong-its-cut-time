@@ -21,3 +21,7 @@ h3 {
   align-items: center;
   flex-direction: column;
 }
+
+.spanContainer {
+  border: 2px solid yellow;
+}
