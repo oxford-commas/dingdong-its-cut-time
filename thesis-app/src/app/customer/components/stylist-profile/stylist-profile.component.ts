@@ -19,6 +19,12 @@ export class StylistProfileComponent implements OnInit {
     private bookingService: BookingService
   ) {}
 
+  public isProfileFetched: boolean = false;
+  public stylistProfile: any; // TODO: interface this
+  public isShowModal: boolean = false;
+  public modalStyle: string = 'none';
+  private stylistId: number;
+
   ngOnInit() {
     this.route.params
       .subscribe(
@@ -35,12 +41,6 @@ export class StylistProfileComponent implements OnInit {
        () => this.isProfileFetched = true
      );
   }
-
-  public isProfileFetched: boolean = false;
-  public stylistProfile: any; // TODO: interface this
-  public isShowModal: boolean = false;
-  public modalStyle: string = 'none';
-  private stylistId: number;
 
   public toggleModal() {
     this.isShowModal = !this.isShowModal;
@@ -70,11 +70,22 @@ export class StylistProfileComponent implements OnInit {
         res => console.log(res),
         err => console.log(err)
       );
-    this.addBooking();
+    this.addBooking(message);
   }
 
-  public addBooking(booking) {
-    this.bookingService.addBooking()
+  public addBooking(message) {
+    const booking = {
+      id_users: 1, //hardcoded logged in user
+      id_stylists: this.stylistId,
+      isconfirmed: false,
+      time: message.time,
+      location: message.location
+    };
+    this.bookingService.addBooking(booking)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err)
+      );
   }
 }
 

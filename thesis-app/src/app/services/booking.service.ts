@@ -9,7 +9,7 @@ export class BookingService {
 
   addBooking(booking) {
     return this.http.post(`/api/bookings`, booking)
-      .map(res => res.json());
+      .map(res => res);
   }
 
   fetchBookingsForStylist(id: number) {
@@ -18,7 +18,7 @@ export class BookingService {
   }
 
   confirmBooking(id: number) {
-    return this.http.put(`/api/bookings/${id}`)
+    return this.http.put(`/api/bookings/${id}`, id)
       .map(res => res.json());
   }
 }
