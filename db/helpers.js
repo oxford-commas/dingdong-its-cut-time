@@ -79,6 +79,10 @@ var deleteUser = function(userId) {
   model.con.query('delete from `users_stylists` where `id` = ?', [userId]);
 }
 
+var deleteBooking = function(bookingId) {
+  model.con.query('delete from `bookings` where `id` = ?', [bookingId]);
+}
+
 // helper to add service to the services table in database
 var addService = function(serviceName, callback) {
   var sql = 'INSERT INTO services (servicename) VALUES (?)';
@@ -114,8 +118,6 @@ module.exports.deleteUser = deleteUser;
 module.exports.addService = addService;
 module.exports.stylistservices = stylistservices;
 module.exports.getStylistServices = getStylistServices;
-<<<<<<< HEAD
 module.exports.updateProfile = updateProfile;
+module.exports.deleteBooking = deleteBooking;
 
-=======
->>>>>>> c237633c668117895274ae03531b1b95d794cf17

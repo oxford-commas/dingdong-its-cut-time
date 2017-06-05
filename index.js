@@ -33,7 +33,6 @@ app.post('/api/stripe', function(req, res) {
 });
 
 
-
 // get all users and stylists given user or stylist id --- completed
 app.get('/api/userStylist/:id', function(req, res) {
   var userid = req.params.id;
@@ -41,6 +40,15 @@ app.get('/api/userStylist/:id', function(req, res) {
     res.status(200).json(data[0]);
   });
 });
+
+// images
+app.post('/api/:stylistid/profileimage', function(req, res) {
+  var id = req.params.stylistid
+  console.log("Profile image: ")
+  console.log(req);
+  res.status(200);
+});
+
 
 // get all stylists close to the user location --- completed
 app.get('/api/stylists/:location', function(req, res) {
@@ -92,6 +100,7 @@ app.post('/api/userstylist', function (req, res) {
     });
   });
 });
+
 
 // updates users or stylists information in the database
 app.put('/api/userstylist/:id', function (req, res) {
@@ -157,6 +166,13 @@ app.delete('/user/:userid', function (req, res) {
   helpers.deleteUser(req.params.userid);
   res.send('Got a DELETE request at /user')
 });
+
+//delete booking given booking id
+app.delete('/booking/:bookingid', function (req, res) {
+  console.log(req.params.bookingid);
+  helpers.deleteBooking(req.params.bookingid);
+  res.send('Got a DELETE request at /booking')
+})
 
 //given stylistId, delete stylist info from the database along with the bookings(foreign key constraint)
 app.delete('/stylist/:stylistid', function (req, res) {
