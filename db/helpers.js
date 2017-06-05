@@ -65,8 +65,7 @@ var confirmBooking = (bookingId, callback) => {
   var sql = `
     UPDATE bookings
     SET isconfirmed = 1
-    WHERE bookings.id = ?
-  `;
+    WHERE bookings.id = ?`;
   model.con.query(sql, [bookingId], (err, results) => callback(results));
 };
 

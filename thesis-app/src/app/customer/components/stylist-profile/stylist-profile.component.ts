@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { RequestService, MessageService } from '../../../services';
+import { RequestService, MessageService, BookingService } from '../../../services';
+
 import { IMessage } from '../../interfaces';
 
 @Component({
@@ -9,11 +10,13 @@ import { IMessage } from '../../interfaces';
   templateUrl: './stylist-profile.component.html',
   styleUrls: ['./stylist.profile.component.css']
 })
+
 export class StylistProfileComponent implements OnInit {
   constructor(
-    private requestService: RequestService,
     private route: ActivatedRoute,
-    private messageService: MessageService
+    private requestService: RequestService,
+    private messageService: MessageService,
+    private bookingService: BookingService
   ) {}
 
   ngOnInit() {
@@ -67,8 +70,12 @@ export class StylistProfileComponent implements OnInit {
         res => console.log(res),
         err => console.log(err)
       );
+    this.addBooking();
   }
 
+  public addBooking(booking) {
+    this.bookingService.addBooking()
+  }
 }
 
 // | 55 |    1 | dnalounge         | dnalounge         | 375 11th St, San Francisco, CA

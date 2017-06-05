@@ -7,14 +7,18 @@ import 'rxjs/Rx';
 export class BookingService {
   constructor(private http: Http) {}
 
+  addBooking(booking) {
+    return this.http.post(`/api/bookings`, booking)
+      .map(res => res.json());
+  }
+
   fetchBookingsForStylist(id: number) {
     return this.http.get(`/api/bookings/${id}`)
       .map(res => res.json());
   }
 
   confirmBooking(id: number) {
-    const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.put(`/api/bookings/${id}`, headers)
+    return this.http.put(`/api/bookings/${id}`)
       .map(res => res.json());
   }
 }
