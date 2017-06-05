@@ -206,7 +206,6 @@ app.get('/api/stylistServices/:id', function(req, res) {
 // given stylistId and serviceId, add new service to the stylists_services for the stylist
 app.post('/api/stylistServices', function(req, res) {
   helpers.stylistservices(req.body.serviceid, req.body.stylistid, function() {
-    console.log('hey')
     res.sendStatus(201);
   });
 })

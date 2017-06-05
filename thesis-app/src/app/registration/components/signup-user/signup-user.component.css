@@ -13,7 +13,7 @@ h3 {
 
 .myForm {
   height: 75%;
-  width: 75%;
+  width: 65%;
   flex: 1 1 100%;
   display: flex;
   justify-content: center;

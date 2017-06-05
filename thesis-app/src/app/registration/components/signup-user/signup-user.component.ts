@@ -12,7 +12,8 @@ import { RequestService, StateService } from '../../../services';
 export class SignupUserComponent {
   constructor(
     private requestService: RequestService,
-    private stateService: StateService
+    private stateService: StateService,
+    private router: Router
   ) {}
 
   ngOnInit() {}
@@ -28,12 +29,14 @@ export class SignupUserComponent {
     this.requestService.postStylist(newUser)
       .subscribe(
         data => {
-          console.log(data, 'data')
-          // on the response object set the state
-          // this.stateService.addCustomer(data);
-          // then navigate to home based on the customer id
+          this.requestService.getStylistByName(newUser.name, newUser.password)
+            .subscribe(
+              woo => {
+                this.stateService.addCustomer(woo[0]);
+                this.router.navigate(['/home']);
+              }
+            )
         }
       )
   }
-}
-
+};
