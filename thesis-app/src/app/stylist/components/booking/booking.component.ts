@@ -8,9 +8,6 @@ import { IBookingInformation } from '../../interfaces';
 export class BookingComponent {
   @Input() bookingInformation: IBookingInformation;
   @Output() confirmBooking = new EventEmitter();
-
-  deleteBooking() {
-    console.log('TODO: make a delete request to bookings table to delete this booking');
-  }
+  @Output() deleteBooking = new EventEmitter();
 
 }

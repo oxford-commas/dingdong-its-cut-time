@@ -4,5 +4,5 @@
 <div *ngIf="bookingInformation.isconfirmed===0">
   **color this div red, booking has not been confirmed**{{bookingInformation.customer}} at time: {{bookingInformation.time}} at location: {{bookingInformation.location}}
   <button (click)="confirmBooking.emit(bookingInformation.id)">Confirm this booking</button>
-  <button (click)="deleteBooking()">Delete this booking</button>
+  <button (click)="deleteBooking.emit(bookingInformation.id)">Delete this booking</button>
 </div>

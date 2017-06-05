@@ -21,4 +21,9 @@ export class BookingService {
     return this.http.put(`/api/bookings/${id}`, id)
       .map(res => res.json());
   }
+
+  deleteBooking(id: number) {
+    return this.http.delete(`/api/bookings/${id}`)
+      .map(res => res);
+  }
 }

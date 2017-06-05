@@ -73,7 +73,7 @@ export class StylistProfileComponent implements OnInit {
     this.addBooking(message);
   }
 
-  public addBooking(message) {
+  public addBooking(message: IMessage) {
     const booking = {
       id_users: 1, //hardcoded logged in user
       id_stylists: this.stylistId,

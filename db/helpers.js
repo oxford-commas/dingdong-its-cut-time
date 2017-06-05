@@ -75,6 +75,10 @@ var getStylistBookings = function(stylistId, callback) {
   });
 };
 
+var deleteBooking = (id, callback) => {
+  model.con.query('DELETE FROM bookings WHERE id = ?', [id], (err, res) => callback(res));
+};
+
 var deleteUser = function(userId) {
   model.con.query('delete from `users_stylists` where `id` = ?', [userId]);
 };
@@ -149,3 +153,4 @@ module.exports.getMessages = getMessages;
 module.exports.postMessage = postMessage;
 module.exports.deleteChat = deleteChat;
 module.exports.confirmBooking = confirmBooking;
+module.exports.deleteBooking = deleteBooking;

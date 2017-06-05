@@ -128,6 +128,10 @@ app.get('/api/bookings/:stylistId', function(req, res) {
   helpers.getBookings(stylistId, data => res.status(200).json(data));
 });
 
+app.delete('/api/bookings/:id', (req, res) => {
+  helpers.deleteBooking(req.params.id, results => res.status(200).json(results));
+});
+
 //given stylistId, get all stylists bookings
 app.get('/api/stylistbookings/:stylistid', function(req, res) {
   console.log(req.params.userid);

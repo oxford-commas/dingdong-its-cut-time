@@ -18,13 +18,13 @@ export class StylistHomeComponent implements OnInit {
   public bookings: any;
 
   ngOnInit() {
-    this.requestService.getStylistById(2)
+    this.requestService.getStylistById(2) //hard coded logged in stylist
       .subscribe(
         data => this.stylistProfile = data,
         err => console.log(err)
       );
 
-    this.bookingService.fetchBookingsForStylist(2)
+    this.bookingService.fetchBookingsForStylist(2) // hard coded logged in stylist
       .subscribe(
         data => this.bookings = data,
         err => console.log(err),
@@ -34,6 +34,14 @@ export class StylistHomeComponent implements OnInit {
 
   confirmBooking(id: number) {
     this.bookingService.confirmBooking(id)
+      .subscribe(
+        result => console.log(result),
+        err => console.log(err)
+      );
+  }
+
+  deleteBooking(id: number) {
+    this.bookingService.deleteBooking(id)
       .subscribe(
         result => console.log(result),
         err => console.log(err)
