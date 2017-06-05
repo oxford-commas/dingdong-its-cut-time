@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { RequestService, MessageService } from '../../../services';
-import { ICustomerMessage } from '../../interfaces';
+import { IMessage } from '../../interfaces';
 
 @Component({
   selector: 'stylist-profile',
@@ -51,7 +51,7 @@ export class StylistProfileComponent implements OnInit {
     }
   }
 
-  public decorateSenderAndRecipient(message: ICustomerMessage) {
+  public decorateSenderAndRecipient(message: IMessage) {
     message = {
       ...message,
      id_sender: 1, //hardcoded logged in user
@@ -60,7 +60,7 @@ export class StylistProfileComponent implements OnInit {
    return message;
   }
 
-  public submitMessage(message: ICustomerMessage) {
+  public submitMessage(message: IMessage) {
     message = this.decorateSenderAndRecipient(message);
     this.messageService.postMessage(message)
       .subscribe(

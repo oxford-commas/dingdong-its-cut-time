@@ -179,7 +179,7 @@ app.get('/api/messages/:id', (req, res) => {
   helpers.getMessages(req.params.id, (data) => {
     let messages = {};
     data.forEach(message => {
-      let convo = [message.id_sender, message.id_recipient];
+      let convo = [message.sender, message.recipient];
       // check if convo or convo reverse is already a key in messages
       if (messages.hasOwnProperty(convo) || messages.hasOwnProperty(convo.reverse())) {
         // if convo exists in messages
@@ -197,7 +197,7 @@ app.get('/api/messages/:id', (req, res) => {
         messages[convo].push(message);
       }
     });
-    res.status(200).json(data);
+    res.status(200).json(messages);
   });
 });
 
