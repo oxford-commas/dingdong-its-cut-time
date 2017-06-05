@@ -6,7 +6,8 @@ import { RequestService, StateService } from '../../../services';
 
 @Component({
   selector: 'signup-user',
-  templateUrl: './signup-user.component.html'
+  templateUrl: './signup-user.component.html',
+  styleUrls: ['./signup-user.component.css']
 })
 export class SignupUserComponent {
   constructor(
