@@ -32,5 +32,12 @@ export class StylistHomeComponent implements OnInit {
       );
   }
 
+  confirmBooking(id: number) {
+    this.bookingService.confirmBooking(id)
+      .subscribe(
+        result => console.log(result),
+        err => console.log(err)
+      );
+  }
 
 }

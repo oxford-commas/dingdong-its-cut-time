@@ -1,5 +1,8 @@
 <h2>Hello world</h2>
 Bookings:
 <div *ngFor="let booking of bookings">
-  <booking [bookingInformation]="booking"></booking>
+  <booking
+  [bookingInformation]="booking"
+  (confirmBooking)="confirmBooking($event)"
+  ></booking>
 </div>

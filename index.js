@@ -117,8 +117,9 @@ app.post('/api/bookings', function(req, res) {
   });
 });
 
-app.put('/api/bookings', (req, res) => {
-
+app.put('/api/bookings/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.confirmBooking(id, result => res.status(200).json(result));
 });
 
 // given stylistId, get their associated bookings and customer names

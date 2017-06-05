@@ -6,7 +6,7 @@ var addUserStylist = function(type, name, password, billingaddress, phonenumber,
     if (err) throw err;
     callback(result);
   });
-}
+};
 
 var getUser = function(userId, callback) {
   model.con.query('SELECT * FROM `users_stylists` WHERE `id` = ?', [userId], function (error, results, fields) {
@@ -20,7 +20,7 @@ var getAllStylists = function(callback) {
   model.con.query('SELECT * FROM `users_stylists` WHERE `type` = 0', function(error, results, fields) {
     callback(results);
   });
-}
+};
 
 var addLocation = function (latitude, longitude, id, callback) {
   var sql = 'UPDATE users_stylists SET latitude = ?, longitude = ? WHERE id = ?'
@@ -29,7 +29,7 @@ var addLocation = function (latitude, longitude, id, callback) {
     console.log("1 record inserted");
     callback();
   });
-}
+};
 
 var calculateDistance = function distance(lat1, lon1, lat2, lon2, unit) {
   var radlat1 = Math.PI * lat1/180
@@ -43,7 +43,7 @@ var calculateDistance = function distance(lat1, lon1, lat2, lon2, unit) {
   if (unit=="K") { dist = dist * 1.609344 }
   if (unit=="N") { dist = dist * 0.8684 }
   return dist
-}
+};
 
 var addToBookings = function(userId, stylistId, isConfirmed, time, location, callback) {
   var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, location) VALUES (?, ?, ?, ?, ?)';
@@ -51,7 +51,7 @@ var addToBookings = function(userId, stylistId, isConfirmed, time, location, cal
     if (err) throw err;
     callback(result);
   });
-}
+};
 
 var getBookings = function(userId, callback) {
   var sql = `
@@ -59,17 +59,26 @@ var getBookings = function(userId, callback) {
     FROM bookings b INNER JOIN users_stylists us
     WHERE b.id_stylists = ? AND b.id_users = us.id`;
   model.con.query(sql, [userId], (err, results) => callback(results));
-}
+};
+
+var confirmBooking = (bookingId, callback) => {
+  var sql = `
+    UPDATE bookings
+    SET isconfirmed = 1
+    WHERE bookings.id = ?
+  `;
+  model.con.query(sql, [bookingId], (err, results) => callback(results));
+};
 
 var getStylistBookings = function(stylistId, callback) {
   model.con.query('SELECT * FROM `bookings` WHERE `id_stylists` = ?', [stylistId], function (error, results, fields) {
     callback(results);
   });
-}
+};
 
 var deleteUser = function(userId) {
   model.con.query('delete from `users_stylists` where `id` = ?', [userId]);
-}
+};
 
 // helper to add service to the services table in database
 var addService = function(serviceName, callback) {
@@ -78,7 +87,7 @@ var addService = function(serviceName, callback) {
     if(err)  throw err;
     callback(results);
   });
-}
+};
 
 var stylistservices = function(serviceId, stylistId, callback) {
   var sql = 'INSERT INTO stylists_services (id_services, id_users_stylists) VALUES (?, ?)';
@@ -86,7 +95,7 @@ var stylistservices = function(serviceId, stylistId, callback) {
     if(err)  throw err;
     callback();
   });
-}
+};
 
 var getStylistServices = function(stylistId, callback) {
   model.con.query('select `servicename` from `stylists_services` as ss, `services` as s  where `id_users_stylists`= ? and ss.id_services = s.id', [stylistId], function(err, results) {
@@ -94,7 +103,7 @@ var getStylistServices = function(stylistId, callback) {
     callback(results);
 
   });
-}
+};
 
 /////////////////////
 // MESSAGE HELPERS //
@@ -140,3 +149,4 @@ module.exports.getStylistServices = getStylistServices;
 module.exports.getMessages = getMessages;
 module.exports.postMessage = postMessage;
 module.exports.deleteChat = deleteChat;
+module.exports.confirmBooking = confirmBooking;
