@@ -51,7 +51,7 @@ export class CustomerMapComponent {
   }
 
   goToStylist(id) {
-    this.router.navigateByUrl('/stylistProfile/${id}')
+    this.router.navigateByUrl(`/stylistProfile/${id}`);
   }
 
   clickedMarker(label: string, index: number) {

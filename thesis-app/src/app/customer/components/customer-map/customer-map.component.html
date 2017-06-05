@@ -14,7 +14,7 @@
         [label]="stylist.label"
         [iconUrl]="icon">
       <sebm-google-map-info-window>
-        <strong>{{stylist.label.text}} Info</strong>
+        <p (click)="goToStylist(stylist.id)"><strong>{{stylist.label.text}} Info</strong></p>
       </sebm-google-map-info-window>
     </sebm-google-map-marker>
   </sebm-google-map>
