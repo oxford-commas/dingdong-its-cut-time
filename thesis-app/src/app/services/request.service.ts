@@ -17,6 +17,15 @@ export class RequestService {
     return this.http.post('http://localhost:4200/api/userstylist', stylist, {headers: headers});
   }
 
+  getStyles() {
+    return this.http.get(`/api/stylistServices`)
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      )
+  }
+
   getStylistById(id: number) {
     return this.http.get(`/api/userStylist/${id}`)
       .map(

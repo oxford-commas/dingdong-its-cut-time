@@ -12,13 +12,13 @@ import { RequestService, StateService } from '../../../services';
   templateUrl: './signin-form.component.html'
 })
 export class SignInFormComponent {
+  public logo: string = 'placeholder for logo url';
+  private userInformationData: IUserInformationData;
+
   constructor(
     private router: Router,
     private requestService: RequestService,
     private stateService: StateService){}
-
-  public logo: string = 'placeholder for logo url';
-  private userInformationData: IUserInformationData;
 
   ngOnInit() {
     console.log(this.requestService, this.stateService)

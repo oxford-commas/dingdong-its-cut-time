@@ -9,17 +9,24 @@
           id="username"
           ngModel
           name="username">
+      <br>
       <label for="form-group">Password</label>
         <input
-          type="text"
+          type="password"
           id="password"
           ngModel
           name="password">
+      <br>
       <button
         class="btn btn-primary btn-group"
         type="submit"
       >Login</button>
     </form>
+    <button
+      class="btn btn-primary btn-group"
+      type="submit"
+      [routerLink]="['/signupuser']"
+    >User Signup</button>
   </div>
   <!-- <div class="container row" style="padding-top: 20px; padding-bottom: 20px; text-align: center; margin: auto">
 

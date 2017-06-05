@@ -1,0 +1,33 @@
+<div class="container poppaDiv">
+  <registration-header headerText="Login Page" logo="insert logo url here"></registration-header>
+  <form class="myForm" (ngSubmit)="handleSignup(f)" #f="ngForm">
+    <div>
+      <h3>Please Enter Your User Info</h3>
+    </div>
+    <label for="form-group">Username</label>
+      <input
+        type="text"
+        id="username"
+        ngModel
+        name="username">
+    <br>
+    <label for="form-group">Password</label>
+      <input
+        type="password"
+        id="password"
+        ngModel
+        name="password">
+    <br>
+    <label for="form-group">Email Address</label>
+      <input
+        type="email"
+        id="email"
+        ngModel
+        name="email">
+    <br>
+    <button
+      class="btn btn-primary btn-group"
+      type="submit"
+    >Submit</button>
+  </form>
+</div>
