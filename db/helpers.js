@@ -53,11 +53,12 @@ var addToBookings = function(userId, stylistId, isConfirmed, time, location, cal
   });
 }
 
-var getUserBookings = function(userId, callback) {
-  model.con.query('SELECT * FROM `bookings` WHERE `id_users` = ?', [userId], function(error, results, fields) {
-    //console.log(results);
-    callback(results);
-  });
+var getBookings = function(userId, callback) {
+  var sql = `
+    SELECT b.id, b.id_stylists, b.isconfirmed, b.time, b.location, us.name as customer
+    FROM bookings b INNER JOIN users_stylists us
+    WHERE b.id_stylists = ? AND b.id_users = us.id`;
+  model.con.query(sql, [userId], (err, results) => callback(results));
 }
 
 var getStylistBookings = function(stylistId, callback) {
@@ -131,7 +132,7 @@ module.exports.getAllStylists = getAllStylists;
 module.exports.calculateDistance = calculateDistance;
 module.exports.addToBookings = addToBookings;
 module.exports.getStylistBookings = getStylistBookings;
-module.exports.getUserBookings = getUserBookings;
+module.exports.getBookings = getBookings;
 module.exports.deleteUser = deleteUser;
 module.exports.addService = addService;
 module.exports.stylistservices = stylistservices;

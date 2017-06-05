@@ -117,12 +117,14 @@ app.post('/api/bookings', function(req, res) {
   });
 });
 
-// given userId, get all the user bookings
-app.get('/api/userbookings/:userid', function(req, res) {
-  console.log(req.params.userid);
-  helpers.getUserBookings(req.params.userid, function(data) {
-    res.status(200).json(data);
-  });
+app.put('/api/bookings', (req, res) => {
+
+});
+
+// given stylistId, get their associated bookings and customer names
+app.get('/api/bookings/:stylistId', function(req, res) {
+  var stylistId = req.params.stylistId;
+  helpers.getBookings(stylistId, data => res.status(200).json(data));
 });
 
 //given stylistId, get all stylists bookings
