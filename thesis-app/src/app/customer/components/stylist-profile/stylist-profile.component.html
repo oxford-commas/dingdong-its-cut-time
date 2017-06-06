@@ -1,25 +1,25 @@
 <customer-navbar></customer-navbar>
 <div *ngIf="!!isProfileFetched">
-  <div class="container row poppadiv">
+  <div class="poppadiv">
     <div>
       <h2 class="name">{{ stylistProfile.name }}</h2>
     </div>
-    <div class="container row profile" >
-      <div class="container locationwrapper">
-        <img class="profileimage" [src]=stylistProfile.image_url />
+    <div class="profile" >
+      <div class="locationWrapper">
+        <img class="profileImage" [src]=stylistProfile.image_url />
         <h4>You can find me @</h4>
-        <div class="container row latLong">
+        <div class="latLong">
           <!-- Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}} -->
           <p>{{ stylistProfile.billingaddress }}</p>
           <p>{{ stylistProfile.phonenumber }}</p>
         </div>
       </div>
 
-      <div class="servicescontainer">
+      <div class="servicesContainer">
         <h4>Services I provide</h4>
 
-        <div class="container row liststyles">
-          <div class="styleitems" *ngFor="let style of ['hard', 'coded', 'styles']">
+        <div class="listStyles">
+          <div class="styleItems" *ngFor="let style of ['hard', 'coded', 'styles']">
             <h5>{{style}}</h5>
           </div>
         </div>
