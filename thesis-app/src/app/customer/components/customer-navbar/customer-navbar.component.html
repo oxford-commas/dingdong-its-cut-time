@@ -1,44 +1,45 @@
-<!--   <customer-dropdown [customerId]="customerId"></customer-dropdown> -->
-
 <div class="poppaDiv">
   <div class="miniContainer">
+
     <div class="title">
       <div>
         <h1>Ding Dong: It's Cut Time</h1>
       </div>
     </div>
+
     <nav class="superNav">
       <ul class="unorderedList">
         <li class="customer">
           <h4>Welcome {{ currentCustomer }}, where are you located?</h4>
         </li>
         <li class="">
-          <form class="">
-            <div class="">
+          <form class="superForm">
+            <div>
               <input
-                class=""
                 placeholder="Enter your location"
                 #streetAddress
                 (ngModelChange)="locationChange.emit(streetAddress)"
               >
+              <button class="btn btn-default" (click)="handleSearchLocationChange(streetAddress.value)">Search</button>
             </div>
-            <button class="btn btn-default" (click)="handleSearchLocationChange(streetAddress.value)">Search</button>
           </form>
         </li>
 
         <div class="dropdown">
-          <span class="caret">Username</span>
-            <div class="dropdown-content">
-              <ul class="dropdownUl">
-                <li [routerLink]="['/home']"><h4>Home</h4></li>
-                <li [routerLink]="['/messages']"><h4>Messages</h4></li>
-                <li [routerLink]="['/customerProfile', customerId]"><h4>Settings</h4></li>
-                <li [routerLink]="['/login']"><h4>Logout</h4></li>
-              </ul>
-            </div>
+          <div class="nestedDrop">
+            <span class="caret">Username</span>
+              <div class="dropdown-content">
+                <ul class="dropdownUl">
+                  <li [routerLink]="['/home']"><h4>Home</h4></li>
+                  <li [routerLink]="['/messages']"><h4>Messages</h4></li>
+                  <li [routerLink]="['/customerProfile', customerId]"><h4>Settings</h4></li>
+                  <li [routerLink]="['/login']"><h4>Logout</h4></li>
+                </ul>
+              </div>
+          </div>
         </div>
       </ul>
-
     </nav>
+
   </div>
 </div>
