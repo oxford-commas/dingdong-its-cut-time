@@ -1,21 +1,24 @@
-<div *ngIf="!!isProfileFetched">
 <customer-navbar
   [customerId]="customerProfile.id"
   [searchLocation]="searchLocation"
   (locationChange)="onSearchLocationChange($event)"
 ></customer-navbar>
+<!-- <div *ngIf="!!isProfileFetched"> -->
 <div class="poppaDiv">
-  <div *ngFor="let stylist of stylistsCloseToYou">
-    <close-to-you
-      [stylistInformation]="stylist"
-      [routerLink]="['/stylistProfile', stylist.id]"
-    ></close-to-you>
+  <div class="stylistContainer">
+    <div *ngFor="let stylist of stylistsCloseToYou">
+      <close-to-you
+        [stylistInformation]="stylist"
+        [routerLink]="['/stylistProfile', stylist.id]"
+      ></close-to-you>
+    </div>
   </div>
-    <customer-map
-      [coordinates]="currentLocation"
-      [searchLocation]="searchLocation"
-      >
-    </customer-map>
+
+      <customer-map
+        [coordinates]="currentLocation"
+        [searchLocation]="searchLocation"
+        >
+      </customer-map>
 </div>
 
 
@@ -25,4 +28,5 @@
     I OWE {{booking.name}} MONEY!!!!
   </div>
 </div>
-</div>
+<!-- </div>
+ -->

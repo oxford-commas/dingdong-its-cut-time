@@ -1,17 +1,19 @@
 .poppaDiv {
   border: 2px solid red;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.contentContainer {
+.stylistContainer {
   border: 2px solid red;
-}
-
-.closeToYouContainer {
-  border: 2px solid red;
+  flex: 1 1 48%;
+  height: 100%;
 }
 
 .mapContainer {
   border: 2px solid red;
+  flex: 1 1 48%;
 }
 
