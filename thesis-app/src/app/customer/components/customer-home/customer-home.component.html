@@ -21,4 +21,9 @@
         </customer-map>
     </div>
   </div>
+  <div *ngIf="!!bookingsDue">
+    <div *ngFor="let booking of bookingsDue">
+      I OWE {{booking.name}} MONEY!!!!
+    </div>
+  </div>
 </div>

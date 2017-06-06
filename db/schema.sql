@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `bookings` (
   `id_users` INTEGER NOT NULL,
   `id_stylists` INTEGER NOT NULL,
   `isconfirmed` INTEGER NOT NULL,
+  `isComplete` INTEGER NOT NULL,
   `time` VARCHAR(45) NOT NULL,
   `location` TEXT NOT NULL,
   PRIMARY KEY (`id`)

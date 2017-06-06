@@ -154,12 +154,32 @@ app.post('/api/bookings', function(req, res) {
   });
 });
 
-// given userId, get all the user bookings
-app.get('/api/userbookings/:userid', function(req, res) {
-  console.log(req.params.userid);
-  helpers.getUserBookings(req.params.userid, function(data) {
-    res.status(200).json(data);
-  });
+// get bookings for a customer that need to be paid for
+app.get('/api/bookings/complete/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.getBookingsDue(id, result => res.status(200).json(result));
+});
+
+// confirm a booking will occur
+app.put('/api/bookings/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.confirmBooking(id, result => res.status(200).json(result));
+});
+
+// complete a booking which is now ready to be paid for
+app.put('/api/bookings/complete/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.completeBooking(id, result => res.status(200).json(result));
+});
+
+// given stylistId, get their associated bookings and customer names
+app.get('/api/bookings/:stylistId', function(req, res) {
+  var stylistId = req.params.stylistId;
+  helpers.getBookings(stylistId, data => res.status(200).json(data));
+});
+
+app.delete('/api/bookings/:id', (req, res) => {
+  helpers.deleteBooking(req.params.id, results => res.status(200).json(results));
 });
 
 //given stylistId, get all stylists bookings

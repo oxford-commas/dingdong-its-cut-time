@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { RequestService, MessageService } from '../../../services';
+import { RequestService, MessageService, BookingService } from '../../../services';
+
 import { IMessage } from '../../interfaces';
 
 @Component({
@@ -9,12 +10,20 @@ import { IMessage } from '../../interfaces';
   templateUrl: './stylist-profile.component.html',
   styleUrls: ['./stylist.profile.component.css']
 })
+
 export class StylistProfileComponent implements OnInit {
   constructor(
-    private requestService: RequestService,
     private route: ActivatedRoute,
-    private messageService: MessageService
+    private requestService: RequestService,
+    private messageService: MessageService,
+    private bookingService: BookingService
   ) {}
+
+  public isProfileFetched: boolean = false;
+  public stylistProfile: any; // TODO: interface this
+  public isShowModal: boolean = false;
+  public modalStyle: string = 'none';
+  private stylistId: number;
 
   ngOnInit() {
     this.route.params
@@ -31,12 +40,6 @@ export class StylistProfileComponent implements OnInit {
        () => this.isProfileFetched = true
      );
   }
-
-  public isProfileFetched: boolean = false;
-  public stylistProfile: any; // TODO: interface this
-  public isShowModal: boolean = false;
-  public modalStyle: string = 'none';
-  private stylistId: number;
 
   public toggleModal() {
     this.isShowModal = !this.isShowModal;
@@ -66,8 +69,23 @@ export class StylistProfileComponent implements OnInit {
         res => console.log(res),
         err => console.log(err)
       );
+    this.addBooking(message);
   }
 
+  public addBooking(message: IMessage) {
+    const booking = {
+      id_users: 1, //hardcoded logged in user
+      id_stylists: this.stylistId,
+      isconfirmed: false,
+      time: message.time,
+      location: message.location
+    };
+    this.bookingService.addBooking(booking)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err)
+      );
+  }
 }
 
 // | 55 |    1 | dnalounge         | dnalounge         | 375 11th St, San Francisco, CA

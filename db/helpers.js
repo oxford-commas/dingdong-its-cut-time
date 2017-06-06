@@ -6,7 +6,7 @@ var addUserStylist = function(type, name, password, billingaddress, phonenumber,
     if (err) throw err;
     callback(result);
   });
-}
+};
 
 var getUser = function(userId, callback) {
   model.con.query('SELECT * FROM `users_stylists` WHERE `id` = ?', [userId], function (error, results, fields) {
@@ -20,7 +20,7 @@ var getAllStylists = function(callback) {
   model.con.query('SELECT * FROM `users_stylists` WHERE `type` = 0', function(error, results, fields) {
     callback(results);
   });
-}
+};
 
 var addLocation = function (latitude, longitude, id, callback) {
   var sql = 'UPDATE users_stylists SET latitude = ?, longitude = ? WHERE id = ?'
@@ -29,7 +29,7 @@ var addLocation = function (latitude, longitude, id, callback) {
     console.log("1 record inserted");
     callback();
   });
-}
+};
 
 var calculateDistance = function distance(lat1, lon1, lat2, lon2, unit) {
   var radlat1 = Math.PI * lat1/180
@@ -43,7 +43,7 @@ var calculateDistance = function distance(lat1, lon1, lat2, lon2, unit) {
   if (unit=="K") { dist = dist * 1.609344 }
   if (unit=="N") { dist = dist * 0.8684 }
   return dist
-}
+};
 
 var updateProfile = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, callback) {
   var sql = 'UPDATE users_stylists SET type = ?, name = ?, password = ?, billingaddress = ?, phonenumber = ?, email = ?, site_url = ?, gender = ?, image_url = ? WHERE id = ?'
@@ -60,24 +60,53 @@ var addToBookings = function(userId, stylistId, isConfirmed, time, location, cal
     if (err) throw err;
     callback(result);
   });
-}
+};
 
-var getUserBookings = function(userId, callback) {
-  model.con.query('SELECT * FROM `bookings` WHERE `id_users` = ?', [userId], function(error, results, fields) {
-    //console.log(results);
-    callback(results);
-  });
-}
+var getBookings = function(userId, callback) {
+  var sql = `
+    SELECT b.id, b.id_stylists, b.isconfirmed, b.time, b.location, b.isComplete, us.name as customer
+    FROM bookings b INNER JOIN users_stylists us
+    WHERE b.id_stylists = ? AND b.id_users = us.id`;
+  model.con.query(sql, [userId], (err, results) => callback(results));
+};
+
+var confirmBooking = (bookingId, callback) => {
+  var sql = `
+    UPDATE bookings
+    SET isconfirmed = 1
+    WHERE bookings.id = ?`;
+  model.con.query(sql, [bookingId], (err, results) => callback(results));
+};
+
+var completeBooking = (id, callback) => {
+  var sql = `
+    UPDATE bookings
+    SET isComplete = 1
+    WHERE bookings.id = ?`;
+    model.con.query(sql, [id], (err, results) => callback(results));
+};
 
 var getStylistBookings = function(stylistId, callback) {
   model.con.query('SELECT * FROM `bookings` WHERE `id_stylists` = ?', [stylistId], function (error, results, fields) {
     callback(results);
   });
-}
+};
+
+var getBookingsDue = (id, callback) => {
+  var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email
+    FROM bookings b INNER JOIN users_stylists us
+    WHERE b.isComplete = 1 AND b.id_users = ?
+    AND us.id = b.id_stylists`;
+  model.con.query(sql, [id], (err, results) => callback(results));
+};
+
+var deleteBooking = (id, callback) => {
+  model.con.query('DELETE FROM bookings WHERE id = ?', [id], (err, res) => callback(res));
+};
 
 var deleteUser = function(userId) {
   model.con.query('delete from `users_stylists` where `id` = ?', [userId]);
-}
+};
 
 var deleteBooking = function(bookingId) {
   model.con.query('delete from `bookings` where `id` = ?', [bookingId]);
@@ -99,7 +128,7 @@ var addService = function(serviceName, callback) {
     if(err)  throw err;
     callback(results);
   });
-}
+};
 
 var stylistservices = function(serviceId, stylistId, callback) {
   var sql = 'INSERT INTO stylists_services (id_services, id_users_stylists) VALUES (?, ?)';
@@ -107,13 +136,13 @@ var stylistservices = function(serviceId, stylistId, callback) {
     if(err)  throw err;
     callback();
   });
-}
+};
 
 var getStylistServices = function(stylistId, callback) {
   model.con.query('select `servicename` from `stylists_services` as ss, `services` as s  where `id_users_stylists`= ? and ss.id_services = s.id', [stylistId], function(err, results) {
     callback(results);
   });
-}
+};
 
 var getAllStyles = (callback) => {
   model.con.query('SELECT * FROM services', (err, results) => callback(results));
@@ -159,7 +188,7 @@ module.exports.getAllStylists = getAllStylists;
 module.exports.calculateDistance = calculateDistance;
 module.exports.addToBookings = addToBookings;
 module.exports.getStylistBookings = getStylistBookings;
-module.exports.getUserBookings = getUserBookings;
+module.exports.getBookings = getBookings;
 module.exports.deleteUser = deleteUser;
 module.exports.addService = addService;
 module.exports.stylistservices = stylistservices;
@@ -167,6 +196,10 @@ module.exports.getStylistServices = getStylistServices;
 module.exports.getMessages = getMessages;
 module.exports.postMessage = postMessage;
 module.exports.deleteChat = deleteChat;
+module.exports.confirmBooking = confirmBooking;
+module.exports.completeBooking = completeBooking;
+module.exports.deleteBooking = deleteBooking;
+module.exports.getBookingsDue = getBookingsDue;
 module.exports.updateProfile = updateProfile;
 module.exports.deleteBooking = deleteBooking;
 module.exports.updateBooking = updateBooking;

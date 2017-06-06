@@ -57,7 +57,10 @@ import {
     DeletionService,
     MessageService,
     StateService
-   ]
+   ],
+ exports: [
+   CustomerNavbarComponent
+ ]
 })
 
 export class CustomerModule {}
