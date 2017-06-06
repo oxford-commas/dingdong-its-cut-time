@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { StylistService } from '../../../services';
+import { LocationService } from '../../../services';
 
 @Component({
   selector: 'customer-navbar',
@@ -6,24 +8,25 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./customer-navbar.component.css']
 })
 export class CustomerNavbarComponent {
-  constructor() {
-    console.log('GET a default map initialization');
+  constructor(
+    private stylistService: StylistService,
+    private locationService: LocationService
+    ) {
     console.log('GET the name of user logged in');
-    console.log('GET the google map and populate it with stylist coordinates');
   }
 
   @Input() customerId: number;
+  @Input() searchLocation: string;
+  @Output() locationChange = new EventEmitter();
+
+  public handleSearchLocationChange(newLocation) {
+    console.log('new location:', newLocation)
+    this.searchLocation = newLocation;
+    this.locationChange.emit(newLocation);
+  }
 
   public logo: string = 'put logo url here';
   public currentCustomer: string = 'Matt';
   public isDropDownHidden: boolean = true;
-
-  public handleStreetAddressChange(streetAddress) {
-    console.log('TODO: GET stylist name/coordinates/styling/blurb close to this streetAddress: ', streetAddress);
-  }
-
-  public showDropDown() {
-    console.log('show dropdown');
-  }
 
 }
