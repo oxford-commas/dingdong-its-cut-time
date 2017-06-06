@@ -7,7 +7,6 @@
   align-items: center;
   flex-direction: column;
   margin: 3em;
-  border: 2px solid;
 }
 
 h1 {
@@ -22,17 +21,16 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid red;
   flex-direction: column;
   width: 100%;
 }
 
 .container-fluid,
 .miniContainer {
-  width: 90%;
+  width: 100%;
   height: 25%;
   flex: 1 1 100%;
-  border: 2px solid blue;
+  border-bottom: 2px solid black;
 }
 
 .superNav {
