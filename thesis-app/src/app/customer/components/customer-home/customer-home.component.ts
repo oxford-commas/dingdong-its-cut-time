@@ -23,6 +23,7 @@ export class CustomerHomeComponent implements OnInit {
   public searchLocation: string;
   public latitude: number;
   public longitude: number;
+  public bookingsDue: any;
   userProfile: any
 
   constructor(
@@ -33,13 +34,6 @@ export class CustomerHomeComponent implements OnInit {
     private stateService: StateService
   ) {}
 
-  public isProfileFetched = false;
-  public currentLocation: any;
-  public customerProfile: any;
-  public stylistsCloseToYou: any;
-  public bookingsDue: any;
-  userProfile: any
-  
   ngOnInit() {
     // this.customerProfile = requestService.getStylistById(0).subscribe(
     //   res => console.log(res),
@@ -109,6 +103,8 @@ export class CustomerHomeComponent implements OnInit {
         },
         err => console.log(err)
       );
+  }
+  
   getLocationFromCoordinates(lat, lng) {
     this.locationService.getLocationFromCoordinates(lat, lng)
       .subscribe(res => {
