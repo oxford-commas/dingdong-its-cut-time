@@ -171,4 +171,4 @@ module.exports.deleteChat = deleteChat;
 module.exports.confirmBooking = confirmBooking;
 module.exports.completeBooking = completeBooking;
 module.exports.deleteBooking = deleteBooking;
-module.exports.getBookingsDUe = getBookingsDUe;
+module.exports.getBookingsDue = getBookingsDue;

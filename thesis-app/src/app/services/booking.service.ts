@@ -16,7 +16,7 @@ export class BookingService {
       .map(res => res.json());
   }
 
-  fetchBookingsForPayment(id: number) {
+  fetchDueBookings(id: number) {
     return this.http.get(`/api/bookings/complete/${id}`)
       .map(res => res.json());
   }
@@ -35,4 +35,5 @@ export class BookingService {
     return this.http.put(`/api/bookings/complete/${id}`, id)
       .map(res => res.json());
   }
+
 }
