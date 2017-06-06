@@ -271,7 +271,7 @@ const stylistArray = [
     id: 0,
     'username': 'ilke',
     'password': 'akcay',
-    'location': 'Cihangir',
+    'location': 'Cihangir Istnbul',
     'phoneNumber': '675-933-2586',
     'email': 'ilke@gmail.com',
     'website': 'ilkestyle.org',
