@@ -54,9 +54,9 @@ var updateProfile = function(type, name, password, billingaddress, phonenumber, 
   });
 }
 
-var addToBookings = function(userId, stylistId, isConfirmed, time, location, callback) {
-  var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, location) VALUES (?, ?, ?, ?, ?)';
-  model.con.query(sql, [userId, stylistId, isConfirmed, time, location],function (err, result) {
+var addToBookings = function(userId, stylistId, isConfirmed, isComplete, time, location, callback) {
+  var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, location, isComplete) VALUES (?, ?, ?, ?, ?, ?)';
+  model.con.query(sql, [userId, stylistId, isConfirmed, time, location, isComplete],function (err, result) {
     if (err) throw err;
     callback(result);
   });

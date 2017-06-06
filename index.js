@@ -149,7 +149,7 @@ app.post('/api/location', function(req, res) {
 // add bookings to the database
 app.post('/api/bookings', function(req, res) {
   console.log(req.body);
-  helpers.addToBookings(req.body.id_users, req.body.id_stylists, req.body.isconfirmed, req.body.time, req.body.location, function() {
+  helpers.addToBookings(req.body.id_users, req.body.id_stylists, req.body.isconfirmed, req.body.isComplete, req.body.time, req.body.location, function() {
     res.sendStatus(201);
   });
 });
