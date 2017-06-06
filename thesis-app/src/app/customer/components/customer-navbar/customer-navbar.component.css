@@ -72,7 +72,7 @@ li,
 .dropdown {
   position: relative;
   display: absolute;
-  width: 10%;
+  width: 33%;
 }
 
 .dropdown-content {
@@ -85,7 +85,7 @@ li,
   z-index: 1;
 }
 
-.caret:hover .dropdown-content {
+.dropdown:hover .dropdown-content {
   display: block;
 }
 
