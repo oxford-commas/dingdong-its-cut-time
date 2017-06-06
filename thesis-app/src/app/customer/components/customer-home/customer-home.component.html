@@ -14,11 +14,14 @@
     </div>
   </div>
 
-      <customer-map
-        [coordinates]="currentLocation"
-        [searchLocation]="searchLocation"
-        >
-      </customer-map>
+  <div class="mapContainer">
+    <customer-map
+      class="map"
+      [coordinates]="currentLocation"
+      [searchLocation]="searchLocation"
+      >
+    </customer-map>
+  </div>
 </div>
 
 
