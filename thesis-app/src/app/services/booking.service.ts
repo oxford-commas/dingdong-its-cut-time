@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { RequestService } from './request.service';
 import 'rxjs/Rx';
 
 @Injectable()
