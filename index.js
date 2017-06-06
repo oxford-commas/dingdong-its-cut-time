@@ -12,6 +12,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'thesis-app/dist')));
 
+/// placeholder validation for auth 0//
+app.get('/api/validate/:username/:password', function(req, res) {
+  var username = req.params.username;
+  var password = req.params.password;
+  helpers.validateUser(username, password, profile => {
+    profile && res.status(200).json(profile);
+  });
+})
+
+/////////
 app.post('/api/stripe', function(req, res) {
   // Set your secret key: remember to change this to your live secret key in production
   // See your keys here: https://dashboard.stripe.com/account/apikeys
@@ -33,8 +43,7 @@ app.post('/api/stripe', function(req, res) {
 });
 
 
-
-// get all users and stylists given user or stylist id --- completed
+// get all users and stylists given user or stylist id
 app.get('/api/userStylist/:id', function(req, res) {
   var userid = req.params.id;
   helpers.getUser(userid, function(data) {
@@ -42,7 +51,16 @@ app.get('/api/userStylist/:id', function(req, res) {
   });
 });
 
-// get all stylists close to the user location --- completed
+// images --- working on it
+app.post('/api/:stylistid/profileimage', function(req, res) {
+  var id = req.params.stylistid
+  console.log("Profile image: ")
+  console.log(req);
+  res.status(200);
+});
+
+
+// get all stylists close to the user location
 app.get('/api/stylists/:location', function(req, res) {
   var location = req.params.location;
   console.log(location);
@@ -66,7 +84,7 @@ app.get('/api/stylists/:location', function(req, res) {
   });
 });
 
-// adds users or stylist information in the database --- completed
+// adds users or stylist information in the database
 app.post('/api/userstylist', function (req, res) {
   var type = req.body.type;
   var name = req.body.name;
@@ -93,7 +111,26 @@ app.post('/api/userstylist', function (req, res) {
   });
 });
 
-// updates location end points for a given userID  ----completed
+
+// updates users or stylists information in the database
+app.put('/api/userstylist/:id', function (req, res) {
+  var id = req.params.id;
+  var type = req.body.type;
+  var name = req.body.name;
+  var password = req.body.password;
+  var billingaddress = req.body.billingaddress;
+  var phonenumber = req.body.phonenumber;
+  var email = req.body.email;
+  var site_url = req.body.site_url;
+  var gender = req.body.gender;
+  var image_url = req.body.image_url;
+  var location = req.body.location;
+  helpers.updateProfile(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, function() {
+    res.send('Got a PUT request at /api/userstylist/' + req.params.id);
+  });
+});
+
+// updates location end points for a given userID
 app.post('/api/location', function(req, res) {
   var location = req.body.location;
   var id = req.body.id;
@@ -109,7 +146,7 @@ app.post('/api/location', function(req, res) {
   });
 });
 
-// add bookings to the database --- completed
+// add bookings to the database
 app.post('/api/bookings', function(req, res) {
   console.log(req.body);
   helpers.addToBookings(req.body.id_users, req.body.id_stylists, req.body.isconfirmed, req.body.time, req.body.location, function() {
@@ -160,6 +197,37 @@ app.delete('/user/:userid', function (req, res) {
   res.send('Got a DELETE request at /user')
 });
 
+//delete booking given booking id
+app.delete('/booking/:bookingid', function (req, res) {
+  console.log(req.params.bookingid);
+  helpers.deleteBooking(req.params.bookingid);
+  res.send('Got a DELETE request at /booking')
+});
+
+//update bookings given booking id
+app.put('/booking/:bookingid', function (req, res) {
+  console.log(req.body);
+  console.log(req.params.bookingid);
+  var id = req.params.bookingid;
+  var id_users = req.body.userid;
+  var id_stylists = req.body.stylistid;
+  var time = req.body.time;
+  var location = req.body.location;
+  var isconfirmed = req.body.isconfirmed;
+  console.log('isconfirmed',req.body.isconfirmed)
+  console.log(id_users);
+  helpers.updateBooking(id_users, id_stylists, isconfirmed, time, location, id, function() {
+    res.send('Got a PUT(update) request at /booking')
+  });
+
+});
+
+// HAIRCUT STYLES //
+
+app.get('/api/stylistServices', (req, res) => {
+  helpers.getAllStyles(results => res.status(200).send(results));
+});
+
 //given stylistId, delete stylist info from the database along with the bookings(foreign key constraint)
 app.delete('/stylist/:stylistid', function (req, res) {
   console.log(req.params.stylistid);
@@ -167,7 +235,7 @@ app.delete('/stylist/:stylistid', function (req, res) {
   res.send('Got a DELETE request at /stylist')
 })
 
-//given stylistId, get all services for the stylists --- completed
+//given stylistId, get all services for the stylists
 app.get('/api/stylistServices/:id', function(req, res) {
   var s = [];
   helpers.getStylistServices(req.params.id, function(data) {
@@ -182,7 +250,6 @@ app.get('/api/stylistServices/:id', function(req, res) {
 // given stylistId and serviceId, add new service to the stylists_services for the stylist
 app.post('/api/stylistServices', function(req, res) {
   helpers.stylistservices(req.body.serviceid, req.body.stylistid, function() {
-    console.log('hey')
     res.sendStatus(201);
   });
 })

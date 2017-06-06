@@ -45,9 +45,18 @@ var calculateDistance = function distance(lat1, lon1, lat2, lon2, unit) {
   return dist
 };
 
-var addToBookings = function(userId, stylistId, isConfirmed, isComplete, time, location, callback) {
-  var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, location, isComplete) VALUES (?, ?, ?, ?, ?, ?)';
-  model.con.query(sql, [userId, stylistId, isConfirmed, time, location, isComplete],function (err, result) {
+var updateProfile = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, callback) {
+  var sql = 'UPDATE users_stylists SET type = ?, name = ?, password = ?, billingaddress = ?, phonenumber = ?, email = ?, site_url = ?, gender = ?, image_url = ? WHERE id = ?'
+  model.con.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id],function (err, result) {
+    if (err) throw err;
+    console.log("1 record updated");
+    callback();
+  });
+}
+
+var addToBookings = function(userId, stylistId, isConfirmed, time, location, callback) {
+  var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, location) VALUES (?, ?, ?, ?, ?)';
+  model.con.query(sql, [userId, stylistId, isConfirmed, time, location],function (err, result) {
     if (err) throw err;
     callback(result);
   });
@@ -99,6 +108,19 @@ var deleteUser = function(userId) {
   model.con.query('delete from `users_stylists` where `id` = ?', [userId]);
 };
 
+var deleteBooking = function(bookingId) {
+  model.con.query('delete from `bookings` where `id` = ?', [bookingId]);
+}
+
+var updateBooking = function(id_users, id_stylists, isconfirmed, time, location, id, callback) {
+  var sql = 'UPDATE `bookings` SET id_users = ?, id_stylists = ?, isconfirmed = ?, time = ?, location = ? where id = ?'
+   model.con.query(sql, [id_users, id_stylists, isconfirmed, time, location, id],function (err, result) {
+    if (err) throw err;
+    console.log("1 record updated");
+    callback();
+  });
+}
+
 // helper to add service to the services table in database
 var addService = function(serviceName, callback) {
   var sql = 'INSERT INTO services (servicename) VALUES (?)';
@@ -118,10 +140,12 @@ var stylistservices = function(serviceId, stylistId, callback) {
 
 var getStylistServices = function(stylistId, callback) {
   model.con.query('select `servicename` from `stylists_services` as ss, `services` as s  where `id_users_stylists`= ? and ss.id_services = s.id', [stylistId], function(err, results) {
-
     callback(results);
-
   });
+};
+
+var getAllStyles = (callback) => {
+  model.con.query('SELECT * FROM services', (err, results) => callback(results));
 };
 
 /////////////////////
@@ -152,6 +176,10 @@ var deleteChat = (ids, callback) => {
   model.con.query(`DELETE FROM messages WHERE id in (${ids})`, (err, results) => callback(results));
 };
 
+var validateUser = (username, password, callback) => {
+  var sql = 'SELECT * FROM users_stylists WHERE name = ? AND password = ?';
+  model.con.query(sql, [username, password],(err, results) => callback(results));
+}
 
 module.exports.addLocation = addLocation;
 module.exports.addUserStylist = addUserStylist;
@@ -172,3 +200,8 @@ module.exports.confirmBooking = confirmBooking;
 module.exports.completeBooking = completeBooking;
 module.exports.deleteBooking = deleteBooking;
 module.exports.getBookingsDue = getBookingsDue;
+module.exports.updateProfile = updateProfile;
+module.exports.deleteBooking = deleteBooking;
+module.exports.updateBooking = updateBooking;
+module.exports.validateUser = validateUser;
+module.exports.getAllStyles = getAllStyles;

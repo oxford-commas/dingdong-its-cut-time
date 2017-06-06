@@ -11,7 +11,8 @@ import {
   LocationService,
   StylistService,
   DeletionService,
-  MessageService
+  MessageService,
+  StateService
 } from '../services';
 
 import {
@@ -54,7 +55,8 @@ import {
     LocationService,
     StylistService,
     DeletionService,
-    MessageService
+    MessageService,
+    StateService
    ],
  exports: [
    CustomerNavbarComponent

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { RequestService, BookingService} from '../../../services';
+import { RequestService, BookingService} from '../../../services/';
 
 @Component({
    selector: 'stylist-home',

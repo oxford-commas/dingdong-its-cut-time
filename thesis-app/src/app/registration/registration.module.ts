@@ -4,13 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormBuilder } from '@angular/forms';
 
+import { StateService } from '../services';
+
 import {
   SignInFormComponent,
   SignInInputComponent,
   UsernamePasswordComponent,
   RegistrationHeaderComponent,
   SignUpStylistFormComponent,
-  SignUpFormComponent
+  SignUpFormComponent,
+  SignupUserComponent,
+  SignupStylistComponent
 } from './components';
 
 
@@ -26,10 +30,13 @@ import {
     UsernamePasswordComponent,
     RegistrationHeaderComponent,
     SignUpStylistFormComponent,
-    SignUpFormComponent
+    SignUpFormComponent,
+    SignupUserComponent,
+    SignupStylistComponent
   ],
   providers: [
-    FormBuilder
+    FormBuilder,
+    StateService
   ]
 })
 
