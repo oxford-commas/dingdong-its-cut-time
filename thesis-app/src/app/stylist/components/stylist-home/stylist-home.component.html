@@ -2,9 +2,9 @@
 Bookings:
 <div *ngFor="let booking of bookings; let i = index;">
   <booking
-  [bookingInformation]="booking"
-  (confirmBooking)="confirmBooking($event, i)"
-  (deleteBooking)="deleteBooking($event, i)"
-  (completeBooking)="completeBooking($event, i)"
+    [bookingInformation]="booking"
+    (confirmBooking)="confirmBooking($event, i)"
+    (deleteBooking)="deleteBooking($event, i)"
+    (completeBooking)="completeBooking($event, i)"
   ></booking>
 </div>
