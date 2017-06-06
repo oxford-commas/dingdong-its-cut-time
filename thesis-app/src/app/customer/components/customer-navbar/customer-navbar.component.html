@@ -6,19 +6,19 @@
       <nav class="navbar navbar-default superNav">
         <ul class="nav nav-pills unorderedList">
           <li class="title">
-            <h4>Welcome {{ currentCustomer }}.  Where are you located?</h4>
+            <h4>Welcome {{ currentCustomer }}, where are you located?</h4>
           </li>
           <li class="formElement">
             <form class="navbar-form navbar-left">
               <div class="form-group">
                 <input
                   class="form-control"
-                  placeholder="street address"
+                  placeholder="Enter your location"
                   #streetAddress
-                  (change)="handleStreetAddressChange(streetAddress.value)"
+                  (ngModelChange)="locationChange.emit(streetAddress)"
                 >
               </div>
-              <button class="btn btn-default" (click)="showDropDown()">{{currentCustomer}}</button>
+              <button class="btn btn-default" (click)="handleSearchLocationChange(streetAddress.value)">Search</button>
             </form>
           </li>
 

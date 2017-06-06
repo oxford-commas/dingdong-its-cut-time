@@ -45,7 +45,7 @@ export class RequestService {
   }
 
   getStylistByLocation(location: string) {
-    return this.http.get(`/api/stylists/location`)
+    return this.http.get(`/api/stylists/${location}`)
       .map(
         (response: Response) => {
           return response.json();
