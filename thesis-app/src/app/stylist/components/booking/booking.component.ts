@@ -9,5 +9,5 @@ export class BookingComponent {
   @Input() bookingInformation: IBookingInformation;
   @Output() confirmBooking = new EventEmitter();
   @Output() deleteBooking = new EventEmitter();
-
+  @Output() completeBooking = new EventEmitter();
 }

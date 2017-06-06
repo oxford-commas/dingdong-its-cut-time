@@ -13,7 +13,6 @@ export class StylistHomeComponent implements OnInit {
   ) {}
 
   @Input() stylistProfile;
-
   public isProfileFetched: boolean = false;
   public bookings: any;
 
@@ -32,7 +31,8 @@ export class StylistHomeComponent implements OnInit {
       );
   }
 
-  confirmBooking(id: number) {
+  confirmBooking(id: number, index: number) {
+    console.log('TODO: color this booking div green');
     this.bookingService.confirmBooking(id)
       .subscribe(
         result => console.log(result),
@@ -40,12 +40,18 @@ export class StylistHomeComponent implements OnInit {
       );
   }
 
-  deleteBooking(id: number) {
+  deleteBooking(id: number, index: number) {
+    this.bookings.splice(index, 1);
     this.bookingService.deleteBooking(id)
       .subscribe(
         result => console.log(result),
         err => console.log(err)
       );
+  }
+
+  completeBooking(id: number, index: number) {
+    this.deleteBooking(id, index);
+    console.log('TODO: send user a prompt to pay with stripe');
   }
 
 }

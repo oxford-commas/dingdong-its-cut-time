@@ -1,5 +1,6 @@
 <div *ngIf="bookingInformation.isconfirmed===1">
   **color this div green, booking has been confirmed** {{bookingInformation.customer}} at time: {{bookingInformation.time}} at location: {{bookingInformation.location}}
+  <button (click)="completeBooking.emit(bookingInformation.id)">Complete</button>
 </div>
 <div *ngIf="bookingInformation.isconfirmed===0">
   **color this div red, booking has not been confirmed**{{bookingInformation.customer}} at time: {{bookingInformation.time}} at location: {{bookingInformation.location}}
