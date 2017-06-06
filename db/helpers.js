@@ -83,6 +83,15 @@ var deleteBooking = function(bookingId) {
   model.con.query('delete from `bookings` where `id` = ?', [bookingId]);
 }
 
+var updateBooking = function(id_users, id_stylists, isconfirmed, time, location, id, callback) {
+  var sql = 'UPDATE `bookings` SET id_users = ?, id_stylists = ?, isconfirmed = ?, time = ?, location = ? where id = ?'
+   model.con.query(sql, [id_users, id_stylists, isconfirmed, time, location, id],function (err, result) {
+    if (err) throw err;
+    console.log("1 record updated");
+    callback();
+  });
+}
+
 // helper to add service to the services table in database
 var addService = function(serviceName, callback) {
   var sql = 'INSERT INTO services (servicename) VALUES (?)';
@@ -156,5 +165,6 @@ module.exports.postMessage = postMessage;
 module.exports.deleteChat = deleteChat;
 module.exports.updateProfile = updateProfile;
 module.exports.deleteBooking = deleteBooking;
+module.exports.updateBooking = updateBooking;
 module.exports.validateUser = validateUser;
 
