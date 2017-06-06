@@ -9,7 +9,8 @@ import { RequestService, StateService } from '../../../services';
 
 @Component({
   selector: 'signin-form',
-  templateUrl: './signin-form.component.html'
+  templateUrl: './signin-form.component.html',
+  styleUrls: ['./signin-form.component.css']
 })
 export class SignInFormComponent {
   public logo: string = 'placeholder for logo url';
@@ -32,11 +33,15 @@ export class SignInFormComponent {
   }
 
   handleLogin(form: NgForm) {
-    this.requestService.getStylistById(1)
+    this.requestService.getStylistByName(form.value.username, form.value.password)
       .subscribe(
         data => {
-          this.stateService.addCustomer(data);
-          this.router.navigate(['/home']);
+          if (data[0].id) {
+            this.stateService.addCustomer(data[0]);
+            this.router.navigate(['/home']);
+          } else {
+            this.router.navigate(['/login']);
+          }
         }
       )
   }
