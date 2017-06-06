@@ -1,41 +1,42 @@
 <!--   <customer-dropdown [customerId]="customerId"></customer-dropdown> -->
+
 <div class="poppaDiv">
-  <div class="container row">
-    <h1>Ding Dong: It's Cut Time</h1>
-    <div class="container-fluid miniContainer">
-      <nav class="navbar navbar-default superNav">
-        <ul class="nav nav-pills unorderedList">
-          <li class="title">
-            <h4>Welcome {{ currentCustomer }}, where are you located?</h4>
-          </li>
-          <li class="formElement">
-            <form class="navbar-form navbar-left">
-              <div class="form-group">
-                <input
-                  class="form-control"
-                  placeholder="Enter your location"
-                  #streetAddress
-                  (ngModelChange)="locationChange.emit(streetAddress)"
-                >
-              </div>
-              <button class="btn btn-default" (click)="handleSearchLocationChange(streetAddress.value)">Search</button>
-            </form>
-          </li>
-
-          <div class="dropdown">
-            <span class="caret">Username</span>
-              <div class="dropdown-content">
-                <ul class="dropdownUl">
-                  <li [routerLink]="['/home']"><h4>Home</h4></li>
-                  <li [routerLink]="['/messages']"><h4>Messages</h4></li>
-                  <li [routerLink]="['/customerProfile', customerId]"><h4>Settings</h4></li>
-                  <li [routerLink]="['/login']"><h4>Logout</h4></li>
-                </ul>
-              </div>
-          </div>
-
-        </ul>
-      </nav>
+  <div class="miniContainer">
+    <div class="title">
+      <h1>Ding Dong: It's Cut Time</h1>
     </div>
+    <nav class="superNav">
+      <ul class="unorderedList">
+        <li class="customer">
+          <h4>Welcome {{ currentCustomer }}, where are you located?</h4>
+        </li>
+        <li class="">
+          <form class="">
+            <div class="">
+              <input
+                class=""
+                placeholder="Enter your location"
+                #streetAddress
+                (ngModelChange)="locationChange.emit(streetAddress)"
+              >
+            </div>
+            <button class="btn btn-default" (click)="handleSearchLocationChange(streetAddress.value)">Search</button>
+          </form>
+        </li>
+
+        <div class="dropdown">
+          <span class="caret">Username</span>
+            <div class="dropdown-content">
+              <ul class="dropdownUl">
+                <li [routerLink]="['/home']"><h4>Home</h4></li>
+                <li [routerLink]="['/messages']"><h4>Messages</h4></li>
+                <li [routerLink]="['/customerProfile', customerId]"><h4>Settings</h4></li>
+                <li [routerLink]="['/login']"><h4>Logout</h4></li>
+              </ul>
+            </div>
+        </div>
+      </ul>
+
+    </nav>
   </div>
 </div>

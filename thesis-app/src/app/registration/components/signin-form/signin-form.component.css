@@ -12,6 +12,10 @@ h1 {
   padding: 1em;
 }
 
+input {
+  background-color: #d3d3d3;
+}
+
 .myForm {
   width: 50%;
   height: 50%;
