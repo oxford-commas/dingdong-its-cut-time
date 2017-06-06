@@ -57,4 +57,12 @@ export class CustomerHomeComponent implements OnInit {
     console.log('Location is:', this.currentLocation);
   }
 
+  checkForBookingsDue(id: number) {
+    this.bookingService.fetchDueBookings(id)
+      .subscribe(
+        data => console.log('fetching dues....', data),
+        err => console.log(err)
+      );
+  }
+
 }
