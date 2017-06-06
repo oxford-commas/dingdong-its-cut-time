@@ -35,29 +35,32 @@ export class CustomerHomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.customerProfile = requestService.getStylistById(0).subscribe(
-    //   res => console.log(res),
-    //   err => console.log(err)
-    // );
-    
     this.customerProfile = this.stateService.customerProfile[0];
     this.isProfileFetched = true;
     this.getLocationCoordinates(this.latitude, this.longitude);
     this.getLocationFromCoordinates(this.latitude, this.longitude);
-    this.getStylistsAtLocation(this.currentLocation);
+    this.pinStylistsAtLocation(this.currentLocation);
   }
 
   ngOnChanges() {
-    this.getStylistsAtLocation(this.searchLocation);
+    this.pinStylistsAtLocation(this.searchLocation);
     this.getLocationCoordinates(this.latitude, this.longitude);
   }
+
+  pinStylistsAtLocation(location: any) {
+    this.stylistService.getStylistsInLocation(this.currentLocation)
+      .subscribe(data => {
+        this.stylistsCloseToYou = data;
+      }, err => console.log(err));
+  }
+
 
   getStylistsAtLocation(location: any) {
     this.stylistService.getStylistsInLocation(this.currentLocation)
       .subscribe(data => {
         this.stylistsCloseToYou = data;
       }, err => console.log(err));
-    
+
     // Default location inititialization to sanfrancisco
     this.stylistService.getStylistsInLocation('sanfrancisco')
       .subscribe(data => {
@@ -101,10 +104,12 @@ export class CustomerHomeComponent implements OnInit {
           console.log('fetching dues....', data);
           this.bookingsDue = data;
         },
-        err => console.log(err)
+        err => {
+          console.log(err);
+        }
       );
   }
-  
+
   getLocationFromCoordinates(lat, lng) {
     this.locationService.getLocationFromCoordinates(lat, lng)
       .subscribe(res => {

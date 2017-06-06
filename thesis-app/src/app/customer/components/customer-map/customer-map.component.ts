@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocationService } from '../../../services';
 import { StylistService } from '../../../services';
@@ -31,22 +31,22 @@ export class CustomerMapComponent implements OnInit {
     this.getLatLng();
   }
 
-  @Input() coordinates;
-  @Input() lat: number;
-  @Input() lng: number;
   @Input() searchLocation: string;
 
   // initial zoom value for the map
+  public lng: number;
+  public lat: number;
   public zoom: number = 14;
 
   ngOnInit() {
     this.getLatLng();
   }
 
-  // ngOnChanges() {
-  //   this.adjustMapViewForLocation(this.searchLocation);
-  //   this.getStylistsInLocation(this.searchLocation);
-  // }
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('Lets seee: this.searchLocation', this.searchLocation);
+    this.adjustMapViewForLocation(this.searchLocation);
+    this.getStylistsInLocation(this.searchLocation);
+  }
 
   getLatLng() {
     this.locationService.getCurrentPosition(null, null)

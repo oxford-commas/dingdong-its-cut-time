@@ -299,7 +299,7 @@ app.get('/api/coordinates/:location', function(req, res) {
       lat: coords[0],
       lng: coords[1]
     }
-    console.log('COORDS from get req to /api/coordinates/:location', JSON.stringify(coordinates), 'when location is:', location);
+    console.log('Coordinates from get req to /api/coordinates/:location', JSON.stringify(coordinates), 'when location is:', location);
     res.status(200).json(coordinates);
   });
 });
