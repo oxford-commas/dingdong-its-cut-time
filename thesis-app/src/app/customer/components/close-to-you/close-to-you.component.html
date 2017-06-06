@@ -1,18 +1,11 @@
-<!-- <div class="container" style="display: flex; flex-wrap: wrap;">
-  <h3 style="text-align: center; align-self: center">Here are the stylists closest to you:</h3>
-  <div class="row" style="display: flex; flex-wrap: wrap;">
-    <div class="container" style="border: 2px solid; flex: 1 1; width: 30%">
-      <div style="width: 100%" *ngFor="let booking of bookings" [routerLink]="['/stylistProfile']">
-        <div>{{booking.name}}</div>
-        <div>{{booking.blurb}}</div>
-        <div>{{booking.styling}}</div>
-      </div>
-    </div>
-
-    <customer-map style="flex: 1 1; border: 2px solid black" [coordinates]="currentLocation"></customer-map>
+<div class="poppaDiv">
+  <h4>
+    <span class="glyphicon glyphicon-scissors">
+      {{stylistInformation.name}}
+      {{stylistInformation.phonenumber}}
+    </span>
+  </h4>
+  <div class="stylistInfo">
+    <h5>{{stylistInformation.site_url}}</h5>
   </div>
-</div> -->
-
-<div class="hello">{{stylistInformation.name}}</div>
-{{stylistInformation.site_url}}
-{{stylistInformation.phonenumber}}
+</div>
