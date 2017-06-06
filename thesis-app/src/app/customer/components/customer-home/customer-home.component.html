@@ -2,17 +2,23 @@
   <div class="container row">
     <customer-navbar
       [customerId]="customerProfile.id"
+      [searchLocation]="searchLocation"
+      (locationChange)="onSearchLocationChange($event)"
     >
     </customer-navbar>
-  <div class="container row">
-    Here are the stylists closest to you:
-    <div *ngFor="let stylist of stylistsCloseToYou">
-      <close-to-you
-        [stylistInformation]="stylist"
-        [routerLink]="['/stylistProfile', stylist.id]"
-      ></close-to-you>
+    <div class="container row">
+      Here are the stylists closest to you:
+      <div *ngFor="let stylist of stylistsCloseToYou">
+        <close-to-you
+          [stylistInformation]="stylist"
+          [routerLink]="['/stylistProfile', stylist.id]"
+        ></close-to-you>
+      </div>
+        <customer-map
+          [coordinates]="currentLocation"
+          [searchLocation]="searchLocation"
+          >
+        </customer-map>
     </div>
-    <customer-map [coordinates]="currentLocation"></customer-map>
-    <button (click)="getLocation()">See Coordinates</button>
   </div>
 </div>
