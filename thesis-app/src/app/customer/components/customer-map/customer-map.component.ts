@@ -43,10 +43,10 @@ export class CustomerMapComponent implements OnInit {
     this.getLatLng();
   }
 
-  ngOnChanges() {
-    this.adjustMapViewForLocation(this.searchLocation);
-    this.getStylistsInLocation(this.searchLocation);
-  }
+  // ngOnChanges() {
+  //   this.adjustMapViewForLocation(this.searchLocation);
+  //   this.getStylistsInLocation(this.searchLocation);
+  // }
 
   getLatLng() {
     this.locationService.getCurrentPosition(null, null)

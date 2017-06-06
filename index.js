@@ -63,18 +63,17 @@ app.post('/api/:stylistid/profileimage', function(req, res) {
 // get all stylists close to the user location
 app.get('/api/stylists/:location', function(req, res) {
   var location = req.params.location;
-  console.log(location);
+  console.log('Location from /api/stylists/:location', location);
   services.getLocationPoints(location, function(points) {
     var lat = points[0];
     var lng = points[1];
-    console.log('lat', lat, 'lng', lng)
+    console.log('From /api/stylists/:location lat', lat, 'lng', lng)
     helpers.getAllStylists(function(result) {
       var data = [];
       result.forEach(function(el) {
         var lat2 = el.latitude;
         var lng2 = el.longitude;
         var distance = helpers.calculateDistance(lat, lng, lat2, lng2, 'M');
-        console.log(distance);
         if (distance <= 15) {
           data.push(el);
         }
@@ -102,6 +101,7 @@ app.post('/api/userstylist', function (req, res) {
     var id = result.insertId;
     // get location points/add longitude and latitude in stylists/users profile in database based on location provided
     services.getLocationPoints(location, function(points) {
+      console.log('Location from /api/userstylist req.body');
       var lat = points[0];
       var lng = points[1];
       helpers.addLocation(lat, lng, id, function() {
@@ -137,9 +137,7 @@ app.post('/api/location', function(req, res) {
   services.getLocationPoints(location, function(points) {
     var lat = points[0];
     var lng = points[1];
-    console.log(lat);
-    console.log(lng)
-    console.log(id)
+    console.log(`lat: ${lat}, lng: ${lng}, id: ${id} for location: ${location}`);
     helpers.addLocation(lat, lng, id, function() {
       res.sendStatus(201);
     });
@@ -148,7 +146,7 @@ app.post('/api/location', function(req, res) {
 
 // add bookings to the database
 app.post('/api/bookings', function(req, res) {
-  console.log(req.body);
+  console.log('Req.body for request to api/bookings', req.body);
   helpers.addToBookings(req.body.id_users, req.body.id_stylists, req.body.isconfirmed, req.body.isComplete, req.body.time, req.body.location, function() {
     res.sendStatus(201);
   });
@@ -301,7 +299,7 @@ app.get('/api/coordinates/:location', function(req, res) {
       lat: coords[0],
       lng: coords[1]
     }
-    console.log(JSON.stringify(coordinates));
+    console.log('COORDS from get req to /api/coordinates/:location', JSON.stringify(coordinates), 'when location is:', location);
     res.status(200).json(coordinates);
   });
 });
