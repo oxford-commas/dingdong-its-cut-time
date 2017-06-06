@@ -293,8 +293,28 @@ app.delete('/api/messages', (req, res) => {
   helpers.deleteChat(messageIds, results => res.status(200).json(results));
 });
 
+// get coordinates for location/street address
+app.get('/api/coordinates/:location', function(req, res) {
+  var location = req.params.location;
+  services.getLocationPoints(location, function(coords) {
+    var coordinates = {
+      lat: coords[0],
+      lng: coords[1]
+    }
+    console.log(JSON.stringify(coordinates));
+    res.status(200).json(coordinates);
+  });
+});
 
-
+// get location/street address from coordinates
+app.get('/api/streetaddress/:latlng', function(req, res) {
+  var latlng = req.params.latlng;
+  services.getLocationFromCoordinates(latlng, function(location) {
+    var address = location.results[0].formatted_address;
+    console.log(address);
+    res.status(200).json(address);
+  });
+});
 
 app.get('*', function(req, res) {
  res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));

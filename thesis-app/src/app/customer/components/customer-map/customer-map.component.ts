@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocationService } from '../../../services';
 import { StylistService } from '../../../services';
@@ -9,7 +9,7 @@ import { StylistService } from '../../../services';
   styleUrls: [ './customer-map.component.css' ]
 })
 
-export class CustomerMapComponent {
+export class CustomerMapComponent implements OnInit {
   constructor(
     private locationService: LocationService,
     private stylistService: StylistService,
@@ -27,27 +27,62 @@ export class CustomerMapComponent {
         })
       }, err => console.log(err));
 
-    // sets the initial center position for the map
+    // sets the initial center position for the map to a default location
     this.getLatLng();
   }
 
   @Input() coordinates;
-
-  title: string = 'Stylists in your area';
-
-  public lat: number;
-  public lng: number;
+  @Input() lat: number;
+  @Input() lng: number;
+  @Input() searchLocation: string;
 
   // initial zoom value for the map
   public zoom: number = 14;
 
+  ngOnInit() {
+    this.getLatLng();
+  }
+
+  ngOnChanges() {
+    this.adjustMapViewForLocation(this.searchLocation);
+    this.getStylistsInLocation(this.searchLocation);
+  }
+
   getLatLng() {
-    this.locationService.getCurrentPosition()
+    this.locationService.getCurrentPosition(null, null)
       .subscribe(res =>  {
+        console.log(res);
+        console.log(JSON.stringify(res));
+        console.log(res.coords);
         this.lat = res.coords.latitude;
         this.lng = res.coords.longitude;
         console.log(`Latitude is: ${this.lat}, longitude is: ${this.lng}`);
       });
+  }
+
+  adjustMapViewForLocation(location: string) {
+    this.locationService.getCoordinatesForLocation(location)
+      .subscribe(res => {
+        console.log(res);
+        console.log(JSON.stringify(res));
+        this.lat = res.lat;
+        this.lng = res.lng;
+        console.log(`Latitude is: ${this.lat}, longitude is: ${this.lng}`);
+      });
+  }
+
+  getStylistsInLocation(location: string) {
+    this.stylistService.getStylistsInLocation(location)
+      .subscribe(data => {
+        this.stylists = data;
+        this.stylists.map(stylist => {
+          stylist.label = {
+            color: 'black',
+            fontWeight: 'bold',
+            text: stylist.name
+          }
+        })
+      }, err => console.log(err));
   }
 
   goToStylist(id) {
@@ -82,7 +117,6 @@ export class CustomerMapComponent {
 }
 
 // interfaces for type safety
-// TODO: Separate these to their own files under interfaces folder
 
 interface label {
   color: string;

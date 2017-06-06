@@ -22,4 +22,20 @@ var getLocationPoints = function(location, callback) {
   });
 }
 
+//helper function for reverse geocoding
+var getLocationFromCoordinates = function(latlng, callback) {
+  var path = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&key=AIzaSyAODMU1aRyby6iXc5iv4-LXBq_Wb5hRZCA`;
+  https.get(path, res => {
+    var data = '';
+      res.on('data', (chunk) => {
+        data += chunk;
+      });
+      res.on('end', () => {
+        var address = JSON.parse(data);
+        callback(address);
+      })
+  });
+}
+
 module.exports.getLocationPoints = getLocationPoints;
+module.exports.getLocationFromCoordinates = getLocationFromCoordinates;
