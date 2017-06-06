@@ -202,6 +202,12 @@ app.put('/booking/:bookingid', function (req, res) {
 
 });
 
+// HAIRCUT STYLES //
+
+app.get('/api/stylistServices', (req, res) => {
+  helpers.getAllStyles(results => res.status(200).send(results));
+});
+
 //given stylistId, delete stylist info from the database along with the bookings(foreign key constraint)
 app.delete('/stylist/:stylistid', function (req, res) {
   console.log(req.params.stylistid);
