@@ -286,6 +286,16 @@ app.get('/api/coordinates/:location', function(req, res) {
   });
 });
 
+// get location/street address from coordinates
+app.get('/api/streetaddress/:latlng', function(req, res) {
+  var latlng = req.params.latlng;
+  services.getLocationFromCoordinates(latlng, function(location) {
+    var address = location.results[0].formatted_address;
+    console.log(address);
+    res.status(200).json(address);
+  });
+});
+
 app.get('*', function(req, res) {
  res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
 });
