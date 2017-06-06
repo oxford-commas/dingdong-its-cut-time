@@ -27,6 +27,7 @@ export class CustomerHomeComponent implements OnInit {
   public currentLocation: any;
   public customerProfile: any;
   public stylistsCloseToYou: any;
+  public bookingsDue: any;
 
   ngOnInit() {
     // Default location inititialization to sanfrancisco
@@ -64,7 +65,10 @@ export class CustomerHomeComponent implements OnInit {
   checkForBookingsDue(id: number) {
     this.bookingService.fetchDueBookings(id)
       .subscribe(
-        data => console.log('fetching dues....', data),
+        data => {
+          console.log('fetching dues....', data);
+          this.bookingsDue = data;
+        },
         err => console.log(err)
       );
   }

@@ -16,4 +16,9 @@
     <customer-map [coordinates]="currentLocation"></customer-map>
     <button (click)="getLocation()">See Coordinates</button>
   </div>
+  <div *ngIf="!!bookingsDue">
+    <div *ngFor="let booking of bookingsDue">
+      I OWE {{booking.name}} MONEY!!!!
+    </div>
+  </div>
 </div>
