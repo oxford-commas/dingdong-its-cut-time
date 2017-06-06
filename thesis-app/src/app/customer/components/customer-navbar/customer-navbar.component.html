@@ -1,6 +1,5 @@
 <div class="poppaDiv">
   <div class="miniContainer">
-
     <div class="title">
       <div>
         <h1>Ding Dong: It's Cut Time</h1>
@@ -26,17 +25,15 @@
         </li>
 
         <div class="dropdown">
-          <div class="nestedDrop">
-            <span class="caret">Username</span>
-              <div class="dropdown-content">
-                <ul class="dropdownUl">
-                  <li [routerLink]="['/home']"><h4>Home</h4></li>
-                  <li [routerLink]="['/messages']"><h4>Messages</h4></li>
-                  <li [routerLink]="['/customerProfile', customerId]"><h4>Settings</h4></li>
-                  <li [routerLink]="['/login']"><h4>Logout</h4></li>
-                </ul>
-              </div>
-          </div>
+          <span class="caret">Username</span>
+            <div class="dropdown-content">
+              <ul class="dropdownUl">
+                <li [routerLink]="['/home']"><h4>Home</h4></li>
+                <li [routerLink]="['/messages']"><h4>Messages</h4></li>
+                <li [routerLink]="['/customerProfile', customerId]"><h4>Settings</h4></li>
+                <li [routerLink]="['/login']"><h4>Logout</h4></li>
+              </ul>
+            </div>
         </div>
       </ul>
     </nav>
