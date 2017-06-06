@@ -17,14 +17,12 @@
 
       <div class="servicesContainer">
         <h4>Services I provide</h4>
-
         <div class="listStyles">
           <div class="styleItems" *ngFor="let style of ['hard', 'coded', 'styles']">
             <h5>{{style}}</h5>
           </div>
         </div>
-
-        <div class="container row">
+        <div class="aboutMe">
           <h4>About Me</h4>
           <div class="paragraph">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -32,11 +30,11 @@
         </div>
 
         <h4>Link to personal site:</h4>
-        <div class="container row personalcontainer">
+        <div class="container row personalContainer">
           <a href="stylistProfile.site_url">{{stylistProfile.site_url}}</a>
         </div>
       </div>
-      <div>
+      <div class="buttonContainer">
         <button (click)="toggleModal()">Request a cut</button>
       </div>
     </div>
