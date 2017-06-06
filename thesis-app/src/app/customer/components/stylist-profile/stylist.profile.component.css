@@ -114,9 +114,8 @@ textarea {
 */
 .paragraph {
   overflow: scroll;
-  width: 68%;
+  width: 100%;
   border-top: 2px solid;
-  /*border: 2px solid;*/
 }
 
 .modalWrapper {
@@ -124,13 +123,13 @@ textarea {
   color: black;
   justify-content: center;
   align-items: center;
-  height: 250px;
-  width: 1000px;
+  /*height: 25%;
+  width: 100%;*/
   padding-top: 20px;
   margin-top: 30px;
   display: none;
   position: fixed;
-  /*z-index: 1;*/
+  z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
@@ -142,11 +141,12 @@ textarea {
 .modalContent {
   border: 2px solid black;
   flex: 1 1;
-  width: 95ch;
+  width: 50%;
+  height: 50%;
   padding: 5ch;
   position: absolute;
-  margin-left: -150px;
-  margin-top: -150px;
+  margin-left: -35%;
+  margin-top: -35%;
   top: 50%;
   left: 50%;
   background-color: white;
