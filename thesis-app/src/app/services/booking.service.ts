@@ -16,6 +16,11 @@ export class BookingService {
       .map(res => res.json());
   }
 
+  fetchBookingsForPayment(id: number) {
+    return this.http.get(`/api/bookings/complete/${id}`)
+      .map(res => res.json());
+  }
+
   confirmBooking(id: number) {
     return this.http.put(`/api/bookings/${id}`, id)
       .map(res => res.json());
@@ -24,5 +29,10 @@ export class BookingService {
   deleteBooking(id: number) {
     return this.http.delete(`/api/bookings/${id}`)
       .map(res => res);
+  }
+
+  completeBooking(id: number) {
+    return this.http.put(`/api/bookings/complete/${id}`, id)
+      .map(res => res.json());
   }
 }

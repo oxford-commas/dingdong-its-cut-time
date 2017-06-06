@@ -117,9 +117,22 @@ app.post('/api/bookings', function(req, res) {
   });
 });
 
+// get bookings for a customer that need to be paid for
+app.get('/api/bookings/complete/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.getBookingsDue(id, result => res.status(200).json(result));
+});
+
+// confirm a booking will occur
 app.put('/api/bookings/:id', (req, res) => {
   var id = req.params.id;
   helpers.confirmBooking(id, result => res.status(200).json(result));
+});
+
+// complete a booking which is now ready to be paid for
+app.put('/api/bookings/complete/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.completeBooking(id, result => res.status(200).json(result));
 });
 
 // given stylistId, get their associated bookings and customer names

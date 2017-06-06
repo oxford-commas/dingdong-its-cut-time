@@ -45,9 +45,9 @@ var calculateDistance = function distance(lat1, lon1, lat2, lon2, unit) {
   return dist
 };
 
-var addToBookings = function(userId, stylistId, isConfirmed, time, location, callback) {
-  var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, location) VALUES (?, ?, ?, ?, ?)';
-  model.con.query(sql, [userId, stylistId, isConfirmed, time, location],function (err, result) {
+var addToBookings = function(userId, stylistId, isConfirmed, isComplete, time, location, callback) {
+  var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, location, isComplete) VALUES (?, ?, ?, ?, ?, ?)';
+  model.con.query(sql, [userId, stylistId, isConfirmed, time, location, isComplete],function (err, result) {
     if (err) throw err;
     callback(result);
   });
@@ -55,7 +55,7 @@ var addToBookings = function(userId, stylistId, isConfirmed, time, location, cal
 
 var getBookings = function(userId, callback) {
   var sql = `
-    SELECT b.id, b.id_stylists, b.isconfirmed, b.time, b.location, us.name as customer
+    SELECT b.id, b.id_stylists, b.isconfirmed, b.time, b.location, b.isComplete, us.name as customer
     FROM bookings b INNER JOIN users_stylists us
     WHERE b.id_stylists = ? AND b.id_users = us.id`;
   model.con.query(sql, [userId], (err, results) => callback(results));
@@ -69,10 +69,26 @@ var confirmBooking = (bookingId, callback) => {
   model.con.query(sql, [bookingId], (err, results) => callback(results));
 };
 
+var completeBooking = (id, callback) => {
+  var sql = `
+    UPDATE bookings
+    SET isComplete = 1
+    WHERE bookings.id = ?`;
+    model.con.query(sql, [id], (err, results) => callback(results));
+};
+
 var getStylistBookings = function(stylistId, callback) {
   model.con.query('SELECT * FROM `bookings` WHERE `id_stylists` = ?', [stylistId], function (error, results, fields) {
     callback(results);
   });
+};
+
+var getBookingsDue = (id, callback) => {
+  var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email
+    FROM bookings b INNER JOIN users_stylists us
+    WHERE b.isComplete = 1 AND b.id_users = ?
+    AND us.id = b.id_stylists`;
+  model.con.query(sql, [id], (err, results) => callback(results));
 };
 
 var deleteBooking = (id, callback) => {
@@ -153,4 +169,6 @@ module.exports.getMessages = getMessages;
 module.exports.postMessage = postMessage;
 module.exports.deleteChat = deleteChat;
 module.exports.confirmBooking = confirmBooking;
+module.exports.completeBooking = completeBooking;
 module.exports.deleteBooking = deleteBooking;
+module.exports.getBookingsDUe = getBookingsDUe;

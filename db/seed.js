@@ -229,7 +229,8 @@ const booksingsArray = [
     name: 'Mateo',
     userid: 4,
     stylistid: 2,
-    isConfirmed: 0,
+    isconfirmed: 0,
+    isComplete: 0,
     time: Date.now(),
     location: 'San Mateo, CA, CA'
   },
@@ -237,7 +238,8 @@ const booksingsArray = [
     name: 'mrhighland',
     userid: 4,
     stylistid: 2,
-    isConfirmed: 1,
+    isconfirmed: 1,
+    isComplete: 0,
     time: Date.now(),
     location: '1851 Lexington Ave, San Mateo, CA'
   },
@@ -245,7 +247,8 @@ const booksingsArray = [
     name: 'bigbess',
     userid: 6,
     stylistid: 2,
-    isConfirmed: 0,
+    isconfirmed: 0,
+    isComplete: 0,
     time: Date.now(),
     location: '506 N Delaware St, San Mateo, CA'
   },
@@ -253,7 +256,8 @@ const booksingsArray = [
     name: 'dnalounge',
     userid: 15,
     stylistid: 16,
-    isConfirmed: 0,
+    isconfirmed: 0,
+    isComplete: 0,
     time: Date.now(),
     location: '375 11th St, San Francisco, CA'
   },
@@ -261,7 +265,8 @@ const booksingsArray = [
     name: 'palaceoffinearts',
     userid: 15,
     stylistid: 19,
-    isConfirmed: 0,
+    isconfirmed: 0,
+    isComplete: 0,
     time: Date.now(),
     location: '3301 Lyon St, San Francisco, CA'
   }
@@ -594,7 +599,8 @@ booksingsArray.forEach(booking => {
   helpers.addToBookings(
     booking.userid,
     booking.stylistid,
-    booking.isConfirmed,
+    booking.isconfirmed,
+    booking.isComplete,
     booking.time,
     booking.location, (resultFromServer) => {
       console.log(resultFromServer);

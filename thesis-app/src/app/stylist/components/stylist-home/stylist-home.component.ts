@@ -50,8 +50,12 @@ export class StylistHomeComponent implements OnInit {
   }
 
   completeBooking(id: number, index: number) {
-    this.deleteBooking(id, index);
-    console.log('TODO: send user a prompt to pay with stripe');
+    this.bookings.splice(index, 1);
+    this.bookingService.completeBooking(id)
+      .subscribe(
+        result => console.log(result),
+        err => console.log(err)
+      );
   }
 
 }
