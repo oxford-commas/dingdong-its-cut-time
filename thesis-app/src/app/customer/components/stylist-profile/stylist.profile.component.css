@@ -123,10 +123,8 @@ textarea {
   color: black;
   justify-content: center;
   align-items: center;
-  /*height: 25%;
-  width: 100%;*/
-  padding-top: 20px;
-  margin-top: 30px;
+  padding-top: 1em;
+  margin-top: 1em;
   display: none;
   position: fixed;
   z-index: 1;
@@ -141,18 +139,28 @@ textarea {
 .modalContent {
   border: 2px solid black;
   flex: 1 1;
-  width: 50%;
-  height: 50%;
+  width: 82%;
+  height: 80%;
   padding: 5ch;
+  margin: 5ch;
+  margin-left: 12ch;
   position: absolute;
-  margin-left: -35%;
-  margin-top: -35%;
-  top: 50%;
-  left: 50%;
+  /*margin-left: -35%;
+  margin-top: -35%;*/
+  /*top: 50%;
+  left: 50%;*/
   background-color: white;
 }
 
 .modeitem {
-  padding: 5ch;
-  margin: 5ch;
+  padding: 1ch;
+  margin: 1ch;
+}
+
+input, textarea {
+  background-color: #d3d3d3;
+}
+
+.bigWrapper {
+  display: flex;
 }
