@@ -223,3 +223,7 @@ module.exports.updateImage = updateImage;
 module.exports.getImagePath = getImagePath;
 module.exports.validateUser = validateUser;
 module.exports.getAllStyles = getAllStyles;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 28c5568faebdbeaf24e03ecf95cec94bbf5efb29
