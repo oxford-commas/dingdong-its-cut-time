@@ -1,8 +1,7 @@
 var https = require('https');
 
 var getLocationPoints = function(location, callback) {
-  // var p = 'https://maps.googleapis.com/maps/api/geocode/json?address='+location+'&key=AIzaSyAODMU1aRyby6iXc5iv4-LXBq_Wb5hRZCA'
-  var p = 'https://maps.googleapis.com/maps/api/geocode/json?address='+location+'&key=AIzaSyDts_evd3goemU-neN6oI3o-aIbJhPHPWA';
+  var p = 'https://maps.googleapis.com/maps/api/geocode/json?address='+location+'&key=AIzaSyAODMU1aRyby6iXc5iv4-LXBq_Wb5hRZCA';
   https.get(p, (res) => {
     var st = '';
       res.on('data', (chunk) => {
@@ -25,8 +24,7 @@ var getLocationPoints = function(location, callback) {
 
 //helper function for reverse geocoding
 var getLocationFromCoordinates = function(latlng, callback) {
-  // var path = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&key=AIzaSyAODMU1aRyby6iXc5iv4-LXBq_Wb5hRZCA`;
-  var path = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&key=AIzaSyDts_evd3goemU-neN6oI3o-aIbJhPHPWA`;
+  var path = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&key=AIzaSyAODMU1aRyby6iXc5iv4-LXBq_Wb5hRZCA`;
   https.get(path, res => {
     var data = '';
       res.on('data', (chunk) => {
