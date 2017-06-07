@@ -11,9 +11,7 @@ export class CustomerNavbarComponent {
   constructor(
     private stylistService: StylistService,
     private locationService: LocationService
-    ) {
-    console.log('GET the name of user logged in');
-  }
+    ) {}
 
   @Input() customerId: number;
   @Input() searchLocation: string;

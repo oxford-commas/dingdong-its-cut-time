@@ -1,5 +1,7 @@
 <h2>Hello world</h2>
-<customer-navbar></customer-navbar>
+<customer-navbar
+  [customerId]="stylistProfile.id"
+></customer-navbar>
 Bookings:
 <div *ngFor="let booking of bookings; let i = index;">
   <booking

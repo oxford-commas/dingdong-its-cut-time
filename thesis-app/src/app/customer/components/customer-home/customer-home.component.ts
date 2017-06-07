@@ -39,8 +39,8 @@ export class CustomerHomeComponent implements OnInit {
     //   res => console.log(res),
     //   err => console.log(err)
     // );
-    
-    this.customerProfile = this.stateService.customerProfile[0];
+
+    this.customerProfile = this.stateService.retrieveCustomer();
     this.isProfileFetched = true;
     this.getLocationCoordinates(this.latitude, this.longitude);
     this.getLocationFromCoordinates(this.latitude, this.longitude);
@@ -57,7 +57,7 @@ export class CustomerHomeComponent implements OnInit {
       .subscribe(data => {
         this.stylistsCloseToYou = data;
       }, err => console.log(err));
-    
+
     // Default location inititialization to sanfrancisco
     this.stylistService.getStylistsInLocation('sanfrancisco')
       .subscribe(data => {
@@ -104,7 +104,7 @@ export class CustomerHomeComponent implements OnInit {
         err => console.log(err)
       );
   }
-  
+
   getLocationFromCoordinates(lat, lng) {
     this.locationService.getLocationFromCoordinates(lat, lng)
       .subscribe(res => {

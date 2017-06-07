@@ -22,7 +22,8 @@ export class CustomerProfileComponent implements OnInit {
     // this.route.params.subscribe(params =>
     //   this.customerId = +params['id']
     // );
-    this.customerId = this.stateService.customerProfile[0].id;
+    // this.customerId = this.stateService.retrieveCustomer().id;
+    this.customerId = 1;
 
     this.requestService.getStylistById(this.customerId)
       .subscribe(
