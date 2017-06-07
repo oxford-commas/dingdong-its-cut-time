@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MessageService, StateService } from '../../../services';
+import { Component } from '@angular/core';
+import { StateService, MessageService } from '../../../services';
 import { IMessage } from '../../interfaces';
 
 @Component({
@@ -7,24 +7,16 @@ import { IMessage } from '../../interfaces';
   templateUrl: './customer-message.component.html',
   styleUrls: ['./customer-message.component.css']
 })
-export class CustomerMessageComponent implements OnInit {
-  constructor(private messageService: MessageService) {}
+export class CustomerMessageComponent {
+  constructor(
+    private stateService: StateService,
+    private messageService: MessageService) {}
 
-  @Input() messages: Array<Array<IMessage>>;
+  public messages: IMessage;
   public currentChat;
-
-  ngOnInit() {
-    this.messageService.getMessages(1)
-      .subscribe(
-        data => console.log(this.messages = data),
-        err => console.log(err)
-      );
-
-  }
 
   setCurrentChat(conversation) {
     this.currentChat = conversation;
-    console.log('setting current chat...', conversation);
   }
 
   deleteChat(conversation) {

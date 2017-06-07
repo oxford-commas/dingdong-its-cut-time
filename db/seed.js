@@ -7,7 +7,7 @@ var model = require('./model.js');
 
 const stylistArray = [
   {
-    id: 0,
+    id: 1,
     'username': 'Shari',
     'password': 'ShariPassword',
     'location': 'San Ramon, CA, CA',

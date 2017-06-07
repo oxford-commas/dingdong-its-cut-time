@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { RequestService, BookingService} from '../../../services/';
+import { RequestService, BookingService, StateService} from '../../../services/';
 
 @Component({
    selector: 'stylist-home',
@@ -9,7 +9,8 @@ import { RequestService, BookingService} from '../../../services/';
 export class StylistHomeComponent implements OnInit {
   constructor(
     private requestService: RequestService,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private stateService: StateService
   ) {}
 
   @Input() stylistProfile;
@@ -17,13 +18,9 @@ export class StylistHomeComponent implements OnInit {
   public bookings: any;
 
   ngOnInit() {
-    this.requestService.getStylistById(2) //hard coded logged in stylist
-      .subscribe(
-        data => this.stylistProfile = data,
-        err => console.log(err)
-      );
+    this.stylistProfile = this.stateService.retrieveCustomer();
 
-    this.bookingService.fetchBookingsForStylist(2) // hard coded logged in stylist
+    this.bookingService.fetchBookingsForStylist(this.stylistProfile.id)
       .subscribe(
         data => this.bookings = data,
         err => console.log(err),
