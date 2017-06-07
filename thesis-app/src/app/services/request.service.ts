@@ -52,4 +52,14 @@ export class RequestService {
         }
       )
   }
+
+  getUserImg(id: number) {
+    return this.http.get(`/api/profile/${id}`)
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      )
+  }
+
 }
