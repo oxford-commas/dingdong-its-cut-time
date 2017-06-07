@@ -1,5 +1,4 @@
 .poppaDiv {
-  border: 2px solid red;
   height: 100%;
   width: 100%;
   display: flex;
@@ -7,7 +6,6 @@
 }
 
 .inboxContainer {
-  border: 2px solid red;
   height: 35%;
   width: 100%;
   overflow: scroll;
