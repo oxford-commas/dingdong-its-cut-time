@@ -4,7 +4,8 @@ import { IMessage } from '../../interfaces';
 
 @Component({
   selector: 'customer-inbox',
-  templateUrl: './customer-inbox.component.html'
+  templateUrl: './customer-inbox.component.html',
+  styleUrls: ['./customer-inbox.component.css']
 })
 export class CustomerInboxComponent {
 

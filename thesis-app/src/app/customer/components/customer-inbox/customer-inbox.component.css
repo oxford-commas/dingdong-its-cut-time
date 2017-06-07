@@ -1,0 +1,51 @@
+.poppaDiv {
+  border: 2px solid blue;
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+
+h1 {
+  border-bottom: 2px solid;
+}
+
+h4 {
+  margin-right: 2em;
+  padding-right: 2em;
+}
+
+.rowBody {
+  display: flex;
+  padding: 1em;
+  margin: 1em;
+  border-bottom: 2px solid;
+}
+.rowItem {
+  width: 100%;
+}
+
+.title {
+  width: 100%;
+  display: flex;
+}
+.messageUser {
+  flex: 1 1 90%;
+  align-self: right;
+  /*width: 85%;*/
+}
+
+.buttonContainer {
+  flex: 1 1 50%;
+  border: 2px solid green;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+button {
+  align-self: right;
+}
+
