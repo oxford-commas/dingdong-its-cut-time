@@ -11,4 +11,9 @@ export class ChatHistoryComponent {
   constructor() {
     console.log(this.chatHistory)
   }
+
+  formatDate(timeDate) {
+    return timeDate.toDateString();
+  }
 }
+
