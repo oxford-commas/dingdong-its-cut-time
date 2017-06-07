@@ -1,5 +1,8 @@
 const helpers = require('./helpers.js');
-const services = require('../locationServices.js')
+const services = require('../locationServices.js');
+var model = require('./model.js');
+
+
 
 
 const stylistArray = [
@@ -568,3 +571,13 @@ stylistServices.forEach(style => {
     console.log(res)
   })
 });
+
+// implant image in users_stylists
+for (var i = 0; i < 21; i++) {
+    var id = i;
+    var url = 'uploads/1496789933826.jpg'
+  model.con.query('UPDATE users_stylists SET image_url = ?', [url],function (err, result) {
+    if (err) throw err;
+    console.log('inserted');
+  });
+}
