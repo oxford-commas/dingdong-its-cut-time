@@ -5,7 +5,9 @@
       <div class="title" (click)="openHistory.emit(conversation.slice().reverse())">
         <div class="messageUser">
           <h4>{{conversation[0].recipient}}: </h4>
-          <span>{{ conversation[0].subjectHeading }}</span>
+          <span>
+            {{ conversation[0].subjectHeading }} @ {{ conversation[0].time }}
+          </span>
         </div>
         <div class="buttonContainer">
           <button (click)="deleteChat.emit(conversation)">Delete</button>
