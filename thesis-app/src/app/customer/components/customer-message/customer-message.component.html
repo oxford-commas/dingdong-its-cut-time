@@ -1,12 +1,12 @@
-<!-- <h1>customer messge compomnent</h1>
-<customer-dropdown></customer-dropdown> -->
 <customer-navbar ></customer-navbar>
-<h1>Inbox</h1>
-<customer-inbox
-  [messages]="messages"
-  (openHistory)="setCurrentChat($event)"
-  (deleteChat)="deleteChat($event)"
->
-</customer-inbox>
-<h1>Chat Log</h1>
-<chat-history [chatHistory]="currentChat"></chat-history>
+<div class="poppaDiv">
+  <customer-inbox
+    [messages]="messages"
+    (openHistory)="setCurrentChat($event)"
+    (deleteChat)="deleteChat($event)"
+  >
+  </customer-inbox>
+  <chat-history
+    [chatHistory]="currentChat">
+  </chat-history>
+</div>

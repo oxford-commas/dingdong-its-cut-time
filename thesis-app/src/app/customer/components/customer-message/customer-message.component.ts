@@ -4,7 +4,8 @@ import { IMessage } from '../../interfaces';
 
 @Component({
   selector: 'customer-message',
-  templateUrl: './customer-message.component.html'
+  templateUrl: './customer-message.component.html',
+  styleUrls: ['./customer-message.component.css']
 })
 export class CustomerMessageComponent implements OnInit {
   constructor(private messageService: MessageService) {}
