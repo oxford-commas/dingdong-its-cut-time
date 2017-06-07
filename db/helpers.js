@@ -45,6 +45,15 @@ var calculateDistance = function distance(lat1, lon1, lat2, lon2, unit) {
   return dist
 };
 
+//update image url for the userStylists
+var updateImage = function (imageUrl, id, callback) {
+  var sql = 'UPDATE users_stylists SET image_url = ? WHERE id = ?'
+  model.con.query(sql, [imageUrl, id],function (err, result) {
+    if (err) throw err;
+    callback();
+  });
+}
+
 var updateProfile = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, callback) {
   var sql = 'UPDATE users_stylists SET type = ?, name = ?, password = ?, billingaddress = ?, phonenumber = ?, email = ?, site_url = ?, gender = ?, image_url = ? WHERE id = ?'
   model.con.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id],function (err, result) {
@@ -176,6 +185,13 @@ var deleteChat = (ids, callback) => {
   model.con.query(`DELETE FROM messages WHERE id in (${ids})`, (err, results) => callback(results));
 };
 
+//get image_url from users_Stylists
+var getImagePath = function(id, callback) {
+  model.con.query('select `image_url` from `users_stylists` where id = ?', [id], function(err, results) {
+    callback(results);
+  });
+}
+
 var validateUser = (username, password, callback) => {
   var sql = 'SELECT * FROM users_stylists WHERE name = ? AND password = ?';
   model.con.query(sql, [username, password],(err, results) => callback(results));
@@ -203,5 +219,7 @@ module.exports.getBookingsDue = getBookingsDue;
 module.exports.updateProfile = updateProfile;
 module.exports.deleteBooking = deleteBooking;
 module.exports.updateBooking = updateBooking;
+module.exports.updateImage = updateImage;
+module.exports.getImagePath = getImagePath;
 module.exports.validateUser = validateUser;
 module.exports.getAllStyles = getAllStyles;
