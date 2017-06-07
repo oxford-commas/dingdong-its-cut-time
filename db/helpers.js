@@ -129,6 +129,7 @@ var getImagePath = function(id, callback) {
   model.con.query('select `image_url` from `users_stylists` where id = ?', [id], function(err, results) {
     callback(results);
   });
+}
 
 var validateUser = (username, password, callback) => {
   var sql = 'SELECT * FROM users_stylists WHERE name = ? AND password = ?';
