@@ -34,18 +34,18 @@ h4 {
 .messageUser {
   flex: 1 1 90%;
   align-self: right;
-  /*width: 85%;*/
 }
 
 .buttonContainer {
-  flex: 1 1 50%;
-  border: 2px solid green;
+  flex: 1 1 10%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
   width: 100%;
 }
 
 button {
-  align-self: right;
+  background-color: rgba(173, 216, 230, 0.9);
+  border-radius: 10px;
 }
-
