@@ -19,11 +19,6 @@ export class StylistHomeComponent implements OnInit {
 
   ngOnInit() {
     this.stylistProfile = this.stateService.retrieveCustomer();
-    // this.requestService.getStylistById(2) //hard coded logged in stylist
-    //   .subscribe(
-    //     data => this.stylistProfile = data,
-    //     err => console.log(err)
-    //   );
 
     this.bookingService.fetchBookingsForStylist(this.stylistProfile.id)
       .subscribe(

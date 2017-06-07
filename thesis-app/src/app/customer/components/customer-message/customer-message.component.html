@@ -3,7 +3,7 @@
 <customer-navbar ></customer-navbar>
 <h1>Inbox</h1>
 <customer-inbox
-  [messages]="messages"
+  [messages]="stateService.retrieveCustomer().messages"
   (openHistory)="setCurrentChat($event)"
   (deleteChat)="deleteChat($event)"
 >

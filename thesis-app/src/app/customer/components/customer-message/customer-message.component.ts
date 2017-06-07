@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { StateService, MessageService } from '../../../services';
 import { IMessage } from '../../interfaces';
 
@@ -6,16 +6,12 @@ import { IMessage } from '../../interfaces';
   selector: 'customer-message',
   templateUrl: './customer-message.component.html'
 })
-export class CustomerMessageComponent implements OnInit {
+export class CustomerMessageComponent {
   constructor(private stateService: StateService, private messageService: MessageService) {
   }
 
   @Input() messages: IMessage;
   public currentChat;
-
-  ngOnInit() {
-    this.messages = this.stateService.retrieveCustomer().messages;
-  }
 
   setCurrentChat(conversation) {
     this.currentChat = conversation;
