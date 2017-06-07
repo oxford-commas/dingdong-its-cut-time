@@ -1,9 +1,21 @@
 var express = require('express');
+var multer  = require('multer');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '.jpg') //Appending .jpg
+  }
+});
+var upload = multer({ storage: storage });
+//var upload = multer({ dest: 'uploads/' })
 var https = require('https');
 var path = require('path');
 var app = express();
 var bodyParser = require('body-parser');
 var helpers = require('./db/helpers.js');
+var fs = require('fs');
 var services = require('./locationServices.js');
 const cors = require('cors');
 app.use(cors());
@@ -41,7 +53,6 @@ app.post('/api/stripe', function(req, res) {
   });
 });
 
-
 // get all users and stylists given user or stylist id
 app.get('/api/userStylist/:id', function(req, res) {
   var userid = req.params.id;
@@ -49,13 +60,28 @@ app.get('/api/userStylist/:id', function(req, res) {
     res.status(200).json(data[0]);
   });
 });
-
-// images --- working on it
-app.post('/api/:stylistid/profileimage', function(req, res) {
-  var id = req.params.stylistid
-  res.status(200);
+ 
+//gets image of a user/stylist --- completed
+app.get('/api/profile/:id', function(req, res, next) {
+  console.log(req.params.id)
+  helpers.getImagePath(req.params.id, function(data) {
+    console.log(data);
+    var file = data[0].image_url;
+    console.log(path.join(__dirname + '/' + file));
+    res.sendFile(path.join(__dirname + '/' + file));
+  });
 });
 
+// updates image url for the stylist/user given stylist/user id --- completed
+app.post('/api/profile/:id', upload.single('avatar'), function (req, res, next) {
+  console.log(req.params.id)
+  console.log(req.file);
+  console.log(req.file.path);
+  helpers.updateImage(req.file.path, req.params.id, function() {
+    console.log('added image')
+    res.sendStatus(201);
+  });
+});
 
 // get all stylists close to the user location
 app.get('/api/stylists/:location', function(req, res) {
@@ -299,5 +325,5 @@ app.get('*', function(req, res) {
 });
 
 app.listen(4200, function () {
-  console.log('Example app listening on port 4200!')
+  console.log('Example app listening on port 4200!');
 });
