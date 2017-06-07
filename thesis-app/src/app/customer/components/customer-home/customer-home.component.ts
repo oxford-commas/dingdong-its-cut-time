@@ -25,7 +25,7 @@ export class CustomerHomeComponent implements OnInit {
   public latitude: number;
   public longitude: number;
   public bookingsDue: any;
-  userProfile: any
+  userProfile: any;
 
   constructor(
     private requestService: RequestService,
@@ -33,24 +33,24 @@ export class CustomerHomeComponent implements OnInit {
     private stylistService: StylistService,
     private bookingService: BookingService,
     private stateService: StateService
-  ) {}
+  ) {
+    this.getLocationCoordinates(this.latitude, this.longitude);
+  }
 
   ngOnInit() {
-    // this.customerProfile = requestService.getStylistById(0).subscribe(
-    //   res => console.log(res),
-    //   err => console.log(err)
-    // );
-
     this.customerProfile = this.stateService.customerProfile[0];
     this.isProfileFetched = true;
     this.getLocationCoordinates(this.latitude, this.longitude);
     this.getLocationFromCoordinates(this.latitude, this.longitude);
-    this.getStylistsAtLocation(this.currentLocation);
+    this.searchLocation = this.currentLocation;
+    this.pinStylistsAtLocation(this.searchLocation);
   }
 
-  ngOnChanges() {
-    this.getStylistsAtLocation(this.searchLocation);
-    this.getLocationCoordinates(this.latitude, this.longitude);
+  pinStylistsAtLocation(location: any) {
+    this.stylistService.getStylistsInLocation(this.currentLocation)
+      .subscribe(data => {
+        this.stylistsCloseToYou = data;
+      }, err => console.log(err));
   }
 
   getStylistsAtLocation(location: any) {
@@ -92,7 +92,14 @@ export class CustomerHomeComponent implements OnInit {
         console.log(res);
         this.currentLocation = res;
       });
-    console.log('Location is:', this.currentLocation);
+  }
+
+  getLocationFromCoordinates(lat, lng) {
+    this.locationService.getLocationFromCoordinates(lat, lng)
+      .subscribe(res => {
+        console.log(res);
+        this.currentLocation = res;
+      });
   }
 
   checkForBookingsDue(id: number) {
@@ -102,17 +109,9 @@ export class CustomerHomeComponent implements OnInit {
           console.log('fetching dues....', data);
           this.bookingsDue = data;
         },
-        err => console.log(err)
+        err => {
+          console.log(err);
+        }
       );
   }
-
-  getLocationFromCoordinates(lat, lng) {
-    this.locationService.getLocationFromCoordinates(lat, lng)
-      .subscribe(res => {
-        console.log(res);
-        this.currentLocation = res;
-      });
-    console.log('Current location is:', this.currentLocation);
-  }
-
 }

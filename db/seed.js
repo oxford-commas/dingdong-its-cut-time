@@ -1,5 +1,8 @@
 const helpers = require('./helpers.js');
-const services = require('../locationServices.js')
+const services = require('../locationServices.js');
+var model = require('./model.js');
+
+
 
 
 const stylistArray = [
@@ -220,6 +223,61 @@ const stylistArray = [
     'phoneNumber': '415-563-6504',
     'email': 'palaceoffinearts@gmail.com',
     'website': 'palaceoffinearts.org',
+    'style': 'F',
+    'update': 'update me'
+  },
+  {
+    id: 0,
+    'username': 'parisienne',
+    'password': 'frenchstyle',
+    'location': '18 Rue du Renard, 75004 Paris',
+    'phoneNumber': '555-268-7691',
+    'email': 'toureiffel@gmail.com',
+    'website': 'parisstyle.org',
+    'style': 'F',
+    'update': 'update me'
+  },
+  {
+    id: 0,
+    'username': 'andrew',
+    'password': 'lam',
+    'location': '60 Queen St W, Toronto',
+    'phoneNumber': '654-842-8945',
+    'email': 'drew@gmail.com',
+    'website': 'drewcutshair.org',
+    'style': 'M',
+    'update': 'update me'
+  },
+  {
+    id: 0,
+    'username': 'parul',
+    'password': 'bir',
+    'location': 'San Jose',
+    'phoneNumber': '785-214-4086',
+    'email': 'parul@gmail.com',
+    'website': 'parulstyle.org',
+    'style': 'F',
+    'update': 'update me'
+  },
+  {
+    id: 0,
+    'username': 'matt',
+    'password': 'pass',
+    'location': 'West Hollywood, LA',
+    'phoneNumber': '932-895-5343',
+    'email': 'matt@gmail.com',
+    'website': 'mattcuts.org',
+    'style': 'M',
+    'update': 'update me'
+  },
+  {
+    id: 0,
+    'username': 'ilke',
+    'password': 'akcay',
+    'location': 'Cihangir Istnbul',
+    'phoneNumber': '675-933-2586',
+    'email': 'ilke@gmail.com',
+    'website': 'ilkestyle.org',
     'style': 'F',
     'update': 'update me'
   }
@@ -619,3 +677,13 @@ stylistServices.forEach(style => {
     console.log(res)
   })
 });
+
+// implant image in users_stylists
+for (var i = 0; i < 21; i++) {
+    var id = i;
+    var url = 'uploads/1496789933826.jpg'
+  model.con.query('UPDATE users_stylists SET image_url = ?', [url],function (err, result) {
+    if (err) throw err;
+    console.log('inserted');
+  });
+}
