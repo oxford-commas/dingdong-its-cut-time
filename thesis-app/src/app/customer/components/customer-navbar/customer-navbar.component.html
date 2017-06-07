@@ -28,9 +28,18 @@
           <span class="caret">Username</span>
             <div class="dropdown-content">
               <ul class="dropdownUl">
-                <li [routerLink]="['/home']"><h4>Home</h4></li>
+                <li
+                  *ngIf="stateService.retrieveCustomer().type===1"
+                  [routerLink]="['/home']">
+                  <h4>Home</h4>
+                </li>
+                <li
+                  *ngIf="stateService.retrieveCustomer().type===0"
+                  [routerLink]="['/stylisthome']">
+                  <h4>Home</h4>
+                </li>
                 <li [routerLink]="['/messages']"><h4>Messages</h4></li>
-                <li [routerLink]="['/customerProfile', customerId]"><h4>Settings</h4></li>
+                <li [routerLink]="['/customerProfile']"><h4>Settings</h4></li>
                 <li [routerLink]="['/login']"><h4>Logout</h4></li>
               </ul>
             </div>

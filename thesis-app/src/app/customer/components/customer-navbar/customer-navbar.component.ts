@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { StylistService } from '../../../services';
 import { LocationService } from '../../../services';
+import { StateService } from '../../../services';
 
 @Component({
   selector: 'customer-navbar',
@@ -8,10 +9,11 @@ import { LocationService } from '../../../services';
   styleUrls: ['./customer-navbar.component.css']
 })
 export class CustomerNavbarComponent {
-  constructor(
+  constructor (
     private stylistService: StylistService,
-    private locationService: LocationService
-    ) {}
+    private locationService: LocationService,
+    private stateService: StateService
+  ) {}
 
   @Input() customerId: number;
   @Input() searchLocation: string;
