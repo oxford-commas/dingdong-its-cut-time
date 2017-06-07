@@ -175,17 +175,37 @@ app.post('/api/location', function(req, res) {
 // add bookings to the database
 app.post('/api/bookings', function(req, res) {
   console.log(req.body);
-  helpers.addToBookings(req.body.id_users, req.body.id_stylists, req.body.isconfirmed, req.body.time, req.body.location, function() {
+  helpers.addToBookings(req.body.id_users, req.body.id_stylists, req.body.isconfirmed, req.body.isComplete, req.body.time, req.body.location, function() {
     res.sendStatus(201);
   });
 });
 
-// given userId, get all the user bookings
-app.get('/api/userbookings/:userid', function(req, res) {
-  console.log(req.params.userid);
-  helpers.getUserBookings(req.params.userid, function(data) {
-    res.status(200).json(data);
-  });
+// get bookings for a customer that need to be paid for
+app.get('/api/bookings/complete/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.getBookingsDue(id, result => res.status(200).json(result));
+});
+
+// confirm a booking will occur
+app.put('/api/bookings/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.confirmBooking(id, result => res.status(200).json(result));
+});
+
+// complete a booking which is now ready to be paid for
+app.put('/api/bookings/complete/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.completeBooking(id, result => res.status(200).json(result));
+});
+
+// given stylistId, get their associated bookings and customer names
+app.get('/api/bookings/:stylistId', function(req, res) {
+  var stylistId = req.params.stylistId;
+  helpers.getBookings(stylistId, data => res.status(200).json(data));
+});
+
+app.delete('/api/bookings/:id', (req, res) => {
+  helpers.deleteBooking(req.params.id, results => res.status(200).json(results));
 });
 
 //given stylistId, get all stylists bookings
@@ -228,6 +248,12 @@ app.put('/booking/:bookingid', function (req, res) {
 
 });
 
+// HAIRCUT STYLES //
+
+app.get('/api/stylistServices', (req, res) => {
+  helpers.getAllStyles(results => res.status(200).send(results));
+});
+
 //given stylistId, delete stylist info from the database along with the bookings(foreign key constraint)
 app.delete('/stylist/:stylistid', function (req, res) {
   console.log(req.params.stylistid);
@@ -250,11 +276,71 @@ app.get('/api/stylistServices/:id', function(req, res) {
 // given stylistId and serviceId, add new service to the stylists_services for the stylist
 app.post('/api/stylistServices', function(req, res) {
   helpers.stylistservices(req.body.serviceid, req.body.stylistid, function() {
-    console.log('hey')
     res.sendStatus(201);
   });
 })
 
+// MESSAGE ROUTES //
+
+app.post('/api/messages', (req, res) => {
+  helpers.postMessage(req.body, (data) => {
+    res.status(200).json(data);
+  });
+});
+
+app.get('/api/messages/:id', (req, res) => {
+  helpers.getMessages(req.params.id, (data) => {
+    let messages = {};
+    data.forEach(message => {
+      let convo = [message.sender, message.recipient];
+      // check if convo or convo reverse is already a key in messages
+      if (messages.hasOwnProperty(convo) || messages.hasOwnProperty(convo.reverse())) {
+        // if convo exists in messages
+        if (messages[convo]) {
+          // push message into that
+          messages[convo].push(message);
+        } else {
+        // if convo reverse exists in messages
+          // push message into that
+          messages[convo.reverse()].push(message);
+        }
+      } else {
+        //initialize convo at message as empty array
+        messages[convo] = [];
+        messages[convo].push(message);
+      }
+    });
+    res.status(200).json(messages);
+  });
+});
+
+app.delete('/api/messages', (req, res) => {
+  var messageIds = req.body;
+  helpers.deleteChat(messageIds, results => res.status(200).json(results));
+});
+
+// get coordinates for location/street address
+app.get('/api/coordinates/:location', function(req, res) {
+  var location = req.params.location;
+  services.getLocationPoints(location, function(coords) {
+    var coordinates = {
+      lat: coords[0],
+      lng: coords[1]
+    }
+    console.log(JSON.stringify(coordinates));
+    res.status(200).json(coordinates);
+  });
+});
+
+// get location/street address from coordinates
+app.get('/api/streetaddress/:latlng', function(req, res) {
+  var latlng = req.params.latlng;
+  services.getLocationFromCoordinates(latlng, function(location) {
+    var address = location.results[0].formatted_address;
+    console.log(address);
+    res.status(200).json(address);
+  });
+});
 
 app.get('*', function(req, res) {
  res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));

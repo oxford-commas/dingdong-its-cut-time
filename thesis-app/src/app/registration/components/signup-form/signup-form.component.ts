@@ -3,7 +3,11 @@ import { Router } from '@angular/router';
 
 import { RequestService } from '../../../services/request.service';
 
-import { IAccountInformation, IUserInformationData, IStylistInformationData, createDefaultUserInformationData } from '../../interfaces/registration-data';
+import {
+  IAccountInformation,
+  IUserInformationData,
+  IStylistInformationData,
+  createDefaultUserInformationData } from '../../interfaces/registration-data';
 
 @Component({
   selector: 'signup-form',

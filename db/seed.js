@@ -233,7 +233,8 @@ const booksingsArray = [
     name: 'Mateo',
     userid: 4,
     stylistid: 2,
-    isConfirmed: 0,
+    isconfirmed: 0,
+    isComplete: 0,
     time: Date.now(),
     location: 'San Mateo, CA, CA'
   },
@@ -241,7 +242,8 @@ const booksingsArray = [
     name: 'mrhighland',
     userid: 4,
     stylistid: 2,
-    isConfirmed: 1,
+    isconfirmed: 1,
+    isComplete: 0,
     time: Date.now(),
     location: '1851 Lexington Ave, San Mateo, CA'
   },
@@ -249,7 +251,8 @@ const booksingsArray = [
     name: 'bigbess',
     userid: 6,
     stylistid: 2,
-    isConfirmed: 0,
+    isconfirmed: 0,
+    isComplete: 0,
     time: Date.now(),
     location: '506 N Delaware St, San Mateo, CA'
   },
@@ -257,7 +260,8 @@ const booksingsArray = [
     name: 'dnalounge',
     userid: 15,
     stylistid: 16,
-    isConfirmed: 0,
+    isconfirmed: 0,
+    isComplete: 0,
     time: Date.now(),
     location: '375 11th St, San Francisco, CA'
   },
@@ -265,11 +269,57 @@ const booksingsArray = [
     name: 'palaceoffinearts',
     userid: 15,
     stylistid: 19,
-    isConfirmed: 0,
+    isconfirmed: 0,
+    isComplete: 0,
     time: Date.now(),
     location: '3301 Lyon St, San Francisco, CA'
   }
 ]
+
+const messagesArray = [
+  {
+    id_sender: 1,
+    id_recipient: 2,
+    subjectHeading: 'Shari to mateo',
+    body: 'Give me a fade bro!!!',
+    time: Date.now(),
+    location: '320 Front St W, Toronto'
+  },
+  {
+    id_sender: 2,
+    id_recipient: 1,
+    subjectHeading: 'Mateo to Shari',
+    body: 'yea, i gotchu girl, lets meet there',
+    time: Date.now(),
+    location: '320 Front St W, Toronto'
+  },
+  {
+    id_sender: 1,
+    id_recipient: 10,
+    subjectHeading: 'Shari to cityhall',
+    body: 'I want to color my hair pink',
+    time: Date.now(),
+    location: 'San Francisco'
+  },
+  {
+    id_sender: 10,
+    id_recipient: 1,
+    subjectHeading: 'cityhall to shari',
+    body: 'can do',
+    time: Date.now(),
+    location: 'San francisco'
+  },
+  {
+    id_sender: 2,
+    id_recipient: 3,
+    subjectHeading: 'idk',
+    body: 'idk',
+    time: Date.now(),
+    location: 'San Jose'
+  }
+];
+
+messagesArray.forEach(message => helpers.postMessage(message));
 
 const stylesArray = [
   'Afro',
@@ -553,7 +603,8 @@ booksingsArray.forEach(booking => {
   helpers.addToBookings(
     booking.userid,
     booking.stylistid,
-    booking.isConfirmed,
+    booking.isconfirmed,
+    booking.isComplete,
     booking.time,
     booking.location, (resultFromServer) => {
       console.log(resultFromServer);
