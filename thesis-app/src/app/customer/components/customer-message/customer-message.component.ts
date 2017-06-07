@@ -4,7 +4,8 @@ import { IMessage } from '../../interfaces';
 
 @Component({
   selector: 'customer-message',
-  templateUrl: './customer-message.component.html'
+  templateUrl: './customer-message.component.html',
+  styleUrls: ['./customer-message.component.css']
 })
 export class CustomerMessageComponent implements OnInit {
   constructor(private messageService: MessageService) {}
@@ -15,9 +16,10 @@ export class CustomerMessageComponent implements OnInit {
   ngOnInit() {
     this.messageService.getMessages(1)
       .subscribe(
-        data => this.messages = data,
+        data => console.log(this.messages = data),
         err => console.log(err)
       );
+
   }
 
   setCurrentChat(conversation) {

@@ -7,8 +7,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 35vh;
-  width: 95%;
+  height: 100%;
+  width: 93%;
   margin: 5ch;
 }
 
@@ -21,17 +21,35 @@
 .profile {
   display: flex;
   flex-wrap: wrap;
+  padding: 1.5em;
 }
 
-.profileimage {
+.profileImage {
   border-radius: 150px;
   padding-top: 5ch;
 }
 
-.locationwrapper {
+.locationWrapper {
   flex: 1 1;
   width: 30%;
+  padding: 1em;
+  height: 100%;
 }
+.servicesContainer {
+  flex: 1 1 50%;
+  width: 65%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.buttonContainer {
+  width: 1%;
+  flex: 1 1 1%;
+}
+
 
 .latLong {
   border-top: 2px solid;
@@ -39,14 +57,10 @@
   width: 100%;
 }
 
-.servicescontainer {
-  /*border: 2px solid red;*/
-  flex: 1 1;
-  width: 68%;
-}
 
-.personalcontainer {
-  /*border: 3px solid orange;*/
+.personalContainer {
+  padding: 1em;
+  margin: 1em;
   display: flex;
   width: 100%;
 }
@@ -74,7 +88,7 @@ textarea {
   align-self: right;
 }
 
-.liststyles {
+.listStyles {
   border-bottom: 2px solid black;
   width: 100%;
   display: flex;
@@ -83,7 +97,7 @@ textarea {
   flex-wrap: wrap;
 }
 
-.styleitems {
+.styleItems {
   padding: 3px;
   margin: 3px;
 }
@@ -100,9 +114,8 @@ textarea {
 */
 .paragraph {
   overflow: scroll;
-  width: 68%;
+  width: 100%;
   border-top: 2px solid;
-  /*border: 2px solid;*/
 }
 
 .modalWrapper {
@@ -110,13 +123,11 @@ textarea {
   color: black;
   justify-content: center;
   align-items: center;
-  height: 250px;
-  width: 1000px;
-  padding-top: 20px;
-  margin-top: 30px;
+  padding-top: 1em;
+  margin-top: 1em;
   display: none;
   position: fixed;
-  /*z-index: 1;*/
+  z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
@@ -128,17 +139,28 @@ textarea {
 .modalContent {
   border: 2px solid black;
   flex: 1 1;
-  width: 95ch;
+  width: 82%;
+  height: 80%;
   padding: 5ch;
+  margin: 5ch;
+  margin-left: 12ch;
   position: absolute;
-  margin-left: -150px;
-  margin-top: -150px;
-  top: 50%;
-  left: 50%;
+  /*margin-left: -35%;
+  margin-top: -35%;*/
+  /*top: 50%;
+  left: 50%;*/
   background-color: white;
 }
 
 .modeitem {
-  padding: 5ch;
-  margin: 5ch;
+  padding: 1ch;
+  margin: 1ch;
+}
+
+input, textarea {
+  background-color: #d3d3d3;
+}
+
+.bigWrapper {
+  display: flex;
 }

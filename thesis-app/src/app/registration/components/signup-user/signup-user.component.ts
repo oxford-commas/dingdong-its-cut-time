@@ -19,7 +19,6 @@ export class SignupUserComponent {
   ngOnInit() {}
 
   handleSignup(form: NgForm) {
-    console.log('ran', form.value);
     let newUser = {
       name: form.value.username,
       password: form.value.password,

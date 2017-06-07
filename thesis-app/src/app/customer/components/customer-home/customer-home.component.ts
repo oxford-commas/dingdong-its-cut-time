@@ -12,6 +12,7 @@ import { RequestService,
 @Component({
   selector: 'customer-home',
   templateUrl: 'customer-home.component.html',
+  styleUrls: ['./customer-home.component.css'],
   providers: [LocationService]
 })
 
@@ -113,5 +114,4 @@ export class CustomerHomeComponent implements OnInit {
         }
       );
   }
-
 }

@@ -290,7 +290,7 @@ const booksingsArray = [
     stylistid: 2,
     isconfirmed: 0,
     isComplete: 0,
-    time: Date.now(),
+    time: new Date(),
     location: 'San Mateo, CA, CA'
   },
   {
@@ -299,7 +299,7 @@ const booksingsArray = [
     stylistid: 2,
     isconfirmed: 1,
     isComplete: 0,
-    time: Date.now(),
+    time: new Date(),
     location: '1851 Lexington Ave, San Mateo, CA'
   },
   {
@@ -308,7 +308,7 @@ const booksingsArray = [
     stylistid: 2,
     isconfirmed: 0,
     isComplete: 0,
-    time: Date.now(),
+    time: new Date(),
     location: '506 N Delaware St, San Mateo, CA'
   },
   {
@@ -317,7 +317,7 @@ const booksingsArray = [
     stylistid: 16,
     isconfirmed: 0,
     isComplete: 0,
-    time: Date.now(),
+    time: new Date(),
     location: '375 11th St, San Francisco, CA'
   },
    {
@@ -326,7 +326,7 @@ const booksingsArray = [
     stylistid: 19,
     isconfirmed: 0,
     isComplete: 0,
-    time: Date.now(),
+    time: new Date(),
     location: '3301 Lyon St, San Francisco, CA'
   }
 ]
@@ -337,7 +337,7 @@ const messagesArray = [
     id_recipient: 2,
     subjectHeading: 'Shari to mateo',
     body: 'Give me a fade bro!!!',
-    time: Date.now(),
+    time: new Date(),
     location: '320 Front St W, Toronto'
   },
   {
@@ -345,7 +345,7 @@ const messagesArray = [
     id_recipient: 1,
     subjectHeading: 'Mateo to Shari',
     body: 'yea, i gotchu girl, lets meet there',
-    time: Date.now(),
+    time: new Date(),
     location: '320 Front St W, Toronto'
   },
   {
@@ -353,7 +353,7 @@ const messagesArray = [
     id_recipient: 10,
     subjectHeading: 'Shari to cityhall',
     body: 'I want to color my hair pink',
-    time: Date.now(),
+    time: new Date(),
     location: 'San Francisco'
   },
   {
@@ -361,7 +361,7 @@ const messagesArray = [
     id_recipient: 1,
     subjectHeading: 'cityhall to shari',
     body: 'can do',
-    time: Date.now(),
+    time: new Date(),
     location: 'San francisco'
   },
   {
@@ -369,7 +369,7 @@ const messagesArray = [
     id_recipient: 3,
     subjectHeading: 'idk',
     body: 'idk',
-    time: Date.now(),
+    time: new Date(),
     location: 'San Jose'
   }
 ];

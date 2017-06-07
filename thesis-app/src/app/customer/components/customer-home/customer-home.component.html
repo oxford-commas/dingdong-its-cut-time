@@ -1,28 +1,31 @@
-<div *ngIf="!!isProfileFetched">
-  <div class="container row">
-    <customer-navbar
-      [customerId]="customerProfile.id"
-      [searchLocation]="searchLocation"
-      (locationChange)="onSearchLocationChange($event)"
-    >
-    </customer-navbar>
-    <div class="container row">
-      Here are the stylists closest to you:
-      <div *ngFor="let stylist of stylistsCloseToYou">
-        <close-to-you
-          [stylistInformation]="stylist"
-          [routerLink]="['/stylistProfile', stylist.id]"
-        ></close-to-you>
-      </div>
-        <customer-map
-          [searchLocation]="searchLocation"
-          >
-        </customer-map>
+<customer-navbar
+  [customerId]="customerProfile.id"
+  [searchLocation]="searchLocation"
+  (locationChange)="onSearchLocationChange($event)"
+>
+</customer-navbar>
+<div class="poppaDiv">
+  <div class="stylistContainer">
+    <div *ngFor="let stylist of stylistsCloseToYou">
+      <close-to-you
+        [stylistInformation]="stylist"
+        [routerLink]="['/stylistProfile', stylist.id]"
+      >
+      </close-to-you>
     </div>
   </div>
-  <div *ngIf="!!bookingsDue">
-    <div *ngFor="let booking of bookingsDue">
-      I OWE {{booking.name}} MONEY!!!!
-    </div>
+
+  <div class="mapContainer">
+    <customer-map
+      class="map"
+      [searchLocation]="searchLocation"
+    >
+    </customer-map>
+  </div>
+</div>
+
+<div *ngIf="!!bookingsDue">
+  <div *ngFor="let booking of bookingsDue">
+    I OWE {{booking.name}} MONEY!!!!
   </div>
 </div>

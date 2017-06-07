@@ -1,8 +1,13 @@
-<div *ngFor="let chat of chatHistory">
-  <span>Subject: {{chat.subjectHeading}}</span>
-  <span>From: {{chat.sender}}</span>
-  <span>To: {{chat.recipient}}</span>
-  <span>Location: {{chat.location}}</span>
-  <span>Time: {{chat.time}}</span>
-  <span>Body: {{chat.body}}</span>
+<div class="poppaDiv">
+  <h1>Chat Log</h1>
+  <div *ngFor="let chat of chatHistory">
+    <!-- <span>Subject: {{chat.subjectHeading}}</span>
+    <span>From: {{chat.sender}}</span>
+    <span>To: {{chat.recipient}}</span>
+    <span>Location: {{chat.location}}</span>
+    <span>Time: {{chat.time}}</span>
+    <span>Body: {{chat.body}}</span> -->
+    <h4>{{ chat.sender}}: {{ chat.subjectHeading }} @ {{ chat.time }}</h4>
+    <h5>{{ chat.body }}</h5>
+  </div>
 </div>
