@@ -1,0 +1,30 @@
+.poppaDiv {
+  border-top: 2px solid black;
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  padding: 1em;
+}
+
+.myForm {
+  width: 50%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonContainer {
+  padding: 1em;
+}
+
+.woo {
+  padding: 1em;
+}

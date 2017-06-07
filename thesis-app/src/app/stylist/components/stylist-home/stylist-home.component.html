@@ -1,5 +1,11 @@
 <h2>Hello world</h2>
+<customer-navbar></customer-navbar>
 Bookings:
-<div *ngFor="let booking of bookings">
-  <booking [bookingInformation]="booking"></booking>
+<div *ngFor="let booking of bookings; let i = index;">
+  <booking
+    [bookingInformation]="booking"
+    (confirmBooking)="confirmBooking($event, i)"
+    (deleteBooking)="deleteBooking($event, i)"
+    (completeBooking)="completeBooking($event, i)"
+  ></booking>
 </div>

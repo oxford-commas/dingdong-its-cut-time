@@ -7,3 +7,4 @@ export * from './customer-message';
 export * from './customer-inbox';
 export * from './stylist-profile';
 export * from './customer-profile';
+export * from './chat-history';
