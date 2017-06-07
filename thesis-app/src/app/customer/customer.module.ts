@@ -34,7 +34,7 @@ import {
     CommonModule,
     FormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAkYemtun-klcWc0toJ5R7gLtmHuPO32Xk' // TODO: Hide key
+      apiKey: 'AIzaSyDiVQjsDczrtUuAdadrUB2lFn39QEWK43A' // TODO: Hide key
     }),
     UiModule
   ],

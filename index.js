@@ -38,7 +38,6 @@ app.post('/api/stripe', function(req, res) {
   // Set your secret key: remember to change this to your live secret key in production
   // See your keys here: https://dashboard.stripe.com/account/apikeys
   var stripe = require("stripe")("sk_test_y4yKjgB2RSkeKtTOmg6eXotO");
-  console.log('HELLO!!', req.body);
   // Token is created using Stripe.js or Checkout!
   // Get the payment token submitted by the form:
   var token = req.body.stripeToken; // Using Express
@@ -54,7 +53,6 @@ app.post('/api/stripe', function(req, res) {
   });
 });
 
-
 // get all users and stylists given user or stylist id
 app.get('/api/userStylist/:id', function(req, res) {
   var userid = req.params.id;
@@ -62,7 +60,7 @@ app.get('/api/userStylist/:id', function(req, res) {
     res.status(200).json(data[0]);
   });
 });
-
+ 
 //gets image of a user/stylist --- completed
 app.get('/api/profile/:id', function(req, res, next) {
   console.log(req.params.id)
@@ -83,24 +81,20 @@ app.post('/api/profile/:id', upload.single('avatar'), function (req, res, next) 
     console.log('added image')
     res.sendStatus(201);
   });
-
 });
 
 // get all stylists close to the user location
 app.get('/api/stylists/:location', function(req, res) {
   var location = req.params.location;
-  console.log(location);
   services.getLocationPoints(location, function(points) {
     var lat = points[0];
     var lng = points[1];
-    console.log('lat', lat, 'lng', lng)
     helpers.getAllStylists(function(result) {
       var data = [];
       result.forEach(function(el) {
         var lat2 = el.latitude;
         var lng2 = el.longitude;
         var distance = helpers.calculateDistance(lat, lng, lat2, lng2, 'M');
-        console.log(distance);
         if (distance <= 15) {
           data.push(el);
         }
@@ -123,7 +117,6 @@ app.post('/api/userstylist', function (req, res) {
   var image_url = req.body.image_url;
   var location = req.body.location;
   helpers.addUserStylist(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, function(result) {
-    console.log('this is result from adding', result.insertId);
     // Get id from result
     var id = result.insertId;
     // get location points/add longitude and latitude in stylists/users profile in database based on location provided
@@ -163,9 +156,6 @@ app.post('/api/location', function(req, res) {
   services.getLocationPoints(location, function(points) {
     var lat = points[0];
     var lng = points[1];
-    console.log(lat);
-    console.log(lng)
-    console.log(id)
     helpers.addLocation(lat, lng, id, function() {
       res.sendStatus(201);
     });
@@ -174,7 +164,6 @@ app.post('/api/location', function(req, res) {
 
 // add bookings to the database
 app.post('/api/bookings', function(req, res) {
-  console.log(req.body);
   helpers.addToBookings(req.body.id_users, req.body.id_stylists, req.body.isconfirmed, req.body.isComplete, req.body.time, req.body.location, function() {
     res.sendStatus(201);
   });
@@ -210,7 +199,6 @@ app.delete('/api/bookings/:id', (req, res) => {
 
 //given stylistId, get all stylists bookings
 app.get('/api/stylistbookings/:stylistid', function(req, res) {
-  console.log(req.params.userid);
   helpers.getStylistBookings(req.params.stylistid, function(data) {
     res.status(200).json(data);
   });
@@ -218,30 +206,24 @@ app.get('/api/stylistbookings/:stylistid', function(req, res) {
 
 //given userId, delete user info from the database along with the bookings
 app.delete('/user/:userid', function (req, res) {
-  console.log(req.params.userid);
   helpers.deleteUser(req.params.userid);
   res.send('Got a DELETE request at /user')
 });
 
 //delete booking given booking id
 app.delete('/booking/:bookingid', function (req, res) {
-  console.log(req.params.bookingid);
   helpers.deleteBooking(req.params.bookingid);
   res.send('Got a DELETE request at /booking')
 });
 
 //update bookings given booking id
 app.put('/booking/:bookingid', function (req, res) {
-  console.log(req.body);
-  console.log(req.params.bookingid);
   var id = req.params.bookingid;
   var id_users = req.body.userid;
   var id_stylists = req.body.stylistid;
   var time = req.body.time;
   var location = req.body.location;
   var isconfirmed = req.body.isconfirmed;
-  console.log('isconfirmed',req.body.isconfirmed)
-  console.log(id_users);
   helpers.updateBooking(id_users, id_stylists, isconfirmed, time, location, id, function() {
     res.send('Got a PUT(update) request at /booking')
   });
@@ -256,7 +238,6 @@ app.get('/api/stylistServices', (req, res) => {
 
 //given stylistId, delete stylist info from the database along with the bookings(foreign key constraint)
 app.delete('/stylist/:stylistid', function (req, res) {
-  console.log(req.params.stylistid);
   helpers.deleteUser(req.params.stylistid);
   res.send('Got a DELETE request at /stylist')
 })
@@ -265,7 +246,6 @@ app.delete('/stylist/:stylistid', function (req, res) {
 app.get('/api/stylistServices/:id', function(req, res) {
   var s = [];
   helpers.getStylistServices(req.params.id, function(data) {
-    console.log(data);
     data.forEach(function(el) {
       s.push(el.servicename);
     });
@@ -327,7 +307,6 @@ app.get('/api/coordinates/:location', function(req, res) {
       lat: coords[0],
       lng: coords[1]
     }
-    console.log(JSON.stringify(coordinates));
     res.status(200).json(coordinates);
   });
 });
@@ -337,7 +316,6 @@ app.get('/api/streetaddress/:latlng', function(req, res) {
   var latlng = req.params.latlng;
   services.getLocationFromCoordinates(latlng, function(location) {
     var address = location.results[0].formatted_address;
-    console.log(address);
     res.status(200).json(address);
   });
 });
