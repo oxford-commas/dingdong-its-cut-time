@@ -25,7 +25,8 @@ var getLocationPoints = function(location, callback) {
 
 //helper function for reverse geocoding
 var getLocationFromCoordinates = function(latlng, callback) {
-  var path = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&key=AIzaSyAODMU1aRyby6iXc5iv4-LXBq_Wb5hRZCA`;
+  // var path = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&key=AIzaSyAODMU1aRyby6iXc5iv4-LXBq_Wb5hRZCA`;
+  var path = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&key=AIzaSyDts_evd3goemU-neN6oI3o-aIbJhPHPWA`;
   https.get(path, res => {
     var data = '';
       res.on('data', (chunk) => {
