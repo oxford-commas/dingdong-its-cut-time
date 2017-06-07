@@ -1,6 +1,5 @@
 .poppaDiv {
-  border: 2px solid blue;
-  height: 100%;
+  height: 50%;
   width: 100%;
   overflow: scroll;
   display: flex;
@@ -15,13 +14,12 @@ h1 {
 h4 {
   margin-right: 2em;
   padding-right: 2em;
+  border-bottom: 2px solid;
 }
 
 .rowBody {
   display: flex;
-  padding: 1em;
-  margin: 1em;
-  border-bottom: 2px solid;
+  margin: .5em;
 }
 .rowItem {
   width: 100%;
