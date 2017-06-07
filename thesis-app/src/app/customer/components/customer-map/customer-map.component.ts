@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocationService } from '../../../services';
 import { StylistService } from '../../../services';
@@ -14,54 +14,37 @@ export class CustomerMapComponent implements OnInit {
     private locationService: LocationService,
     private stylistService: StylistService,
     private router: Router
-  ) {
-    stylistService.getStylistsInLocation('sanfrancisco')
-      .subscribe(data => {
-        this.stylists = data;
-        this.stylists.map(stylist => {
-          stylist.label = {
-            color: 'black',
-            fontWeight: 'bold',
-            text: stylist.name
-          }
-        })
-      }, err => console.log(err));
+  ) {}
 
-    // sets the initial center position for the map to a default location
-    this.getLatLng();
-  }
-
-  @Input() coordinates;
-  @Input() lat: number;
-  @Input() lng: number;
   @Input() searchLocation: string;
 
-  // initial zoom value for the map
+  public currentLocation: string;
+  public lng: number;
+  public lat: number;
   public zoom: number = 14;
 
   ngOnInit() {
-    this.getLatLng();
+    this.getLatLng((lat, lng) => this.getLocationFromCoordinates(lat, lng, (location) => this.getStylistsInLocation(location)));
+    this.getLatLng((lat, lng) => this.getLocationFromCoordinates(lat, lng, (location) => this.adjustMapViewForLocation(location)))
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
     this.adjustMapViewForLocation(this.searchLocation);
     this.getStylistsInLocation(this.searchLocation);
   }
 
-  getLatLng() {
+  getLatLng(next) {
     this.locationService.getCurrentPosition(null, null)
       .subscribe(res =>  {
-        console.log(res);
-        console.log(JSON.stringify(res));
-        console.log(res.coords);
         this.lat = res.coords.latitude;
         this.lng = res.coords.longitude;
+        next(this.lat, this.lng);
         console.log(`Latitude is: ${this.lat}, longitude is: ${this.lng}`);
       });
   }
 
   adjustMapViewForLocation(location: string) {
-    this.locationService.getCoordinatesForLocation(location)
+    this.locationService.getCoordinatesFromLocation(location)
       .subscribe(res => {
         console.log(res);
         console.log(JSON.stringify(res));
@@ -74,6 +57,7 @@ export class CustomerMapComponent implements OnInit {
   getStylistsInLocation(location: string) {
     this.stylistService.getStylistsInLocation(location)
       .subscribe(data => {
+        console.log('Loc is', location);
         this.stylists = data;
         this.stylists.map(stylist => {
           stylist.label = {
@@ -82,6 +66,14 @@ export class CustomerMapComponent implements OnInit {
             text: stylist.name
           }
         })
+      }, err => console.log(err));
+  }
+
+  getLocationFromCoordinates(lat, lng, next) {
+    this.locationService.getLocationFromCoordinates(lat, lng)
+      .subscribe(location => {
+        this.currentLocation = location;
+        next(this.currentLocation);
       }, err => console.log(err));
   }
 

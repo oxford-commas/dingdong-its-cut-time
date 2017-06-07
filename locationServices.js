@@ -1,7 +1,11 @@
 var https = require('https');
+var config = require('./config/config');
+
+// config/environment variables
+const key = process.env.API_KEY || config.API_KEY;
 
 var getLocationPoints = function(location, callback) {
-  var p = 'https://maps.googleapis.com/maps/api/geocode/json?address='+location+'&key=AIzaSyAODMU1aRyby6iXc5iv4-LXBq_Wb5hRZCA';
+  var p = `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${key}`;
   https.get(p, (res) => {
     var st = '';
       res.on('data', (chunk) => {
@@ -24,7 +28,7 @@ var getLocationPoints = function(location, callback) {
 
 //helper function for reverse geocoding
 var getLocationFromCoordinates = function(latlng, callback) {
-  var path = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&key=AIzaSyAODMU1aRyby6iXc5iv4-LXBq_Wb5hRZCA`;
+  var path = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&key=${key}`;
   https.get(path, res => {
     var data = '';
       res.on('data', (chunk) => {

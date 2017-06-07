@@ -1,5 +1,8 @@
 const helpers = require('./helpers.js');
-const services = require('../locationServices.js')
+const services = require('../locationServices.js');
+var model = require('./model.js');
+
+
 
 
 const stylistArray = [
@@ -222,6 +225,61 @@ const stylistArray = [
     'website': 'palaceoffinearts.org',
     'style': 'F',
     'update': 'update me'
+  },
+  {
+    id: 0,
+    'username': 'parisienne',
+    'password': 'frenchstyle',
+    'location': '18 Rue du Renard, 75004 Paris',
+    'phoneNumber': '555-268-7691',
+    'email': 'toureiffel@gmail.com',
+    'website': 'parisstyle.org',
+    'style': 'F',
+    'update': 'update me'
+  },
+  {
+    id: 0,
+    'username': 'andrew',
+    'password': 'lam',
+    'location': '60 Queen St W, Toronto',
+    'phoneNumber': '654-842-8945',
+    'email': 'drew@gmail.com',
+    'website': 'drewcutshair.org',
+    'style': 'M',
+    'update': 'update me'
+  },
+  {
+    id: 0,
+    'username': 'parul',
+    'password': 'bir',
+    'location': 'San Jose',
+    'phoneNumber': '785-214-4086',
+    'email': 'parul@gmail.com',
+    'website': 'parulstyle.org',
+    'style': 'F',
+    'update': 'update me'
+  },
+  {
+    id: 0,
+    'username': 'matt',
+    'password': 'pass',
+    'location': 'West Hollywood, LA',
+    'phoneNumber': '932-895-5343',
+    'email': 'matt@gmail.com',
+    'website': 'mattcuts.org',
+    'style': 'M',
+    'update': 'update me'
+  },
+  {
+    id: 0,
+    'username': 'ilke',
+    'password': 'akcay',
+    'location': 'Cihangir Istnbul',
+    'phoneNumber': '675-933-2586',
+    'email': 'ilke@gmail.com',
+    'website': 'ilkestyle.org',
+    'style': 'F',
+    'update': 'update me'
   }
 ]
 
@@ -232,7 +290,7 @@ const booksingsArray = [
     stylistid: 2,
     isconfirmed: 0,
     isComplete: 0,
-    time: Date.now(),
+    time: new Date(),
     location: 'San Mateo, CA, CA'
   },
   {
@@ -241,7 +299,7 @@ const booksingsArray = [
     stylistid: 2,
     isconfirmed: 1,
     isComplete: 0,
-    time: Date.now(),
+    time: new Date(),
     location: '1851 Lexington Ave, San Mateo, CA'
   },
   {
@@ -250,7 +308,7 @@ const booksingsArray = [
     stylistid: 2,
     isconfirmed: 0,
     isComplete: 0,
-    time: Date.now(),
+    time: new Date(),
     location: '506 N Delaware St, San Mateo, CA'
   },
   {
@@ -259,7 +317,7 @@ const booksingsArray = [
     stylistid: 16,
     isconfirmed: 0,
     isComplete: 0,
-    time: Date.now(),
+    time: new Date(),
     location: '375 11th St, San Francisco, CA'
   },
    {
@@ -268,7 +326,7 @@ const booksingsArray = [
     stylistid: 19,
     isconfirmed: 0,
     isComplete: 0,
-    time: Date.now(),
+    time: new Date(),
     location: '3301 Lyon St, San Francisco, CA'
   }
 ]
@@ -279,7 +337,7 @@ const messagesArray = [
     id_recipient: 2,
     subjectHeading: 'Shari to mateo',
     body: 'Give me a fade bro!!!',
-    time: Date.now(),
+    time: new Date(),
     location: '320 Front St W, Toronto'
   },
   {
@@ -287,7 +345,7 @@ const messagesArray = [
     id_recipient: 1,
     subjectHeading: 'Mateo to Shari',
     body: 'yea, i gotchu girl, lets meet there',
-    time: Date.now(),
+    time: new Date(),
     location: '320 Front St W, Toronto'
   },
   {
@@ -295,7 +353,7 @@ const messagesArray = [
     id_recipient: 10,
     subjectHeading: 'Shari to cityhall',
     body: 'I want to color my hair pink',
-    time: Date.now(),
+    time: new Date(),
     location: 'San Francisco'
   },
   {
@@ -303,7 +361,7 @@ const messagesArray = [
     id_recipient: 1,
     subjectHeading: 'cityhall to shari',
     body: 'can do',
-    time: Date.now(),
+    time: new Date(),
     location: 'San francisco'
   },
   {
@@ -311,7 +369,7 @@ const messagesArray = [
     id_recipient: 3,
     subjectHeading: 'idk',
     body: 'idk',
-    time: Date.now(),
+    time: new Date(),
     location: 'San Jose'
   }
 ];
@@ -619,3 +677,13 @@ stylistServices.forEach(style => {
     console.log(res)
   })
 });
+
+// implant image in users_stylists
+for (var i = 0; i < 21; i++) {
+    var id = i;
+    var url = 'uploads/1496789933826.jpg'
+  model.con.query('UPDATE users_stylists SET image_url = ?', [url],function (err, result) {
+    if (err) throw err;
+    console.log('inserted');
+  });
+}

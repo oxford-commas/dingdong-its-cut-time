@@ -12,6 +12,7 @@ import { RequestService,
 @Component({
   selector: 'customer-home',
   templateUrl: 'customer-home.component.html',
+  styleUrls: ['./customer-home.component.css'],
   providers: [LocationService]
 })
 
@@ -24,7 +25,7 @@ export class CustomerHomeComponent implements OnInit {
   public latitude: number;
   public longitude: number;
   public bookingsDue: any;
-  userProfile: any
+  userProfile: any;
 
   constructor(
     private requestService: RequestService,
@@ -32,52 +33,26 @@ export class CustomerHomeComponent implements OnInit {
     private stylistService: StylistService,
     private bookingService: BookingService,
     private stateService: StateService
-  ) {}
+  ) {
+    this.getLocationCoordinates(this.latitude, this.longitude);
+  }
 
   ngOnInit() {
-    // this.customerProfile = requestService.getStylistById(0).subscribe(
-    //   res => console.log(res),
-    //   err => console.log(err)
-    // );
-
     this.customerProfile = this.stateService.retrieveCustomer();
     this.isProfileFetched = true;
     this.getLocationCoordinates(this.latitude, this.longitude);
     this.getLocationFromCoordinates(this.latitude, this.longitude);
-    this.getStylistsAtLocation(this.currentLocation);
+    this.searchLocation = this.currentLocation;
+    this.pinStylistsAtLocation(this.searchLocation);
+    // instead of using socket.io, check for bookings due on interval
+    setInterval(() => this.checkForBookingsDue(4), 5000);
   }
 
-  ngOnChanges() {
-    this.getStylistsAtLocation(this.searchLocation);
-    this.getLocationCoordinates(this.latitude, this.longitude);
-  }
-
-  getStylistsAtLocation(location: any) {
+  pinStylistsAtLocation(location: any) {
     this.stylistService.getStylistsInLocation(this.currentLocation)
       .subscribe(data => {
         this.stylistsCloseToYou = data;
       }, err => console.log(err));
-
-    // Default location inititialization to sanfrancisco
-    this.stylistService.getStylistsInLocation('sanfrancisco')
-      .subscribe(data => {
-        this.stylistsCloseToYou = data;
-      }, err => console.log(err));
-
-    // Fetch the currently logged in user
-    // TODO: get id from router params passed down from login navigation
-    this.requestService.getStylistById(1)
-      .subscribe(
-        data => {
-          this.customerProfile = data;
-          console.log('fetch customer profile with hardcoded id 1: ', this.customerProfile);
-        },
-        err => console.log(err),
-        () => this.isProfileFetched = true
-      );
-
-    // instead of using socket.io, check for bookings due on interval
-    setInterval(() => this.checkForBookingsDue(4), 5000);
   }
 
   onSearchLocationChange(location: string): void {
@@ -91,7 +66,14 @@ export class CustomerHomeComponent implements OnInit {
         console.log(res);
         this.currentLocation = res;
       });
-    console.log('Location is:', this.currentLocation);
+  }
+
+  getLocationFromCoordinates(lat, lng) {
+    this.locationService.getLocationFromCoordinates(lat, lng)
+      .subscribe(res => {
+        console.log(res);
+        this.currentLocation = res;
+      });
   }
 
   checkForBookingsDue(id: number) {
@@ -101,17 +83,9 @@ export class CustomerHomeComponent implements OnInit {
           console.log('fetching dues....', data);
           this.bookingsDue = data;
         },
-        err => console.log(err)
+        err => {
+          console.log(err);
+        }
       );
   }
-
-  getLocationFromCoordinates(lat, lng) {
-    this.locationService.getLocationFromCoordinates(lat, lng)
-      .subscribe(res => {
-        console.log(res);
-        this.currentLocation = res;
-      });
-    console.log('Current location is:', this.currentLocation);
-  }
-
 }

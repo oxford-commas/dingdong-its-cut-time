@@ -1,16 +1,18 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { StateService, MessageService } from '../../../services';
 import { IMessage } from '../../interfaces';
 
 @Component({
   selector: 'customer-message',
-  templateUrl: './customer-message.component.html'
+  templateUrl: './customer-message.component.html',
+  styleUrls: ['./customer-message.component.css']
 })
 export class CustomerMessageComponent {
-  constructor(private stateService: StateService, private messageService: MessageService) {
-  }
+  constructor(
+    private stateService: StateService,
+    private messageService: MessageService) {}
 
-  @Input() messages: IMessage;
+  public messages: IMessage;
   public currentChat;
 
   setCurrentChat(conversation) {

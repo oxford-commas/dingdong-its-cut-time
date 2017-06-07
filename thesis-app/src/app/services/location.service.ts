@@ -20,8 +20,8 @@ import 'rxjs/add/operator/map';
           console.log('Geolocation service: ' + error.message);
           observer.next({
             coords: {
-              latitude: lat || 48.8567696,
-              longitude: lng || 2.3529625,
+              latitude: lat || 48.85777,
+              longitude: lng || 2.3528626,
               accuracy: 50,
               altitude: null,
               altitudeAccuracy: null,
@@ -30,11 +30,12 @@ import 'rxjs/add/operator/map';
             },
             timestamp: null
           });
+          observer.complete();
       });
     });
   }
 
-  getCoordinatesForLocation(location: string): Observable<{lat: number, lng: number}> {
+  getCoordinatesFromLocation(location: string): Observable<{lat: number, lng: number}> {
     console.log('getCoordinatesForLocation arrived!')
     return this.http.get(`/api/coordinates/${location}`)
       .map(this.fetchData)

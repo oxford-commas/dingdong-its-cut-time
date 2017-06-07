@@ -1,0 +1,12 @@
+.poppaDiv {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.inboxContainer {
+  height: 35%;
+  width: 100%;
+  overflow: scroll;
+}

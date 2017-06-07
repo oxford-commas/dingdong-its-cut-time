@@ -1,0 +1,24 @@
+.poppaDiv {
+  border: 2px solid red;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stylistContainer {
+  border: 2px solid red;
+  flex: 1 1 55%;
+  height: 100%;
+}
+
+.mapContainer {
+  flex: 1 1 43%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map {
+  width: 100%;
+}

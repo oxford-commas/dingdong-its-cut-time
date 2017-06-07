@@ -4,7 +4,8 @@ import {
   CustomerHomeComponent,
   CustomerMessageComponent,
   StylistProfileComponent,
-  CustomerProfileComponent
+  CustomerProfileComponent,
+  CloseToYouComponent
  } from './components';
 
 export const customerRoutes: Routes = [
@@ -23,5 +24,9 @@ export const customerRoutes: Routes = [
   {
     path: 'customerProfile/:id',
     component: CustomerProfileComponent
+  },
+  {
+    path: 'closeToYou',
+    component: CloseToYouComponent
   }
 ]
