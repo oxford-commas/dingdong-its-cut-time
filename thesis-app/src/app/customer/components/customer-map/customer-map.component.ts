@@ -9,28 +9,23 @@ import { StylistService } from '../../../services';
   styleUrls: [ './customer-map.component.css' ]
 })
 
-export class CustomerMapComponent {
+export class CustomerMapComponent implements OnInit {
   constructor(
     private locationService: LocationService,
     private stylistService: StylistService,
     private router: Router
-  ) {
-    this.getLatLng();
-    this.getLocationFromCoordinates(this.lat, this.lng);
-    // this.getStylistsInLocation(this.currentLocation);
-  }
+  ) {}
 
   @Input() searchLocation: string;
-  @Input() currentLocation: string;
 
-  // initial zoom value for the map
+  public currentLocation: string;
   public lng: number;
   public lat: number;
   public zoom: number = 14;
 
   ngOnInit() {
-    // this.getLatLng();
-    this.getStylistsInLocation(this.currentLocation);
+    this.getLatLng((lat, lng) => this.getLocationFromCoordinates(lat, lng, (location) => this.getStylistsInLocation(location)));
+    this.getLatLng((lat, lng) => this.getLocationFromCoordinates(lat, lng, (location) => this.adjustMapViewForLocation(location)))
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -38,14 +33,12 @@ export class CustomerMapComponent {
     this.getStylistsInLocation(this.searchLocation);
   }
 
-  getLatLng() {
+  getLatLng(next) {
     this.locationService.getCurrentPosition(null, null)
       .subscribe(res =>  {
-        console.log(res);
-        console.log(JSON.stringify(res));
-        console.log(res.coords);
         this.lat = res.coords.latitude;
         this.lng = res.coords.longitude;
+        next(this.lat, this.lng);
         console.log(`Latitude is: ${this.lat}, longitude is: ${this.lng}`);
       });
   }
@@ -76,10 +69,11 @@ export class CustomerMapComponent {
       }, err => console.log(err));
   }
 
-  getLocationFromCoordinates(lat, lng) {
+  getLocationFromCoordinates(lat, lng, next) {
     this.locationService.getLocationFromCoordinates(lat, lng)
       .subscribe(location => {
         this.currentLocation = location;
+        next(this.currentLocation);
       }, err => console.log(err));
   }
 

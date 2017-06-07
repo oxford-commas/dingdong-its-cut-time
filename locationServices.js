@@ -1,7 +1,7 @@
 var https = require('https');
 
 var getLocationPoints = function(location, callback) {
-  var p = 'https://maps.googleapis.com/maps/api/geocode/json?address='+location+'&key=AIzaSyDiVQjsDczrtUuAdadrUB2lFn39QEWK43A'
+  var p = `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyDiVQjsDczrtUuAdadrUB2lFn39QEWK43A`;
   https.get(p, (res) => {
     var st = '';
       res.on('data', (chunk) => {

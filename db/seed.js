@@ -238,7 +238,7 @@ const stylistArray = [
     id: 0,
     'username': 'andrew',
     'password': 'lam',
-    'location': '324 Cherry St, Toronto',
+    'location': '60 Queen St W, Toronto',
     'phoneNumber': '654-842-8945',
     'email': 'drew@gmail.com',
     'website': 'drewcutshair.org',
