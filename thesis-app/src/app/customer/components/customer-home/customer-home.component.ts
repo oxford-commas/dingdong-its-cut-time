@@ -42,18 +42,12 @@ export class CustomerHomeComponent implements OnInit {
     this.pinStylistsAtLocation(this.currentLocation);
   }
 
-  ngOnChanges() {
-    this.pinStylistsAtLocation(this.searchLocation);
-    this.getLocationCoordinates(this.latitude, this.longitude);
-  }
-
   pinStylistsAtLocation(location: any) {
     this.stylistService.getStylistsInLocation(this.currentLocation)
       .subscribe(data => {
         this.stylistsCloseToYou = data;
       }, err => console.log(err));
   }
-
 
   getStylistsAtLocation(location: any) {
     this.stylistService.getStylistsInLocation(this.currentLocation)

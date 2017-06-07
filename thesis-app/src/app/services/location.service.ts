@@ -34,7 +34,7 @@ import 'rxjs/add/operator/map';
     });
   }
 
-  getCoordinatesForLocation(location: string): Observable<{lat: number, lng: number}> {
+  getCoordinatesFromLocation(location: string): Observable<{lat: number, lng: number}> {
     console.log('getCoordinatesForLocation arrived!')
     return this.http.get(`/api/coordinates/${location}`)
       .map(this.fetchData)

@@ -9,29 +9,19 @@ import { StylistService } from '../../../services';
   styleUrls: [ './customer-map.component.css' ]
 })
 
-export class CustomerMapComponent implements OnInit {
+export class CustomerMapComponent {
   constructor(
     private locationService: LocationService,
     private stylistService: StylistService,
     private router: Router
   ) {
-    stylistService.getStylistsInLocation('sanfrancisco')
-      .subscribe(data => {
-        this.stylists = data;
-        this.stylists.map(stylist => {
-          stylist.label = {
-            color: 'black',
-            fontWeight: 'bold',
-            text: stylist.name
-          }
-        })
-      }, err => console.log(err));
-
-    // sets the initial center position for the map to a default location
     this.getLatLng();
+    this.getLocationFromCoordinates(this.lat, this.lng);
+    // this.getStylistsInLocation(this.currentLocation);
   }
 
   @Input() searchLocation: string;
+  @Input() currentLocation: string;
 
   // initial zoom value for the map
   public lng: number;
@@ -39,11 +29,11 @@ export class CustomerMapComponent implements OnInit {
   public zoom: number = 14;
 
   ngOnInit() {
-    this.getLatLng();
+    // this.getLatLng();
+    this.getStylistsInLocation(this.currentLocation);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('Lets seee: this.searchLocation', this.searchLocation);
     this.adjustMapViewForLocation(this.searchLocation);
     this.getStylistsInLocation(this.searchLocation);
   }
@@ -61,7 +51,7 @@ export class CustomerMapComponent implements OnInit {
   }
 
   adjustMapViewForLocation(location: string) {
-    this.locationService.getCoordinatesForLocation(location)
+    this.locationService.getCoordinatesFromLocation(location)
       .subscribe(res => {
         console.log(res);
         console.log(JSON.stringify(res));
@@ -74,6 +64,7 @@ export class CustomerMapComponent implements OnInit {
   getStylistsInLocation(location: string) {
     this.stylistService.getStylistsInLocation(location)
       .subscribe(data => {
+        console.log('Loc is', location);
         this.stylists = data;
         this.stylists.map(stylist => {
           stylist.label = {
@@ -82,6 +73,13 @@ export class CustomerMapComponent implements OnInit {
             text: stylist.name
           }
         })
+      }, err => console.log(err));
+  }
+
+  getLocationFromCoordinates(lat, lng) {
+    this.locationService.getLocationFromCoordinates(lat, lng)
+      .subscribe(location => {
+        this.currentLocation = location;
       }, err => console.log(err));
   }
 
