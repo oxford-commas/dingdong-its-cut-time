@@ -1,6 +1,6 @@
 <customer-navbar></customer-navbar>
-<div class="poppaDiv">
-  <div class="inboxContainer">
+<div class="container">
+  <div class="inbox-container">
     <customer-inbox
       [messages]="stateService.retrieveCustomer().messages"
       (openHistory)="setCurrentChat($event)"
@@ -8,5 +8,7 @@
     >
     </customer-inbox>
   </div>
-  <chat-history [chatHistory]="currentChat"></chat-history>
+  <div class="chat-history-container">
+    <chat-history [chatHistory]="currentChat"></chat-history>
+  </div>
 </div>

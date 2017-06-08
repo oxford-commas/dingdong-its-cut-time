@@ -1,18 +1,18 @@
-<div class="poppaDiv">
-  <h1>Inbox</h1>
-  <div *ngFor="let conversation of messages" class="rowItem">
-    <div class="rowBody">
-      <div class="title" (click)="openHistory.emit(conversation.slice().reverse())">
-        <div class="messageUser">
-          <h4>{{conversation[0].recipient}}: </h4>
-          <span>
-            {{ conversation[0].subjectHeading }} @ {{ conversation[0].time }}
-          </span>
-        </div>
-        <div class="buttonContainer">
-          <button (click)="deleteChat.emit(conversation)">Delete</button>
-        </div>
-      </div>
+<h1>Inbox</h1>
+<div
+  *ngFor="let conversation of messages"
+  class="title"
+  (click)="openHistory.emit(conversation.slice().reverse())"
+>
+  <div class="messageUser">
+    <h4>{{conversation[0].recipient}}: </h4>
+    <div>
+      {{ conversation[0].time }}
     </div>
+  </div>
+  <div
+    class="buttonContainer glyphicon glyphicon-remove"
+    (click)="deleteChat.emit(conversation)"
+  >
   </div>
 </div>
