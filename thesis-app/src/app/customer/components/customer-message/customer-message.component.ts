@@ -12,20 +12,22 @@ export class CustomerMessageComponent {
     private stateService: StateService,
     private messageService: MessageService) {}
 
-  public messages: IMessage;
+  public conversations = this.stateService.retrieveCustomer().messages;
   public currentChat;
 
-  setCurrentChat(conversation) {
-    this.currentChat = conversation;
+  setCurrentChat(senderId) {
+    this.currentChat = this.conversations.find(conversation => conversation.sender_id === senderId).messages;
   }
 
-  deleteChat(conversation) {
-    const messageIds = conversation.map(message => {
-      return message.id;
-    });
+  deleteChat(senderId) {
+    const conversationIndex = this.conversations.findIndex(conversation => conversation.sender_id === senderId);
+    const messageIds = this.conversations[conversationIndex].messages.map(message => message.id);
     this.messageService.deleteChatHistory(messageIds)
       .subscribe(
-        res => console.log(res),
+        res => {
+          this.conversations.splice(conversationIndex, 1);
+          this.currentChat = [];
+        },
         err => console.log(err)
       );
   }

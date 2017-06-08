@@ -1,18 +1,18 @@
-<h2>Hello world</h2>
 <customer-navbar></customer-navbar>
-Bookings:
-<div *ngFor="let booking of bookings; let i = index;">
-  <booking
-    [bookingInformation]="booking"
-    (confirmBooking)="confirmBooking($event, i)"
-    (deleteBooking)="deleteBooking($event, i)"
-    (completeBooking)="completeBooking($event, i)"
-  ></booking>
-</div>
-<div class="mapContainer">
-  <stylist-map class="map"
-    [stylistId]="stylistProfile.id"
-    [stylistLocation]="stylistProfile.billingaddress"
-  >
-  </stylist-map>
+<div class="wrapper">
+  <div class="booking-container" *ngFor="let booking of bookings; let i = index;">
+    <booking
+      [bookingInformation]="booking"
+      (confirmBooking)="confirmBooking($event, i)"
+      (deleteBooking)="deleteBooking($event, i)"
+      (completeBooking)="completeBooking($event, i)"
+    ></booking>
+  </div>
+  <div class="map-container">
+    <stylist-map class="map"
+      [stylistId]="stylistProfile.id"
+      [stylistLocation]="stylistProfile.billingaddress"
+    >
+    </stylist-map>
+  </div>
 </div>

@@ -3,7 +3,8 @@ import { IBookingInformation } from '../../interfaces';
 
 @Component({
   selector: 'booking',
-  templateUrl: './booking.component.html'
+  templateUrl: './booking.component.html',
+  styleUrls: ['./booking.component.css']
 })
 export class BookingComponent {
   @Input() bookingInformation: IBookingInformation;

@@ -9,7 +9,8 @@ import {
 
 @Component({
    selector: 'stylist-home',
-   templateUrl: './stylist-home.component.html'
+   templateUrl: './stylist-home.component.html',
+   styleUrls: ['./stylist-home.component.css']
 })
 export class StylistHomeComponent implements OnInit {
   public stylistLocation: any;
@@ -38,7 +39,6 @@ export class StylistHomeComponent implements OnInit {
   }
 
   confirmBooking(id: number, index: number) {
-    console.log('TODO: color this booking div green');
     this.bookingService.confirmBooking(id)
       .subscribe(
         result => console.log(result),

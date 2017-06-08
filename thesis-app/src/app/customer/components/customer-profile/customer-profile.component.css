@@ -1,0 +1,71 @@
+h1 {
+  border-bottom: 2px solid black;
+}
+
+.poppaDiv {
+  border: 2px solid black;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.profileContainer {
+  flex: 1 1 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  height: 55%;
+  border: 2px solid black;
+  margin: 1em;
+  border-radius: 50px;
+}
+
+.billingAddressContainer {
+  flex: 1 1 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 1em;
+  margin: 1em;
+}
+
+.userInfoContainer {
+  flex: 1 1 60%;
+  padding: 1em;
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: left;
+  text-indent: 1em;
+}
+
+.profAddress {
+  text-indent: 1em;
+}
+
+.buttonContainer2 {
+  flex: 1 1 9%;
+  padding: 1em;
+  margin: 1em;
+  border-left: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input {
+  background-color: #d3d3d3;
+  margin-left: 2em;
+}
+
+button {
+  border: 2px solid black;
+  background-color: rgba(173, 216, 230, 0.9);
+  border-radius: 10px;
+}

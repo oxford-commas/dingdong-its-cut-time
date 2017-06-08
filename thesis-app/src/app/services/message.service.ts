@@ -22,6 +22,11 @@ export class MessageService {
   }
 
   convertToArray(obj) {
-    return Object.keys(obj).map(key => obj[key]);
+    return Object.keys(obj).map(key => ({
+        sender_id: key,
+        sender: obj[key].sender,
+        messages: obj[key].messages
+      })
+    );
   }
 }
