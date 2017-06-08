@@ -75,9 +75,12 @@ export class StylistProfileComponent implements OnInit {
   }
 
   public submitMessage(ngForm: NgForm) {
+    const userId = this.stateService.retrieveCustomer().id
     const message = {
-      id_sender: this.stateService.retrieveCustomer().id,
+      id_sender: userId,
       id_recipient: this.stylistProfile.id,
+      id_users: userId,
+      id_stylists: this.stylistProfile.id,
       subjectHeading: ngForm.value.subjectHeading,
       body: ngForm.value.body,
       time: ngForm.value.time,
@@ -87,7 +90,7 @@ export class StylistProfileComponent implements OnInit {
     }
     this.messageService.postMessage(message)
       .subscribe(
-        res => console.log(res),
+        res => this.getStyle(),
         err => console.log(err)
       )
     this.bookingService.addBooking(message)
