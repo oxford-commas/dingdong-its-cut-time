@@ -28,26 +28,26 @@ export class StylistProfileComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.stateService, 'here')
-    // this.route.params
-    //   .subscribe(
-    //     params => this.stylistId = +params['id'],
-    //     err => console.log(err)
-    //   );
-    // this.requestService.getStylistById(this.stylistId)
-    //  .subscribe(
-    //    data => {
-    //     this.stylistProfile = data
-    //     console.log(this.stylistProfile, data, 'ran')
-    //     // this.requestService.getUserImg(this.stylistProfile.id)
-    //     //   .subscribe(
-    //     //     response => {
-    //     //       console.log(response, 'here')
-    //     //     }
-    //     //   )
-    //   },
-     //   err => console.log(err),
-     //   () => this.isProfileFetched = true
-     // );
+    this.route.params
+      .subscribe(
+        params => this.stylistId = +params['id'],
+        err => console.log(err)
+      );
+    this.requestService.getStylistById(this.stylistId)
+     .subscribe(
+       data => {
+        this.stylistProfile = data
+        console.log(this.stylistProfile, data, 'ran')
+        // this.requestService.getUserImg(this.stylistProfile.id)
+        //   .subscribe(
+        //     response => {
+        //       console.log(response, 'here')
+        //     }
+        //   )
+      },
+       err => console.log(err),
+       () => this.isProfileFetched = true
+     );
   }
 
   public toggleModal() {
