@@ -8,7 +8,7 @@
 
     <nav class="superNav">
       <ul class="unorderedList">
-        <li class="customer">
+        <li class="customerContainer">
           <h4>Welcome {{ currentCustomer }}, where are you located?</h4>
         </li>
         <li class="search">
@@ -19,22 +19,25 @@
                 #streetAddress
                 (ngModelChange)="locationChange.emit(streetAddress)"
               >
-              <button class="btn btn-default" (click)="handleSearchLocationChange(streetAddress.value)">Search</button>
+              <span>
+                <button class="btn btn-default" (click)="handleSearchLocationChange(streetAddress.value)">Search</button>
+              </span>
             </div>
           </form>
         </li>
-
-        <div class="dropdown">
-          <span class="caret"><h4>Username</h4></span>
-            <div class="dropdown-content">
-              <ul class="dropdownUl">
-                <li [routerLink]="['/home']"><h4>Home</h4></li>
-                <li [routerLink]="['/messages']"><h4>Messages</h4></li>
-                <li [routerLink]="['/customerProfile', customerId]"><h4>Settings</h4></li>
-                <li [routerLink]="['/login']"><h4>Logout</h4></li>
-              </ul>
-            </div>
-        </div>
+        <li class="dropdownList">
+          <div class="dropdown">
+            <span class="caret"><h4>Username</h4></span>
+              <div class="dropdown-content">
+                <ul class="dropdownUl">
+                  <li [routerLink]="['/home']"><h4>Home</h4></li>
+                  <li [routerLink]="['/messages']"><h4>Messages</h4></li>
+                  <li [routerLink]="['/customerProfile', customerId]"><h4>Settings</h4></li>
+                  <li [routerLink]="['/login']"><h4>Logout</h4></li>
+                </ul>
+              </div>
+          </div>
+        </li>
       </ul>
     </nav>
 
