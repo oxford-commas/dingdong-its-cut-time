@@ -1,9 +1,15 @@
 .is-confirmed {
   background-color: #77A0A9;
   color: #F4F1BB;
+  border-radius: 5px;
 }
 
 .not-confirmed {
   background-color: #ED6A5A;
   color: #F4F1BB;
+  border-radius: 5px;
+}
+
+button {
+  color: black;
 }
