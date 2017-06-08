@@ -1,24 +1,81 @@
+.background {
+  /*background-image: url('http://www.metalsucks.net/wp-content/uploads/2014/11/Barberian-Academy-Barber-Shop.jpg');*/
+  /*background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('http://www.metalsucks.net/wp-content/uploads/2014/11/Barberian-Academy-Barber-Shop.jpg');*/
+  background-color: white;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity: 0.95;
+  filter: blur(2px);
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+}
+
+.nav-bar {
+  position: relative;
+  z-index: 99;
+}
+
 .poppaDiv {
   border: 2px solid red;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 53em;
+  width: 100%;
+  /*display: flex;*/
+  /*justify-content: center;*/
+  /*align-items: center;*/
+  opacity: 1;
+  position: relative;
+}
+
+.container {
+  /*border: 1px solid orange;*/
+  width: 80%;
 }
 
 .stylistContainer {
-  border: 2px solid red;
-  flex: 1 1 55%;
-  height: 100%;
+  /*border: 2px solid red;*/
+  /*flex: 1 1 55%;*/
+  height: 40%;
+  padding: 0 5rem;
+  display: inline-block;
+  position: relative;
+  /*position: absolute;*/
+  /*top: 16em;*/
+  /*left: 14em;*/
 }
 
 .mapContainer {
-  flex: 1 1 43%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /*flex: 1 1 43%;*/
+  /*border: 2px solid yellow;*/
+  display: inline-block;
+  position: fixed;
+  vertical-align: top;
+  margin-left: 10rem;
+  /*display: flex;*/
+  /*justify-content: center;*/
+  /*align-items: center;*/
+/*  position: absolute;
+  right: 4em;
+  top: 2em;*/
 }
 
-.map {
+/*.map {
   width: 100%;
+}*/
+
+.blurb {
+  position: absolute;
+  right: 55em;
+  bottom: 10em;
+  color: black;
+  font-style: italic;
+  font-size: 10px;
+}
+
+.booking-due {
+  position: absolute;
+  top: 3em;
+  left: 1em;
 }

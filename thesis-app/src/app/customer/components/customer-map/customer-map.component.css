@@ -1,6 +1,6 @@
 .sebm-google-map-container {
-  height: 400px;
-  width: 450px;
+  height: 35em;
+  width: 45em;
 }
 
 .map-title {
@@ -9,6 +9,6 @@
 }
 
 .map-container {
-  float: right;
-  padding-right: 150px;
+  /*float: right;*/
+  /*padding-right: 150px;*/
 }
