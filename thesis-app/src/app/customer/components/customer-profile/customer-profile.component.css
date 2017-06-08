@@ -17,6 +17,8 @@ h1 {
 
 img {
   height: 55%;
+  border: 2px solid black;
+  margin: 1em;
   border-radius: 50px;
 }
 
