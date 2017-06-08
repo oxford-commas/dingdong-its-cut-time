@@ -6,3 +6,4 @@ export * from './deletion.service';
 export * from './booking.service';
 export * from './message.service';
 export * from './state.service';
+export * from './customer.service';

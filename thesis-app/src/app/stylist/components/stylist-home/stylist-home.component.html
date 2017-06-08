@@ -9,3 +9,10 @@ Bookings:
     (completeBooking)="completeBooking($event, i)"
   ></booking>
 </div>
+<div class="mapContainer">
+  <stylist-map class="map"
+    [stylistId]="stylistProfile.id"
+    [stylistLocation]="stylistProfile.billingaddress"
+  >
+  </stylist-map>
+</div>
