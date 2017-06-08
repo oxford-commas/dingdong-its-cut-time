@@ -60,7 +60,7 @@ app.get('/api/userStylist/:id', function(req, res) {
     res.status(200).json(data[0]);
   });
 });
- 
+
 //gets image of a user/stylist --- completed
 app.get('/api/profile/:id', function(req, res, next) {
   console.log(req.params.id)
@@ -68,6 +68,7 @@ app.get('/api/profile/:id', function(req, res, next) {
     console.log(data);
     var file = data[0].image_url;
     console.log(path.join(__dirname + '/' + file));
+    res.set({'Content-Type': 'image/jpeg'});
     res.sendFile(path.join(__dirname + '/' + file));
   });
 });
