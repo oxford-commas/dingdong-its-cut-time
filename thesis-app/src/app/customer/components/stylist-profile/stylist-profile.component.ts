@@ -1,7 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
-import { RequestService, MessageService, BookingService, StateService } from '../../../services';
+import {
+  RequestService,
+  MessageService,
+  BookingService,
+  StateService } from '../../../services';
 
 import { IMessage } from '../../interfaces';
 
@@ -27,7 +32,6 @@ export class StylistProfileComponent implements OnInit {
   private stylistId: number;
 
   ngOnInit() {
-    console.log(this.stateService, 'here')
     this.route.params
       .subscribe(
         params => this.stylistId = +params['id'],
@@ -37,7 +41,6 @@ export class StylistProfileComponent implements OnInit {
      .subscribe(
        data => {
         this.stylistProfile = data
-        console.log(this.stylistProfile, data, 'ran')
         // this.requestService.getUserImg(this.stylistProfile.id)
         //   .subscribe(
         //     response => {
@@ -71,34 +74,26 @@ export class StylistProfileComponent implements OnInit {
    return message;
   }
 
-  public submitMessage(message: IMessage) {
-    message = this.decorateSenderAndRecipient(message);
+  public submitMessage(ngForm: NgForm) {
+    const message = {
+      id_sender: this.stateService.retrieveCustomer().id,
+      id_recipient: this.stylistProfile.id,
+      subjectHeading: ngForm.value.subjectHeading,
+      body: ngForm.value.body,
+      time: ngForm.value.time,
+      location: ngForm.value.location,
+      isconfirmed: 0,
+      isComplete: 0
+    }
     this.messageService.postMessage(message)
       .subscribe(
         res => console.log(res),
         err => console.log(err)
-      );
-    this.addBooking(message);
-  }
-
-  public addBooking(message: IMessage) {
-    const booking = {
-      id_users: 1, //hardcoded logged in user
-      id_stylists: this.stylistId,
-      isconfirmed: false,
-      time: message.time,
-      location: message.location
-    };
-    this.bookingService.addBooking(booking)
+      )
+    this.bookingService.addBooking(message)
       .subscribe(
         res => console.log(res),
         err => console.log(err)
-      );
+      )
   }
 }
-
-// | 55 |    1 | dnalounge         | dnalounge         | 375 11th St, San Francisco, CA
-
- // 56 |    0 | castro            | castro            | 429 Castro St, San Francisco, CA                      | 415-621-6120 | castrotheatre@gmail.com     | -122.4347591 | 37.7620333 | castrotheatre.com      | NULL   | update me |
-
-
