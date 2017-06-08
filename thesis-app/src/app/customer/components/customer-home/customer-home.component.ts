@@ -25,6 +25,7 @@ export class CustomerHomeComponent implements OnInit {
   public latitude: number;
   public longitude: number;
   public bookingsDue: any;
+  public bookingsConfirmed: any;
   userProfile: any;
 
   constructor(
@@ -45,7 +46,8 @@ export class CustomerHomeComponent implements OnInit {
     this.searchLocation = this.currentLocation;
     // this.pinStylistsAtLocation(this.searchLocation);
     // instead of using socket.io, check for bookings due on interval
-    setInterval(() => this.checkForBookingsDue(4), 5000);
+    setInterval(() => this.checkForBookingsDue(this.customerProfile.id), 5000);
+    setInterval(() => this.checkForBookingsConfirmed(this.customerProfile.id), 5000);
     this.requestService.getStylistByLocation('sanfrancisco')
       .subscribe(data => this.stylistsCloseToYou = data, err => console.log(err));
   }
@@ -84,6 +86,19 @@ export class CustomerHomeComponent implements OnInit {
         data => {
           console.log('fetching dues....', data);
           this.bookingsDue = data;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+  }
+
+  checkForBookingsConfirmed(id: number) {
+    this.bookingService.fetchConfirmedBookings(id)
+      .subscribe(
+        data => {
+          this.bookingsConfirmed = data;
+          console.log('fetching confirmed', data);
         },
         err => {
           console.log(err);
