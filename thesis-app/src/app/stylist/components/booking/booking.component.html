@@ -2,12 +2,12 @@
   <h4>{{bookingInformation.customer}}</h4>
   <span class="glyphicon glyphicon-time">{{bookingInformation.time}}</span>
   <span class="glyphicon glyphicon-home">{{bookingInformation.location}}</span>
-  <button (click)="completeBooking.emit(bookingInformation.id)">Request Payment</button>
+  <span class="complete-btn" (click)="completeBooking.emit(bookingInformation.id)">Get Paid</span>
 </div>
 <div class="not-confirmed" *ngIf="bookingInformation.isconfirmed===0">
   <h4>{{bookingInformation.customer}}</h4>
   <span class="glyphicon glyphicon-time">{{bookingInformation.time}}</span>
   <span class="glyphicon glyphicon-home">{{bookingInformation.location}}</span>
-  <button (click)="confirmBooking.emit(bookingInformation.id)">Confirm this booking</button>
-  <button (click)="deleteBooking.emit(bookingInformation.id)">Delete this booking</button>
+  <span class="confirm-btn" (click)="confirmBooking.emit(bookingInformation.id)">Confirm</span>
+  <span class="delete-btn" (click)="deleteBooking.emit(bookingInformation.id)">Delete</span>
 </div>

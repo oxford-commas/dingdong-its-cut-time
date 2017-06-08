@@ -1,15 +1,39 @@
+div {
+  width: 100%;
+}
+
 .is-confirmed {
   background-color: #77A0A9;
   color: #F4F1BB;
   border-radius: 5px;
+  padding: 1rem 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .not-confirmed {
   background-color: #ED6A5A;
   color: #F4F1BB;
   border-radius: 5px;
+  padding: 1rem 0.5rem;
+  margin-bottom: 1rem;
 }
 
 button {
   color: black;
+  vertical-align: middle;
+}
+
+.complete-btn {
+  background-color: #364156;
+  border-radius: 2px;
+}
+
+.confirm-btn {
+  background-color: #6F7D8C;
+  border-radius: 2px;
+}
+
+.delete-btn {
+  background-color: #6F7D8C;
+  border-radius: 2px;
 }
