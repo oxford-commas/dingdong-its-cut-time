@@ -6,7 +6,8 @@ import { RequestService, DeletionService, StateService } from '../../../services
 
 @Component({
   selector: 'customer-profile',
-  templateUrl: './customer-profile.component.html'
+  templateUrl: './customer-profile.component.html',
+  styleUrls: ['./customer-profile.component.css']
 })
 export class CustomerProfileComponent implements OnInit {
   constructor(
@@ -18,18 +19,11 @@ export class CustomerProfileComponent implements OnInit {
   ) {}
 
   public profile: any; // TODO: INTERFACE THIS
-  public showView: boolean = true;
+  // public showView: boolean = true;
 
   ngOnInit() {
     this.profile = this.stateService.retrieveCustomer();
-  }
-
-  public showAccountView() {
-    this.showView = true;
-  }
-
-  public showPaymentView() {
-    this.showView = false;
+    console.log(this.profile, 'here')
   }
 
   public handleDeleteAccount() {

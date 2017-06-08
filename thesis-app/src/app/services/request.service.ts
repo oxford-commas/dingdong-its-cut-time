@@ -57,7 +57,7 @@ export class RequestService {
     return this.http.get(`/api/profile/${id}`)
       .map(
         (response: Response) => {
-          return response.json();
+          return response;
         }
       )
   }

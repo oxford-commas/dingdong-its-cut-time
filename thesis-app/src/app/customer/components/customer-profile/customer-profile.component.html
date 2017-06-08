@@ -1,31 +1,23 @@
 <customer-navbar [customerId]="customerId"></customer-navbar>
 <h1>{{profile.name}}'s profile</h1>
-<img [src]="profile.image_url" />
-<button>Edit</button>
-<p>Location</p>
-<div>
-  Longitude: {{profile.longitude}},
-  Latitude: {{profile.latitude}}
-  <button>Edit</button>
+<div class="poppaDiv">
+  <div class="profileContainer">
+    <img [src]="profile.image_url" />
+    <div class="billingAddressContainer">
+      <h4>Billing Address:</h4>
+      <h4>{{profile.billingaddress}}</h4>
+      <button>Edit</button>
+    </div>
+  </div>
+  <div class="userInfoContainer">
+    <h4>Username: {{profile.name}}<input name="username" ngModel /></h4>
+    <h4>Password: {{profile.password}}<input name="password" ngModel /></h4>
+    <h4>Email: {{profile.email}}<input name="email" ngModel /></h4>
+    <h4>Phone Number: {{profile.phonenumber}}<input name="phonenumber"></h4>
+    <h4>Personal Website: {{profile.site_url}}<input name="website"></h4>
+  </div>
+  <div class="buttonContainer2">
+    <button (click)="handleDeleteAccount()">Delete my account</button>
+    <button (click)="handleSaveChanges()">Save changes</button>
+  </div>
 </div>
-<div>
-  <p (click)="showAccountView()">Edit your account information</p>
-  <p (click)="showPaymentView()">Payment methods</p>
-</div>
-<div *ngIf="showView">
-  Username<input name="username" ngModel />
-  Password<input name="password" ngModel />
-  <button (click)="handleDeleteAccount()">Delete my account</button>
-  <button (click)="handleSaveChanges()">Save changes</button>
-</div>
-<!-- <div *ngIf="!showView && profile.payments.length > 0">
-  You don't have any payment methods
-  <button>Add a payment method</button>
-</div>
-<div *ngIf="!showView && profile.payments.length === 0">
-  Render profile.payments here
-  <button>Edit</button>
-  <button>Delete</button>
-  <button>Add a payment method</button>
-</div> -->
-<payment-input [customerName]="profile.name"></payment-input>

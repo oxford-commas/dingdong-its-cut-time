@@ -10,10 +10,14 @@
 }
 
 h1 {
-  text-shadow: 3px 3px 1px rgba(173, 216, 230, 0.9);
+  color: #e5e3e3;
   width: 100%;
   flex: 1 1;
   align-self: center;
+}
+
+h4 {
+  color: #e5e3e3;
 }
 
 .title {
@@ -36,7 +40,6 @@ h1 {
 
 .superNav {
   width: 100%;
-  box-shadow: 5px 5px 3px rgba(173, 216, 230, 0.9);
 }
 
 .unorderedList {
@@ -51,18 +54,16 @@ h1 {
 }
 
 input {
-  width: 25em;
-  background-color: #d3d3d3;
+  width: 20em;
+  background-color: #e5e3e3
 }
 
-li,
 .customer {
   width: 40%;
 }
 
-li,
-.formElement {
-  width: 49%;
+.search {
+  width: 40%;
 }
 
 .form-control {
@@ -94,9 +95,14 @@ li,
   width: 100%;
   height: 100%;
   box-shadow: 3px 3px 1px rgba(173, 216, 230, 0.9);
+  background-color: transparent;
 }
 
 .dropdownUl *:hover {
   list-style-type: none;
   color: rgba(173, 216, 230, 0.9);
+}
+
+button {
+  color: #e5e3e3;
 }
