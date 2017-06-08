@@ -1,10 +1,11 @@
-<customer-navbar
+<div class="background"></div>
+<customer-navbar class="nav-bar"
   [customerId]="customerProfile.id"
   [searchLocation]="searchLocation"
   (locationChange)="onSearchLocationChange($event)"
 >
 </customer-navbar>
-<div class="poppaDiv">
+<div class="container">
   <div class="stylistContainer">
     <div *ngFor="let stylist of stylistsCloseToYou">
       <close-to-you
@@ -24,7 +25,11 @@
   </div>
 </div>
 
-<div *ngIf="!!bookingsDue">
+<!-- <div class="blurb">
+  <span>Property of The Oxford Commas</span>
+</div> -->
+
+<div class="booking-due" *ngIf="!!bookingsDue">
   <div *ngFor="let booking of bookingsDue">
     I OWE {{booking.name}} MONEY!!!!
   </div>

@@ -43,9 +43,11 @@ export class CustomerHomeComponent implements OnInit {
     this.getLocationCoordinates(this.latitude, this.longitude);
     this.getLocationFromCoordinates(this.latitude, this.longitude);
     this.searchLocation = this.currentLocation;
-    this.pinStylistsAtLocation(this.searchLocation);
+    // this.pinStylistsAtLocation(this.searchLocation);
     // instead of using socket.io, check for bookings due on interval
     setInterval(() => this.checkForBookingsDue(4), 5000);
+    this.requestService.getStylistByLocation('sanfrancisco')
+      .subscribe(data => this.stylistsCloseToYou = data, err => console.log(err));
   }
 
   pinStylistsAtLocation(location: any) {
