@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { RequestService, DeletionService, StateService } from '../../../services';
+
 
 @Component({
   selector: 'customer-profile',
-  templateUrl: './customer-profile.component.html'
+  templateUrl: './customer-profile.component.html',
+  styleUrls: ['./customer-profile.component.css']
 })
 export class CustomerProfileComponent implements OnInit {
   constructor(
@@ -18,18 +19,11 @@ export class CustomerProfileComponent implements OnInit {
   ) {}
 
   public profile: any; // TODO: INTERFACE THIS
-  public showView: boolean = true;
+  // public showView: boolean = true;
 
   ngOnInit() {
     this.profile = this.stateService.retrieveCustomer();
-  }
-
-  public showAccountView() {
-    this.showView = true;
-  }
-
-  public showPaymentView() {
-    this.showView = false;
+    console.log(this.profile, 'here')
   }
 
   public handleDeleteAccount() {
@@ -41,7 +35,25 @@ export class CustomerProfileComponent implements OnInit {
       );
   }
 
-  public handleSaveChanges() {
-    console.log('TODO: PUT the changes');
+  public handleSaveChanges(form: NgForm) {
+    console.log(this.profile, form.value);
+    const newObj = {
+      name: form.value.username || this.profile.name,
+      password: form.value.password || this.profile.password,
+      billingaddress: form.value.address || this.profile.billingaddress,
+      image_url: form.value.image || this.profile.image_url,
+      email: form.value.email || this.profile.email,
+      phonenumber: form.value.phonenumber || this.profile.phonenumber,
+      site_url: form.value.website || this.profile.site_url,
+      id: this.profile.id,
+      type: 1
+    }
+    this.requestService.changeUser(newObj)
+      .subscribe(
+        data => {
+          console.log(data);
+        }
+      )
   }
 }
+
