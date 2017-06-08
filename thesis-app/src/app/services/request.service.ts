@@ -69,7 +69,7 @@ export class RequestService {
     return this.http.put(`/api/userstylist/${obj.id}`, obj, {headers: headers})
       .map(
         (response: Response) => {
-        response.json()
+          return response;
       }
     )
   }

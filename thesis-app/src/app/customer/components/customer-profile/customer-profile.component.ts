@@ -40,12 +40,20 @@ export class CustomerProfileComponent implements OnInit {
     const newObj = {
       name: form.value.username || this.profile.name,
       password: form.value.password || this.profile.password,
+      billingaddress: form.value.address || this.profile.billingaddress,
+      image_url: form.value.image || this.profile.image_url,
       email: form.value.email || this.profile.email,
       phonenumber: form.value.phonenumber || this.profile.phonenumber,
-      website: form.value.website || this.profile.site_url,
-      id: this.profile.id
+      site_url: form.value.website || this.profile.site_url,
+      id: this.profile.id,
+      type: 1
     }
     this.requestService.changeUser(newObj)
+      .subscribe(
+        data => {
+          console.log(data);
+        }
+      )
   }
 }
 
