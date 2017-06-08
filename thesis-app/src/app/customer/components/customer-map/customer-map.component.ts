@@ -39,25 +39,25 @@ export class CustomerMapComponent implements OnInit {
         this.lat = res.coords.latitude;
         this.lng = res.coords.longitude;
         next(this.lat, this.lng);
-        console.log(`Latitude is: ${this.lat}, longitude is: ${this.lng}`);
+        // console.log(`Latitude is: ${this.lat}, longitude is: ${this.lng}`);
       });
   }
 
   adjustMapViewForLocation(location: string) {
     this.locationService.getCoordinatesFromLocation(location)
       .subscribe(res => {
-        console.log(res);
-        console.log(JSON.stringify(res));
+        // console.log(res);
+        // console.log(JSON.stringify(res));
         this.lat = res.lat;
         this.lng = res.lng;
-        console.log(`Latitude is: ${this.lat}, longitude is: ${this.lng}`);
+        // console.log(`Latitude is: ${this.lat}, longitude is: ${this.lng}`);
       });
   }
 
   getStylistsInLocation(location: string) {
     this.stylistService.getStylistsInLocation(location)
       .subscribe(data => {
-        console.log('Loc is', location);
+        // console.log('Loc is', location);
         this.stylists = data;
         this.stylists.map(stylist => {
           stylist.label = {
@@ -82,14 +82,14 @@ export class CustomerMapComponent implements OnInit {
   }
 
   clickedMarker(label: string, index: number) {
-    console.log(`clicked the marker: ${label || index}`)
+    // console.log(`clicked the marker: ${label || index}`)
   }
 
   // helper function to get coordinates of a point on map
   mapClicked($event: any) {
     let lat = $event.coords.lat;
     let lng = $event.coords.lng;
-    console.log(`lat: ${lat}, lng: ${lng}`);
+    // console.log(`lat: ${lat}, lng: ${lng}`);
   }
 
   public stylists: any

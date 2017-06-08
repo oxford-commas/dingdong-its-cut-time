@@ -52,4 +52,44 @@ export class RequestService {
         }
       )
   }
+
+  getUserImg(id: number) {
+    return this.http.get(`/api/profile/${id}`)
+      .map(
+        (response: Response) => {
+          return response;
+        }
+      )
+  }
+
+  changeUser(obj: any) {
+    const headers = new Headers({'Content-Type': 'application/json'});
+    const url = `/api/userstylist/${obj.id}`;
+    console.log(url, 'here');
+    return this.http.put(`/api/userstylist/${obj.id}`, obj, {headers: headers})
+      .map(
+        (response: Response) => {
+          return response;
+      }
+    )
+  }
 }
+
+
+
+// app.put('/api/userstylist/:id', function (req, res) {
+//   var id = req.params.id;
+//   var type = req.body.type;
+//   var name = req.body.name;
+//   var password = req.body.password;
+//   var billingaddress = req.body.billingaddress;
+//   var phonenumber = req.body.phonenumber;
+//   var email = req.body.email;
+//   var site_url = req.body.site_url;
+//   var gender = req.body.gender;
+//   var image_url = req.body.image_url;
+//   var location = req.body.location;
+//   helpers.updateProfile(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, function() {
+//     res.send('Got a PUT request at /api/userstylist/' + req.params.id);
+//   });
+// });

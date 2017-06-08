@@ -1,5 +1,4 @@
 .poppaDiv {
-  border: 2px solid red;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -7,7 +6,6 @@
 }
 
 .stylistContainer {
-  border: 2px solid red;
   flex: 1 1 55%;
   height: 100%;
 }
