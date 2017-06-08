@@ -39,8 +39,12 @@ img {
   flex-direction: column;
   justify-content: flex-start;
   align-items: left;
+  text-indent: 1em;
 }
 
+.profAddress {
+  text-indent: 1em;
+}
 
 .buttonContainer2 {
   flex: 1 1 9%;
@@ -55,4 +59,10 @@ img {
 
 input {
   background-color: #d3d3d3;
+  margin-left: 2em;
+}
+
+button {
+  border: 2px solid black;
+  background-color: rgba(173, 216, 230, 0.9);
 }
