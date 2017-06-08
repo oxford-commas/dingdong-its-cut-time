@@ -3,10 +3,11 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'registration-header',
   template: `
-    <div class="page-header" style="margin: auto; text-align: center">
-      <h1>Ding Dong: It's Cut Time</h1>
+    <div class="pageHeader">
+      <h1>It's Cut Time</h1>
     </div>
-  `
+  `,
+  styleUrls: ['./registration-header.component.css']
 })
 export class RegistrationHeaderComponent {
   @Input() public headerText: string;

@@ -1,0 +1,7 @@
+.pageHeader {
+  display: flex;
+  justify-content: center;
+  padding: 2em;
+  margin: 2em;
+  margin-left: 2em;
+}
