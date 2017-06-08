@@ -44,6 +44,16 @@
   /*position: absolute;*/
   /*top: 16em;*/
   /*left: 14em;*/
+/*   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stylistContainer {
+  flex: 1 1 55%;
+  height: 100%; */
+/* } */
 }
 
 .mapContainer {
