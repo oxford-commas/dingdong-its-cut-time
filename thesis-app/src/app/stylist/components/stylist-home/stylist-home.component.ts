@@ -4,7 +4,8 @@ import { RequestService, BookingService, StateService} from '../../../services/'
 
 @Component({
    selector: 'stylist-home',
-   templateUrl: './stylist-home.component.html'
+   templateUrl: './stylist-home.component.html',
+   styleUrls: ['./stylist-home.component.css']
 })
 export class StylistHomeComponent implements OnInit {
   constructor(

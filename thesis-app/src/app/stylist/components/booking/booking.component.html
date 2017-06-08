@@ -1,9 +1,9 @@
-<div *ngIf="bookingInformation.isconfirmed===1">
-  **color this div green, booking has been confirmed** {{bookingInformation.customer}} at time: {{bookingInformation.time}} at location: {{bookingInformation.location}}
+<div class="is-confirmed" *ngIf="bookingInformation.isconfirmed===1">
+  <h4>{{bookingInformation.customer}}</h4> at time: {{bookingInformation.time}} at location: {{bookingInformation.location}}
   <button (click)="completeBooking.emit(bookingInformation.id)">Request Payment</button>
 </div>
-<div *ngIf="bookingInformation.isconfirmed===0">
-  **color this div red, booking has not been confirmed**{{bookingInformation.customer}} at time: {{bookingInformation.time}} at location: {{bookingInformation.location}}
+<div class="not-confirmed" *ngIf="bookingInformation.isconfirmed===0">
+  <h4>{{bookingInformation.customer}}</h4> at time: {{bookingInformation.time}} at location: {{bookingInformation.location}}
   <button (click)="confirmBooking.emit(bookingInformation.id)">Confirm this booking</button>
   <button (click)="deleteBooking.emit(bookingInformation.id)">Delete this booking</button>
 </div>
