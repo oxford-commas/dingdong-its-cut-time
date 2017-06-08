@@ -130,6 +130,15 @@ var updateBooking = function(id_users, id_stylists, isconfirmed, time, location,
   });
 }
 
+var getConfirmed = (id, callback) => {
+  model.con.query(`
+    SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email
+    FROM bookings b INNER JOIN users_stylists us
+    WHERE b.isconfirmed = 1 AND b.id_users = 4
+    AND us.id = b.id_stylists
+  `, [id], (err, results) => callback(results));
+}
+
 // helper to add service to the services table in database
 var addService = function(serviceName, callback) {
   var sql = 'INSERT INTO services (servicename) VALUES (?)';
@@ -223,3 +232,4 @@ module.exports.updateImage = updateImage;
 module.exports.getImagePath = getImagePath;
 module.exports.validateUser = validateUser;
 module.exports.getAllStyles = getAllStyles;
+module.exports.getConfirmed = getConfirmed;

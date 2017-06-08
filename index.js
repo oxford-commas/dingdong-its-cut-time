@@ -297,6 +297,11 @@ app.get('/api/messages/:id', (req, res) => {
   });
 });
 
+app.get('/api/bookings/confirmed/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.getConfirmed(id, results => res.status(200).json(results));
+});
+
 app.delete('/api/messages', (req, res) => {
   var messageIds = req.body;
   helpers.deleteChat(messageIds, results => res.status(200).json(results));

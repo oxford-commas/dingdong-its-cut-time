@@ -31,6 +31,6 @@
 
 <div class="booking-due" *ngIf="!!bookingsDue">
   <div *ngFor="let booking of bookingsDue">
-    I OWE {{booking.name}} MONEY!!!!
+    <payment-input [stylistName]="booking.name"></payment-input>
   </div>
 </div>
