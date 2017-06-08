@@ -1,5 +1,5 @@
 h1 {
-  border: 2px solid red;
+  border-bottom: 2px solid black;
 }
 
 .poppaDiv {
@@ -10,26 +10,47 @@ h1 {
 }
 
 .profileContainer {
-  border: 2px solid;
   flex: 1 1 30%;
+  display: flex;
+  flex-direction: column;
 }
 
-.userInfoContainer {
-  border: 2px solid red;
-  flex: 1 1 60%;
-  padding: 1em;
-
+img {
+  height: 55%;
+  border-radius: 50px;
 }
 
-.buttonContainer1 {
-  border: 2px solid blue;
+.billingAddressContainer {
+  flex: 1 1 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
   padding: 1em;
   margin: 1em;
 }
 
+.userInfoContainer {
+  flex: 1 1 60%;
+  padding: 1em;
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: left;
+}
+
+
 .buttonContainer2 {
-  border: 2px solid yellow;
   flex: 1 1 9%;
+  padding: 1em;
+  margin: 1em;
+  border-left: 2px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 input {
