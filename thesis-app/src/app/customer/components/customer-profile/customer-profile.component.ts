@@ -37,23 +37,15 @@ export class CustomerProfileComponent implements OnInit {
 
   public handleSaveChanges(form: NgForm) {
     console.log(this.profile, form.value);
-    this.requestService.changeUser({});
+    const newObj = {
+      name: form.value.username || this.profile.name,
+      password: form.value.password || this.profile.password,
+      email: form.value.email || this.profile.email,
+      phonenumber: form.value.phonenumber || this.profile.phonenumber,
+      website: form.value.website || this.profile.site_url,
+      id: this.profile.id
+    }
+    this.requestService.changeUser(newObj)
   }
 }
 
-// app.put('/api/userstylist/:id', function (req, res) {
-//   var id = req.params.id;
-//   var type = req.body.type;
-//   var name = req.body.name;
-//   var password = req.body.password;
-//   var billingaddress = req.body.billingaddress;
-//   var phonenumber = req.body.phonenumber;
-//   var email = req.body.email;
-//   var site_url = req.body.site_url;
-//   var gender = req.body.gender;
-//   var image_url = req.body.image_url;
-//   var location = req.body.location;
-//   helpers.updateProfile(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, function() {
-//     res.send('Got a PUT request at /api/userstylist/' + req.params.id);
-//   });
-// });
