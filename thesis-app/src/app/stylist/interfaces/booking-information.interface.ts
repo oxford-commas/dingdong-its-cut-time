@@ -5,8 +5,8 @@ export interface IBookingInformation {
   isconfirmed: number;
   isCompleted: number;
   location: string;
-  latitude: number;
-  longitude: number;
+  latitude?: number;
+  longitude?: number;
   name: string;
   time: string;
 }
