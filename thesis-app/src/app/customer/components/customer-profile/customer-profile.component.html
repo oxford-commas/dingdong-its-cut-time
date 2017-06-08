@@ -10,14 +10,21 @@
     </div>
   </div>
   <div class="userInfoContainer">
-    <h4>Username: {{profile.name}}<input name="username" ngModel /></h4>
-    <h4>Password: {{profile.password}}<input name="password" ngModel /></h4>
-    <h4>Email: {{profile.email}}<input name="email" ngModel /></h4>
-    <h4>Phone Number: {{profile.phonenumber}}<input name="phonenumber"></h4>
-    <h4>Personal Website: {{profile.site_url}}<input name="website"></h4>
+    <form (ngSubmit)="handleSaveChanges(f)" #form="ngForm">
+      <h4>Username: {{profile.name}}</h4>
+        <input type="text" name="username" ngModel id="username"/>
+      <h4>Password: *********</h4>
+        <input type="password" name="password" ngModel id="password"/>
+      <h4>Email: {{profile.email}}</h4>
+        <input type="email" name="email" ngModel id="email" />
+      <h4>Phone Number: {{profile.phonenumber}}</h4>
+        <input name="phonenumber" id="phonenumber">
+      <h4>Personal Website: {{profile.site_url}}</h4>
+        <input type="url" name="website">
+    </form>
   </div>
   <div class="buttonContainer2">
-    <button (click)="handleDeleteAccount()">Delete my account</button>
     <button (click)="handleSaveChanges()">Save changes</button>
+    <button (click)="handleDeleteAccount()">Delete my account</button>
   </div>
 </div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { RequestService, DeletionService, StateService } from '../../../services';
+
 
 @Component({
   selector: 'customer-profile',
@@ -35,7 +35,7 @@ export class CustomerProfileComponent implements OnInit {
       );
   }
 
-  public handleSaveChanges() {
-    console.log('TODO: PUT the changes');
+  public handleSaveChanges(form: NgForm) {
+    console.log(form);
   }
 }
