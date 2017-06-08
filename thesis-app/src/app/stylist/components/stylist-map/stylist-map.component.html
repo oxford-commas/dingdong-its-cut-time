@@ -1,0 +1,18 @@
+<div class="map-container" style="flex: 1 1;">
+  <sebm-google-map
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoom"
+    [disableDefaultUI]="false"
+    [zoomControl]="false">
+    <sebm-google-map-marker
+      *ngFor="let customer of customers; let i = index;"
+      [latitude]="customer.latitude"
+      [longitude]="customer.longitude"
+      [label]="customer.label">
+      <sebm-google-map-info-window>
+        <p><strong>{{customer.name}}</strong></p>
+      </sebm-google-map-info-window>
+    </sebm-google-map-marker>
+  </sebm-google-map>
+</div>
