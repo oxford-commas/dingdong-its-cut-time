@@ -7,17 +7,17 @@ import { StylistService, LocationService, StateService } from '../../../services
   styleUrls: ['./customer-navbar.component.css']
 })
 export class CustomerNavbarComponent {
+  constructor (
+    private stylistService: StylistService,
+    private locationService: LocationService,
+    private stateService: StateService
+  ) {}
+  
   @Input() customerId: number;
   @Input() searchLocation: string;
   @Output() locationChange = new EventEmitter();
 
   private currentCustomer: any;
-
-  constructor(
-    private stylistService: StylistService,
-    private locationService: LocationService,
-    private stateService: StateService
-    ) {}
 
   ngOnInit() {
     this.currentCustomer = this.stateService.retrieveCustomer();
