@@ -2,7 +2,7 @@
 <div class="container">
   <div class="inbox-container">
     <customer-inbox
-      [messages]="stateService.retrieveCustomer().messages"
+      [conversations]="conversations"
       (openHistory)="setCurrentChat($event)"
       (deleteChat)="deleteChat($event)"
     >
