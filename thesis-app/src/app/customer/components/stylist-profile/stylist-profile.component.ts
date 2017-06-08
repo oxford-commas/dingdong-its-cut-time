@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { RequestService, MessageService, BookingService } from '../../../services';
+import { RequestService, MessageService, BookingService, StateService } from '../../../services';
 
 import { IMessage } from '../../interfaces';
 
@@ -16,7 +16,8 @@ export class StylistProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private requestService: RequestService,
     private messageService: MessageService,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private stateService: StateService
   ) {}
 
   public isProfileFetched: boolean = false;
@@ -26,19 +27,27 @@ export class StylistProfileComponent implements OnInit {
   private stylistId: number;
 
   ngOnInit() {
-    this.route.params
-      .subscribe(
-        params => this.stylistId = +params['id'],
-        err => console.log(err)
-      );
-    this.requestService.getStylistById(this.stylistId)
-     .subscribe(
-       data => {
-        this.stylistProfile = data
-      },
-       err => console.log(err),
-       () => this.isProfileFetched = true
-     );
+    console.log(this.stateService, 'here')
+    // this.route.params
+    //   .subscribe(
+    //     params => this.stylistId = +params['id'],
+    //     err => console.log(err)
+    //   );
+    // this.requestService.getStylistById(this.stylistId)
+    //  .subscribe(
+    //    data => {
+    //     this.stylistProfile = data
+    //     console.log(this.stylistProfile, data, 'ran')
+    //     // this.requestService.getUserImg(this.stylistProfile.id)
+    //     //   .subscribe(
+    //     //     response => {
+    //     //       console.log(response, 'here')
+    //     //     }
+    //     //   )
+    //   },
+     //   err => console.log(err),
+     //   () => this.isProfileFetched = true
+     // );
   }
 
   public toggleModal() {
