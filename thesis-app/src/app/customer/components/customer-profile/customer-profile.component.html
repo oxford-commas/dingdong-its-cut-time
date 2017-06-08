@@ -1,5 +1,4 @@
 <customer-navbar [customerId]="customerId"></customer-navbar>
-<h1>{{profile.name}}'s profile</h1>
 <div class="poppaDiv">
   <div class="profileContainer">
     <img [src]="profile.image_url" />
@@ -10,7 +9,8 @@
     </div>
   </div>
   <div class="userInfoContainer">
-    <form (ngSubmit)="handleSaveChanges(f)" #form="ngForm">
+    <h1>{{profile.name}}'s profile</h1>
+    <form (ngSubmit)="handleSaveChanges(form)" #form="ngForm">
       <h4>Username: {{profile.name}}</h4>
         <input type="text" name="username" ngModel id="username"/>
       <h4>Password: *********</h4>
@@ -24,7 +24,7 @@
     </form>
   </div>
   <div class="buttonContainer2">
-    <button (click)="handleSaveChanges()">Save changes</button>
+    <button type="submit" (click)="handleSaveChanges(form)">Save changes</button>
     <button (click)="handleDeleteAccount()">Delete my account</button>
   </div>
 </div>
