@@ -30,7 +30,6 @@ export class StylistHomeComponent implements OnInit {
   }
 
   confirmBooking(id: number, index: number) {
-    console.log('TODO: color this booking div green');
     this.bookingService.confirmBooking(id)
       .subscribe(
         result => console.log(result),
