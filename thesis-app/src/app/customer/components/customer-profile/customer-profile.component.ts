@@ -53,7 +53,6 @@ export class CustomerProfileComponent implements OnInit {
       id: this.profile.id,
       type: 1
     }
-
     this.profile.name = form.value.username || this.profile.name;
     this.profile.password = form.value.password || this.profile.password;
     this.profile.billingaddress = form.value.billingaddress || this.profile.billingaddress;
