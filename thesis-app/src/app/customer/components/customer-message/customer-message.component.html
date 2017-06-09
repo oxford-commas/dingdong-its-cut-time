@@ -12,7 +12,7 @@
     <chat-history
       *ngIf="!!currentChat"
       [chatHistory]="currentChat"
-      (handleSendMessage)="postMessage($event)"
+      (handleSendInputValue)="postMessage($event)"
     ></chat-history>
   </div>
 </div>

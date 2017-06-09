@@ -18,6 +18,7 @@ export class CustomerMessageComponent {
 
   setCurrentChat(senderId) {
     this.currentChat = this.conversations.find(conversation => conversation.sender_id === senderId).messages;
+    this.stateService.retrieveCustomer().chatSenderId = Number(senderId);
   }
 
   deleteChat(senderId) {
@@ -33,8 +34,26 @@ export class CustomerMessageComponent {
       );
   }
 
-  postMessage(message) {
-    console.log('asdfasdf', message);
+  postMessage(body) {
+    const message = this.decorateMessage(body);
+    this.messageService.postMessage(message)
+      .subscribe(
+        data => console.log(data),
+        err => console.log(err)
+      );
+  }
+
+  decorateMessage(body) {
+    const message = {
+      id_sender: this.stateService.retrieveCustomer().id,
+      id_recipient: this.stateService.retrieveCustomer().chatSenderId,
+      subjectHeading: '',
+      body: body,
+      time: 2,
+      location: ''
+    };
+    console.log('decorating.. ', message);
+    return message;
   }
 
 }
