@@ -41,12 +41,12 @@ export class StylistProfileComponent implements OnInit {
      .subscribe(
        data => {
         this.stylistProfile = data
-        // this.requestService.getUserImg(this.stylistProfile.id)
-        //   .subscribe(
-        //     response => {
-        //       console.log(response, 'here')
-        //     }
-        //   )
+        this.requestService.getUserImg(this.stylistProfile.id)
+          .subscribe(
+            response => {
+              this.stylistProfile.image_url = response.url;
+            }
+          )
       },
        err => console.log(err),
        () => this.isProfileFetched = true
