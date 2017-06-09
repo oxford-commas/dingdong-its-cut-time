@@ -30,16 +30,25 @@
         <legend>User Info</legend>
         <h4>Username: {{profile.name}}</h4>
           <input type="text" name="username" ngModel id="username"/>
+          <br/>
         <h4>Password: *********</h4>
           <input type="password" name="password" ngModel id="password"/>
+          <br/>
         <h4>Email: {{profile.email}}</h4>
           <input type="email" name="email" ngModel id="email" />
+          <br/>
         <h4>Phone Number: {{profile.phonenumber}}</h4>
           <input name="phonenumber" ngModel id="phonenumber">
+          <br/>
         <h4>Personal Website: {{profile.site_url}}</h4>
           <input type="url" ngModel name="site_url">
+          <br/>
         <h4>Billing Address: {{profile.billingaddress}}</h4>
           <input type="text" ngModel name="billingaddress">
+          <br/>
+        <h4>Upload Profile Photo</h4>
+          <input type="file" ngModel name="image_url">
+          <br />
         <div>
           <button type="submit" (click)="handleSaveChanges(form)">
             Save changes
