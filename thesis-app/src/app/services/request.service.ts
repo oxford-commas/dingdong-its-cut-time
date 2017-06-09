@@ -65,7 +65,6 @@ export class RequestService {
   changeUser(obj: any) {
     const headers = new Headers({'Content-Type': 'application/json'});
     const url = `/api/userstylist/${obj.id}`;
-    console.log(url, 'here');
     return this.http.put(`/api/userstylist/${obj.id}`, obj, {headers: headers})
       .map(
         (response: Response) => {

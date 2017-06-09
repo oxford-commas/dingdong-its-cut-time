@@ -9,21 +9,13 @@
   </div>
   <div class="userInfoContainer">
     <h1>{{profile.name}}'s profile</h1>
-    <form (ngSubmit)="handleSaveChanges(form)" #form="ngForm">
-      <h4>Username: {{profile.name}}</h4>
-        <input type="text" name="username" ngModel id="username"/>
-      <h4>Password: *********</h4>
-        <input type="password" name="password" ngModel id="password"/>
-      <h4>Email: {{profile.email}}</h4>
-        <input type="email" name="email" ngModel id="email" />
-      <h4>Phone Number: {{profile.phonenumber}}</h4>
-        <input name="phonenumber" ngModel id="phonenumber">
-      <h4>Personal Website: {{profile.site_url}}</h4>
-        <input type="url" ngModel name="website">
-    </form>
+    <h4>Username: {{profile.name}}</h4>
+    <h4>Password: *********</h4>
+    <h4>Email: {{profile.email}}</h4>
+    <h4>Phone Number: {{profile.phonenumber}}</h4>
+    <h4>Personal Website: {{profile.site_url}}</h4>
   </div>
   <div class="buttonContainer2">
-    <button type="submit" (click)="handleSaveChanges(form)">Save changes</button>
     <button (click)="toggleModal()">Edit Account Info</button>
     <button (click)="handleDeleteAccount()">Delete my account</button>
   </div>
@@ -32,11 +24,27 @@
 
 <div class="modalWrapper" [style.display]="getStyle()">
   <div class="bigWrapper">
-    <form
-      (ngSubmit)="editProfile(f)" #f="ngForm" class="modalContent">
+    <div class="miniWrapper">
       <span (click)="toggleModal()">&times;</span>
-      <!-- <div class="miniWrapper">
-      </div> -->
-    </form>
+      <form class="modalContent" (ngSubmit)="handleSaveChanges(form)" #form="ngForm">
+        <h4>Username: {{profile.name}}</h4>
+          <input type="text" name="username" ngModel id="username"/>
+        <h4>Password: *********</h4>
+          <input type="password" name="password" ngModel id="password"/>
+        <h4>Email: {{profile.email}}</h4>
+          <input type="email" name="email" ngModel id="email" />
+        <h4>Phone Number: {{profile.phonenumber}}</h4>
+          <input name="phonenumber" ngModel id="phonenumber">
+        <h4>Personal Website: {{profile.site_url}}</h4>
+          <input type="url" ngModel name="website">
+        <h4>Billing Address: {{profile.billingaddress}}</h4>
+          <input type="text" ngModel name="billingaddress">
+        <div>
+          <button type="submit" (click)="handleSaveChanges(form)">
+            Save changes
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
