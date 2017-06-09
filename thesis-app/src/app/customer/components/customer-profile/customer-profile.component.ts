@@ -21,11 +21,9 @@ export class CustomerProfileComponent implements OnInit {
   public profile: any; // TODO: INTERFACE THIS
   public modalStyle: string = 'none';
   public showModal: boolean = false;
-  public imgUrl: string = '';
 
   ngOnInit() {
     this.profile = this.stateService.retrieveCustomer();
-    console.log(this.profile, 'here')
     this.requestService.getUserImg(this.profile.id)
       .subscribe(
         response => {
