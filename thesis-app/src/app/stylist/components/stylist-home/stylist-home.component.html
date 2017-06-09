@@ -8,11 +8,11 @@
       (completeBooking)="completeBooking($event, i)"
     ></booking>
   </div>
-  <div class="map-container">
+  <div *ngIf="!!isMapViewInit" class="map-container">
     <stylist-map class="map"
-      [stylistId]="stylistProfile.id"
-      [stylistLocation]="stylistProfile.billingaddress"
-    >
-    </stylist-map>
+      [lat]="stylistProfile.currentLocation.lat"
+      [lng]="stylistProfile.currentLocation.lng"
+      [markers]="stylistProfile.markers"
+    ></stylist-map>
   </div>
 </div>

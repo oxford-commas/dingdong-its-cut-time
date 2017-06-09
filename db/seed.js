@@ -373,15 +373,6 @@ const booksingsArray = [
     isComplete: 0,
     time: new Date(),
     location: '1500 Broadway, San Francisco, CA'
-  },
-   {
-    name: 'Mateo',
-    userid: 1,
-    stylistid: 2,
-    isconfirmed: 0,
-    isComplete: 1,
-    time: new Date(),
-    location: '1500 Broadway, San Francisco, CA'
   }
 ]
 
