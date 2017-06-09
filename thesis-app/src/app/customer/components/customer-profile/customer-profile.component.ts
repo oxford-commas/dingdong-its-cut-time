@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { FileUploader } from 'ng2-file-upload';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RequestService, DeletionService, StateService } from '../../../services';
 
