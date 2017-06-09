@@ -21,12 +21,14 @@ export class CustomerProfileComponent implements OnInit {
   public profile: any; // TODO: INTERFACE THIS
   public modalStyle: string = 'none';
   public showModal: boolean = false;
+  public imgUrl: string = '';
 
   ngOnInit() {
     this.profile = this.stateService.retrieveCustomer();
     this.requestService.getUserImg(this.profile.id)
       .subscribe(
         response => {
+          console.log(response, 'here')
           this.profile.image_url = response.url;
         }
       )
@@ -54,14 +56,14 @@ export class CustomerProfileComponent implements OnInit {
       type: 1
     }
 
-    this.profile.name = form.value.username || this.profile.name
-    this.profile.password = form.value.password || this.profile.password
-    this.profile.billingaddress = form.value.billingaddress || this.profile.billingaddress
-    this.profile.image_url = form.value.image_url || this.profile.image_url
-    this.profile.email = form.value.email || this.profile.email
-    this.profile.phonenumber = form.value.phonenumber || this.profile.phonenumber
-    this.profile.site_url = form.value.site_url || this.profile.site_url
-    this.profile.id = form.value.id || this.profile.id
+    this.profile.name = form.value.username || this.profile.name;
+    this.profile.password = form.value.password || this.profile.password;
+    this.profile.billingaddress = form.value.billingaddress || this.profile.billingaddress;
+    this.profile.image_url = this.stateService.retrieveCustomer().site_url;
+    this.profile.email = form.value.email || this.profile.email;
+    this.profile.phonenumber = form.value.phonenumber || this.profile.phonenumber;
+    this.profile.site_url = form.value.site_url || this.profile.site_url;
+    this.profile.id = form.value.id || this.profile.id;
 
     this.requestService.changeUser(newObj)
       .subscribe(
