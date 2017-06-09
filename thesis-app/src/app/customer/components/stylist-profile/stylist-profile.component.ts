@@ -90,7 +90,7 @@ export class StylistProfileComponent implements OnInit {
     }
     this.messageService.postMessage(message)
       .subscribe(
-        res => this.getStyle(),
+        res => console.log(res),
         err => console.log(err)
       )
     this.bookingService.addBooking(message)
@@ -98,5 +98,6 @@ export class StylistProfileComponent implements OnInit {
         res => console.log(res),
         err => console.log(err)
       )
+    this.isShowModal = false;
   }
 }
