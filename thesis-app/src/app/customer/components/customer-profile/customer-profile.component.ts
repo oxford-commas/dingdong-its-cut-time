@@ -59,7 +59,7 @@ export class CustomerProfileComponent implements OnInit {
     this.profile.name = form.value.username || this.profile.name;
     this.profile.password = form.value.password || this.profile.password;
     this.profile.billingaddress = form.value.billingaddress || this.profile.billingaddress;
-    this.profile.image_url = this.stateService.retrieveCustomer().site_url;
+    this.profile.image_url = this.profile.image_url;
     this.profile.email = form.value.email || this.profile.email;
     this.profile.phonenumber = form.value.phonenumber || this.profile.phonenumber;
     this.profile.site_url = form.value.site_url || this.profile.site_url;
