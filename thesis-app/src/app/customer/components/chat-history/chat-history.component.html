@@ -3,3 +3,4 @@
   <span>{{ chat.sender}}:</span>
   <span>{{ chat.body }}</span>
 </div>
+<input #message name="message" (keyup.enter)=handleSendMessage.emit(message.value) />

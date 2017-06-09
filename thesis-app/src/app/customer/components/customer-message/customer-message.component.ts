@@ -10,7 +10,8 @@ import { IMessage } from '../../interfaces';
 export class CustomerMessageComponent {
   constructor(
     private stateService: StateService,
-    private messageService: MessageService) {}
+    private messageService: MessageService
+  ) {}
 
   public conversations = this.stateService.retrieveCustomer().messages;
   public currentChat;
@@ -30,6 +31,10 @@ export class CustomerMessageComponent {
         },
         err => console.log(err)
       );
+  }
+
+  postMessage(message) {
+    console.log('asdfasdf', message);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'chat-history',
@@ -7,10 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ChatHistoryComponent {
   @Input() chatHistory;
-
-  constructor() {
-    console.log(this.chatHistory)
-  }
+  @Output() handleSendMessage = new EventEmitter();
 
   formatDate(timeDate) {
     return timeDate.toDateString();
