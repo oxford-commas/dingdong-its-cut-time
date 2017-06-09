@@ -23,7 +23,12 @@ export class CustomerProfileComponent implements OnInit {
 
   ngOnInit() {
     this.profile = this.stateService.retrieveCustomer();
-    console.log(this.profile, 'here')
+    this.requestService.getUserImg(this.profile.id)
+      .subscribe(
+        response => {
+          this.profile.image_url = response.url;
+        }
+      )
   }
 
   public handleDeleteAccount() {
