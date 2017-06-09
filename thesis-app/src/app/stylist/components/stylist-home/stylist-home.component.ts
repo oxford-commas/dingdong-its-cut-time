@@ -41,7 +41,7 @@ export class StylistHomeComponent implements OnInit {
   confirmBooking(id: number, index: number) {
     this.bookingService.confirmBooking(id)
       .subscribe(
-        result => console.log(result),
+        result => this.bookings[index].isconfirmed = 1,
         err => console.log(err)
       );
   }

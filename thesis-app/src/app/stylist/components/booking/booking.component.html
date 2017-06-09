@@ -4,7 +4,9 @@
   <span class="glyphicon glyphicon-home">{{bookingInformation.location}}</span>
   <span class="complete-btn" (click)="completeBooking.emit(bookingInformation.id)">Get Paid</span>
 </div>
-<div class="not-confirmed" *ngIf="bookingInformation.isconfirmed===0">
+<div class="not-confirmed"
+  *ngIf="bookingInformation.isconfirmed===0"
+>
   <h4>{{bookingInformation.customer}}</h4>
   <span class="glyphicon glyphicon-time">{{bookingInformation.time}}</span>
   <span class="glyphicon glyphicon-home">{{bookingInformation.location}}</span>
