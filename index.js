@@ -229,7 +229,11 @@ app.put('/booking/:bookingid', function (req, res) {
   helpers.updateBooking(id_users, id_stylists, isconfirmed, time, location, id, function() {
     res.send('Got a PUT(update) request at /booking')
   });
+});
 
+app.put('/api/bookings/confirmed/seen/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.seenConfirmedBooking(id, result => res.status(200).json(result));
 });
 
 // HAIRCUT STYLES //

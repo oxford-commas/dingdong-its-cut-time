@@ -105,4 +105,17 @@ export class CustomerHomeComponent implements OnInit {
         }
       );
   }
+
+  removeConfirmedBooking(id, index) {
+    console.log('hey',id, index);
+    this.bookingsConfirmed.splice(index, 1);
+    this.bookingService.seenConfirmedBooking(id)
+      .subscribe(
+        data => console.log(data),
+        err => console.log(err)
+      );
+  }
 }
+
+
+
