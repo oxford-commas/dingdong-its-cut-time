@@ -17,7 +17,6 @@ import 'rxjs/add/operator/map';
           observer.complete();
         },
         (error: PositionError) => {
-          console.log('Geolocation service: ' + error.message);
           observer.next({
             coords: {
               latitude: lat || 37.7686994600975,
@@ -36,7 +35,6 @@ import 'rxjs/add/operator/map';
   }
 
   getCoordinatesFromLocation(location: string): Observable<{lat: number, lng: number}> {
-    console.log('getCoordinatesForLocation arrived!')
     return this.http.get(`/api/coordinates/${location}`)
       .map(this.fetchData)
       .catch(this.handleError);
@@ -44,7 +42,6 @@ import 'rxjs/add/operator/map';
 
   getLocationFromCoordinates(lat: any, lng: any) {
     var latlng = `${String(lat || 48.8567696)},${String(lng || 2.3529625)}`;
-    console.log('LATLNG is:', latlng);
     return this.http.get(`/api/streetaddress/${latlng}`)
       .map(this.fetchData)
       .catch(this.handleError);
