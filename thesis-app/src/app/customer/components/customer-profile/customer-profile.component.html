@@ -27,6 +27,7 @@
     <div class="miniWrapper">
       <span (click)="toggleModal()">&times;</span>
       <form class="modalContent" (ngSubmit)="handleSaveChanges(form)" #form="ngForm">
+        <legend>User Info</legend>
         <h4>Username: {{profile.name}}</h4>
           <input type="text" name="username" ngModel id="username"/>
         <h4>Password: *********</h4>
