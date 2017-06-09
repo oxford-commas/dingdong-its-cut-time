@@ -31,6 +31,11 @@ export class BookingService {
       .map(res => res.json());
   }
 
+  seenConfirmedBooking(id: number) {
+    return this.http.put(`/api/bookings/confirmed/seen/${id}`, id)
+      .map(res => res.json());
+  }
+
   deleteBooking(id: number) {
     return this.http.delete(`/api/bookings/${id}`)
       .map(res => res);
