@@ -1,9 +1,7 @@
 <customer-navbar [customerId]="customerId"></customer-navbar>
 <div class="poppaDiv">
   <div class="profileContainer">
-    <div class="imgContainer">
-      <img [src]="profile.image_url" />
-    </div>
+    <img class="profileImg" [src]="profile.image_url" />
     <div class="billingAddressContainer">
       <h4>Billing Address:</h4>
       <h4 class="profAddress">{{profile.billingaddress}}</h4>

@@ -13,11 +13,12 @@ h1 {
   flex: 1 1 30%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-.imgContainer {
-  height: 50%;
-  width: 50%;
+.profileImg {
+  height: 60%;
+  width: 60%;
   margin: 1em;
   border-radius: 50px;
 }
