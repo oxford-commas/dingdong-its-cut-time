@@ -7,6 +7,7 @@ h1 {
   display: flex;
   width: 100%;
   height: 100%;
+  border-radius: 20px;
 }
 
 .profileContainer {
@@ -69,4 +70,51 @@ button {
   border: 2px solid black;
   background-color: rgba(173, 216, 230, 0.9);
   border-radius: 10px;
+}
+
+.modalWrapper {
+  display: flex;
+  color: black;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1em;
+  margin-top: 1em;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(173, 216, 230, 0.9);
+}
+
+.modalContent {
+  border: 2px solid black;
+  flex: 1 1;
+  width: 82%;
+  height: 80%;
+  padding: 5ch;
+  margin: 5ch;
+  margin-left: 12ch;
+  position: absolute;
+  /*margin-left: -35%;
+  margin-top: -35%;*/
+  /*top: 50%;
+  left: 50%;*/
+  background-color: white;
+}
+
+.modeitem {
+  padding: 1ch;
+  margin: 1ch;
+}
+
+input, textarea {
+  background-color: #d3d3d3;
+}
+
+.bigWrapper {
+  display: flex;
 }

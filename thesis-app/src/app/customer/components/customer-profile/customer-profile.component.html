@@ -5,7 +5,6 @@
     <div class="billingAddressContainer">
       <h4>Billing Address:</h4>
       <h4 class="profAddress">{{profile.billingaddress}}</h4>
-      <button>Edit</button>
     </div>
   </div>
   <div class="userInfoContainer">
@@ -25,6 +24,19 @@
   </div>
   <div class="buttonContainer2">
     <button type="submit" (click)="handleSaveChanges(form)">Save changes</button>
+    <button (click)="toggleModal()">Edit Account Info</button>
     <button (click)="handleDeleteAccount()">Delete my account</button>
+  </div>
+</div>
+
+
+<div class="modalWrapper" [style.display]="getStyle()">
+  <div class="bigWrapper">
+    <form
+      (ngSubmit)="editProfile(f)" #f="ngForm" class="modalContent">
+      <span (click)="toggleModal()">&times;</span>
+      <!-- <div class="miniWrapper">
+      </div> -->
+    </form>
   </div>
 </div>

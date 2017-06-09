@@ -19,7 +19,8 @@ export class CustomerProfileComponent implements OnInit {
   ) {}
 
   public profile: any; // TODO: INTERFACE THIS
-  // public showView: boolean = true;
+  public modalStyle: string = 'none';
+  public showModal: boolean = false;
 
   ngOnInit() {
     this.profile = this.stateService.retrieveCustomer();
@@ -60,5 +61,20 @@ export class CustomerProfileComponent implements OnInit {
         }
       )
   }
+
+  public getStyle() {
+    if (this.showModal === false) {
+      return 'none';
+    } else {
+      return 'block';
+    }
+  }
+
+
+ public toggleModal() {
+    this.showModal = !this.showModal;
+  }
+
+
 }
 
