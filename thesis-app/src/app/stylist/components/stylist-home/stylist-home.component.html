@@ -1,5 +1,8 @@
 <customer-navbar></customer-navbar>
 <div class="wrapper">
+  <div *ngIf="!!bookings && bookings.length===0">
+    <h1>No bookings... yet!</h1>
+  </div>
   <div class="booking-container" *ngFor="let booking of bookings; let i = index;">
     <booking
       [bookingInformation]="booking"
