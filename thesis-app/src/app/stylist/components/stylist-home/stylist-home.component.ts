@@ -69,8 +69,7 @@ export class StylistHomeComponent implements OnInit {
 
   deleteBooking(id: number, index: number) {
     this.bookings.splice(index, 1);
-    // delete corresponding map marker
-    // send index to map and splice
+    this.stylistProfile.markers.splice(index, 1);
     this.bookingService.deleteBooking(id)
       .subscribe(
         result => console.log(result),
