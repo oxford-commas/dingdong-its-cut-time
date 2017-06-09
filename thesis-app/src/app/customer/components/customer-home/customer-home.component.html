@@ -27,7 +27,11 @@
 
 <div class="booking-due" *ngIf="!!bookingsDue">
   <div *ngFor="let booking of bookingsDue">
-    <payment-input [stylistName]="booking.name"></payment-input>
+    <payment-input
+      (handleProcessedPayment)="completeBooking($event)"
+      [stylistName]="booking.name"
+    >
+    </payment-input>
   </div>
 </div>
 
