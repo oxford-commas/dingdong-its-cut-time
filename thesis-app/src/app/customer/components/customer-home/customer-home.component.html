@@ -7,6 +7,9 @@
 </customer-navbar>
 <div class="container">
   <div class="stylistContainer">
+    <div *ngIf="!!stylistsCloseToYou && stylistsCloseToYou.length===0">
+      <h1>There are no stylists close to you :(</h1>
+    </div>
     <div *ngFor="let stylist of stylistsCloseToYou">
       <close-to-you
         [stylistInformation]="stylist"
@@ -27,7 +30,11 @@
 
 <div class="booking-due" *ngIf="!!bookingsDue">
   <div *ngFor="let booking of bookingsDue">
-    <payment-input [stylistName]="booking.name"></payment-input>
+    <payment-input
+      (handleProcessedPayment)="completeBooking($event)"
+      [stylistName]="booking.name"
+    >
+    </payment-input>
   </div>
 </div>
 

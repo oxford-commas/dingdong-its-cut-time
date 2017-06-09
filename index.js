@@ -48,8 +48,7 @@ app.post('/api/stripe', function(req, res) {
     description: "Example charge",
     source: token,
   }, function(err, charge) {
-  // asynchronously called
-  console.log('error charging card ', err, charge);
+    err ? console.log(err) : res.status(200).json(charge);
   });
 });
 
