@@ -62,10 +62,14 @@ export class RequestService {
       )
   }
 
+  postUserImg(id: number, img: any) {
+    // const headers = new Headers({'Content-Type': 'application/json'});
+    return this.http.post(`/api/profile/${id}`, img);
+  }
+
   changeUser(obj: any) {
     const headers = new Headers({'Content-Type': 'application/json'});
     const url = `/api/userstylist/${obj.id}`;
-    console.log(url, 'here');
     return this.http.put(`/api/userstylist/${obj.id}`, obj, {headers: headers})
       .map(
         (response: Response) => {
@@ -75,21 +79,13 @@ export class RequestService {
   }
 }
 
-
-
-// app.put('/api/userstylist/:id', function (req, res) {
-//   var id = req.params.id;
-//   var type = req.body.type;
-//   var name = req.body.name;
-//   var password = req.body.password;
-//   var billingaddress = req.body.billingaddress;
-//   var phonenumber = req.body.phonenumber;
-//   var email = req.body.email;
-//   var site_url = req.body.site_url;
-//   var gender = req.body.gender;
-//   var image_url = req.body.image_url;
-//   var location = req.body.location;
-//   helpers.updateProfile(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, function() {
-//     res.send('Got a PUT request at /api/userstylist/' + req.params.id);
+// // updates image url for the stylist/user given stylist/user id --- completed
+// app.post('/api/profile/:id', upload.single('avatar'), function (req, res, next) {
+//   console.log(req.params.id)
+//   console.log(req.file);
+//   console.log(req.file.path);
+//   helpers.updateImage(req.file.path, req.params.id, function() {
+//     console.log('added image')
+//     res.sendStatus(201);
 //   });
 // });
