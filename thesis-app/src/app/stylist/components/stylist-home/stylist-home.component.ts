@@ -5,7 +5,7 @@ import {
   BookingService,
   StateService,
   LocationService
-  } from '../../../services/';
+} from '../../../services/';
 
 @Component({
    selector: 'stylist-home',
@@ -13,7 +13,6 @@ import {
    styleUrls: ['./stylist-home.component.css']
 })
 export class StylistHomeComponent implements OnInit {
-  public stylistLocation: any;
   constructor(
     private requestService: RequestService,
     private bookingService: BookingService,
@@ -29,12 +28,10 @@ export class StylistHomeComponent implements OnInit {
   public customerLng: number;
   public lng: number;
   public lat: number;
-  public customers: any[];
 
   ngOnInit() {
     this.stylistProfile = this.stateService.retrieveCustomer();
     this.stylistProfile.markers = [];
-    console.log(this.stylistProfile);
     this.adjustMapViewForStylistLocation(this.stylistProfile.billingaddress);
     this.bookingService.fetchBookingsForStylist(this.stylistProfile.id)
       .subscribe(
@@ -91,7 +88,6 @@ export class StylistHomeComponent implements OnInit {
       .subscribe(res => {
         this.customerLat = res.lat;
         this.customerLng = res.lng;
-        console.log(`Customer latitude: ${this.customerLat}, customer longitude: ${this.customerLng}`);
         callback(this.customerLat, this.customerLng);
       });
   }
