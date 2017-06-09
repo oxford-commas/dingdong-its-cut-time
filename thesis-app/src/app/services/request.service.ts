@@ -62,6 +62,11 @@ export class RequestService {
       )
   }
 
+  postUserImg(id: number, img: any) {
+    // const headers = new Headers({'Content-Type': 'application/json'});
+    return this.http.post(`/api/profile/${id}`, img);
+  }
+
   changeUser(obj: any) {
     const headers = new Headers({'Content-Type': 'application/json'});
     const url = `/api/userstylist/${obj.id}`;
@@ -73,3 +78,14 @@ export class RequestService {
     )
   }
 }
+
+// // updates image url for the stylist/user given stylist/user id --- completed
+// app.post('/api/profile/:id', upload.single('avatar'), function (req, res, next) {
+//   console.log(req.params.id)
+//   console.log(req.file);
+//   console.log(req.file.path);
+//   helpers.updateImage(req.file.path, req.params.id, function() {
+//     console.log('added image')
+//     res.sendStatus(201);
+//   });
+// });
