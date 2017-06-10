@@ -26,6 +26,11 @@ export class BookingService {
       .map(res => res.json());
   }
 
+  fetchPurchasedBookings(id: number) {
+    return this.http.get(`/api/bookings/purchased/${id}`)
+      .map(res => res.json());
+  }
+
   confirmBooking(id: number) {
     return this.http.put(`/api/bookings/${id}`, id)
       .map(res => res.json());

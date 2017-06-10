@@ -26,6 +26,7 @@ export class StylistHomeComponent implements OnInit {
   public bookings: any;
   public customerLat: number;
   public customerLng: number;
+  public paymentConfirmations: any;
 
   ngOnInit() {
     this.stylistProfile = this.stateService.retrieveCustomer();
@@ -35,6 +36,28 @@ export class StylistHomeComponent implements OnInit {
         data => this.bookings = data,
         err => console.log(err),
         () => this.isProfileFetched = true
+      );
+
+    // render the latest bookings
+    setInterval(() => this.renderBookings(), 5000);
+
+    // render payment confirmations
+    setInterval(() => this.renderPaymentConfirmations() , 5000);
+  }
+
+  renderBookings() {
+    this.bookingService.fetchBookingsForStylist(this.stylistProfile.id)
+      .subscribe(
+        data => this.bookings = data,
+        err => console.log(err)
+      );
+  }
+
+  renderPaymentConfirmations() {
+    this.bookingService.fetchPurchasedBookings(this.stylistProfile.id)
+      .subscribe(
+        data => {this.paymentConfirmations = data;console.log(this.paymentConfirmations)},
+        err => console.log(err)
       );
   }
 
@@ -47,7 +70,7 @@ export class StylistHomeComponent implements OnInit {
   }
 
   deleteBooking(id: number, index: number) {
-    this.bookings.splice(index, 1);
+    if (index) this.bookings.splice(index, 1);
     this.bookingService.deleteBooking(id)
       .subscribe(
         result => console.log(result),
@@ -63,5 +86,6 @@ export class StylistHomeComponent implements OnInit {
         err => console.log(err)
       );
   }
+
 
 }

@@ -16,3 +16,11 @@
     </stylist-map>
   </div>
 </div>
+<div *ngIf="!!paymentConfirmations">
+  <div
+    *ngFor="let confirmation of paymentConfirmations"
+    (click)="deleteBooking(confirmation.id, null)"
+  >
+    {{confirmation.customer}} has payed you! Click to delete this notification.
+  </div>
+</div>
