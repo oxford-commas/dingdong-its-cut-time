@@ -36,6 +36,10 @@ export class StylistHomeComponent implements OnInit {
         err => console.log(err),
         () => this.isProfileFetched = true
       );
+    // get the latest bookings
+    setInterval(() => this.bookingService.fetchBookingsForStylist(this.stylistProfile.id), 5000);
+    // get payment confirmations
+    setInterval(() => this.bookingService.fetchPurchasedBookings(this.stylistProfile.id), 5000);
   }
 
   confirmBooking(id: number, index: number) {
