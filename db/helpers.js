@@ -87,12 +87,21 @@ var confirmBooking = (bookingId, callback) => {
   model.con.query(sql, [bookingId], (err, results) => callback(results));
 };
 
+
 var completeBooking = (id, callback) => {
   var sql = `
     UPDATE bookings
     SET isComplete = 1
     WHERE bookings.id = ?`;
-    model.con.query(sql, [id], (err, results) => callback(results));
+  model.con.query(sql, [id], (err, results) => callback(results));
+};
+
+var payBooking = (id, callback) => {
+  var sql = `
+    UPDATE bookings
+    SET isComplete = 2
+    WHERE bookings.id = ?`;
+  model.con.query(sql, [id], (err, results) => callback(results));
 };
 
 var getStylistBookings = function(stylistId, callback) {
@@ -243,3 +252,4 @@ module.exports.validateUser = validateUser;
 module.exports.getAllStyles = getAllStyles;
 module.exports.getConfirmed = getConfirmed;
 module.exports.seenConfirmedBooking = seenConfirmedBooking;
+module.exports.payBooking = payBooking;

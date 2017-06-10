@@ -35,12 +35,14 @@ app.get('/api/validate/:username/:password', function(req, res) {
 
 /////////
 app.post('/api/stripe', function(req, res) {
+  console.log('hey',req.body);
   // Set your secret key: remember to change this to your live secret key in production
   // See your keys here: https://dashboard.stripe.com/account/apikeys
   var stripe = require("stripe")("sk_test_y4yKjgB2RSkeKtTOmg6eXotO");
   // Token is created using Stripe.js or Checkout!
   // Get the payment token submitted by the form:
   var token = req.body.stripeToken; // Using Express
+  var bookingId = req.body.bookingId;
   // Charge the user's card:
   var charge = stripe.charges.create({
     amount: 1000,
@@ -48,7 +50,10 @@ app.post('/api/stripe', function(req, res) {
     description: "Example charge",
     source: token,
   }, function(err, charge) {
-    err ? console.log(err) : res.status(200).json(charge);
+    if (err) {
+      console.log(err);
+    }
+    helpers.payBooking(bookingId, results => res.status(200).json(results));
   });
 });
 

@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-
+import 'rxjs/add/operator/mergeMap';
 import { StripeService } from '../../../../services';
 
 @Component({
@@ -16,9 +16,9 @@ import { StripeService } from '../../../../services';
 export class PaymentInputComponent {
   constructor(private stripeService: StripeService) {}
 
+  @Input() bookingId: number;
   @Input() stylistName: string;
-  @Output() handleProcessedPayment = new EventEmitter<any>();
-  public data: any;
+  @Output() handleProcessedPayment = new EventEmitter();
 
   openCheckout() {
     var handler = (<any>window).StripeCheckout.configure({
@@ -27,9 +27,9 @@ export class PaymentInputComponent {
       token: (token: any) => {
         // You can access the token ID with `token.id`.
         // Get the token ID to your server-side code for use.
-        this.stripeService.postToken(token.id)
+        this.stripeService.postToken(token.id, this.bookingId)
           .subscribe(
-            data => this.emitPayment(data),
+            data => console.log(data),
             err => console.log(err)
           );
       },
@@ -40,9 +40,5 @@ export class PaymentInputComponent {
       description: `To: ${this.stylistName}`,
       amount: 2000
     });
-  }
-
-  emitPayment(data) {
-    this.handleProcessedPayment.emit(data);
   }
 }

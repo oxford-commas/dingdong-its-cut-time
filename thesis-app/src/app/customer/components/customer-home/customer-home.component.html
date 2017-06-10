@@ -27,10 +27,7 @@
 
 <div class="booking-due" *ngIf="!!bookingsDue">
   <div *ngFor="let booking of bookingsDue">
-    <payment-input
-      (handleProcessedPayment)="completeBooking($event)"
-      [stylistName]="booking.name"
-    >
+    <payment-input [stylistName]="booking.name" [bookingId]=booking.id>
     </payment-input>
   </div>
 </div>
@@ -39,6 +36,6 @@
   <div
     *ngFor="let confirmed of bookingsConfirmed; let i = index"
     class="booking-confirmed">
-    <div (click)="removeConfirmedBooking(confirmed.id, i)"class="confirmed">{{confirmed.name}} confirmed</div>
+    <div (click)="removeConfirmedBooking(confirmed.id, i)" class="confirmed">{{confirmed.name}} confirmed</div>
   </div>
 </div>

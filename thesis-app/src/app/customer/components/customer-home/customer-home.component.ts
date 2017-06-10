@@ -115,10 +115,6 @@ export class CustomerHomeComponent implements OnInit {
         err => console.log(err)
       );
   }
-
-  completeBooking() {
-    console.log('asfasdfas');
-  }
 }
 
 
