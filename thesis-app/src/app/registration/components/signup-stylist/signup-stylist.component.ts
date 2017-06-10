@@ -21,7 +21,6 @@ export class SignupStylistComponent {
       .subscribe(
         styles => {
           styles.forEach(style => this.stylesPlaceHolder.push(style));
-          console.log(this.stylesPlaceHolder, 'here');
         }
       )
   }
@@ -32,21 +31,29 @@ export class SignupStylistComponent {
       password: form.value.password,
       email: form.value.email,
       type: 1,
-      billingaddress: form.value.address,
-      styles: [1,2,3,4]
+      billingaddress: form.value.address
     }
-    console.log(form.value);
-    // this.requestService.postStylist(newStylist)
-    //   .subscribe(
-    //     data => {
-    //       this.requestService.getStylistByName(newStylist.name, newStylist.password)
-    //         .subscribe(
-    //           woo => {
-    //             this.stateService.addCustomer(woo[0]);
-    //             this.router.navigate(['/home']);
-    //           }
-    //         )
-    //     }
-    //   )
+    let styles = [];
+    for (var key in form.value) {
+      if (form.value[key] === true) {
+        styles.push(parseInt(key));
+      }
+    }
+    this.requestService.postStylist(newStylist)
+      .subscribe(
+        data => {
+          this.requestService.getStylistByName(newStylist.name, newStylist.password)
+            .subscribe(
+              woo => {
+                styles.forEach(style => {
+                  this.requestService.postStyleForStylist(style, woo[0].id)
+                    .subscribe(data => data);
+                })
+                this.stateService.addCustomer(woo[0]);
+                this.router.navigate(['/home']);
+              }
+            )
+        }
+      )
   }
 }
