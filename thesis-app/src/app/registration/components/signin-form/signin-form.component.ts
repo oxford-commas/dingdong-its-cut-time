@@ -21,9 +21,7 @@ export class SignInFormComponent {
     private requestService: RequestService,
     private stateService: StateService){}
 
-  ngOnInit() {
-    console.log(this.requestService, this.stateService)
-  }
+  ngOnInit() {}
 
   setUserData(userInput: IUserInformationData) {
     this.userInformationData = {

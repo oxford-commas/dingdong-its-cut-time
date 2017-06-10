@@ -9,15 +9,20 @@ import { RequestService, StateService } from '../../../services';
   styleUrls: ['./signup-stylist.component.css']
 })
 export class SignupStylistComponent {
-  private stylesPlaceHolder = ['fade', 'mullet', 'bowl cut', 'fade', 'mullet', 'bowl cut']
+  private stylesPlaceHolder = []
 
   constructor(
     private requestService: RequestService,
     private stateService: StateService,
     private router: Router) {}
 
-  NgOnInit() {
-
+  ngOnInit() {
+    this.requestService.getStyles()
+      .subscribe(
+        styles => {
+          styles.forEach(style => this.stylesPlaceHolder.push(style.servicename));
+        }
+      )
   }
 
   handleSignup(form: NgForm) {
