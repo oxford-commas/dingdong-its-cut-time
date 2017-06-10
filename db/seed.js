@@ -2,6 +2,7 @@ const helpers = require('./helpers.js');
 const services = require('../locationServices.js');
 var model = require('./model.js');
 
+var CLEARDB_INSERT = false;
 
 
 
@@ -283,11 +284,20 @@ const stylistArray = [
   }
 ]
 
+function userIndex(num) {
+  if (CLEARDB_INSERT) {
+    return 2 + (10 * (num-1));
+  } else {
+    return num;
+  }
+
+}
+
 const booksingsArray = [
   {
     name: 'Mateo',
-    userid: 4,
-    stylistid: 2,
+    userid: userIndex(4),
+    stylistid: userIndex(2),
     isconfirmed: 0,
     isComplete: 0,
     time: new Date(),
@@ -295,8 +305,8 @@ const booksingsArray = [
   },
   {
     name: 'mrhighland',
-    userid: 4,
-    stylistid: 2,
+    userid: userIndex(4),
+    stylistid: userIndex(2),
     isconfirmed: 1,
     isComplete: 0,
     time: new Date(),
@@ -304,8 +314,8 @@ const booksingsArray = [
   },
   {
     name: 'bigbess',
-    userid: 6,
-    stylistid: 2,
+    userid: userIndex(6),
+    stylistid: userIndex(2),
     isconfirmed: 0,
     isComplete: 0,
     time: new Date(),
@@ -313,8 +323,8 @@ const booksingsArray = [
   },
   {
     name: 'dnalounge',
-    userid: 15,
-    stylistid: 16,
+    userid: userIndex(15),
+    stylistid: userIndex(16),
     isconfirmed: 0,
     isComplete: 0,
     time: new Date(),
@@ -322,8 +332,8 @@ const booksingsArray = [
   },
    {
     name: 'palaceoffinearts',
-    userid: 15,
-    stylistid: 19,
+    userid: userIndex(15),
+    stylistid: userIndex(19),
     isconfirmed: 0,
     isComplete: 0,
     time: new Date(),
@@ -333,40 +343,40 @@ const booksingsArray = [
 
 const messagesArray = [
   {
-    id_sender: 1,
-    id_recipient: 2,
+    id_sender: userIndex(1),
+    id_recipient: userIndex(2),
     subjectHeading: 'Shari to mateo',
     body: 'Give me a fade bro!!!',
     time: new Date(),
     location: '320 Front St W, Toronto'
   },
   {
-    id_sender: 2,
-    id_recipient: 1,
+    id_sender: userIndex(2),
+    id_recipient: userIndex(1),
     subjectHeading: 'Mateo to Shari',
     body: 'yea, i gotchu girl, lets meet there',
     time: new Date(),
     location: '320 Front St W, Toronto'
   },
   {
-    id_sender: 1,
-    id_recipient: 10,
+    id_sender: userIndex(1),
+    id_recipient: userIndex(10),
     subjectHeading: 'Shari to cityhall',
     body: 'I want to color my hair pink',
     time: new Date(),
     location: 'San Francisco'
   },
   {
-    id_sender: 10,
-    id_recipient: 1,
+    id_sender: userIndex(10),
+    id_recipient: userIndex(1),
     subjectHeading: 'cityhall to shari',
     body: 'can do',
     time: new Date(),
     location: 'San francisco'
   },
   {
-    id_sender: 2,
-    id_recipient: 3,
+    id_sender: userIndex(2),
+    id_recipient: userIndex(3),
     subjectHeading: 'idk',
     body: 'idk',
     time: new Date(),
@@ -405,233 +415,233 @@ const stylesArray = [
 
 const stylistServices = [
   {
-    styleId: 2,
-    stylistId: 1
+    styleId: userIndex(2),
+    stylistId: userIndex(1)
   },
   {
-    styleId: 3,
-    stylistId: 1
+    styleId: userIndex(3),
+    stylistId: userIndex(1)
   },
   {
-    styleId: 13,
-    stylistId: 1
+    styleId: userIndex(13),
+    stylistId: userIndex(1)
   },
   {
-    styleId: 16,
-    stylistId: 1
+    styleId: userIndex(16),
+    stylistId: userIndex(1)
   },
   {
-    styleId: 20,
-    stylistId: 1
+    styleId: userIndex(20),
+    stylistId: userIndex(1)
   },
   {
-    styleId: 22,
-    stylistId: 1
+    styleId: userIndex(22),
+    stylistId: userIndex(1)
   },
   {
-    styleId: 24,
-    stylistId: 1
+    styleId: userIndex(24),
+    stylistId: userIndex(1)
   },
   {
-    styleId: 4,
-    stylistId: 2
+    styleId: userIndex(4),
+    stylistId: userIndex(2)
   },
   {
-    styleId: 5,
-    stylistId: 2
+    styleId: userIndex(5),
+    stylistId: userIndex(2)
   },
   {
-    styleId: 6,
-    stylistId: 2
+    styleId: userIndex(6),
+    stylistId: userIndex(2)
   },
   {
-    styleId: 8,
-    stylistId: 2
+    styleId: userIndex(8),
+    stylistId: userIndex(2)
   },
   {
-    styleId: 9,
-    stylistId: 2
+    styleId: userIndex(9),
+    stylistId: userIndex(2)
   },
   {
-    styleId: 11,
-    stylistId: 2
+    styleId: userIndex(11),
+    stylistId: userIndex(2)
   },
   {
-    styleId: 6,
-    stylistId: 2
+    styleId: userIndex(6),
+    stylistId: userIndex(2)
   },
   {
-    styleId: 21,
-    stylistId: 3
+    styleId: userIndex(21),
+    stylistId: userIndex(3)
   },
   {
-    styleId: 9,
-    stylistId: 3
+    styleId: userIndex(9),
+    stylistId: userIndex(3)
   },
   {
-    styleId: 24,
-    stylistId: 3
+    styleId: userIndex(24),
+    stylistId: userIndex(3)
   },
   {
-    styleId: 24,
-    stylistId: 5
+    styleId: userIndex(24),
+    stylistId: userIndex(5)
   },
   {
-    styleId: 9,
-    stylistId: 5
+    styleId: userIndex(9),
+    stylistId: userIndex(5)
   },
   {
-    styleId: 11,
-    stylistId: 5
+    styleId: userIndex(11),
+    stylistId: userIndex(5)
   },
   {
-    styleId: 2,
-    stylistId: 7
+    styleId: userIndex(2),
+    stylistId: userIndex(7)
   },
   {
-    styleId: 3,
-    stylistId: 7
+    styleId: userIndex(3),
+    stylistId: userIndex(7)
   },
   {
-    styleId: 16,
-    stylistId: 7
+    styleId: userIndex(16),
+    stylistId: userIndex(7)
   },
   {
-    styleId: 6,
-    stylistId: 8
+    styleId: userIndex(6),
+    stylistId: userIndex(8)
   },
   {
-    styleId: 8,
-    stylistId: 8
+    styleId: userIndex(8),
+    stylistId: userIndex(8)
   },
   {
-    styleId: 9,
-    stylistId: 8
+    styleId: userIndex(9),
+    stylistId: userIndex(8)
   },
   {
-    styleId: 20,
-    stylistId: 9
+    styleId: userIndex(20),
+    stylistId: userIndex(9)
   },
   {
-    styleId: 4,
-    stylistId: 9
+    styleId: userIndex(4),
+    stylistId: userIndex(9)
   },
   {
-    styleId: 5,
-    stylistId: 9
+    styleId: userIndex(5),
+    stylistId: userIndex(9)
   },
   {
-    styleId: 20,
-    stylistId: 10
+    styleId: userIndex(20),
+    stylistId: userIndex(10)
   },
   {
-    styleId: 4,
-    stylistId: 10
+    styleId: userIndex(4),
+    stylistId: userIndex(10)
   },
   {
-    styleId: 5,
-    stylistId: 10
+    styleId: userIndex(5),
+    stylistId: userIndex(10)
   },
   {
-    styleId: 5,
-    stylistId: 11
+    styleId: userIndex(5),
+    stylistId: userIndex(11)
   },
   {
-    styleId: 11,
-    stylistId: 11
+    styleId: userIndex(11),
+    stylistId: userIndex(11)
   },
   {
-    styleId: 21,
-    stylistId: 11
+    styleId: userIndex(21),
+    stylistId: userIndex(11)
   },
   {
-    styleId: 24,
-    stylistId: 12
+    styleId: userIndex(24),
+    stylistId: userIndex(12)
   },
   {
-    styleId: 9,
-    stylistId: 12
+    styleId: userIndex(9),
+    stylistId: userIndex(12)
   },
   {
-    styleId: 11,
-    stylistId: 12
+    styleId: userIndex(11),
+    stylistId: userIndex(12)
   },
   {
-    styleId: 9,
-    stylistId: 13
+    styleId: userIndex(9),
+    stylistId: userIndex(13)
   },
   {
-    styleId: 5,
-    stylistId: 13
+    styleId: userIndex(5),
+    stylistId: userIndex(13)
   },
   {
-    styleId: 4,
-    stylistId: 13
+    styleId: userIndex(4),
+    stylistId: userIndex(13)
   },
   {
-    styleId: 9,
-    stylistId: 14
+    styleId: userIndex(9),
+    stylistId: userIndex(14)
   },
   {
-    styleId: 6,
-    stylistId: 14
+    styleId: userIndex(6),
+    stylistId: userIndex(14)
   },
   {
-    styleId: 4,
-    stylistId: 14
+    styleId: userIndex(4),
+    stylistId: userIndex(14)
   },
   {
-    styleId: 3,
-    stylistId: 16
+    styleId: userIndex(3),
+    stylistId: userIndex(16)
   },
   {
-    styleId: 15,
-    stylistId: 16
+    styleId: userIndex(15),
+    stylistId: userIndex(16)
   },
   {
-    styleId: 19,
-    stylistId: 16
+    styleId: userIndex(19),
+    stylistId: userIndex(16)
   },
   {
-    styleId: 1,
-    stylistId: 17
+    styleId: userIndex(1),
+    stylistId: userIndex(17)
   },
   {
-    styleId: 11,
-    stylistId: 17
+    styleId: userIndex(11),
+    stylistId: userIndex(17)
   },
   {
-    styleId: 23,
-    stylistId: 17
+    styleId: userIndex(23),
+    stylistId: userIndex(17)
   },
   {
-    styleId: 5,
-    stylistId: 18
+    styleId: userIndex(5),
+    stylistId: userIndex(18)
   },
   {
-    styleId: 17,
-    stylistId: 18
+    styleId: userIndex(17),
+    stylistId: userIndex(18)
   },
   {
-    styleId: 16,
-    stylistId: 18
+    styleId: userIndex(16),
+    stylistId: userIndex(18)
   },
   {
-    styleId: 1,
-    stylistId: 19
+    styleId: userIndex(1),
+    stylistId: userIndex(19)
   },
   {
-    styleId: 2,
-    stylistId: 19
+    styleId: userIndex(2),
+    stylistId: userIndex(19)
   },
   {
-    styleId: 3,
-    stylistId: 19
+    styleId: userIndex(3),
+    stylistId: userIndex(19)
   }
 ]
 
 
-
+/*
 stylistArray.forEach(stylist => {
   helpers.addUserStylist(
     stylist.id,
@@ -653,7 +663,7 @@ stylistArray.forEach(stylist => {
       })
     });
 });
-
+*/
 booksingsArray.forEach(booking => {
   helpers.addToBookings(
     booking.userid,
