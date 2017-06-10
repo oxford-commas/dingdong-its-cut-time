@@ -26,7 +26,7 @@ export class BookingService {
       .map(res => res.json());
   }
 
-  fetchPurchasedBookings() {
+  fetchPurchasedBookings(id: number) {
     return this.http.get(`/api/bookings/purchased/${id}`)
       .map(res => res.json());
   }

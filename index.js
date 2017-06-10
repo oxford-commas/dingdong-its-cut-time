@@ -181,6 +181,11 @@ app.get('/api/bookings/complete/:id', (req, res) => {
   helpers.getBookingsDue(id, result => res.status(200).json(result));
 });
 
+app.get('/api/bookings/purchased/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.getPayedBookings(id, results => res.status(200).json(results));
+});
+
 // confirm a booking will occur
 app.put('/api/bookings/:id', (req, res) => {
   var id = req.params.id;

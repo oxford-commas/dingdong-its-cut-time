@@ -104,6 +104,15 @@ var payBooking = (id, callback) => {
   model.con.query(sql, [id], (err, results) => callback(results));
 };
 
+var getPayedBookings = (id, callback) => {
+  var sql = `
+    SELECT b.id, b.id_stylists, b.isconfirmed, b.time, b.location, b.isComplete, us.name as customer
+    FROM bookings b INNER JOIN users_stylists us
+    WHERE b.id_stylists = ? AND b.id_users = us.id AND b.isComplete = 2
+  `;
+  model.con.query(sql, [id], (err, results) => callback(results));
+};
+
 var getStylistBookings = function(stylistId, callback) {
   model.con.query('SELECT * FROM `bookings` WHERE `id_stylists` = ?', [stylistId], function (error, results, fields) {
     callback(results);
@@ -253,3 +262,4 @@ module.exports.getAllStyles = getAllStyles;
 module.exports.getConfirmed = getConfirmed;
 module.exports.seenConfirmedBooking = seenConfirmedBooking;
 module.exports.payBooking = payBooking;
+module.exports.getPayedBookings = getPayedBookings;
