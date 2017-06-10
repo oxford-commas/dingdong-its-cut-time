@@ -20,7 +20,8 @@ export class SignupStylistComponent {
     this.requestService.getStyles()
       .subscribe(
         styles => {
-          styles.forEach(style => this.stylesPlaceHolder.push(style.servicename));
+          styles.forEach(style => this.stylesPlaceHolder.push(style));
+          console.log(this.stylesPlaceHolder, 'here');
         }
       )
   }
@@ -34,17 +35,18 @@ export class SignupStylistComponent {
       billingaddress: form.value.address,
       styles: [1,2,3,4]
     }
-    this.requestService.postStylist(newStylist)
-      .subscribe(
-        data => {
-          this.requestService.getStylistByName(newStylist.name, newStylist.password)
-            .subscribe(
-              woo => {
-                this.stateService.addCustomer(woo[0]);
-                this.router.navigate(['/home']);
-              }
-            )
-        }
-      )
+    console.log(form.value);
+    // this.requestService.postStylist(newStylist)
+    //   .subscribe(
+    //     data => {
+    //       this.requestService.getStylistByName(newStylist.name, newStylist.password)
+    //         .subscribe(
+    //           woo => {
+    //             this.stateService.addCustomer(woo[0]);
+    //             this.router.navigate(['/home']);
+    //           }
+    //         )
+    //     }
+    //   )
   }
 }
