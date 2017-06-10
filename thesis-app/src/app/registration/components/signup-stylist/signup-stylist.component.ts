@@ -30,7 +30,7 @@ export class SignupStylistComponent {
       name: form.value.username,
       password: form.value.password,
       email: form.value.email,
-      type: 1,
+      type: 0,
       billingaddress: form.value.address
     }
     let styles = [];
@@ -49,8 +49,15 @@ export class SignupStylistComponent {
                   this.requestService.postStyleForStylist(style, woo[0].id)
                     .subscribe(data => data);
                 })
-                this.stateService.addCustomer(woo[0]);
-                this.router.navigate(['/home']);
+                if (woo[0].type === 1) {
+                  this.stateService.addCustomer(woo[0]);
+                  this.router.navigate(['/home']);
+                } else if (woo[0].type === 0) {
+                  this.stateService.addCustomer(woo[0]);
+                  this.router.navigate(['/stylisthome']);
+                } else {
+                  this.router.navigate(['/login']);
+                }
               }
             )
         }
