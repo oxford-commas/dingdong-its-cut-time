@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RequestService, StateService } from '../../../services';
@@ -15,6 +15,10 @@ export class SignupStylistComponent {
     private requestService: RequestService,
     private stateService: StateService,
     private router: Router) {}
+
+  NgOnInit() {
+
+  }
 
   handleSignup(form: NgForm) {
     let newStylist = {

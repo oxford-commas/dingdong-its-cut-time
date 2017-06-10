@@ -13,6 +13,9 @@ input {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-image: linear-gradient(215deg, #A7A5C6 0%, #5D707F 100%);
+  padding: 2em;
+  margin: 2em;
 }
 
 .myForm {
@@ -23,7 +26,6 @@ input {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border-top: 2px solid;
   margin-top: 0px;
 }
 
