@@ -325,6 +325,8 @@ app.get('*', function(req, res) {
  res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
 });
 
-app.listen(4200, function () {
-  console.log('Example app listening on port 4200!');
+app.set('port', (process.env.PORT || 4200))
+
+app.listen(app.get('port'), function () {
+  console.log('Example app listening on port ' + app.get('port') + '!');
 });
