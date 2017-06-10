@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
 
 import { PaymentModule } from './payment/payment.module';
+import { LandingComponent } from './components';
 
 @NgModule({
+  declarations: [
+    LandingComponent
+  ],
   exports: [
-    PaymentModule
+    PaymentModule,
+    LandingComponent
   ]
 })
-export class UiModule { }
+export class UiModule {}
