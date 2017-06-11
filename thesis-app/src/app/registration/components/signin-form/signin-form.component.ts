@@ -38,7 +38,7 @@ export class SignInFormComponent {
         data => {
           if (data[0].type === 1) {
             this.stateService.addCustomer(data[0]);
-            this.router.navigate(['/home']);
+            this.router.navigate(['/landing']);
           } else if (data[0].type === 0) {
             this.stateService.addCustomer(data[0]);
             this.router.navigate(['/stylisthome']);
