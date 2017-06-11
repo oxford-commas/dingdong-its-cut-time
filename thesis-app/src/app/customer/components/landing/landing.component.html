@@ -1,32 +1,42 @@
 <customer-navbar></customer-navbar>
 <h1>Appointments</h1>
+
+<div *ngIf="profile.type===0">
+  <button [routerLink]="['/stylisthome']">Find Stylist</button>
+</div>
+<div *ngIf="profile.type===1">
+  <button [routerLink]="['/home']">Find Stylist</button>
+</div>
+
 <h2>Confirmed</h2>
-  <div
-    *ngFor="let confirmedBooking of profile.confirmedBookings; let i = index"
-    class="booking-confirmed"
-    (click)="removeConfirmedBooking(confirmedBooking.id, i)"
-  >
-    {{confirmedBooking.name}}
-    {{confirmedBooking.time}}
-    {{confirmedBooking.phonenumber}}
-  </div>
+<div
+  *ngFor="let confirmedBooking of profile.confirmedBookings; let i = index"
+  class="booking-confirmed"
+  (click)="removeConfirmedBooking(confirmedBooking.id, i)"
+>
+  {{confirmedBooking.name}}
+  {{confirmedBooking.time}}
+  {{confirmedBooking.phonenumber}}
+</div>
+
 <h2>Awaiting Payment</h2>
-  <div *ngFor="let dueBooking of profile.dueBookings">
-    {{dueBooking.name}}
-    {{dueBooking.time}}
-    {{dueBooking.phonenumber}}
-    <payment-input
-      (handleProcessedPayment)="completeBooking($event)"
-      [stylistName]="dueBooking.name"
-    >
-    </payment-input>
-  </div>
-<h2>Pending</h2>
-  <div
-    *ngFor="let pendingBooking of profile.pendingBookings; let i = index"
-    class="booking-confirmed"
+<div *ngFor="let dueBooking of profile.dueBookings">
+  {{dueBooking.name}}
+  {{dueBooking.time}}
+  {{dueBooking.phonenumber}}
+  <payment-input
+    (handleProcessedPayment)="completeBooking($event)"
+    [stylistName]="dueBooking.name"
   >
-    {{pendingBooking.name}}
-    {{pendingBooking.time}}
-    {{pendingBooking.phonenumber}}
-  </div>
+  </payment-input>
+</div>
+
+<h2>Pending</h2>
+<div
+  *ngFor="let pendingBooking of profile.pendingBookings; let i = index"
+  class="booking-confirmed"
+>
+  {{pendingBooking.name}}
+  {{pendingBooking.time}}
+  {{pendingBooking.phonenumber}}
+</div>

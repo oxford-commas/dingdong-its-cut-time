@@ -8,7 +8,7 @@ import { StateService } from '../../../services';
 })
 export class LandingComponent {
   constructor(private stateService: StateService) {
-    console.log('lanidng component init: ', this.profile);
+    console.log('landing component init: ', this.profile);
   }
 
   public profile = this.stateService.retrieveCustomer();
