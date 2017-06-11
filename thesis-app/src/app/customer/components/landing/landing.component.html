@@ -19,7 +19,7 @@
   </div>
 
   <h2>Awaiting Payment</h2>
-  <div *ngFor="let dueBooking of profile.dueBookings">
+  <div *ngFor="let dueBooking of profile.dueBookings; let i = index">
     <booking
       [name]="dueBooking.name"
       [time]="dueBooking.time"
@@ -27,7 +27,7 @@
     >
     </booking>
     <payment-input
-      (handleProcessedPayment)="completeBooking($event)"
+      (handleProcessedPayment)="payBooking(dueBooking.id, i)"
       [stylistName]="dueBooking.name"
     >
     </payment-input>

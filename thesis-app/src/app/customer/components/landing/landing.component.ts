@@ -42,8 +42,8 @@ export class LandingComponent {
       );
   }
 
-  completeBooking(id: number, index: number) {
-    // this.bookings..splice(index, 1);
+  payBooking(id: number, index: number) {
+    this.profile.dueBookings.splice(index, 1);
     this.bookingService.completeBooking(id)
       .subscribe(
         result => console.log(result),
