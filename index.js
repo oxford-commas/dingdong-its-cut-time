@@ -324,6 +324,7 @@ app.get('/api/streetaddress/:latlng', function(req, res) {
 
 
 app.get('/', function(req, res) {
+  console.log(path.join(__dirname, 'thesis-app/dist/index.html'));
  res.sendFile('thesis-app/dist/index.html', {"root": __dirname});
 });
 
