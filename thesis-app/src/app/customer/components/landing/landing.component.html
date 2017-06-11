@@ -8,7 +8,6 @@
   <div
     *ngFor="let confirmedBooking of profile.confirmedBookings; let i = index"
     class="booking-confirmed"
-    (click)="removeConfirmedBooking(confirmedBooking.id, i)"
   >
     <booking
       [name]="confirmedBooking.name"
@@ -55,7 +54,6 @@
   <div
     *ngFor="let confirmedBooking of profile.confirmedBookings; let i = index"
     class="booking-confirmed"
-    (click)="removeConfirmedBooking(confirmedBooking.id, i)"
   >
     <booking
       [name]="confirmedBooking.name"
