@@ -322,7 +322,7 @@ app.get('/api/streetaddress/:latlng', function(req, res) {
 });
 
 app.get('*', function(req, res) {
- res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
+ res.sendFile('index.html');
 });
 
 app.set('port', (process.env.PORT || 4200))
