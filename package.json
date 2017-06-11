@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm install; npm install --prefix ./thesis-app; node index.js"
+    "postinstall": "ng build --aot -prod"
   },
   "author": "",
   "license": "ISC",
