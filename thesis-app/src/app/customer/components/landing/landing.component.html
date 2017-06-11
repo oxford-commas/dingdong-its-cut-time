@@ -4,31 +4,29 @@
   <div
     *ngFor="let confirmedBooking of profile.confirmedBookings; let i = index"
     class="booking-confirmed"
+    (click)="removeConfirmedBooking(confirmedBooking.id, i)"
   >
-    <div
-      (click)="removeConfirmedBooking(confirmedBooking.id, i)"
-      class="confirmed"
-    >
-      {{confirmedBooking.name}} confirmed
-    </div>
+    {{confirmedBooking.name}}
+    {{confirmedBooking.time}}
+    {{confirmedBooking.phonenumber}}
   </div>
 <h2>Awaiting Payment</h2>
-    <div *ngFor="let dueBooking of profile.dueBookings">
-      <payment-input
-        (handleProcessedPayment)="completeBooking($event)"
-        [stylistName]="dueBooking.name"
-      >
-      </payment-input>
-    </div>
+  <div *ngFor="let dueBooking of profile.dueBookings">
+    {{dueBooking.name}}
+    {{dueBooking.time}}
+    {{dueBooking.phonenumber}}
+    <payment-input
+      (handleProcessedPayment)="completeBooking($event)"
+      [stylistName]="dueBooking.name"
+    >
+    </payment-input>
+  </div>
 <h2>Pending</h2>
   <div
-      *ngFor="let pendingBooking of profile.pendingBookings; let i = index"
-      class="booking-confirmed"
-    >
-      <div
-        (click)="removeConfirmedBooking(pendingBooking.id, i)"
-        class="confirmed"
-      >
-        {{pendingBooking.name}} pending
-      </div>
+    *ngFor="let pendingBooking of profile.pendingBookings; let i = index"
+    class="booking-confirmed"
+  >
+    {{pendingBooking.name}}
+    {{pendingBooking.time}}
+    {{pendingBooking.phonenumber}}
   </div>
