@@ -9,3 +9,4 @@ export * from './stylist-profile';
 export * from './customer-profile';
 export * from './chat-history';
 export * from './landing';
+export * from './booking';

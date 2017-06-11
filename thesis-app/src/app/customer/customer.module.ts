@@ -26,7 +26,8 @@ import {
   StylistProfileComponent,
   CustomerProfileComponent,
   ChatHistoryComponent,
-  LandingComponent
+  LandingComponent,
+  BookingComponent
 } from './components';
 
 @NgModule({
@@ -50,7 +51,8 @@ import {
     StylistProfileComponent,
     CustomerProfileComponent,
     ChatHistoryComponent,
-    LandingComponent
+    LandingComponent,
+    BookingComponent
   ],
   providers: [
     StripeService,

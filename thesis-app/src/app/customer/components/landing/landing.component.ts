@@ -10,7 +10,9 @@ export class LandingComponent {
   constructor(
     private stateService: StateService,
     private bookingService: BookingService
-  ) {console.log('landing component init: ', this.profile)}
+  ) {
+    console.log('landing component state initialization: ', this.profile)
+  }
 
   public profile = this.stateService.retrieveCustomer();
 
@@ -19,6 +21,32 @@ export class LandingComponent {
     this.bookingService.seenConfirmedBooking(id)
       .subscribe(
         data => console.log(data),
+        err => console.log(err)
+      );
+  }
+
+  confirmBooking(id: number, index: number) {
+    this.bookingService.confirmBooking(id)
+      .subscribe(
+        result => this.profile.confirmedBookings[index].isconfirmed = 1,
+        err => console.log(err)
+      );
+  }
+
+  deleteBooking(id: number, index: number) {
+    this.profile.pendingBookings.splice(index, 1);
+    this.bookingService.deleteBooking(id)
+      .subscribe(
+        result => console.log(result),
+        err => console.log(err)
+      );
+  }
+
+  completeBooking(id: number, index: number) {
+    // this.bookings..splice(index, 1);
+    this.bookingService.completeBooking(id)
+      .subscribe(
+        result => console.log(result),
         err => console.log(err)
       );
   }

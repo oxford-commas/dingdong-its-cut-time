@@ -37,31 +37,4 @@ export class StylistHomeComponent implements OnInit {
         () => this.isProfileFetched = true
       );
   }
-
-  confirmBooking(id: number, index: number) {
-    this.bookingService.confirmBooking(id)
-      .subscribe(
-        result => this.bookings[index].isconfirmed = 1,
-        err => console.log(err)
-      );
-  }
-
-  deleteBooking(id: number, index: number) {
-    this.bookings.splice(index, 1);
-    this.bookingService.deleteBooking(id)
-      .subscribe(
-        result => console.log(result),
-        err => console.log(err)
-      );
-  }
-
-  completeBooking(id: number, index: number) {
-    this.bookings.splice(index, 1);
-    this.bookingService.completeBooking(id)
-      .subscribe(
-        result => console.log(result),
-        err => console.log(err)
-      );
-  }
-
 }
