@@ -81,7 +81,7 @@ var getBookings = function(userId, callback) {
 
 var getPendingBookings = (userId, callback) => {
   var sql = `
-    SELECT b.id, b.id_stylists, b.isconfirmed, b.time, b.location, b.isComplete, us.phonenumber, us.name
+    SELECT b.id, b.id_stylists, b.isconfirmed, b.time, b.location, b.isComplete, us.phonenumber, us.name, us.image_url
     FROM bookings b INNER JOIN users_stylists us
     WHERE b.id_users = ? AND b.id_stylists = us.id AND isconfirmed = 0
   `;
@@ -111,7 +111,7 @@ var getStylistBookings = function(stylistId, callback) {
 };
 
 var getBookingsDue = (id, callback) => {
-  var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber
+  var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
     FROM bookings b INNER JOIN users_stylists us
     WHERE b.isComplete = 1 AND b.id_users = ?
     AND us.id = b.id_stylists`;
@@ -150,7 +150,7 @@ var updateBooking = function(id_users, id_stylists, isconfirmed, time, location,
 
 var getConfirmed = (id, callback) => {
   model.con.query(`
-    SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber
+    SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
     FROM bookings b INNER JOIN users_stylists us
     WHERE b.isconfirmed = 1 AND b.id_users = ?
     AND us.id = b.id_stylists AND b.isComplete = 0

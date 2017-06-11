@@ -7,6 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class BookingComponent {
   @Input() name;
+  @Input() image_url;
   @Input() time;
   @Input() phoneNumber;
 }
