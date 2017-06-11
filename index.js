@@ -323,7 +323,7 @@ app.get('/api/streetaddress/:latlng', function(req, res) {
 });
 
 app.get('/', function(req, res) {
- res.sendFile('index.html');
+ res.sendFile('index.html', {"root": __dirname});
 });
 
 app.set('port', (process.env.PORT || 4200))
