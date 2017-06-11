@@ -24,15 +24,12 @@ export class CustomerHomeComponent implements OnInit {
   public searchLocation: string;
   public latitude: number;
   public longitude: number;
-  public bookingsDue: any;
-  public bookingsConfirmed: any;
   userProfile: any;
 
   constructor(
     private requestService: RequestService,
     private locationService: LocationService,
     private stylistService: StylistService,
-    private bookingService: BookingService,
     private stateService: StateService
   ) {
     this.getLocationCoordinates(this.latitude, this.longitude);
@@ -45,9 +42,6 @@ export class CustomerHomeComponent implements OnInit {
     this.getLocationFromCoordinates(this.latitude, this.longitude);
     this.searchLocation = this.currentLocation;
     // this.pinStylistsAtLocation(this.searchLocation);
-    // instead of using socket.io, check for bookings due on interval
-    setInterval(() => this.checkForBookingsDue(this.customerProfile.id), 5000);
-    setInterval(() => this.checkForBookingsConfirmed(this.customerProfile.id), 5000);
     this.requestService.getStylistByLocation('sanfrancisco')
       .subscribe(data => this.stylistsCloseToYou = data, err => console.log(err));
   }
@@ -78,46 +72,6 @@ export class CustomerHomeComponent implements OnInit {
         console.log(res);
         this.currentLocation = res;
       });
-  }
-
-  checkForBookingsDue(id: number) {
-    this.bookingService.fetchDueBookings(id)
-      .subscribe(
-        data => {
-          console.log('fetching dues....', data);
-          this.bookingsDue = data;
-        },
-        err => {
-          console.log(err);
-        }
-      );
-  }
-
-  checkForBookingsConfirmed(id: number) {
-    this.bookingService.fetchConfirmedBookings(id)
-      .subscribe(
-        data => {
-          this.bookingsConfirmed = data;
-          console.log('fetching confirmed', data);
-        },
-        err => {
-          console.log(err);
-        }
-      );
-  }
-
-  removeConfirmedBooking(id, index) {
-    console.log('hey',id, index);
-    this.bookingsConfirmed.splice(index, 1);
-    this.bookingService.seenConfirmedBooking(id)
-      .subscribe(
-        data => console.log(data),
-        err => console.log(err)
-      );
-  }
-
-  completeBooking() {
-    console.log('asfasdfas');
   }
 }
 
