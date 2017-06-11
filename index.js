@@ -170,6 +170,11 @@ app.post('/api/bookings', function(req, res) {
   });
 });
 
+app.get('/api/bookings/pending/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.getPendingBookings(id, result => res.status(200).json(result));
+});
+
 // get bookings for a customer that need to be paid for
 app.get('/api/bookings/complete/:id', (req, res) => {
   var id = req.params.id;

@@ -43,7 +43,16 @@ export class StateService {
 
     this.bookingService.fetchConfirmedBookings(stylist.id)
       .subscribe(
-        data => customerProfile.confirmedBookings = data,
+        data => {
+          customerProfile.confirmedBookings = data;
+          console.log('fetched confirmed bookings', customerProfile.confirmedBookings);
+        },
+        err => console.log(err)
+      );
+
+    this.bookingService.fetchPendingBookings(stylist.id)
+      .subscribe(
+        data => customerProfile.pendingBookings = data,
         err => console.log(err)
       );
   }

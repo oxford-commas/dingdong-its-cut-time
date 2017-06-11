@@ -1,1 +1,34 @@
-<h1>Landing Page</h1>
+<customer-navbar></customer-navbar>
+<h1>Appointments</h1>
+<h2>Confirmed</h2>
+  <div
+    *ngFor="let confirmedBooking of profile.confirmedBookings; let i = index"
+    class="booking-confirmed"
+  >
+    <div
+      (click)="removeConfirmedBooking(confirmedBooking.id, i)"
+      class="confirmed"
+    >
+      {{confirmedBooking.name}} confirmed
+    </div>
+  </div>
+<h2>Awaiting Payment</h2>
+    <div *ngFor="let dueBooking of profile.dueBookings">
+      <payment-input
+        (handleProcessedPayment)="completeBooking($event)"
+        [stylistName]="dueBooking.name"
+      >
+      </payment-input>
+    </div>
+<h2>Pending</h2>
+  <div
+      *ngFor="let pendingBooking of profile.pendingBookings; let i = index"
+      class="booking-confirmed"
+    >
+      <div
+        (click)="removeConfirmedBooking(pendingBooking.id, i)"
+        class="confirmed"
+      >
+        {{pendingBooking.name}} pending
+      </div>
+  </div>

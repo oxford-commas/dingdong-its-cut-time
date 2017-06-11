@@ -79,6 +79,15 @@ var getBookings = function(userId, callback) {
   model.con.query(sql, [userId], (err, results) => callback(results));
 };
 
+var getPendingBookings = (userId, callback) => {
+  var sql = `
+    SELECT b.id, b.id_stylists, b.isconfirmed, b.time, b.location, b.isComplete, us.name as customer
+    FROM bookings b INNER JOIN users_stylists us
+    WHERE b.id_users = 1 AND b.id_users = us.id AND isconfirmed = 0
+  `;
+  model.con.query(sql, [userId], (err, results) => callback(results));
+};
+
 var confirmBooking = (bookingId, callback) => {
   var sql = `
     UPDATE bookings
@@ -243,3 +252,4 @@ module.exports.validateUser = validateUser;
 module.exports.getAllStyles = getAllStyles;
 module.exports.getConfirmed = getConfirmed;
 module.exports.seenConfirmedBooking = seenConfirmedBooking;
+module.exports.getPendingBookings = getPendingBookings;

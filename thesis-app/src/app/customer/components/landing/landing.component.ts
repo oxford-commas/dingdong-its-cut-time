@@ -7,11 +7,9 @@ import { StateService } from '../../../services';
   templateUrl: './landing.component.html'
 })
 export class LandingComponent {
-  constructor(private stateService: StateService) {}
+  constructor(private stateService: StateService) {
+    console.log('lanidng component init: ', this.profile);
+  }
 
   public profile = this.stateService.retrieveCustomer();
-  public confirmedBookings = this.profile.confirmedBookings;
-  public dueBookings = this.profile.dueBookings;
-  public messages = this.profile.messages;
-
 }
