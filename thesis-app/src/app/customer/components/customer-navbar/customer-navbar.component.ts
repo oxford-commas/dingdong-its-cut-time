@@ -12,7 +12,7 @@ export class CustomerNavbarComponent {
     private locationService: LocationService,
     private stateService: StateService
   ) {}
-  
+
   @Input() customerId: number;
   @Input() searchLocation: string;
   @Output() locationChange = new EventEmitter();

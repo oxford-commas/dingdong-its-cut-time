@@ -18,39 +18,4 @@ export class CloseToYouComponent {
   @Input() stylistInformation: any;
   @Input() searchLocation: string;
 
-  // public currentLocation: string;
-  // public lng: number;
-  // public lat: number;
-  // public stylists: any
-
-  // ngOnInit() {
-  //   this.getLatLng((lat, lng) => this.getLocationFromCoordinates(lat, lng, (location) => this.getStylistsInLocation(location)));
-  // }
-
-  // getLatLng(next) {
-  //   this.locationService.getCurrentPosition(null, null)
-  //     .subscribe(res =>  {
-  //       this.lat = res.coords.latitude;
-  //       this.lng = res.coords.longitude;
-  //       next(this.lat, this.lng);
-  //     });
-  // }
-
-  // getStylistsInLocation(location: string) {
-  //   this.stylistService.getStylistsInLocation(location)
-  //     .subscribe(
-  //       data => this.stylists = data
-  //     , err => console.log(err)
-  //     );
-  // }
-
-  // getLocationFromCoordinates(lat, lng, next) {
-  //   this.locationService.getLocationFromCoordinates(lat, lng)
-  //     .subscribe(location => {
-  //       this.currentLocation = location;
-  //       this.searchLocation = this.currentLocation;
-  //       next(this.currentLocation);
-  //     }, err => console.log(err));
-  // }
-
 }

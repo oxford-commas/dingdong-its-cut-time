@@ -46,11 +46,6 @@ export class CustomerHomeComponent implements OnInit {
     this.searchLocation = this.currentLocation;
   }
 
-  // ngOnChanges(changes: SimpleChanges) {
-  //   console.log('line 50 arrived', this.searchLocation);
-  //   this.getStylistsInLocation(this.searchLocation);
-  // }
-
   pinStylistsAtLocation(location: any) {
     this.stylistService.getStylistsInLocation(location)
       .subscribe(data => {
@@ -60,7 +55,6 @@ export class CustomerHomeComponent implements OnInit {
 
   onSearchLocationChange(location: string): void {
     this.searchLocation = location;
-    console.log('New search location is:', this.searchLocation);
     this.getStylistsInLocation(this.searchLocation);
   }
 
@@ -69,6 +63,7 @@ export class CustomerHomeComponent implements OnInit {
       .subscribe(res =>  {
         this.latitude = res.coords.latitude;
         this.longitude = res.coords.longitude;
+        console.log('this.latitude', this.latitude, 'this.longitude', this.longitude);
         next(this.latitude, this.longitude);
       });
   }
@@ -77,6 +72,7 @@ export class CustomerHomeComponent implements OnInit {
     this.locationService.getLocationFromCoordinates(lat, lng)
       .subscribe(location => {
         this.currentLocation = location;
+        console.log('curr loc', this.currentLocation);
         next(this.currentLocation);
       }, err => console.log(err));
   }
@@ -120,8 +116,8 @@ export class CustomerHomeComponent implements OnInit {
   getStylistsInLocation(location: string) {
     this.stylistService.getStylistsInLocation(location)
       .subscribe(
-        data => this.stylistsCloseToYou = data
-      , err => console.log(err)
+        data => this.stylistsCloseToYou = data,
+        err => console.log(err)
       );
   }
 

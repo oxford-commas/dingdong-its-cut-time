@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, OnInit, SimpleChanges } from '@
 import { Router } from '@angular/router';
 import { LocationService } from '../../../services';
 import { StylistService } from '../../../services';
+import { GoogleMapsAPIWrapper } from '../../../../../node_modules/angular2-google-maps/core/services/google-maps-api-wrapper';
 
 @Component({
   selector: 'customer-map',
@@ -13,24 +14,26 @@ export class CustomerMapComponent implements OnInit {
   constructor(
     private locationService: LocationService,
     private stylistService: StylistService,
-    private router: Router
+    private router: Router,
+    private googleMapsAPIWrapper: GoogleMapsAPIWrapper
   ) {}
-
-  @Input() searchLocation: string;
 
   public currentLocation: string;
   public lng: number;
   public lat: number;
   public zoom: number = 12;
 
+  @Input() searchLocation: string;
+
   ngOnInit() {
     this.getLatLng((lat, lng) => this.getLocationFromCoordinates(lat, lng, (location) => this.getStylistsInLocation(location)));
-    this.getLatLng((lat, lng) => this.getLocationFromCoordinates(lat, lng, (location) => this.adjustMapViewForLocation(location)))
+    this.getLatLng((lat, lng) => this.getLocationFromCoordinates(lat, lng, (location) => this.adjustMapViewForLocation(location)));
   }
 
   ngOnChanges(changes: SimpleChanges) {
     this.adjustMapViewForLocation(this.searchLocation);
     this.getStylistsInLocation(this.searchLocation);
+    this.locationService.getCurrentPosition(this.lat, this.lng);
   }
 
   getLatLng(next) {
