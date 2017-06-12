@@ -5,34 +5,43 @@
     headerText="Login Page"
     logo="insert logo url here"></registration-header>
   <div class="formWrapper">
-    <div class="formItem1">
-      <form (ngSubmit)="handleSignup(f)" #f="ngForm">
-        <label>Username</label>
-          <input
-            required
-            type="text"
-            id="username"
-            ngModel
-            name="username">
-        <br>
-        <label>Password</label>
-          <input
-            required
-            type="password"
-            id="password"
-            ngModel
-            name="password">
-        <br>
-        <label>Email Address</label>
-          <input
-            required
-            type="email"
-            id="email"
-            ngModel
-            name="email">
-        <br>
+    <h3>Customer Signup</h3>
+    <!-- <div class="formItem1"> -->
+      <form class="formItem1" (ngSubmit)="handleSignup(f)" #f="ngForm">
+        <div class="usernamePassword">
+          <div class="username">
+            <h5>Username</h5>
+              <input
+                required
+                type="text"
+                id="username"
+                ngModel
+                name="username">
+          </div>
+          <div class="password">
+            <h5>Password</h5>
+              <input
+                required
+                type="password"
+                id="password"
+                ngModel
+                name="password">
+          </div>
+        </div>
+
+
+
+        <div>
+          <h5>Email Address</h5>
+            <input
+              required
+              type="email"
+              id="email"
+              ngModel
+              name="email">
+        </div>
       </form>
-    </div>
+    <!-- </div> -->
     <div class="formItem2">
       <button
         type="submit"

@@ -3,6 +3,7 @@
   flex-direction: column;
   background-image: url('http://cdn.wallpapersafari.com/44/5/HQjIBU.jpg');
   height: 100vh;
+  color: white;
 }
 
 .header {
@@ -12,23 +13,57 @@
   margin-right: 2em;
   width: 85%;
   align-self: center;
-  border: 2px solid red;
 }
 
 .formWrapper {
   background: rgba(255,255,255,0.4);
-  border-radius: 20px;
+  border-radius: 10px;
   align-self: center;
   width: 85%;
   height: 50%;
+  padding: 1em;
+  margin-top: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
 }
 
 .formItem1 {
-  border: 2px solid red;
+  border: 2px solid yellow;
   height: 45%;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.usernamePassword {
+  display: flex;
+  flex: 1 1 100%;
+  border: 2px solid red;
+  width: 100%;
+  height: 48%;
+  align-items: center;
+}
+
+.username {
+  flex: 1 1 49%;
+  border: 2px solid yellow;
+}
+.username input {
+  width: 85%;
+  background-color: white;
+}
+
+.password {
+  flex: 1 1 49%;
+}
+
+.password input {
+  width: 85%;
+  background-color: white;
 }
 
 .formItem2 {
   border: 2px solid red;
   height: 55%;
 }
+
