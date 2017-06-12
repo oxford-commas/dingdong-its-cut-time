@@ -1,17 +1,17 @@
-body {
-  background-image: url('http://cdn.wallpapersafari.com/44/5/HQjIBU.jpg')
-}
-
 .componentWrapper {
   display: flex;
   flex-direction: column;
+  background-image: url('http://cdn.wallpapersafari.com/44/5/HQjIBU.jpg');
+  height: 100vh;
 }
 
 .header {
   height: 25%;
-  padding-top: 8em;
-  border: 2px solid red;
-  margin: 2em;
+  padding-top: 10em;
+  margin-left: 2em;
+  margin-right: 2em;
+  width: 85%;
+  align-self: center;
 }
 
 .loginWrapper {
@@ -20,34 +20,44 @@ body {
   margin-left: 2em;
   margin-right: 2em;
   height: 35vh;
-  width: 95%;
-  border: 2px solid black;
+  width: 85%;
+  align-self: center;
   justify-content: center;
   align-items: center;
 }
 
 .flexItem {
-  flex: 1 1 48%;
+  flex: 1 1 49%;
   height: 100%;
   width: 50%;
-  border: 2px solid red;
+  color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .loginButtons {
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.4);
+  padding: 1em;
+  padding-left: 6em;
+  padding-right: 6em;
+  height: 85%;
+  border-radius: 10px;
 }
 
 .flexItem * > {
   flex: 1 1;
-  margin: 1em;
+  margin-top: 1em;
 }
 
 .btnContainer {
   display: flex;
   justify-content: flex-end;
+  height: 85%;
+}
+
+p {
+  margin-right: 2em;
 }
 
 button {
