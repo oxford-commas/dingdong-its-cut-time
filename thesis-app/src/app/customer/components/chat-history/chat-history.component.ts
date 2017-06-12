@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+import { StateService } from '../../../services';
 
 @Component({
   selector: 'chat-history',
@@ -6,14 +8,25 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./chat-history.component.css']
 })
 export class ChatHistoryComponent {
-  @Input() chatHistory;
+  constructor(private stateService: StateService) {}
 
-  constructor() {
-    console.log(this.chatHistory)
-  }
+  @Input() chatHistory;
+  @Output() handleSendInputValue = new EventEmitter();
+  public inputValue: string = '';
 
   formatDate(timeDate) {
     return timeDate.toDateString();
+  }
+
+  renderMessage() {
+    const message = {
+      body: this.inputValue,
+      sender: this.stateService.retrieveCustomer().name
+    };
+    console.log('add message to history:', this.chatHistory);
+    this.chatHistory.push(message);
+    this.handleSendInputValue.emit(this.inputValue);
+    this.inputValue = null;
   }
 }
 

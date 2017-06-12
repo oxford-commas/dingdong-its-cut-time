@@ -238,7 +238,8 @@ var postMessage = (message, callback) => {
         `INSERT INTO recipients (id, name)
         VALUES (?, (SELECT name FROM users_stylists WHERE users_stylists.id = ?))`,
         [message.id_sender, message.id_recipient]
-    )});
+      );
+    });
 };
 
 var getMessages = (id, callback) => {

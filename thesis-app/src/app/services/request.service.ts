@@ -26,6 +26,14 @@ export class RequestService {
       )
   }
 
+  postStyleForStylist(serviceid: number, stylistid: number) {
+    var stylist = {
+      serviceid: serviceid,
+      stylistid: stylistid
+    }
+    return this.http.post(`/api/stylistservices`, stylist)
+  }
+
   getStylistById(id: number) {
     return this.http.get(`/api/userStylist/${id}`)
       .map(
