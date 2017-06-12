@@ -2,6 +2,7 @@ const helpers = require('./helpers.js');
 const services = require('../locationServices.js');
 var model = require('./model.js');
 
+var CLEARDB_INSERT = false;
 
 
 
@@ -308,6 +309,7 @@ const bookingsArray = [
     time: '1:00pm',
     location: '2323 Lyon St, San Francisco'
   },
+
   {
     id_users: 10,
     id_stylists: 2,
@@ -329,6 +331,7 @@ const messagesArray = [
     location: 'San Ramon, CA'
   },
   {
+
     id_sender: 11,
     id_recipient: 1,
     subjectHeading: 'Hey Shari',
@@ -345,6 +348,7 @@ const messagesArray = [
     location: 'San Francisco'
   },
   {
+
     id_sender: 11,
     id_recipient: 1,
     subjectHeading: 'Sounds good!',
@@ -393,233 +397,233 @@ const stylesArray = [
 
 const stylistServices = [
   {
-    styleId: 2,
-    stylistId: 1
+    styleId: userIndex(2),
+    stylistId: userIndex(1)
   },
   {
-    styleId: 3,
-    stylistId: 1
+    styleId: userIndex(3),
+    stylistId: userIndex(1)
   },
   {
-    styleId: 13,
-    stylistId: 1
+    styleId: userIndex(13),
+    stylistId: userIndex(1)
   },
   {
-    styleId: 16,
-    stylistId: 1
+    styleId: userIndex(16),
+    stylistId: userIndex(1)
   },
   {
-    styleId: 20,
-    stylistId: 1
+    styleId: userIndex(20),
+    stylistId: userIndex(1)
   },
   {
-    styleId: 22,
-    stylistId: 1
+    styleId: userIndex(22),
+    stylistId: userIndex(1)
   },
   {
-    styleId: 24,
-    stylistId: 1
+    styleId: userIndex(24),
+    stylistId: userIndex(1)
   },
   {
-    styleId: 4,
-    stylistId: 2
+    styleId: userIndex(4),
+    stylistId: userIndex(2)
   },
   {
-    styleId: 5,
-    stylistId: 2
+    styleId: userIndex(5),
+    stylistId: userIndex(2)
   },
   {
-    styleId: 6,
-    stylistId: 2
+    styleId: userIndex(6),
+    stylistId: userIndex(2)
   },
   {
-    styleId: 8,
-    stylistId: 2
+    styleId: userIndex(8),
+    stylistId: userIndex(2)
   },
   {
-    styleId: 9,
-    stylistId: 2
+    styleId: userIndex(9),
+    stylistId: userIndex(2)
   },
   {
-    styleId: 11,
-    stylistId: 2
+    styleId: userIndex(11),
+    stylistId: userIndex(2)
   },
   {
-    styleId: 6,
-    stylistId: 2
+    styleId: userIndex(6),
+    stylistId: userIndex(2)
   },
   {
-    styleId: 21,
-    stylistId: 3
+    styleId: userIndex(21),
+    stylistId: userIndex(3)
   },
   {
-    styleId: 9,
-    stylistId: 3
+    styleId: userIndex(9),
+    stylistId: userIndex(3)
   },
   {
-    styleId: 24,
-    stylistId: 3
+    styleId: userIndex(24),
+    stylistId: userIndex(3)
   },
   {
-    styleId: 24,
-    stylistId: 5
+    styleId: userIndex(24),
+    stylistId: userIndex(5)
   },
   {
-    styleId: 9,
-    stylistId: 5
+    styleId: userIndex(9),
+    stylistId: userIndex(5)
   },
   {
-    styleId: 11,
-    stylistId: 5
+    styleId: userIndex(11),
+    stylistId: userIndex(5)
   },
   {
-    styleId: 2,
-    stylistId: 7
+    styleId: userIndex(2),
+    stylistId: userIndex(7)
   },
   {
-    styleId: 3,
-    stylistId: 7
+    styleId: userIndex(3),
+    stylistId: userIndex(7)
   },
   {
-    styleId: 16,
-    stylistId: 7
+    styleId: userIndex(16),
+    stylistId: userIndex(7)
   },
   {
-    styleId: 6,
-    stylistId: 8
+    styleId: userIndex(6),
+    stylistId: userIndex(8)
   },
   {
-    styleId: 8,
-    stylistId: 8
+    styleId: userIndex(8),
+    stylistId: userIndex(8)
   },
   {
-    styleId: 9,
-    stylistId: 8
+    styleId: userIndex(9),
+    stylistId: userIndex(8)
   },
   {
-    styleId: 20,
-    stylistId: 9
+    styleId: userIndex(20),
+    stylistId: userIndex(9)
   },
   {
-    styleId: 4,
-    stylistId: 9
+    styleId: userIndex(4),
+    stylistId: userIndex(9)
   },
   {
-    styleId: 5,
-    stylistId: 9
+    styleId: userIndex(5),
+    stylistId: userIndex(9)
   },
   {
-    styleId: 20,
-    stylistId: 10
+    styleId: userIndex(20),
+    stylistId: userIndex(10)
   },
   {
-    styleId: 4,
-    stylistId: 10
+    styleId: userIndex(4),
+    stylistId: userIndex(10)
   },
   {
-    styleId: 5,
-    stylistId: 10
+    styleId: userIndex(5),
+    stylistId: userIndex(10)
   },
   {
-    styleId: 5,
-    stylistId: 11
+    styleId: userIndex(5),
+    stylistId: userIndex(11)
   },
   {
-    styleId: 11,
-    stylistId: 11
+    styleId: userIndex(11),
+    stylistId: userIndex(11)
   },
   {
-    styleId: 21,
-    stylistId: 11
+    styleId: userIndex(21),
+    stylistId: userIndex(11)
   },
   {
-    styleId: 24,
-    stylistId: 12
+    styleId: userIndex(24),
+    stylistId: userIndex(12)
   },
   {
-    styleId: 9,
-    stylistId: 12
+    styleId: userIndex(9),
+    stylistId: userIndex(12)
   },
   {
-    styleId: 11,
-    stylistId: 12
+    styleId: userIndex(11),
+    stylistId: userIndex(12)
   },
   {
-    styleId: 9,
-    stylistId: 13
+    styleId: userIndex(9),
+    stylistId: userIndex(13)
   },
   {
-    styleId: 5,
-    stylistId: 13
+    styleId: userIndex(5),
+    stylistId: userIndex(13)
   },
   {
-    styleId: 4,
-    stylistId: 13
+    styleId: userIndex(4),
+    stylistId: userIndex(13)
   },
   {
-    styleId: 9,
-    stylistId: 14
+    styleId: userIndex(9),
+    stylistId: userIndex(14)
   },
   {
-    styleId: 6,
-    stylistId: 14
+    styleId: userIndex(6),
+    stylistId: userIndex(14)
   },
   {
-    styleId: 4,
-    stylistId: 14
+    styleId: userIndex(4),
+    stylistId: userIndex(14)
   },
   {
-    styleId: 3,
-    stylistId: 16
+    styleId: userIndex(3),
+    stylistId: userIndex(16)
   },
   {
-    styleId: 15,
-    stylistId: 16
+    styleId: userIndex(15),
+    stylistId: userIndex(16)
   },
   {
-    styleId: 19,
-    stylistId: 16
+    styleId: userIndex(19),
+    stylistId: userIndex(16)
   },
   {
-    styleId: 1,
-    stylistId: 17
+    styleId: userIndex(1),
+    stylistId: userIndex(17)
   },
   {
-    styleId: 11,
-    stylistId: 17
+    styleId: userIndex(11),
+    stylistId: userIndex(17)
   },
   {
-    styleId: 23,
-    stylistId: 17
+    styleId: userIndex(23),
+    stylistId: userIndex(17)
   },
   {
-    styleId: 5,
-    stylistId: 18
+    styleId: userIndex(5),
+    stylistId: userIndex(18)
   },
   {
-    styleId: 17,
-    stylistId: 18
+    styleId: userIndex(17),
+    stylistId: userIndex(18)
   },
   {
-    styleId: 16,
-    stylistId: 18
+    styleId: userIndex(16),
+    stylistId: userIndex(18)
   },
   {
-    styleId: 1,
-    stylistId: 19
+    styleId: userIndex(1),
+    stylistId: userIndex(19)
   },
   {
-    styleId: 2,
-    stylistId: 19
+    styleId: userIndex(2),
+    stylistId: userIndex(19)
   },
   {
-    styleId: 3,
-    stylistId: 19
+    styleId: userIndex(3),
+    stylistId: userIndex(19)
   }
 ]
 
 
-
+/*
 stylistArray.forEach(stylist => {
   helpers.addUserStylist(
     stylist.id,
@@ -641,6 +645,8 @@ stylistArray.forEach(stylist => {
       })
     });
 });
+
+*/
 
 bookingsArray.forEach(booking => {
   helpers.addToBookings(
