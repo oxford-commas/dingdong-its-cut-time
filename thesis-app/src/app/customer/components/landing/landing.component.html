@@ -71,7 +71,7 @@
       [location]="confirmedBooking.location"
     >
     </booking>
-    <button (click)="completeBooking(confirmedBooking.id, i)">Complete</button>
+    <button (click)="completeBooking(confirmedBooking.id, i)">Get paid!</button>
     <button (click)="cancelBooking(confirmedBooking.id, i)">Cancel</button>
   </div>
 
@@ -85,7 +85,7 @@
       [location]="dueBooking.location"
     >
     </booking>
-    <button (click)="requestPayment(dueBooking.id, i)">Request Payment</button>
+    <button (click)="cancelPayment(dueBooking.id, i)">Cancel</button>
   </div>
 
   <h2>Pending</h2>

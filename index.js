@@ -205,6 +205,11 @@ app.put('/api/bookings/complete/ready/:id', (req, res) => {
   helpers.readyConfirmedBooking(id, result => res.status(200).json(result));
 });
 
+app.put('/api/bookings/complete/cancel/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.cancelPaymentBooking(id, result => res.status(200).json(result));
+});
+
 // given stylistId, get their associated bookings and customer names
 app.get('/api/bookings/:stylistId', function(req, res) {
   var stylistId = req.params.stylistId;

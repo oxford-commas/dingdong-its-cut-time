@@ -52,6 +52,11 @@ export class LandingComponent {
         result => console.log(result),
         err => console.log(err)
       );
+    this.bookingService.putDueBooking(id)
+      .subscribe(
+        result => console.log(result),
+        err => console.log(err)
+      );
   }
 
   cancelBooking(id: number, index: number) {
@@ -64,9 +69,10 @@ export class LandingComponent {
       );
   }
 
-  requestPayment(id: number, index: number) {
-    this.profile.dueBookings.splice(index, 1);
-    this.bookingService.putDueBooking(id)
+  cancelPayment(id: number, index: number) {
+    const dueBooking = this.profile.dueBookings.splice(index, 1).pop();
+    this.profile.confirmedBookings.push(dueBooking);
+    this.bookingService.putCancelPayment(id)
       .subscribe(
         result => console.log(result),
         err => console.log(err)

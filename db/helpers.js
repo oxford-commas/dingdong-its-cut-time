@@ -151,6 +151,15 @@ var readyConfirmedBooking = (id, callback) => {
   model.con.query(sql, [id], (err, results) => callback(results));
 };
 
+var cancelPaymentBooking = (id, callback) => {
+  var sql = `
+    UPDATE bookings
+    SET isComplete = 0, isconfirmed = 1
+    WHERE bookings.id = ?
+  `;
+  model.con.query(sql, [id], (err, results) => callback(results));
+};
+
 var deleteBooking = (id, callback) => {
   model.con.query('DELETE FROM bookings WHERE id = ?', [id], (err, res) => callback(res));
 };
@@ -288,3 +297,4 @@ module.exports.getConfirmed = getConfirmed;
 module.exports.readyConfirmedBooking = readyConfirmedBooking;
 module.exports.getPendingBookings = getPendingBookings;
 module.exports.cancelConfirmedBooking = cancelConfirmedBooking;
+module.exports.cancelPaymentBooking = cancelPaymentBooking;
