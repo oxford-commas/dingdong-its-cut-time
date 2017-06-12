@@ -16,15 +16,6 @@ export class LandingComponent {
 
   public profile = this.stateService.retrieveCustomer();
 
-  // removeConfirmedBooking(id: number, index: number) {
-  //   this.profile.confirmedBookings.splice(index, 1);
-  //   this.bookingService.seenConfirmedBooking(id)
-  //     .subscribe(
-  //       data => console.log(data),
-  //       err => console.log(err)
-  //     );
-  // }
-
   confirmBooking(id: number, index: number) {
     const booking = this.profile.pendingBookings.splice(index, 1).pop();
     this.profile.confirmedBookings.push(booking);
