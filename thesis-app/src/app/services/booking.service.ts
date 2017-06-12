@@ -11,11 +11,6 @@ export class BookingService {
       .map(res => res);
   }
 
-  fetchBookingsForStylist(id: number) {
-    return this.http.get(`/api/bookings/${id}`)
-      .map(res => res.json());
-  }
-
   fetchDueBookings(id: number, type: number) {
     return this.http.get(`/api/bookings/complete/${type}/${id}`)
       .map(res => res.json());
@@ -36,8 +31,8 @@ export class BookingService {
       .map(res => res.json());
   }
 
-  seenConfirmedBooking(id: number) {
-    return this.http.put(`/api/bookings/confirmed/seen/${id}`, id)
+  putDueBooking(id: number) {
+    return this.http.put(`/api/bookings/complete/${id}`, id)
       .map(res => res.json());
   }
 
@@ -45,10 +40,4 @@ export class BookingService {
     return this.http.delete(`/api/bookings/${id}`)
       .map(res => res);
   }
-
-  completeBooking(id: number) {
-    return this.http.put(`/api/bookings/complete/${id}`, id)
-      .map(res => res.json());
-  }
-
 }

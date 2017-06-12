@@ -72,7 +72,7 @@
   </div>
 
   <h2>Awaiting Payment</h2>
-  <div *ngFor="let dueBooking of profile.dueBookings">
+  <div *ngFor="let dueBooking of profile.dueBookings; let i = index">
     <booking
       [name]="dueBooking.name"
       [image_url]="dueBooking.image_url"
@@ -81,7 +81,7 @@
       [location]="dueBooking.location"
     >
     </booking>
-    <button>Request Payment</button>
+    <button (click)="requestPayment(dueBooking.id, i)">Request Payment</button>
   </div>
 
   <h2>Pending</h2>

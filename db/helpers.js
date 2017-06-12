@@ -121,12 +121,12 @@ var getBookingsDue = (id, type, callback) => {
   if (type === 0) {
     var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
       FROM bookings b INNER JOIN users_stylists us
-      WHERE b.isComplete = 1 AND b.id_stylists = ?
+      WHERE b.isconfirmed = 1 AND b.isComplete = 0 AND b.id_stylists = ?
       AND us.id = b.id_users`;
   } else if (type === 1) {
     var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
       FROM bookings b INNER JOIN users_stylists us
-      WHERE b.isComplete = 1 AND b.id_users = ?
+      WHERE b.isconfirmed = 1 AND b.isComplete = 1 AND b.id_users = ?
       AND us.id = b.id_stylists`;
   }
   model.con.query(sql, [id], (err, results) => callback(results));
