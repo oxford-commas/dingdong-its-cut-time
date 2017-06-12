@@ -11,7 +11,7 @@ const stylistArray = [
     id: 1,
     'username': 'Shari',
     'password': 'ShariPassword',
-    'location': 'San Ramon, CA, CA',
+    'location': 'San Ramon, CA',
     'phoneNumber': '967-890-7890',
     'email': 'Shari@gmail.com',
     'website': 'ShariStylists.com',
@@ -22,7 +22,7 @@ const stylistArray = [
     id: 0,
     'username': 'Mateo',
     'password': 'MateoPassword',
-    'location': 'San Mateo, CA, CA',
+    'location': 'San Ramon, CA',
     'phoneNumber': '967-123-7890',
     'email': 'mateo@gmail.com',
     'website': 'MateoStyles.com',
@@ -239,7 +239,7 @@ const stylistArray = [
     'update': 'update me'
   },
   {
-    id: 0,
+    id: 1,
     'username': 'andrew',
     'password': 'lam',
     'location': '60 Queen St W, Toronto',
@@ -250,7 +250,7 @@ const stylistArray = [
     'update': 'update me'
   },
   {
-    id: 0,
+    id: 1,
     'username': 'parul',
     'password': 'bir',
     'location': 'San Jose',
@@ -318,47 +318,53 @@ const booksingsArray = [
     stylistid: userIndex(2),
     isconfirmed: 0,
     isComplete: 0,
-    time: new Date(),
-    location: '506 N Delaware St, San Mateo, CA'
+    time: '11:00am',
+    location: '2014 Lyon St, San Francisco'
   },
   {
+
     name: 'dnalounge',
     userid: userIndex(15),
     stylistid: userIndex(16),
     isconfirmed: 0,
     isComplete: 0,
-    time: new Date(),
-    location: '375 11th St, San Francisco, CA'
+    time: '1:00pm',
+    location: '2323 Lyon St, San Francisco'
   },
+
    {
     name: 'palaceoffinearts',
     userid: userIndex(15),
     stylistid: userIndex(19),
     isconfirmed: 0,
     isComplete: 0,
-    time: new Date(),
-    location: '3301 Lyon St, San Francisco, CA'
+    time: '1:00pm',
+    location: '2323 Lyon St, San Francisco'
   }
+
 ]
 
 const messagesArray = [
   {
+
     id_sender: userIndex(1),
     id_recipient: userIndex(2),
     subjectHeading: 'Shari to mateo',
     body: 'Give me a fade bro!!!',
     time: new Date(),
-    location: '320 Front St W, Toronto'
+    location: 'San Ramon, CA'
   },
   {
+
     id_sender: userIndex(2),
     id_recipient: userIndex(1),
     subjectHeading: 'Mateo to Shari',
     body: 'yea, i gotchu girl, lets meet there',
     time: new Date(),
-    location: '320 Front St W, Toronto'
+    location: 'San Ramon, CA'
   },
   {
+
     id_sender: userIndex(1),
     id_recipient: userIndex(10),
     subjectHeading: 'Shari to cityhall',
@@ -367,6 +373,7 @@ const messagesArray = [
     location: 'San Francisco'
   },
   {
+
     id_sender: userIndex(10),
     id_recipient: userIndex(1),
     subjectHeading: 'cityhall to shari',
@@ -375,12 +382,13 @@ const messagesArray = [
     location: 'San francisco'
   },
   {
+
     id_sender: userIndex(2),
     id_recipient: userIndex(3),
     subjectHeading: 'idk',
     body: 'idk',
     time: new Date(),
-    location: 'San Jose'
+    location: '3301 Lyon St'
   }
 ];
 
@@ -663,11 +671,13 @@ stylistArray.forEach(stylist => {
       })
     });
 });
+
 */
 booksingsArray.forEach(booking => {
+
   helpers.addToBookings(
-    booking.userid,
-    booking.stylistid,
+    booking.id_users,
+    booking.id_stylists,
     booking.isconfirmed,
     booking.isComplete,
     booking.time,

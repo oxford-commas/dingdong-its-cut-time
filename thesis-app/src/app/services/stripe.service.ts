@@ -10,7 +10,6 @@ export class StripeService {
   postToken(token: any) {
     const headers = new Headers({'Content-Type': 'application/json'});
     return this._http.post('http://127.0.0.1:4200/api/stripe', {stripeToken: token}, {headers: headers})
-      .map(res => res.json())
-      .subscribe(data => data);
+      .map(res => res.json());
   }
 }

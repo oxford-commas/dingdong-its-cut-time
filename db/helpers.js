@@ -13,7 +13,7 @@ var getUser = function(userId, callback) {
     console.log(results)
     callback(results);
   });
-}
+};
 
 // stylists are saved in database with type 0
 var getAllStylists = function(callback) {
@@ -52,7 +52,7 @@ var updateImage = function (imageUrl, id, callback) {
     if (err) throw err;
     callback();
   });
-}
+};
 
 var updateProfile = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, callback) {
   var sql = 'UPDATE users_stylists SET type = ?, name = ?, password = ?, billingaddress = ?, phonenumber = ?, email = ?, site_url = ?, gender = ?, image_url = ? WHERE id = ?'
@@ -61,7 +61,7 @@ var updateProfile = function(type, name, password, billingaddress, phonenumber, 
     console.log("1 record updated");
     callback();
   });
-}
+};
 
 var addToBookings = function(userId, stylistId, isConfirmed, isComplete, time, location, callback) {
   var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, location, isComplete) VALUES (?, ?, ?, ?, ?, ?)';
@@ -73,9 +73,25 @@ var addToBookings = function(userId, stylistId, isConfirmed, isComplete, time, l
 
 var getBookings = function(userId, callback) {
   var sql = `
-    SELECT b.id, b.id_stylists, b.isconfirmed, b.time, b.location, b.isComplete, us.name as customer
+    SELECT b.id, b.id_stylists, b.isconfirmed, b.time, b.location, b.isComplete
     FROM bookings b INNER JOIN users_stylists us
     WHERE b.id_stylists = ? AND b.id_users = us.id`;
+  model.con.query(sql, [userId], (err, results) => callback(results));
+};
+
+var getPendingBookings = (userId, type, callback) => {
+  if (type === 0) {
+    var sql = `
+      SELECT b.id, b.id_stylists, b.isconfirmed, b.time, b.location, b.isComplete, us.phonenumber, us.name, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.id_stylists = ? AND b.isconfirmed = 0 AND us.id = b.id_users`;
+  } else if (type === 1) {
+    var sql = `
+      SELECT b.id, b.id_stylists, b.isconfirmed, b.time, b.location, b.isComplete, us.phonenumber, us.name, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.id_users = ? AND b.isconfirmed = 0 AND us.id = b.id_stylists`;
+  }
+
   model.con.query(sql, [userId], (err, results) => callback(results));
 };
 
@@ -83,6 +99,14 @@ var confirmBooking = (bookingId, callback) => {
   var sql = `
     UPDATE bookings
     SET isconfirmed = 1
+    WHERE bookings.id = ?`;
+  model.con.query(sql, [bookingId], (err, results) => callback(results));
+};
+
+var cancelConfirmedBooking = (bookingId, callback) => {
+  var sql = `
+    UPDATE bookings
+    SET isconfirmed = 0
     WHERE bookings.id = ?`;
   model.con.query(sql, [bookingId], (err, results) => callback(results));
 };
@@ -101,11 +125,38 @@ var getStylistBookings = function(stylistId, callback) {
   });
 };
 
-var getBookingsDue = (id, callback) => {
-  var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email
-    FROM bookings b INNER JOIN users_stylists us
-    WHERE b.isComplete = 1 AND b.id_users = ?
-    AND us.id = b.id_stylists`;
+var getBookingsDue = (id, type, callback) => {
+  if (type === 0) {
+    var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.isconfirmed = 2
+      AND b.id_stylists = ?
+      AND us.id = b.id_users`;
+  } else if (type === 1) {
+    var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.isComplete = 1
+      AND b.id_users = ?
+      AND us.id = b.id_stylists`;
+  }
+  model.con.query(sql, [id], (err, results) => callback(results));
+};
+
+var readyConfirmedBooking = (id, callback) => {
+  var sql = `
+    UPDATE bookings
+    SET isconfirmed = 2
+    WHERE bookings.id = ?
+  `;
+  model.con.query(sql, [id], (err, results) => callback(results));
+};
+
+var cancelPaymentBooking = (id, callback) => {
+  var sql = `
+    UPDATE bookings
+    SET isComplete = 0, isconfirmed = 1
+    WHERE bookings.id = ?
+  `;
   model.con.query(sql, [id], (err, results) => callback(results));
 };
 
@@ -119,7 +170,7 @@ var deleteUser = function(userId) {
 
 var deleteBooking = function(bookingId) {
   model.con.query('delete from `bookings` where `id` = ?', [bookingId]);
-}
+};
 
 var updateBooking = function(id_users, id_stylists, isconfirmed, time, location, id, callback) {
   var sql = 'UPDATE `bookings` SET id_users = ?, id_stylists = ?, isconfirmed = ?, time = ?, location = ? where id = ?'
@@ -128,7 +179,26 @@ var updateBooking = function(id_users, id_stylists, isconfirmed, time, location,
     console.log("1 record updated");
     callback();
   });
-}
+};
+
+var getConfirmed = (id, type, callback) => {
+  if (type === 0) {
+    var sql = `
+      SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.isconfirmed = 1 AND b.id_stylists = ?
+      AND us.id = b.id_users AND b.isComplete = 0
+    `;
+  } else if (type === 1) {
+    var sql = `
+      SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.isconfirmed = 1 AND b.id_users = ?
+      AND us.id = b.id_stylists AND b.isComplete = 0
+    `;
+  }
+  model.con.query(sql, [id], (err, results) => callback(results));
+};
 
 // helper to add service to the services table in database
 var addService = function(serviceName, callback) {
@@ -168,7 +238,8 @@ var postMessage = (message, callback) => {
         `INSERT INTO recipients (id, name)
         VALUES (?, (SELECT name FROM users_stylists WHERE users_stylists.id = ?))`,
         [message.id_sender, message.id_recipient]
-    )});
+      );
+    });
 };
 
 var getMessages = (id, callback) => {
@@ -190,12 +261,12 @@ var getImagePath = function(id, callback) {
   model.con.query('select `image_url` from `users_stylists` where id = ?', [id], function(err, results) {
     callback(results);
   });
-}
+};
 
 var validateUser = (username, password, callback) => {
   var sql = 'SELECT * FROM users_stylists WHERE name = ? AND password = ?';
   model.con.query(sql, [username, password],(err, results) => callback(results));
-}
+};
 
 module.exports.addLocation = addLocation;
 module.exports.addUserStylist = addUserStylist;
@@ -223,3 +294,8 @@ module.exports.updateImage = updateImage;
 module.exports.getImagePath = getImagePath;
 module.exports.validateUser = validateUser;
 module.exports.getAllStyles = getAllStyles;
+module.exports.getConfirmed = getConfirmed;
+module.exports.readyConfirmedBooking = readyConfirmedBooking;
+module.exports.getPendingBookings = getPendingBookings;
+module.exports.cancelConfirmedBooking = cancelConfirmedBooking;
+module.exports.cancelPaymentBooking = cancelPaymentBooking;

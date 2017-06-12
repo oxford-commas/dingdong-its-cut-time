@@ -14,7 +14,7 @@ export class RequestService {
 
   postStylist(stylist: {}) {
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('http://localhost:4200/api/userstylist', stylist, {headers: headers});
+    return this.http.post('/api/userstylist', stylist, {headers: headers});
   }
 
   getStyles() {
@@ -24,6 +24,14 @@ export class RequestService {
           return response.json();
         }
       )
+  }
+
+  postStyleForStylist(serviceid: number, stylistid: number) {
+    var stylist = {
+      serviceid: serviceid,
+      stylistid: stylistid
+    }
+    return this.http.post(`/api/stylistservices`, stylist)
   }
 
   getStylistById(id: number) {
@@ -52,4 +60,40 @@ export class RequestService {
         }
       )
   }
+
+  getUserImg(id: number) {
+    return this.http.get(`/api/profile/${id}`)
+      .map(
+        (response: Response) => {
+          return response;
+        }
+      )
+  }
+
+  postUserImg(id: number, img: any) {
+    // const headers = new Headers({'Content-Type': 'application/json'});
+    return this.http.post(`/api/profile/${id}`, img);
+  }
+
+  changeUser(obj: any) {
+    const headers = new Headers({'Content-Type': 'application/json'});
+    const url = `/api/userstylist/${obj.id}`;
+    return this.http.put(`/api/userstylist/${obj.id}`, obj, {headers: headers})
+      .map(
+        (response: Response) => {
+          return response;
+      }
+    )
+  }
 }
+
+// // updates image url for the stylist/user given stylist/user id --- completed
+// app.post('/api/profile/:id', upload.single('avatar'), function (req, res, next) {
+//   console.log(req.params.id)
+//   console.log(req.file);
+//   console.log(req.file.path);
+//   helpers.updateImage(req.file.path, req.params.id, function() {
+//     console.log('added image')
+//     res.sendStatus(201);
+//   });
+// });
