@@ -10,4 +10,5 @@ export class BookingComponent {
   @Input() image_url;
   @Input() time;
   @Input() phoneNumber;
+  @Input() location;
 }
