@@ -22,6 +22,7 @@ app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(express.static(path.join(__dirname, 'thesis-app/dist')));
 
 /// placeholder validation for auth 0//
@@ -340,10 +341,18 @@ app.get('/api/streetaddress/:latlng', function(req, res) {
   });
 });
 
+
+// app.get('/', function(req, res) {
+//   console.log(path.join(__dirname, 'thesis-app/dist/index.html'));
+//  res.sendFile('thesis-app/dist/index.html', {"root": __dirname});
+// });
+
 app.get('*', function(req, res) {
- res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
+res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
 });
 
-app.listen(4200, function () {
-  console.log('Example app listening on port 4200!');
+app.set('port', (process.env.PORT || 4200))
+
+app.listen(app.get('port'), function () {
+  console.log('Example app listening on port ' + app.get('port') + '!');
 });

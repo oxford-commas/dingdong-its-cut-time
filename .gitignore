@@ -1,10 +1,12 @@
+#compiled output
+/dist
 # Logs
 logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
+/Deployment Notes
 # Runtime data
 pids
 *.pid
