@@ -1,0 +1,14 @@
+.sebm-google-map-container {
+  height: 400px;
+  width: 450px;
+}
+
+.map-title {
+  font-family: Helvetica;
+  text-align: center;
+}
+
+.map-container {
+  float: right;
+  padding-right: 150px;
+}

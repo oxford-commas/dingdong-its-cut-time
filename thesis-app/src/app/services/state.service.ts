@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 
 import { MessageService } from './message.service';
+import { BookingService } from './booking.service';
 
 let customerProfile;
 
 @Injectable()
 export class StateService {
 
-  constructor(private messageService: MessageService) {}
+  constructor(
+    private messageService: MessageService,
+    private bookingService: BookingService
+  ) {}
 
   addCustomer(stylist) {
     customerProfile = {
@@ -28,6 +32,24 @@ export class StateService {
     this.messageService.getMessages(stylist.id)
       .subscribe(
         data => customerProfile.messages = data,
+        err => console.log(err)
+      );
+
+    this.bookingService.fetchDueBookings(stylist.id, stylist.type)
+      .subscribe(
+        data => customerProfile.dueBookings = data,
+        err => console.log(err)
+      );
+
+    this.bookingService.fetchConfirmedBookings(stylist.id, stylist.type)
+      .subscribe(
+        data => customerProfile.confirmedBookings = data,
+        err => console.log(err)
+      );
+
+    this.bookingService.fetchPendingBookings(stylist.id, stylist.type)
+      .subscribe(
+        data => customerProfile.pendingBookings = data,
         err => console.log(err)
       );
   }

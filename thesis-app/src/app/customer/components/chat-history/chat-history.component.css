@@ -1,12 +1,12 @@
 .poppaDiv {
-  height: 100%;
-  width: 100%;
+/*  height: 100%;
   overflow: scroll;
   display: flex;
-  flex-direction: column;
-  padding: 1em;
+  flex-direction: column;*/
+  /*padding: 1em;*/
 }
 
-h4 {
-  border-bottom: 2px solid;
+h1 {
+  border-bottom: 1px solid;
+  padding: 4rem 0;
 }

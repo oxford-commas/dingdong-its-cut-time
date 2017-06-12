@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 import { CustomerNavbarComponent } from '../customer-navbar/';
 import { CustomerMapComponent } from '../customer-map/';
@@ -24,18 +24,14 @@ export class CustomerHomeComponent implements OnInit {
   public searchLocation: string;
   public latitude: number;
   public longitude: number;
-  public bookingsDue: any;
   userProfile: any;
 
   constructor(
     private requestService: RequestService,
     private locationService: LocationService,
     private stylistService: StylistService,
-    private bookingService: BookingService,
     private stateService: StateService
-  ) {
-    this.getLocationCoordinates(this.latitude, this.longitude);
-  }
+  ) {}
 
   ngOnInit() {
     this.customerProfile = this.stateService.retrieveCustomer();
@@ -43,13 +39,13 @@ export class CustomerHomeComponent implements OnInit {
     this.getLocationCoordinates(this.latitude, this.longitude);
     this.getLocationFromCoordinates(this.latitude, this.longitude);
     this.searchLocation = this.currentLocation;
-    this.pinStylistsAtLocation(this.searchLocation);
-    // instead of using socket.io, check for bookings due on interval
-    setInterval(() => this.checkForBookingsDue(4), 5000);
+    // this.pinStylistsAtLocation(this.searchLocation);
+    this.requestService.getStylistByLocation('sanfrancisco')
+      .subscribe(data => this.stylistsCloseToYou = data, err => console.log(err));
   }
 
   pinStylistsAtLocation(location: any) {
-    this.stylistService.getStylistsInLocation(this.currentLocation)
+    this.stylistService.getStylistsInLocation(location)
       .subscribe(data => {
         this.stylistsCloseToYou = data;
       }, err => console.log(err));
@@ -57,23 +53,26 @@ export class CustomerHomeComponent implements OnInit {
 
   onSearchLocationChange(location: string): void {
     this.searchLocation = location;
-    console.log('New search location is:', this.searchLocation);
+    this.getStylistsInLocation(this.searchLocation);
   }
 
-  getLocationCoordinates(lat, lng) {
-    this.locationService.getCurrentPosition(lat, lng)
+  getLocationCoordinates(next) {
+    this.locationService.getCurrentPosition(null, null)
       .subscribe(res =>  {
-        console.log(res);
-        this.currentLocation = res;
+        this.latitude = res.coords.latitude;
+        this.longitude = res.coords.longitude;
+        console.log('this.latitude', this.latitude, 'this.longitude', this.longitude);
+        next(this.latitude, this.longitude);
       });
   }
 
-  getLocationFromCoordinates(lat, lng) {
+  getLocationFromCoordinates(lat, lng, next) {
     this.locationService.getLocationFromCoordinates(lat, lng)
-      .subscribe(res => {
-        console.log(res);
-        this.currentLocation = res;
-      });
+      .subscribe(location => {
+        this.currentLocation = location;
+        console.log('curr loc', this.currentLocation);
+        next(this.currentLocation);
+      }, err => console.log(err));
   }
 
   checkForBookingsDue(id: number) {
@@ -88,4 +87,35 @@ export class CustomerHomeComponent implements OnInit {
         }
       );
   }
+
+  checkForBookingsConfirmed(id: number) {
+    this.bookingService.fetchConfirmedBookings(id)
+      .subscribe(
+        data => {
+          this.bookingsConfirmed = data;
+          console.log('fetching confirmed', data);
+        },
+        err => {
+          console.log(err);
+        }
+      );
+  }
+
+  removeConfirmedBooking(id, index) {
+    this.bookingsConfirmed.splice(index, 1);
+    this.bookingService.seenConfirmedBooking(id)
+      .subscribe(
+        data => console.log(data),
+        err => console.log(err)
+      );
+  }
+
+  getStylistsInLocation(location: string) {
+    this.stylistService.getStylistsInLocation(location)
+      .subscribe(
+        data => this.stylistsCloseToYou = data,
+        err => console.log(err)
+      );
+  }
+
 }

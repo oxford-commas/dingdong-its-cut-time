@@ -1,12 +1,18 @@
 <customer-navbar></customer-navbar>
-<div class="poppaDiv">
-  <div class="inboxContainer">
+<div class="container">
+  <div class="inbox-container">
     <customer-inbox
-      [messages]="stateService.retrieveCustomer().messages"
+      [conversations]="conversations"
       (openHistory)="setCurrentChat($event)"
       (deleteChat)="deleteChat($event)"
     >
     </customer-inbox>
   </div>
-  <chat-history [chatHistory]="currentChat"></chat-history>
+  <div class="chat-history-container">
+    <chat-history
+      *ngIf="!!currentChat"
+      [chatHistory]="currentChat"
+      (handleSendInputValue)="postMessage($event)"
+    ></chat-history>
+  </div>
 </div>

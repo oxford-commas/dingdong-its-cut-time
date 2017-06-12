@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 import {
+  ErrorFormsComponent,
   SignInFormComponent,
   SignUpFormComponent,
   SignupUserComponent,
@@ -27,5 +28,9 @@ export const registrationRoutes: Routes = [
   {
     path: 'signupstylist',
     component: SignupStylistComponent
+  },
+  {
+    path: 'error',
+    component: ErrorFormsComponent
   }
 ]

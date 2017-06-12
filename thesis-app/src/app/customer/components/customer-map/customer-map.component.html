@@ -7,6 +7,13 @@
     [zoomControl]="false"
     (mapClick)="mapClicked($event)">
     <sebm-google-map-marker
+      [markerDraggable]="true"
+      [(latitude)]="markerLat"
+      [(longitude)]="markerLng"
+      ondragend="onMarkerClick(e)"
+      >
+    </sebm-google-map-marker>
+    <sebm-google-map-marker
         *ngFor="let stylist of stylists; let i = index;"
         (markerClick)="clickedMarker(stylist.label, i)"
         [latitude]="stylist.latitude"

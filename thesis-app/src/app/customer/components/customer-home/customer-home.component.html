@@ -1,14 +1,16 @@
-<customer-navbar
+<div class="background"></div>
+<customer-navbar class="nav-bar"
   [customerId]="customerProfile.id"
   [searchLocation]="searchLocation"
   (locationChange)="onSearchLocationChange($event)"
 >
 </customer-navbar>
-<div class="poppaDiv">
+<div class="container">
   <div class="stylistContainer">
     <div *ngFor="let stylist of stylistsCloseToYou">
       <close-to-you
         [stylistInformation]="stylist"
+        [searchLocation]="searchLocation"
         [routerLink]="['/stylistProfile', stylist.id]"
       >
       </close-to-you>
@@ -21,11 +23,5 @@
       [searchLocation]="searchLocation"
     >
     </customer-map>
-  </div>
-</div>
-
-<div *ngIf="!!bookingsDue">
-  <div *ngFor="let booking of bookingsDue">
-    I OWE {{booking.name}} MONEY!!!!
   </div>
 </div>

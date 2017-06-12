@@ -1,31 +1,60 @@
 <customer-navbar [customerId]="customerId"></customer-navbar>
-<h1>{{profile.name}}'s profile</h1>
-<img [src]="profile.image_url" />
-<button>Edit</button>
-<p>Location</p>
-<div>
-  Longitude: {{profile.longitude}},
-  Latitude: {{profile.latitude}}
-  <button>Edit</button>
+<div class="poppaDiv">
+  <div class="profileContainer">
+    <img class="profileImg" [src]="profile.url" />
+    <div class="billingAddressContainer">
+      <h4>Billing Address:</h4>
+      <h4 class="profAddress">{{profile.billingaddress}}</h4>
+    </div>
+  </div>
+  <div class="userInfoContainer">
+    <h1>{{profile.name}}'s profile</h1>
+    <h4>Username: {{profile.name}}</h4>
+    <h4>Password: *********</h4>
+    <h4>Email: {{profile.email}}</h4>
+    <h4>Phone Number: {{profile.phonenumber}}</h4>
+    <h4>Personal Website: {{profile.site_url}}</h4>
+  </div>
+  <div class="buttonContainer2">
+    <button (click)="toggleModal()">Edit Account Info</button>
+    <button (click)="handleDeleteAccount()">Delete my account</button>
+  </div>
 </div>
-<div>
-  <p (click)="showAccountView()">Edit your account information</p>
-  <p (click)="showPaymentView()">Payment methods</p>
+
+
+<div class="modalWrapper" [style.display]="getStyle()">
+  <div class="bigWrapper">
+    <div class="miniWrapper">
+      <span (click)="toggleModal()">&times;</span>
+      <form class="modalContent" (ngSubmit)="handleSaveChanges(form)" #form="ngForm">
+        <legend>User Info</legend>
+        <h4>Username: {{profile.name}}</h4>
+          <input type="text" name="username" ngModel id="username"/>
+          <br/>
+        <h4>Password: *********</h4>
+          <input type="password" name="password" ngModel id="password"/>
+          <br/>
+        <h4>Email: {{profile.email}}</h4>
+          <input type="email" name="email" ngModel id="email" />
+          <br/>
+        <h4>Phone Number: {{profile.phonenumber}}</h4>
+          <input name="phonenumber" ngModel id="phonenumber">
+          <br/>
+        <h4>Personal Website: {{profile.site_url}}</h4>
+          <input type="url" ngModel name="site_url">
+          <br/>
+        <h4>Billing Address: {{profile.billingaddress}}</h4>
+          <input type="text" ngModel name="billingaddress">
+          <br/>
+        <h4>Upload Profile Photo</h4>
+          <input type="file" ngModel name="image_url">
+          <br />
+        <div>
+          <button type="submit" (click)="handleSaveChanges(form)">
+            Save changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
-<div *ngIf="showView">
-  Username<input name="username" ngModel />
-  Password<input name="password" ngModel />
-  <button (click)="handleDeleteAccount()">Delete my account</button>
-  <button (click)="handleSaveChanges()">Save changes</button>
-</div>
-<!-- <div *ngIf="!showView && profile.payments.length > 0">
-  You don't have any payment methods
-  <button>Add a payment method</button>
-</div>
-<div *ngIf="!showView && profile.payments.length === 0">
-  Render profile.payments here
-  <button>Edit</button>
-  <button>Delete</button>
-  <button>Add a payment method</button>
-</div> -->
-<payment-input [customerName]="profile.name"></payment-input>

@@ -20,8 +20,8 @@ import 'rxjs/add/operator/map';
           console.log('Geolocation service: ' + error.message);
           observer.next({
             coords: {
-              latitude: lat || 48.85777,
-              longitude: lng || 2.3528626,
+              latitude: lat || 37.7686994600975,
+              longitude: lng || -122.4440860748291,
               accuracy: 50,
               altitude: null,
               altitudeAccuracy: null,

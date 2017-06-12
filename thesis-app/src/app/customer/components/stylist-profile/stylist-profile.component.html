@@ -43,23 +43,28 @@
 
 <div class="container row modalWrapper" [style.display]="getStyle()">
   <div class="bigWrapper">
-    <form #directMessage="ngForm" class="container row modalContent">
+    <form
+      (ngSubmit)="submitMessage(f)" #f="ngForm"
+        class="container row modalContent">
       <span (click)="toggleModal()">&times;</span>
       <div class="container row miniWrapper">
         <h4>Send a message</h4>
         <div class="row location modeitem">
-          Where would you like your hair cut? <input name="location" ngModel/>
+          Where would you like your hair cut? Enter an address.
+          <input name="location" ngModel/>
         </div>
         <div class="row heading modeitem">
           Header:
           <input name="subjectHeading" placeholder="Subject Heading" ngModel/>
           <br>
           <br>
-          Time: <input name="time" ngModel />
+          Enter a time and date you would like your hair cut:
+          <input name="time" type="date" ngModel />
+          <br>
         </div>
         <div class="row message modeitem">
           <textarea name="body" ngModel>Body of the message</textarea>
-          <button (click)="submitMessage(directMessage.value)">Send</button>
+          <button class="btn btn-primary" type="submit">Send</button>
         </div>
       </div>
     </form>
