@@ -4,13 +4,7 @@ import { StripeService } from '../../../../services';
 
 @Component({
   selector: 'payment-input',
-  template: `
-    <div
-      class="glyphicon glyphicon-usd"
-      (click)="openCheckout()"
-    >
-      <span>{{this.stylistName}}</span>
-    </div>`,
+  template: `<button (click)="openCheckout()">Pay</button>`,
   styleUrls: ['./payment-input.component.css']
 })
 export class PaymentInputComponent {

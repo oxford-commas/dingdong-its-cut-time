@@ -170,10 +170,17 @@ app.post('/api/bookings', function(req, res) {
   });
 });
 
-// get bookings for a customer that need to be paid for
-app.get('/api/bookings/complete/:id', (req, res) => {
+app.get('/api/bookings/pending/:type/:id', (req, res) => {
   var id = req.params.id;
-  helpers.getBookingsDue(id, result => res.status(200).json(result));
+  var type = Number(req.params.type);
+  helpers.getPendingBookings(id, type, result => res.status(200).json(result));
+});
+
+// get bookings for a customer that need to be paid for
+app.get('/api/bookings/complete/:type/:id', (req, res) => {
+  var id = req.params.id;
+  var type = Number(req.params.type);
+  helpers.getBookingsDue(id, type, result => res.status(200).json(result));
 });
 
 // confirm a booking will occur
@@ -182,10 +189,25 @@ app.put('/api/bookings/:id', (req, res) => {
   helpers.confirmBooking(id, result => res.status(200).json(result));
 });
 
+app.put('/api/bookings/cancel/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.cancelConfirmedBooking(id, result => res.status(200).json(result));
+});
+
 // complete a booking which is now ready to be paid for
 app.put('/api/bookings/complete/:id', (req, res) => {
   var id = req.params.id;
   helpers.completeBooking(id, result => res.status(200).json(result));
+});
+
+app.put('/api/bookings/complete/ready/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.readyConfirmedBooking(id, result => res.status(200).json(result));
+});
+
+app.put('/api/bookings/complete/cancel/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.cancelPaymentBooking(id, result => res.status(200).json(result));
 });
 
 // given stylistId, get their associated bookings and customer names
@@ -228,11 +250,6 @@ app.put('/booking/:bookingid', function (req, res) {
   helpers.updateBooking(id_users, id_stylists, isconfirmed, time, location, id, function() {
     res.send('Got a PUT(update) request at /booking')
   });
-});
-
-app.put('/api/bookings/confirmed/seen/:id', (req, res) => {
-  var id = req.params.id;
-  helpers.seenConfirmedBooking(id, result => res.status(200).json(result));
 });
 
 // HAIRCUT STYLES //
@@ -286,25 +303,15 @@ app.get('/api/messages/:id', (req, res) => {
           sender: sender.name
         };
       }
-    //   let convo = [message.sender, message.recipient];
-    //   if (messages.hasOwnProperty(convo) || messages.hasOwnProperty(convo.reverse())) {
-    //     if (messages[convo]) {
-    //       messages[convo].push(message);
-    //     } else {
-    //       messages[convo.reverse()].push(message);
-    //     }
-    //   } else {
-    //     messages[convo] = {};
-    //     messages[convo].push(message);
-    //   }
     });
     res.status(200).json(messages);
   });
 });
 
-app.get('/api/bookings/confirmed/:id', (req, res) => {
+app.get('/api/bookings/confirmed/:type/:id', (req, res) => {
   var id = req.params.id;
-  helpers.getConfirmed(id, results => res.status(200).json(results));
+  var type = Number(req.params.type);
+  helpers.getConfirmed(id, type, results => res.status(200).json(results));
 });
 
 app.delete('/api/messages', (req, res) => {

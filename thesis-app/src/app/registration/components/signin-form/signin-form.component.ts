@@ -41,16 +41,15 @@ export class SignInFormComponent {
               this.router.navigate(['/error']);
             } else if (data[0].type === 1) {
               this.stateService.addCustomer(data[0]);
-              this.router.navigate(['/home']);
+              this.router.navigate(['/landing']);
             } else if (data[0].type === 0) {
               this.stateService.addCustomer(data[0]);
-              this.router.navigate(['/stylisthome']);
+              this.router.navigate(['/landing']);
             } else {
               this.router.navigate(['/error']);
             }
           }
-        )
-
+        );
     }
   }
 }

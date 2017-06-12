@@ -1,18 +1,36 @@
 <customer-navbar></customer-navbar>
 <div class="wrapper">
-  <div class="booking-container" *ngFor="let booking of bookings; let i = index;">
-    <booking
-      [bookingInformation]="booking"
-      (confirmBooking)="confirmBooking($event, i)"
-      (deleteBooking)="deleteBooking($event, i)"
-      (completeBooking)="completeBooking($event, i)"
-    ></booking>
+  <div class="booking-container"
+    *ngIf="stylistProfile.confirmedBookings.length === 0 && stylistProfile.pendingBookings.length === 0"
+  >
+    <span>No bookings...yet!</span>
   </div>
-  <div class="map-container">
-    <stylist-map class="map"
-      [stylistId]="stylistProfile.id"
-      [stylistLocation]="stylistProfile.billingaddress"
+  <div class="booking-container" *ngFor="let booking of stylistProfile.confirmedBookings; let i = index;">
+    <booking
+      [name]="booking.name"
+      [image_url]="booking.image_url"
+      [time]="booking.time"
+      [phoneNumber]="booking.phoneumber"
+      [location]="booking.location"
     >
-    </stylist-map>
+    </booking>
+  </div>
+  <div class="booking-container" *ngFor="let booking of stylistProfile.pendingBookings; let i = index;">
+    <booking
+      [name]="booking.name"
+      [image_url]="booking.image_url"
+      [time]="booking.time"
+      [phoneNumber]="booking.phoneumber"
+      [location]="booking.location"
+      [isPending]="true"
+    >
+    </booking>
+  </div>
+  <div *ngIf="!!isMapViewInit" class="map-container">
+    <stylist-map class="map"
+      [lat]="stylistProfile.currentLocation.lat"
+      [lng]="stylistProfile.currentLocation.lng"
+      [markers]="stylistProfile.markers"
+    ></stylist-map>
   </div>
 </div>

@@ -5,8 +5,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 import {
   StylistHomeComponent,
   StylistMapComponent,
-  BookingComponent
-  } from './components';
+} from './components';
 
 import { CustomerModule } from '../customer/customer.module';
 import { RequestService, BookingService, LocationService } from '../services';
@@ -21,8 +20,7 @@ import { RequestService, BookingService, LocationService } from '../services';
   ],
   declarations: [
     StylistHomeComponent,
-    StylistMapComponent,
-    BookingComponent
+    StylistMapComponent
   ],
   providers: [
     RequestService,

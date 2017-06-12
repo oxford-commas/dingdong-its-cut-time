@@ -24,26 +24,24 @@ export class CustomerHomeComponent implements OnInit {
   public searchLocation: string;
   public latitude: number;
   public longitude: number;
-  public bookingsDue: any;
-  public bookingsConfirmed: any;
   userProfile: any;
 
   constructor(
     private requestService: RequestService,
     private locationService: LocationService,
     private stylistService: StylistService,
-    private bookingService: BookingService,
     private stateService: StateService
   ) {}
 
   ngOnInit() {
     this.customerProfile = this.stateService.retrieveCustomer();
     this.isProfileFetched = true;
-    // instead of using socket.io, check for bookings due on interval
-    setInterval(() => this.checkForBookingsDue(this.customerProfile.id), 5000);
-    setInterval(() => this.checkForBookingsConfirmed(this.customerProfile.id), 5000);
-    this.getLocationCoordinates((lat, lng) => this.getLocationFromCoordinates(lat, lng, (location) => this.getStylistsInLocation(location)));
+    this.getLocationCoordinates(this.latitude, this.longitude);
+    this.getLocationFromCoordinates(this.latitude, this.longitude);
     this.searchLocation = this.currentLocation;
+    // this.pinStylistsAtLocation(this.searchLocation);
+    this.requestService.getStylistByLocation('sanfrancisco')
+      .subscribe(data => this.stylistsCloseToYou = data, err => console.log(err));
   }
 
   pinStylistsAtLocation(location: any) {
@@ -104,7 +102,6 @@ export class CustomerHomeComponent implements OnInit {
   }
 
   removeConfirmedBooking(id, index) {
-    console.log('hey',id, index);
     this.bookingsConfirmed.splice(index, 1);
     this.bookingService.seenConfirmedBooking(id)
       .subscribe(

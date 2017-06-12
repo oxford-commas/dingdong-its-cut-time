@@ -5,7 +5,7 @@ import {
   BookingService,
   StateService,
   LocationService
-  } from '../../../services/';
+} from '../../../services/';
 
 @Component({
    selector: 'stylist-home',
@@ -13,54 +13,53 @@ import {
    styleUrls: ['./stylist-home.component.css']
 })
 export class StylistHomeComponent implements OnInit {
-  public stylistLocation: any;
   constructor(
-    private requestService: RequestService,
-    private bookingService: BookingService,
     private stateService: StateService,
     private locationService: LocationService
   ) {}
 
-  @Input() stylistProfile;
-  public isProfileFetched: boolean = false;
-  public bookings: any;
-  public customerLat: number;
-  public customerLng: number;
+  public stylistProfile;
+  public isMapViewInit: boolean = false;
+  public lng: number;
+  public lat: number;
 
   ngOnInit() {
     this.stylistProfile = this.stateService.retrieveCustomer();
+    this.stylistProfile.markers = [];
+    this.adjustMapViewForStylistLocation(this.stylistProfile.billingaddress);
+    this.renderMarkers();
+  }
 
-    this.bookingService.fetchBookingsForStylist(this.stylistProfile.id)
-      .subscribe(
-        data => this.bookings = data,
+  renderMarkers() {
+    const bookings = this.stylistProfile.confirmedBookings.concat(this.stylistProfile.pendingBookings);
+    bookings.map(marker => {
+      this.decorateMarkerCoordinates(marker.location, (lat, lng) => {
+        marker.latitude = lat;
+        marker.longitude = lng;
+        marker.label = {
+          color: 'black',
+          fontWeight: 'bold',
+          text: marker.name
+        }
+      });
+      this.stylistProfile.markers.push(marker);
+    });
+  }
+
+  decorateMarkerCoordinates(location: string, callback) {
+    this.locationService.getCoordinatesFromLocation(location)
+      .subscribe(res => callback(res.lat, res.lng));
+  }
+
+  adjustMapViewForStylistLocation(location: string) {
+    this.locationService.getCoordinatesFromLocation(location)
+      .subscribe(res =>
+        this.stylistProfile.currentLocation = {
+          lat: res.lat,
+          lng: res.lng
+        },
         err => console.log(err),
-        () => this.isProfileFetched = true
-      );
-  }
-
-  confirmBooking(id: number, index: number) {
-    this.bookingService.confirmBooking(id)
-      .subscribe(
-        result => this.bookings[index].isconfirmed = 1,
-        err => console.log(err)
-      );
-  }
-
-  deleteBooking(id: number, index: number) {
-    this.bookings.splice(index, 1);
-    this.bookingService.deleteBooking(id)
-      .subscribe(
-        result => console.log(result),
-        err => console.log(err)
-      );
-  }
-
-  completeBooking(id: number, index: number) {
-    this.bookings.splice(index, 1);
-    this.bookingService.completeBooking(id)
-      .subscribe(
-        result => console.log(result),
-        err => console.log(err)
+        () => this.isMapViewInit = true
       );
   }
 

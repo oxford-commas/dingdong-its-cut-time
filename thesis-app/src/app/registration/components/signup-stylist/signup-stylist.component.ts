@@ -9,7 +9,7 @@ import { RequestService, StateService } from '../../../services';
   styleUrls: ['./signup-stylist.component.css']
 })
 export class SignupStylistComponent {
-  private stylesPlaceHolder = []
+  private stylesPlaceHolder = [];
 
   constructor(
     private requestService: RequestService,
@@ -48,19 +48,19 @@ export class SignupStylistComponent {
                 styles.forEach(style => {
                   this.requestService.postStyleForStylist(style, woo[0].id)
                     .subscribe(data => data);
-                })
+                });
                 if (woo[0].type === 1) {
                   this.stateService.addCustomer(woo[0]);
-                  this.router.navigate(['/home']);
+                  this.router.navigate(['/landing']);
                 } else if (woo[0].type === 0) {
                   this.stateService.addCustomer(woo[0]);
-                  this.router.navigate(['/stylisthome']);
+                  this.router.navigate(['/landing']);
                 } else {
                   this.router.navigate(['/login']);
                 }
               }
-            )
+            );
         }
-      )
+      );
   }
 }

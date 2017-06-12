@@ -14,7 +14,7 @@ export class RequestService {
 
   postStylist(stylist: {}) {
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('http://localhost:4200/api/userstylist', stylist, {headers: headers});
+    return this.http.post('/api/userstylist', stylist, {headers: headers});
   }
 
   getStyles() {

@@ -11,28 +11,8 @@ export class BookingService {
       .map(res => res);
   }
 
-  fetchBookingsForStylist(id: number) {
-    return this.http.get(`/api/bookings/${id}`)
-      .map(res => res.json());
-  }
-
-  fetchDueBookings(id: number) {
-    return this.http.get(`/api/bookings/complete/${id}`)
-      .map(res => res.json());
-  }
-
-  fetchConfirmedBookings(id: number) {
-    return this.http.get(`/api/bookings/confirmed/${id}`)
-      .map(res => res.json());
-  }
-
   confirmBooking(id: number) {
     return this.http.put(`/api/bookings/${id}`, id)
-      .map(res => res.json());
-  }
-
-  seenConfirmedBooking(id: number) {
-    return this.http.put(`/api/bookings/confirmed/seen/${id}`, id)
       .map(res => res.json());
   }
 
@@ -41,8 +21,38 @@ export class BookingService {
       .map(res => res);
   }
 
-  completeBooking(id: number) {
+  fetchDueBookings(id: number, type: number) {
+    return this.http.get(`/api/bookings/complete/${type}/${id}`)
+      .map(res => res.json());
+  }
+
+  putDueBooking(id: number) {
     return this.http.put(`/api/bookings/complete/${id}`, id)
+      .map(res => res.json());
+  }
+
+  putCompleteBooking(id: number) {
+    return this.http.put(`/api/bookings/complete/ready/${id}`, id)
+      .map(res => res.json());
+  }
+
+  putCancelPayment(id: number) {
+    return this.http.put(`/api/bookings/complete/cancel/${id}`, id)
+      .map(res => res.json());
+  }
+
+  cancelConfirmedBooking(id: number) {
+    return this.http.put(`/api/bookings/cancel/${id}`, id)
+      .map(res => res.json())
+  }
+
+  fetchConfirmedBookings(id: number, type: number) {
+    return this.http.get(`/api/bookings/confirmed/${type}/${id}`)
+      .map(res => res.json());
+  }
+
+  fetchPendingBookings(id: number, type: number) {
+    return this.http.get(`/api/bookings/pending/${type}/${id}`)
       .map(res => res.json());
   }
 

@@ -7,4 +7,4 @@ import { PaymentModule } from './payment/payment.module';
     PaymentModule
   ]
 })
-export class UiModule { }
+export class UiModule {}

@@ -21,7 +21,7 @@ const stylistArray = [
     id: 0,
     'username': 'Mateo',
     'password': 'MateoPassword',
-    'location': 'San Mateo, CA, CA',
+    'location': 'San Ramon, CA',
     'phoneNumber': '967-123-7890',
     'email': 'mateo@gmail.com',
     'website': 'MateoStyles.com',
@@ -283,106 +283,40 @@ const stylistArray = [
   }
 ]
 
-const booksingsArray = [
+const bookingsArray = [
   {
-    name: 'Mateo',
-    userid: 4,
-    stylistid: 2,
+    id_users: 7,
+    id_stylists: 2,
     isconfirmed: 0,
     isComplete: 0,
-    time: new Date(),
-    location: 'San Mateo, CA, CA'
-  },
-  {
-    name: 'mrhighland',
-    userid: 4,
-    stylistid: 2,
-    isconfirmed: 1,
-    isComplete: 0,
-    time: new Date(),
-    location: '1851 Lexington Ave, San Mateo, CA'
+    time: '1:00am',
+    location: '1023 Lyon St, San Francisco'
   },
   {
-    name: 'bigbess',
-    userid: 6,
-    stylistid: 2,
+    id_users: 6,
+    id_stylists: 2,
     isconfirmed: 0,
     isComplete: 0,
-    time: new Date(),
-    location: '506 N Delaware St, San Mateo, CA'
+    time: '11:00am',
+    location: '2014 Lyon St, San Francisco'
   },
   {
-    name: 'dnalounge',
-    userid: 15,
-    stylistid: 16,
-    isconfirmed: 0,
-    isComplete: 0,
-    time: new Date(),
-    location: '375 11th St, San Francisco, CA'
-  },
-   {
-    name: 'palaceoffinearts',
-    userid: 15,
-    stylistid: 19,
-    isconfirmed: 0,
-    isComplete: 0,
-    time: new Date(),
-    location: '3301 Lyon St, San Francisco, CA'
-  },
-   {
-    name: 'ladiespainted',
-    userid: 1,
-    stylistid: 11,
-    isconfirmed: 0,
-    isComplete: 0,
-    time: new Date(),
-    location: '3301 Lyon St, San Francisco, CA'
-  },
-   {
-    name: 'ladiespainted',
-    userid: 2,
-    stylistid: 11,
+    id_users: 4,
+    id_stylists: 2,
     isconfirmed: 1,
     isComplete: 0,
-    time: new Date(),
-    location: '375 11th St, San Francisco, CA'
+    time: '1:00pm',
+    location: '2323 Lyon St, San Francisco'
   },
-   {
-    name: 'ladiespainted',
-    userid: 3,
-    stylistid: 11,
+  {
+    id_users: 10,
+    id_stylists: 2,
     isconfirmed: 1,
     isComplete: 0,
-    time: new Date(),
-    location: '1545 Divisadero St, San Francisco, CA'
-  },
-   {
-    name: 'ladiespainted',
-    userid: 4,
-    stylistid: 11,
-    isconfirmed: 0,
-    isComplete: 1,
-    time: new Date(),
-    location: '1500 Broadway, San Francisco, CA'
-  },
-   {
-    name: 'Mateo',
-    userid: 1,
-    stylistid: 2,
-    isconfirmed: 1,
-    isComplete: 0,
-    time: new Date(),
-    location: '1500 Broadway, San Francisco, CA'
-  },
-   {
-    name: 'Mateo',
-    userid: 1,
-    stylistid: 2,
-    isconfirmed: 0,
-    isComplete: 1,
-    time: new Date(),
-    location: '1500 Broadway, San Francisco, CA'
+    time: '1:00pm',
+    location: '2323 Lyon St, San Francisco'
   }
+
 ]
 
 const messagesArray = [
@@ -708,10 +642,10 @@ stylistArray.forEach(stylist => {
     });
 });
 
-booksingsArray.forEach(booking => {
+bookingsArray.forEach(booking => {
   helpers.addToBookings(
-    booking.userid,
-    booking.stylistid,
+    booking.id_users,
+    booking.id_stylists,
     booking.isconfirmed,
     booking.isComplete,
     booking.time,

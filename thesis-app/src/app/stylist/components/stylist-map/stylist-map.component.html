@@ -6,12 +6,12 @@
     [disableDefaultUI]="false"
     [zoomControl]="false">
     <sebm-google-map-marker
-      *ngFor="let customer of customers; let i = index;"
-      [latitude]="customer.latitude"
-      [longitude]="customer.longitude"
-      [label]="customer.label">
+      *ngFor="let marker of markers; let i = index;"
+      [latitude]="marker.latitude"
+      [longitude]="marker.longitude"
+      [label]="marker.label">
       <sebm-google-map-info-window>
-        <p><strong>{{customer.name}}</strong></p>
+        <p><strong>{{marker.name}}</strong></p>
       </sebm-google-map-info-window>
     </sebm-google-map-marker>
   </sebm-google-map>
