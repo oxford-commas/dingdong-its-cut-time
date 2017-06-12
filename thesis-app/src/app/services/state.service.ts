@@ -35,19 +35,19 @@ export class StateService {
         err => console.log(err)
       );
 
-    this.bookingService.fetchDueBookings(stylist.id)
+    this.bookingService.fetchDueBookings(stylist.id, stylist.type)
       .subscribe(
         data => customerProfile.dueBookings = data,
         err => console.log(err)
       );
 
-    this.bookingService.fetchConfirmedBookings(stylist.id)
+    this.bookingService.fetchConfirmedBookings(stylist.id, stylist.type)
       .subscribe(
         data => customerProfile.confirmedBookings = data,
         err => console.log(err)
       );
 
-    this.bookingService.fetchPendingBookings(stylist.id)
+    this.bookingService.fetchPendingBookings(stylist.id, stylist.type)
       .subscribe(
         data => customerProfile.pendingBookings = data,
         err => console.log(err)

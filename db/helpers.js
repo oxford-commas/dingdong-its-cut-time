@@ -83,9 +83,9 @@ var getPendingBookings = (userId, callback) => {
   var sql = `
     SELECT b.id, b.id_stylists, b.isconfirmed, b.time, b.location, b.isComplete, us.phonenumber, us.name, us.image_url
     FROM bookings b INNER JOIN users_stylists us
-    WHERE b.id_users = ? AND b.id_stylists = us.id AND isconfirmed = 0
+    WHERE b.id_users = ? OR b.id_stylists = ? AND b.isconfirmed = 0
   `;
-  model.con.query(sql, [userId], (err, results) => callback(results));
+  model.con.query(sql, [userId, userId], (err, results) => callback(results));
 };
 
 var confirmBooking = (bookingId, callback) => {
@@ -110,11 +110,18 @@ var getStylistBookings = function(stylistId, callback) {
   });
 };
 
-var getBookingsDue = (id, callback) => {
-  var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
-    FROM bookings b INNER JOIN users_stylists us
-    WHERE b.isComplete = 1 AND b.id_users = ?
-    AND us.id = b.id_stylists`;
+var getBookingsDue = (id, type, callback) => {
+  if (type === 0) {
+    var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.isComplete = 1 AND b.id_stylists = ?
+      AND us.id = b.id_users`;
+  } else if (type === 1) {
+    var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.isComplete = 1 AND b.id_users = ?
+      AND us.id = b.id_stylists`;
+  }
   model.con.query(sql, [id], (err, results) => callback(results));
 };
 

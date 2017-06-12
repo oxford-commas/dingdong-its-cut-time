@@ -283,105 +283,22 @@ const stylistArray = [
   }
 ]
 
-const booksingsArray = [
+const bookingsArray = [
   {
-    name: 'Mateo',
-    userid: 4,
-    stylistid: 2,
-    isconfirmed: 0,
-    isComplete: 0,
-    time: new Date(),
-    location: 'San Mateo, CA, CA'
-  },
-  {
-    name: 'mrhighland',
-    userid: 4,
-    stylistid: 2,
+    id_users: 1,
+    id_stylists: 2,
     isconfirmed: 1,
-    isComplete: 0,
-    time: new Date(),
-    location: '1851 Lexington Ave, San Mateo, CA'
-  },
-  {
-    name: 'bigbess',
-    userid: 6,
-    stylistid: 2,
-    isconfirmed: 0,
-    isComplete: 0,
-    time: new Date(),
-    location: '506 N Delaware St, San Mateo, CA'
-  },
-  {
-    name: 'dnalounge',
-    userid: 15,
-    stylistid: 16,
-    isconfirmed: 0,
-    isComplete: 0,
-    time: new Date(),
-    location: '375 11th St, San Francisco, CA'
-  },
-   {
-    name: 'palaceoffinearts',
-    userid: 15,
-    stylistid: 19,
-    isconfirmed: 0,
-    isComplete: 0,
-    time: new Date(),
-    location: '3301 Lyon St, San Francisco, CA'
-  },
-   {
-    name: 'ladiespainted',
-    userid: 1,
-    stylistid: 11,
-    isconfirmed: 0,
-    isComplete: 0,
-    time: new Date(),
-    location: '3301 Lyon St, San Francisco, CA'
-  },
-   {
-    name: 'ladiespainted',
-    userid: 2,
-    stylistid: 11,
-    isconfirmed: 1,
-    isComplete: 0,
-    time: new Date(),
-    location: '375 11th St, San Francisco, CA'
-  },
-   {
-    name: 'ladiespainted',
-    userid: 3,
-    stylistid: 11,
-    isconfirmed: 1,
-    isComplete: 0,
-    time: new Date(),
-    location: '1545 Divisadero St, San Francisco, CA'
-  },
-   {
-    name: 'ladiespainted',
-    userid: 4,
-    stylistid: 11,
-    isconfirmed: 0,
     isComplete: 1,
-    time: new Date(),
-    location: '1500 Broadway, San Francisco, CA'
+    time: '8:00pm',
+    location: '3301 Lyon St, San Francisco'
   },
-   {
-    name: 'Mateo',
-    userid: 1,
-    stylistid: 2,
+  {
+    id_users: 3,
+    id_stylists: 2,
     isconfirmed: 1,
-    isComplete: 0,
-    time: new Date(),
-    location: '1500 Broadway, San Francisco, CA'
-  },
-   {
-    name: 'Mateo',
-    userid: 1,
-    stylistid: 2,
-    isconfirmed: 0,
     isComplete: 1,
-    time: new Date(),
-    location: '1500 Broadway, San Francisco, CA'
+    time: '9:00pm',
+    location: '2000 Lyon St, San Francisco'
   }
 ]
 
@@ -708,10 +625,10 @@ stylistArray.forEach(stylist => {
     });
 });
 
-booksingsArray.forEach(booking => {
+bookingsArray.forEach(booking => {
   helpers.addToBookings(
-    booking.userid,
-    booking.stylistid,
+    booking.id_users,
+    booking.id_stylists,
     booking.isconfirmed,
     booking.isComplete,
     booking.time,

@@ -176,9 +176,10 @@ app.get('/api/bookings/pending/:id', (req, res) => {
 });
 
 // get bookings for a customer that need to be paid for
-app.get('/api/bookings/complete/:id', (req, res) => {
+app.get('/api/bookings/complete/:type/:id', (req, res) => {
   var id = req.params.id;
-  helpers.getBookingsDue(id, result => res.status(200).json(result));
+  var type = Number(req.params.type);
+  helpers.getBookingsDue(id, type, result => res.status(200).json(result));
 });
 
 // confirm a booking will occur

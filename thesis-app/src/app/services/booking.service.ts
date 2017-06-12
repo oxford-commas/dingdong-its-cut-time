@@ -16,18 +16,18 @@ export class BookingService {
       .map(res => res.json());
   }
 
-  fetchDueBookings(id: number) {
-    return this.http.get(`/api/bookings/complete/${id}`)
+  fetchDueBookings(id: number, type: number) {
+    return this.http.get(`/api/bookings/complete/${type}/${id}`)
       .map(res => res.json());
   }
 
-  fetchConfirmedBookings(id: number) {
-    return this.http.get(`/api/bookings/confirmed/${id}`)
+  fetchConfirmedBookings(id: number, type: number) {
+    return this.http.get(`/api/bookings/confirmed/${type}/${id}`)
       .map(res => res.json());
   }
 
-  fetchPendingBookings(id: number) {
-    return this.http.get(`/api/bookings/pending/${id}`)
+  fetchPendingBookings(id: number, type: number) {
+    return this.http.get(`/api/bookings/pending/${type}/${id}`)
       .map(res => res.json());
   }
 
