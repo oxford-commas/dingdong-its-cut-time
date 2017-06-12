@@ -298,17 +298,6 @@ app.get('/api/messages/:id', (req, res) => {
           sender: sender.name
         };
       }
-    //   let convo = [message.sender, message.recipient];
-    //   if (messages.hasOwnProperty(convo) || messages.hasOwnProperty(convo.reverse())) {
-    //     if (messages[convo]) {
-    //       messages[convo].push(message);
-    //     } else {
-    //       messages[convo.reverse()].push(message);
-    //     }
-    //   } else {
-    //     messages[convo] = {};
-    //     messages[convo].push(message);
-    //   }
     });
     res.status(200).json(messages);
   });
