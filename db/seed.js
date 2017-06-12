@@ -21,7 +21,7 @@ const stylistArray = [
     id: 0,
     'username': 'Mateo',
     'password': 'MateoPassword',
-    'location': 'San Mateo, CA, CA',
+    'location': 'San Ramon, CA',
     'phoneNumber': '967-123-7890',
     'email': 'mateo@gmail.com',
     'website': 'MateoStyles.com',

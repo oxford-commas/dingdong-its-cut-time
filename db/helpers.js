@@ -13,7 +13,7 @@ var getUser = function(userId, callback) {
     console.log(results)
     callback(results);
   });
-}
+};
 
 // stylists are saved in database with type 0
 var getAllStylists = function(callback) {
@@ -52,7 +52,7 @@ var updateImage = function (imageUrl, id, callback) {
     if (err) throw err;
     callback();
   });
-}
+};
 
 var updateProfile = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, callback) {
   var sql = 'UPDATE users_stylists SET type = ?, name = ?, password = ?, billingaddress = ?, phonenumber = ?, email = ?, site_url = ?, gender = ?, image_url = ? WHERE id = ?'
@@ -61,7 +61,7 @@ var updateProfile = function(type, name, password, billingaddress, phonenumber, 
     console.log("1 record updated");
     callback();
   });
-}
+};
 
 var addToBookings = function(userId, stylistId, isConfirmed, isComplete, time, location, callback) {
   var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, location, isComplete) VALUES (?, ?, ?, ?, ?, ?)';
@@ -161,7 +161,7 @@ var deleteUser = function(userId) {
 
 var deleteBooking = function(bookingId) {
   model.con.query('delete from `bookings` where `id` = ?', [bookingId]);
-}
+};
 
 var updateBooking = function(id_users, id_stylists, isconfirmed, time, location, id, callback) {
   var sql = 'UPDATE `bookings` SET id_users = ?, id_stylists = ?, isconfirmed = ?, time = ?, location = ? where id = ?'
@@ -170,7 +170,7 @@ var updateBooking = function(id_users, id_stylists, isconfirmed, time, location,
     console.log("1 record updated");
     callback();
   });
-}
+};
 
 var getConfirmed = (id, type, callback) => {
   if (type === 0) {
@@ -189,7 +189,7 @@ var getConfirmed = (id, type, callback) => {
     `;
   }
   model.con.query(sql, [id], (err, results) => callback(results));
-}
+};
 
 // helper to add service to the services table in database
 var addService = function(serviceName, callback) {
@@ -251,12 +251,12 @@ var getImagePath = function(id, callback) {
   model.con.query('select `image_url` from `users_stylists` where id = ?', [id], function(err, results) {
     callback(results);
   });
-}
+};
 
 var validateUser = (username, password, callback) => {
   var sql = 'SELECT * FROM users_stylists WHERE name = ? AND password = ?';
   model.con.query(sql, [username, password],(err, results) => callback(results));
-}
+};
 
 module.exports.addLocation = addLocation;
 module.exports.addUserStylist = addUserStylist;
