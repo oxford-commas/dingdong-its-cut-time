@@ -57,11 +57,20 @@
   background-color: white;
 }
 
-.formItem2 {
-  height: 55%;
-}
-
 .email input {
   width: 92%;
 }
 
+.formItem2 {
+  height: 52%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.formItem2 button {
+  background-color: #F9B71A;
+  width: 20%;
+  border-radius: 20px;
+  margin-right: 4em;
+};
