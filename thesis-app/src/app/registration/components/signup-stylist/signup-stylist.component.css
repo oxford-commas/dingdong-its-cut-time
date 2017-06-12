@@ -31,4 +31,22 @@
 
 .usernamePassword {
   border: 2px solid red;
+  display: flex;
+}
+
+.username {
+  flex: 1 1 50%;
+}
+
+.password {
+  flex: 1 1 50%;
+  border: 2px solid red;
+}
+
+.username input {
+  width: 85%;
+}
+
+.password input {
+  width: 85%;
 }
