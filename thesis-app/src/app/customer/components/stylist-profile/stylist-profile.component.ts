@@ -27,7 +27,8 @@ export class StylistProfileComponent implements OnInit {
 
   public isProfileFetched: boolean = false;
   public stylistProfile: any; // TODO: interface this
-  public isShowModal: boolean = false;
+  public isShowMessageModal: boolean = false;
+  public isShowBookingModal: boolean = false;
   public modalStyle: string = 'none';
   private stylistId: number;
 
@@ -53,12 +54,34 @@ export class StylistProfileComponent implements OnInit {
      );
   }
 
-  public toggleModal() {
-    this.isShowModal = !this.isShowModal;
+  public toggleMessageModal() {
+    this.isShowMessageModal = !this.isShowMessageModal;
+  }
+
+  public toggleBookingModal() {
+    console.log('toggle bookingModal');
+    this.isShowBookingModal = !this.isShowBookingModal;
+  }
+
+  public submitBooking(bookingForm) {
+    console.log('POST booking data...', bookingForm)
+    const booking = {
+      id_users: this.stateService.retrieveCustomer().id,
+      id_stylists: this.stylistId,
+      isconfirmed: 0,
+      isComplete: 0,
+      time: bookingForm.time,
+      location: bookingForm.location
+    };
+    this.bookingService.addBooking(booking)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err)
+      );
   }
 
   public getStyle() {
-    if (this.isShowModal === false) {
+    if (this.isShowMessageModal === false) {
       return 'none';
     } else {
       return 'block';
@@ -93,11 +116,6 @@ export class StylistProfileComponent implements OnInit {
         res => console.log(res),
         err => console.log(err)
       )
-    this.bookingService.addBooking(message)
-      .subscribe(
-        res => console.log(res),
-        err => console.log(err)
-      )
-    this.isShowModal = false;
+    this.isShowMessageModal = false;
   }
 }
