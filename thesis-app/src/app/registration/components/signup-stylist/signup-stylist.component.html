@@ -1,13 +1,12 @@
-<div class="poppaDiv">
+<div class="componentWrapper">
   <registration-header
-    [routerLink]="['/login']"
-    headerText="Login Page"
-    logo="insert logo url here"></registration-header>
-  <form class="myForm" (ngSubmit)="handleSignup(f)" #f="ngForm">
+    class="header"
+    [routerLink]="['/login']"></registration-header>
+  <form (ngSubmit)="handleSignup(f)" #f="ngForm">
     <div>
       <h3>Please Enter Your User Info</h3>
     </div>
-    <label for="form-group">Username</label>
+    <label>Username</label>
       <input
         required
         type="text"
@@ -15,7 +14,7 @@
         ngModel
         name="username">
     <br>
-    <label for="form-group">Password</label>
+    <label>Password</label>
       <input
         required
         type="password"
@@ -23,7 +22,7 @@
         ngModel
         name="password">
     <br>
-    <label for="form-group">Email Address</label>
+    <label>Email Address</label>
       <input
         required
         type="email"
@@ -31,7 +30,7 @@
         ngModel
         name="email">
     <br>
-    <label for="form-group">Billing Address</label>
+    <label>Billing Address</label>
       <input
         required
         type="address"
@@ -39,7 +38,7 @@
         ngModel
         name="address">
     <br>
-    <label for="form-group">Link to Personal Site (optional)</label>
+    <label>Link to Personal Site (optional)</label>
       <input
         required
         type="url"
@@ -47,7 +46,7 @@
         ngModel
         name="url">
     <br>
-    <label for="form-group">Please select a list of services you offer</label>
+    <label>Please select a list of services you offer</label>
       <span class="spanContainer">
         <span *ngFor="let service of stylesPlaceHolder">
           <input
@@ -60,7 +59,6 @@
     </span>
 <!-- <div *ngFor="let stylist of stylistsCloseToYou"> -->
     <button
-      class="btn btn-primary btn-group"
       type="submit"
     >Submit</button>
   </form>
