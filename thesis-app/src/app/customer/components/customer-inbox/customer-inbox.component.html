@@ -2,7 +2,7 @@
 <div
   *ngFor="let conversation of conversations"
   class="title"
-  (click)="openHistory.emit(conversation.sender_id)"
+  (click)="this.openHistory.emit(conversation.sender_id)"
 >
   <div class="messageUser">
     <h4>{{conversation.sender}}: </h4>

@@ -9,6 +9,10 @@
     </customer-inbox>
   </div>
   <div class="chat-history-container">
-    <chat-history [chatHistory]="currentChat"></chat-history>
+    <chat-history
+      *ngIf="!!currentChat"
+      [chatHistory]="currentChat"
+      (handleSendInputValue)="postMessage($event)"
+    ></chat-history>
   </div>
 </div>
