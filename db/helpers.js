@@ -135,8 +135,7 @@ var getBookingsDue = (id, type, callback) => {
   } else if (type === 1) {
     var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
       FROM bookings b INNER JOIN users_stylists us
-      WHERE b.isconfirmed = 2
-      AND b.isComplete = 1
+      WHERE b.isComplete = 1
       AND b.id_users = ?
       AND us.id = b.id_stylists`;
   }

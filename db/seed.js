@@ -315,14 +315,6 @@ const bookingsArray = [
     isComplete: 0,
     time: '1:00pm',
     location: '2323 Lyon St, San Francisco'
-  },
-  {
-    id_users: 4,
-    id_stylists: 2,
-    isconfirmed: 1,
-    isComplete: 1,
-    time: '1:00pm',
-    location: '2323 Lyon St, San Francisco'
   }
 
 ]
