@@ -323,9 +323,13 @@ app.get('/api/streetaddress/:latlng', function(req, res) {
 });
 
 
-app.get('/', function(req, res) {
-  console.log(path.join(__dirname, 'thesis-app/dist/index.html'));
- res.sendFile('thesis-app/dist/index.html', {"root": __dirname});
+// app.get('/', function(req, res) {
+//   console.log(path.join(__dirname, 'thesis-app/dist/index.html'));
+//  res.sendFile('thesis-app/dist/index.html', {"root": __dirname});
+// });
+
+app.get('*', function(req, res) {
+res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
 });
 
 app.set('port', (process.env.PORT || 4200))

@@ -1,7 +1,7 @@
-# DROP DATABASE IF EXISTS `dingdong`;
-#CREATE DATABASE IF NOT EXISTS `dingdong`;
+DROP DATABASE IF EXISTS `dingdong`;
+CREATE DATABASE IF NOT EXISTS `dingdong`;
 
-#USE dingdong;
+USE dingdong;
 
 CREATE TABLE IF NOT EXISTS `users_stylists` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,

@@ -1,7 +1,9 @@
 var https = require('https');
 
 // config/environment variables
-const key = process.env.API_KEY
+//const key = process.env.API_KEY
+
+const key = process.env.API_KEY || config.API_KEY;
 
 var getLocationPoints = function(location, callback) {
   var p = `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${key}`;
