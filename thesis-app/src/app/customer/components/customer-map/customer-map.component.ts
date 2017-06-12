@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output, OnInit, SimpleChanges } from '@
 import { Router } from '@angular/router';
 import { LocationService } from '../../../services';
 import { StylistService } from '../../../services';
-import { GoogleMapsAPIWrapper } from '../../../../../node_modules/angular2-google-maps/core/services/google-maps-api-wrapper';
 
 @Component({
   selector: 'customer-map',
@@ -14,8 +13,7 @@ export class CustomerMapComponent implements OnInit {
   constructor(
     private locationService: LocationService,
     private stylistService: StylistService,
-    private router: Router,
-    private googleMapsAPIWrapper: GoogleMapsAPIWrapper
+    private router: Router
   ) {}
 
   public currentLocation: string;
