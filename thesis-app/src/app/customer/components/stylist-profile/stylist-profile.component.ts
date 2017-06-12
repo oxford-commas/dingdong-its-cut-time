@@ -64,7 +64,6 @@ export class StylistProfileComponent implements OnInit {
   }
 
   public submitBooking(bookingForm) {
-    console.log('POST booking data...', bookingForm)
     const booking = {
       id_users: this.stateService.retrieveCustomer().id,
       id_stylists: this.stylistId,
@@ -88,28 +87,11 @@ export class StylistProfileComponent implements OnInit {
     }
   }
 
-  public decorateSenderAndRecipient(message: IMessage) {
-    message = {
-      ...message,
-     id_sender: 1, //hardcoded logged in user
-     id_recipient: this.stylistId
-   };
-   return message;
-  }
-
-  public submitMessage(ngForm: NgForm) {
-    const userId = this.stateService.retrieveCustomer().id
+  public submitMessage(messageForm) {
     const message = {
-      id_sender: userId,
-      id_recipient: this.stylistProfile.id,
-      id_users: userId,
-      id_stylists: this.stylistProfile.id,
-      subjectHeading: ngForm.value.subjectHeading,
-      body: ngForm.value.body,
-      time: ngForm.value.time,
-      location: ngForm.value.location,
-      isconfirmed: 0,
-      isComplete: 0
+      id_sender: this.stateService.retrieveCustomer().id,
+      id_recipient: this.stylistId,
+      body: messageForm.body
     }
     this.messageService.postMessage(message)
       .subscribe(

@@ -294,7 +294,7 @@ app.post('/api/messages', (req, res) => {
 app.get('/api/messages/:id', (req, res) => {
   helpers.getMessages(req.params.id, (data) => {
     let messages = {};
-    data.forEach((message, index) => {
+    if (data) data.forEach((message, index) => {
       const sender = message.id_sender === Number(req.params.id) ? {id: message.id_recipient, name: message.recipient} : {id: message.id_sender, name: message.sender};
       if (messages[sender.id]) {
         messages[sender.id].messages.push(message);

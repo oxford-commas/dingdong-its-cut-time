@@ -56,10 +56,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `id_sender` INTEGER NOT NULL,
   `id_recipient` INTEGER NOT NULL,
-  `subjectHeading` VARCHAR(45) NOT NULL,
   `body` VARCHAR(150) NOT NULL,
-  `time` VARCHAR(45) NOT NULL,
-  `location` TEXT NOT NULL,
   PRIMARY KEY (`id`)
 );
 
