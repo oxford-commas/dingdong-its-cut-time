@@ -11,4 +11,5 @@ export class BookingComponent {
   @Input() time;
   @Input() phoneNumber;
   @Input() location;
+  @Input() isPending: boolean = false;
 }

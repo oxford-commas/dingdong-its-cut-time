@@ -63,7 +63,8 @@ import {
     StateService
    ],
  exports: [
-   CustomerNavbarComponent
+   CustomerNavbarComponent,
+   BookingComponent
  ]
 })
 

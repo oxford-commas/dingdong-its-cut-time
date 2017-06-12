@@ -189,10 +189,20 @@ app.put('/api/bookings/:id', (req, res) => {
   helpers.confirmBooking(id, result => res.status(200).json(result));
 });
 
+app.put('/api/bookings/cancel/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.cancelConfirmedBooking(id, result => res.status(200).json(result));
+});
+
 // complete a booking which is now ready to be paid for
 app.put('/api/bookings/complete/:id', (req, res) => {
   var id = req.params.id;
   helpers.completeBooking(id, result => res.status(200).json(result));
+});
+
+app.put('/api/bookings/complete/ready/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.readyConfirmedBooking(id, result => res.status(200).json(result));
 });
 
 // given stylistId, get their associated bookings and customer names

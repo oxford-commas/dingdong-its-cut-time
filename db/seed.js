@@ -309,29 +309,22 @@ const bookingsArray = [
     location: '2323 Lyon St, San Francisco'
   },
   {
-    id_users: 5,
+    id_users: 10,
     id_stylists: 2,
     isconfirmed: 1,
-    isComplete: 1,
-    time: '2:00pm',
-    location: '2424 Lyon St, San Francisco'
+    isComplete: 0,
+    time: '1:00pm',
+    location: '2323 Lyon St, San Francisco'
   },
   {
-    id_users: 1,
+    id_users: 4,
     id_stylists: 2,
     isconfirmed: 1,
     isComplete: 1,
-    time: '8:00pm',
-    location: '3301 Lyon St, San Francisco'
-  },
-  {
-    id_users: 3,
-    id_stylists: 2,
-    isconfirmed: 1,
-    isComplete: 1,
-    time: '9:00pm',
-    location: '2000 Lyon St, San Francisco'
+    time: '1:00pm',
+    location: '2323 Lyon St, San Francisco'
   }
+
 ]
 
 const messagesArray = [

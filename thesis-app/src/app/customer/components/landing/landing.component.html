@@ -1,6 +1,7 @@
 <customer-navbar></customer-navbar>
 <h1>Appointments</h1>
 
+<!-- Customer Landing -->
 <div *ngIf="profile.type===1">
   <button [routerLink]="['/home']">Find Stylist</button>
 
@@ -53,8 +54,9 @@
   </div>
 </div>
 
+<!-- Stylist Landing -->
 <div *ngIf="profile.type===0">
-  <button [routerLink]="['/stylisthome']">Find Stylist</button>
+  <button [routerLink]="['/stylisthome']">View Map</button>
 
   <h2>Confirmed</h2>
   <div
@@ -69,6 +71,8 @@
       [location]="confirmedBooking.location"
     >
     </booking>
+    <button (click)="completeBooking(confirmedBooking.id, i)">Complete</button>
+    <button (click)="cancelBooking(confirmedBooking.id, i)">Cancel</button>
   </div>
 
   <h2>Awaiting Payment</h2>
@@ -97,7 +101,7 @@
       [location]="pendingBooking.location"
     >
     </booking>
-    <button (click)="confirmBooking(pendingBooking.id, i)">Confirm</button>
-    <button (click)="deleteBooking(pendingBooking.id, i)">Reject</button>
+    <button (click)="acceptBooking(pendingBooking.id, i)">Accept</button>
+    <button (click)="declineBooking(pendingBooking.id, i)">Decline</button>
   </div>
 </div>
