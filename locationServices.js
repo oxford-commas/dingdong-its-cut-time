@@ -1,8 +1,7 @@
 var https = require('https');
-var config = require('./config/config');
 
 // config/environment variables
-const key = process.env.API_KEY || config.API_KEY;
+const key = process.env.API_KEY
 
 var getLocationPoints = function(location, callback) {
   var p = `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${key}`;
@@ -14,14 +13,20 @@ var getLocationPoints = function(location, callback) {
       res.on('end', ()=> {
         var points = [];
         var data = JSON.parse(st);
-        var lat = data.results[0].geometry.location.lat;
-        var lng = data.results[0].geometry.location.lng;
-        console.log ('user latitude', lat);
-        console.log('user longitude', lng);
-        points.push(lat);
-        points.push(lng);
 
-        callback(points);
+        console.log("Data: ", data);
+
+        if (data.results.length > 0) {
+          var lat = data.results[0].geometry.location.lat;
+          var lng = data.results[0].geometry.location.lng;
+          console.log ('user latitude', lat);
+          console.log('user longitude', lng);
+          points.push(lat);
+          points.push(lng);
+
+          callback(points);
+        }
+
       })
   });
 }
