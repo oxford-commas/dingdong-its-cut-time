@@ -1,0 +1,34 @@
+.componentWrapper {
+  display: flex;
+  flex-direction: column;
+  background-image: url('http://cdn.wallpapersafari.com/44/5/HQjIBU.jpg');
+  height: 100vh;
+}
+
+.header {
+  height: 25%;
+  padding-top: 10em;
+  margin-left: 2em;
+  margin-right: 2em;
+  width: 85%;
+  align-self: center;
+  border: 2px solid red;
+}
+
+.formWrapper {
+  background: rgba(255,255,255,0.4);
+  border-radius: 20px;
+  align-self: center;
+  width: 85%;
+  height: 50%;
+}
+
+.formItem1 {
+  border: 2px solid red;
+  height: 45%;
+}
+
+.formItem2 {
+  border: 2px solid red;
+  height: 55%;
+}

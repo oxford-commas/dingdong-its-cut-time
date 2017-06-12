@@ -1,34 +1,42 @@
-
-<registration-header
-  [routerLink]="['/login']"
-  headerText="Login Page"
-  logo="insert logo url here"></registration-header>
-<form (ngSubmit)="handleSignup(f)" #f="ngForm">
-  <label>Username</label>
-    <input
-      required
-      type="text"
-      id="username"
-      ngModel
-      name="username">
-  <br>
-  <label>Password</label>
-    <input
-      required
-      type="password"
-      id="password"
-      ngModel
-      name="password">
-  <br>
-  <label>Email Address</label>
-    <input
-      required
-      type="email"
-      id="email"
-      ngModel
-      name="email">
-  <br>
-  <button
-    type="submit"
-  >Sign Up</button>
-</form>
+<div class="componentWrapper">
+  <registration-header
+    class="header"
+    [routerLink]="['/login']"
+    headerText="Login Page"
+    logo="insert logo url here"></registration-header>
+  <div class="formWrapper">
+    <div class="formItem1">
+      <form (ngSubmit)="handleSignup(f)" #f="ngForm">
+        <label>Username</label>
+          <input
+            required
+            type="text"
+            id="username"
+            ngModel
+            name="username">
+        <br>
+        <label>Password</label>
+          <input
+            required
+            type="password"
+            id="password"
+            ngModel
+            name="password">
+        <br>
+        <label>Email Address</label>
+          <input
+            required
+            type="email"
+            id="email"
+            ngModel
+            name="email">
+        <br>
+      </form>
+    </div>
+    <div class="formItem2">
+      <button
+        type="submit"
+      >Sign Up</button>
+    </div>
+  </div>
+</div>
