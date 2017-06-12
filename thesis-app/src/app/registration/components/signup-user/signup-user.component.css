@@ -27,8 +27,6 @@
 }
 
 .formItem1 {
-  border: 2px solid yellow;
-  height: 45%;
   display: flex;
   width: 100%;
   flex-direction: column;
