@@ -26,9 +26,12 @@ export class LandingComponent {
   }
 
   confirmBooking(id: number, index: number) {
+    const booking = this.profile.pendingBookings.splice(index, 1).pop();
+    this.profile.confirmedBookings.push(booking);
+    console.log(this.profile);
     this.bookingService.confirmBooking(id)
       .subscribe(
-        result => this.profile.confirmedBookings[index].isconfirmed = 1,
+        result => console.log(result),
         err => console.log(err)
       );
   }
