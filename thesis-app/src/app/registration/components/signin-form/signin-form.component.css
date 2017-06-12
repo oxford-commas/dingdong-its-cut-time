@@ -1,0 +1,30 @@
+.componentWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  height: 25%;
+  padding-top: 8em;
+  border: 2px solid red;
+  margin: 2em;
+}
+
+.loginWrapper {
+  display: flex;
+  flex-direction: row;
+  margin-left: 2em;
+  margin-right: 2em;
+  height: 50vh;
+  width: 95%;
+  border: 2px solid black;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexItem {
+  flex: 1 1 48%;
+  height: 100%;
+  width: 50%;
+  border: 2px solid red;
+}
