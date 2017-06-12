@@ -95,7 +95,7 @@ app.get('/api/stylists/:location', function(req, res) {
         var lat2 = el.latitude;
         var lng2 = el.longitude;
         var distance = helpers.calculateDistance(lat, lng, lat2, lng2, 'M');
-        if (distance <= 15) {
+        if (distance <= 5) {
           data.push(el);
         }
       });

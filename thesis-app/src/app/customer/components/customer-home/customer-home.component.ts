@@ -36,12 +36,8 @@ export class CustomerHomeComponent implements OnInit {
   ngOnInit() {
     this.customerProfile = this.stateService.retrieveCustomer();
     this.isProfileFetched = true;
-    this.getLocationCoordinates(this.latitude, this.longitude);
-    this.getLocationFromCoordinates(this.latitude, this.longitude);
+    this.getLocationCoordinates((lat, lng) => this.getLocationFromCoordinates(lat, lng, (location) => this.getStylistsInLocation(location)));
     this.searchLocation = this.currentLocation;
-    // this.pinStylistsAtLocation(this.searchLocation);
-    this.requestService.getStylistByLocation('sanfrancisco')
-      .subscribe(data => this.stylistsCloseToYou = data, err => console.log(err));
   }
 
   pinStylistsAtLocation(location: any) {
@@ -73,41 +69,6 @@ export class CustomerHomeComponent implements OnInit {
         console.log('curr loc', this.currentLocation);
         next(this.currentLocation);
       }, err => console.log(err));
-  }
-
-  checkForBookingsDue(id: number) {
-    this.bookingService.fetchDueBookings(id)
-      .subscribe(
-        data => {
-          console.log('fetching dues....', data);
-          this.bookingsDue = data;
-        },
-        err => {
-          console.log(err);
-        }
-      );
-  }
-
-  checkForBookingsConfirmed(id: number) {
-    this.bookingService.fetchConfirmedBookings(id)
-      .subscribe(
-        data => {
-          this.bookingsConfirmed = data;
-          console.log('fetching confirmed', data);
-        },
-        err => {
-          console.log(err);
-        }
-      );
-  }
-
-  removeConfirmedBooking(id, index) {
-    this.bookingsConfirmed.splice(index, 1);
-    this.bookingService.seenConfirmedBooking(id)
-      .subscribe(
-        data => console.log(data),
-        err => console.log(err)
-      );
   }
 
   getStylistsInLocation(location: string) {
