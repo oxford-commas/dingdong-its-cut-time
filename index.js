@@ -237,11 +237,6 @@ app.put('/booking/:bookingid', function (req, res) {
   });
 });
 
-app.put('/api/bookings/confirmed/seen/:id', (req, res) => {
-  var id = req.params.id;
-  helpers.seenConfirmedBooking(id, result => res.status(200).json(result));
-});
-
 // HAIRCUT STYLES //
 
 app.get('/api/stylistServices', (req, res) => {
