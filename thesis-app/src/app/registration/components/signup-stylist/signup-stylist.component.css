@@ -14,3 +14,14 @@
   width: 83%;
   align-self: center;
 }
+
+.formWrapper {
+  background: rgba(255,255,255,0.4);
+  border-radius: 5px;
+  align-self: center;
+  width: 85%;
+  height: 50%;
+  margin-top: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
+}
