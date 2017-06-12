@@ -21,9 +21,7 @@ export class SignInFormComponent {
     private requestService: RequestService,
     private stateService: StateService){}
 
-  ngOnInit() {
-    console.log(this.requestService, this.stateService)
-  }
+  ngOnInit() {}
 
   setUserData(userInput: IUserInformationData) {
     this.userInformationData = {
@@ -33,19 +31,26 @@ export class SignInFormComponent {
   }
 
   handleLogin(form: NgForm) {
-    this.requestService.getStylistByName(form.value.username, form.value.password)
-      .subscribe(
-        data => {
-          if (data[0].type === 1) {
-            this.stateService.addCustomer(data[0]);
-            this.router.navigate(['/home']);
-          } else if (data[0].type === 0) {
-            this.stateService.addCustomer(data[0]);
-            this.router.navigate(['/stylisthome']);
-          } else {
-            this.router.navigate(['/login']);
+    if (form.value.username === '' || form.value.password === '') {
+      this.router.navigate(['/error'])
+    } else {
+      this.requestService.getStylistByName(form.value.username, form.value.password)
+        .subscribe(
+          data => {
+            if (data.length === 0) {
+              this.router.navigate(['/error']);
+            } else if (data[0].type === 1) {
+              this.stateService.addCustomer(data[0]);
+              this.router.navigate(['/home']);
+            } else if (data[0].type === 0) {
+              this.stateService.addCustomer(data[0]);
+              this.router.navigate(['/stylisthome']);
+            } else {
+              this.router.navigate(['/error']);
+            }
           }
-        }
-      )
+        )
+
+    }
   }
 }

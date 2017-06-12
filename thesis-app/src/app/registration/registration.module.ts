@@ -7,14 +7,15 @@ import { FormBuilder } from '@angular/forms';
 import { StateService } from '../services';
 
 import {
+  ErrorFormsComponent,
+  RegistrationHeaderComponent,
   SignInFormComponent,
   SignInInputComponent,
-  UsernamePasswordComponent,
-  RegistrationHeaderComponent,
   SignUpStylistFormComponent,
   SignUpFormComponent,
   SignupUserComponent,
-  SignupStylistComponent
+  SignupStylistComponent,
+  UsernamePasswordComponent
 } from './components';
 
 
@@ -25,14 +26,15 @@ import {
     CommonModule
   ],
   declarations: [
+    ErrorFormsComponent,
+    RegistrationHeaderComponent,
     SignInFormComponent,
     SignInInputComponent,
-    UsernamePasswordComponent,
-    RegistrationHeaderComponent,
     SignUpStylistFormComponent,
     SignUpFormComponent,
     SignupUserComponent,
-    SignupStylistComponent
+    SignupStylistComponent,
+    UsernamePasswordComponent
   ],
   providers: [
     FormBuilder,
