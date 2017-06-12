@@ -6,3 +6,4 @@ export * from './signup-stylist-form';
 export * from './signup-user';
 export * from './signup-stylist';
 export * from './username-password';
+export * from './error-forms';

@@ -25,7 +25,9 @@ import {
   CustomerInboxComponent,
   StylistProfileComponent,
   CustomerProfileComponent,
-  ChatHistoryComponent
+  ChatHistoryComponent,
+  LandingComponent,
+  BookingComponent
 } from './components';
 
 @NgModule({
@@ -34,7 +36,7 @@ import {
     CommonModule,
     FormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDiVQjsDczrtUuAdadrUB2lFn39QEWK43A' // TODO: Hide key
+      apiKey: 'AIzaSyDiVQjsDczrtUuAdadrUB2lFn39QEWK43A'
     }),
     UiModule
   ],
@@ -48,7 +50,9 @@ import {
     CustomerInboxComponent,
     StylistProfileComponent,
     CustomerProfileComponent,
-    ChatHistoryComponent
+    ChatHistoryComponent,
+    LandingComponent,
+    BookingComponent
   ],
   providers: [
     StripeService,
@@ -59,7 +63,8 @@ import {
     StateService
    ],
  exports: [
-   CustomerNavbarComponent
+   CustomerNavbarComponent,
+   BookingComponent
  ]
 })
 

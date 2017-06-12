@@ -1,7 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
-import { RequestService, MessageService, BookingService } from '../../../services';
+import {
+  RequestService,
+  MessageService,
+  BookingService,
+  StateService } from '../../../services';
 
 import { IMessage } from '../../interfaces';
 
@@ -16,7 +21,8 @@ export class StylistProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private requestService: RequestService,
     private messageService: MessageService,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private stateService: StateService
   ) {}
 
   public isProfileFetched: boolean = false;
@@ -35,6 +41,12 @@ export class StylistProfileComponent implements OnInit {
      .subscribe(
        data => {
         this.stylistProfile = data
+        this.requestService.getUserImg(this.stylistProfile.id)
+          .subscribe(
+            response => {
+              this.stylistProfile.image_url = response.url;
+            }
+          )
       },
        err => console.log(err),
        () => this.isProfileFetched = true
@@ -62,34 +74,30 @@ export class StylistProfileComponent implements OnInit {
    return message;
   }
 
-  public submitMessage(message: IMessage) {
-    message = this.decorateSenderAndRecipient(message);
+  public submitMessage(ngForm: NgForm) {
+    const userId = this.stateService.retrieveCustomer().id
+    const message = {
+      id_sender: userId,
+      id_recipient: this.stylistProfile.id,
+      id_users: userId,
+      id_stylists: this.stylistProfile.id,
+      subjectHeading: ngForm.value.subjectHeading,
+      body: ngForm.value.body,
+      time: ngForm.value.time,
+      location: ngForm.value.location,
+      isconfirmed: 0,
+      isComplete: 0
+    }
     this.messageService.postMessage(message)
       .subscribe(
         res => console.log(res),
         err => console.log(err)
-      );
-    this.addBooking(message);
-  }
-
-  public addBooking(message: IMessage) {
-    const booking = {
-      id_users: 1, //hardcoded logged in user
-      id_stylists: this.stylistId,
-      isconfirmed: false,
-      time: message.time,
-      location: message.location
-    };
-    this.bookingService.addBooking(booking)
+      )
+    this.bookingService.addBooking(message)
       .subscribe(
         res => console.log(res),
         err => console.log(err)
-      );
+      )
+    this.isShowModal = false;
   }
 }
-
-// | 55 |    1 | dnalounge         | dnalounge         | 375 11th St, San Francisco, CA
-
- // 56 |    0 | castro            | castro            | 429 Castro St, San Francisco, CA                      | 415-621-6120 | castrotheatre@gmail.com     | -122.4347591 | 37.7620333 | castrotheatre.com      | NULL   | update me |
-
-
