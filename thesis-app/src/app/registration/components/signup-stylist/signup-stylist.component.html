@@ -1,4 +1,4 @@
-<div class="container poppaDiv">
+<div class="poppaDiv">
   <registration-header
     [routerLink]="['/login']"
     headerText="Login Page"
@@ -9,6 +9,7 @@
     </div>
     <label for="form-group">Username</label>
       <input
+        required
         type="text"
         id="username"
         ngModel
@@ -16,6 +17,7 @@
     <br>
     <label for="form-group">Password</label>
       <input
+        required
         type="password"
         id="password"
         ngModel
@@ -23,6 +25,7 @@
     <br>
     <label for="form-group">Email Address</label>
       <input
+        required
         type="email"
         id="email"
         ngModel
@@ -30,6 +33,7 @@
     <br>
     <label for="form-group">Billing Address</label>
       <input
+        required
         type="address"
         id="address"
         ngModel
@@ -37,6 +41,7 @@
     <br>
     <label for="form-group">Link to Personal Site (optional)</label>
       <input
+        required
         type="url"
         id="url"
         ngModel
@@ -49,8 +54,8 @@
             type="checkbox"
             id="service"
             ngModel
-            [name]="service"
-          >{{ service }}
+            [name]="service.id"
+          >{{ service.servicename }}
         </span>
     </span>
 <!-- <div *ngFor="let stylist of stylistsCloseToYou"> -->

@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RequestService, DeletionService, StateService } from '../../../services';
 
-
+const URL = '/api/profile/';
 @Component({
   selector: 'customer-profile',
   templateUrl: './customer-profile.component.html',
