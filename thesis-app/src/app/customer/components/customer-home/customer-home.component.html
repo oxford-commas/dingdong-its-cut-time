@@ -10,6 +10,7 @@
     <div *ngFor="let stylist of stylistsCloseToYou">
       <close-to-you
         [stylistInformation]="stylist"
+        [searchLocation]="searchLocation"
         [routerLink]="['/stylistProfile', stylist.id]"
       >
       </close-to-you>
