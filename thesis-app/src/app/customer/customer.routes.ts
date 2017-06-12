@@ -22,7 +22,7 @@ export const customerRoutes: Routes = [
     component: StylistProfileComponent
   },
   {
-    path: 'customerProfile/:id',
+    path: 'customerProfile',
     component: CustomerProfileComponent
   },
   {

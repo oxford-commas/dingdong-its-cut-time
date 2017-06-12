@@ -11,7 +11,7 @@ const stylistArray = [
     id: 1,
     'username': 'Shari',
     'password': 'ShariPassword',
-    'location': 'San Ramon, CA, CA',
+    'location': 'San Ramon, CA',
     'phoneNumber': '967-890-7890',
     'email': 'Shari@gmail.com',
     'website': 'ShariStylists.com',
@@ -239,7 +239,7 @@ const stylistArray = [
     'update': 'update me'
   },
   {
-    id: 0,
+    id: 1,
     'username': 'andrew',
     'password': 'lam',
     'location': '60 Queen St W, Toronto',
@@ -250,7 +250,7 @@ const stylistArray = [
     'update': 'update me'
   },
   {
-    id: 0,
+    id: 1,
     'username': 'parul',
     'password': 'bir',
     'location': 'San Jose',
@@ -338,49 +338,107 @@ const booksingsArray = [
     isComplete: 0,
     time: new Date(),
     location: '3301 Lyon St, San Francisco, CA'
+  },
+   {
+    name: 'ladiespainted',
+    userid: 1,
+    stylistid: 11,
+    isconfirmed: 0,
+    isComplete: 0,
+    time: new Date(),
+    location: '3301 Lyon St, San Francisco, CA'
+  },
+   {
+    name: 'ladiespainted',
+    userid: 2,
+    stylistid: 11,
+    isconfirmed: 1,
+    isComplete: 0,
+    time: new Date(),
+    location: '375 11th St, San Francisco, CA'
+  },
+   {
+    name: 'ladiespainted',
+    userid: 3,
+    stylistid: 11,
+    isconfirmed: 1,
+    isComplete: 0,
+    time: new Date(),
+    location: '1545 Divisadero St, San Francisco, CA'
+  },
+   {
+    name: 'ladiespainted',
+    userid: 4,
+    stylistid: 11,
+    isconfirmed: 0,
+    isComplete: 1,
+    time: new Date(),
+    location: '1500 Broadway, San Francisco, CA'
+  },
+   {
+    name: 'Mateo',
+    userid: 1,
+    stylistid: 2,
+    isconfirmed: 1,
+    isComplete: 0,
+    time: new Date(),
+    location: '1500 Broadway, San Francisco, CA'
+  },
+   {
+    name: 'Mateo',
+    userid: 1,
+    stylistid: 2,
+    isconfirmed: 0,
+    isComplete: 1,
+    time: new Date(),
+    location: '1500 Broadway, San Francisco, CA'
   }
 ]
 
 const messagesArray = [
   {
-    id_sender: userIndex(1),
-    id_recipient: userIndex(2),
-    subjectHeading: 'Shari to mateo',
-    body: 'Give me a fade bro!!!',
+    id_sender: 1,
+    id_recipient: 11,
+    subjectHeading: 'Heyyy bro, are you free?',
+    body: 'I require some of your services If you are in town :)',
     time: new Date(),
-    location: '320 Front St W, Toronto'
+    location: 'San Ramon, CA'
   },
   {
-    id_sender: userIndex(2),
-    id_recipient: userIndex(1),
-    subjectHeading: 'Mateo to Shari',
-    body: 'yea, i gotchu girl, lets meet there',
+
+    id_sender: 11,
+    id_recipient: 1,
+    subjectHeading: 'Hey Shari',
+    body: 'yea, i gotchu girl, where you be residing friend?',
     time: new Date(),
-    location: '320 Front St W, Toronto'
+    location: 'San Ramon, CA'
   },
   {
-    id_sender: userIndex(1),
-    id_recipient: userIndex(10),
-    subjectHeading: 'Shari to cityhall',
-    body: 'I want to color my hair pink',
+
+    id_sender: 1,
+    id_recipient: 11,
+    subjectHeading: 'Sweet.',
+    body: 'I want a fade and maybe some pink highlights man!!',
     time: new Date(),
     location: 'San Francisco'
   },
   {
-    id_sender: userIndex(10),
-    id_recipient: userIndex(1),
-    subjectHeading: 'cityhall to shari',
-    body: 'can do',
+
+    id_sender: 11,
+    id_recipient: 1,
+    subjectHeading: 'Sounds good!',
+    body: 'Hey man thats cool. Where do you want to meet though?',
     time: new Date(),
     location: 'San francisco'
   },
   {
-    id_sender: userIndex(2),
-    id_recipient: userIndex(3),
-    subjectHeading: 'idk',
-    body: 'idk',
+
+    id_sender: 1,
+    id_recipient: 11,
+    subjectHeading: '3301 Lyon St',
+    body: 'Meet me there!!',
     time: new Date(),
-    location: 'San Jose'
+    location: '3301 Lyon St'
   }
 ];
 

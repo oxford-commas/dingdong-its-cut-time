@@ -109,6 +109,15 @@ var getBookingsDue = (id, callback) => {
   model.con.query(sql, [id], (err, results) => callback(results));
 };
 
+var seenConfirmedBooking = (id, callback) => {
+  var sql = `
+    UPDATE bookings
+    SET isconfirmed = 2
+    WHERE bookings.id = ?
+  `;
+  model.con.query(sql, [id], (err, results) => callback(results));
+};
+
 var deleteBooking = (id, callback) => {
   model.con.query('DELETE FROM bookings WHERE id = ?', [id], (err, res) => callback(res));
 };
@@ -128,6 +137,15 @@ var updateBooking = function(id_users, id_stylists, isconfirmed, time, location,
     console.log("1 record updated");
     callback();
   });
+}
+
+var getConfirmed = (id, callback) => {
+  model.con.query(`
+    SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email
+    FROM bookings b INNER JOIN users_stylists us
+    WHERE b.isconfirmed = 1 AND b.id_users = ?
+    AND us.id = b.id_stylists AND b.isComplete = 0
+  `, [id], (err, results) => callback(results));
 }
 
 // helper to add service to the services table in database
@@ -168,7 +186,8 @@ var postMessage = (message, callback) => {
         `INSERT INTO recipients (id, name)
         VALUES (?, (SELECT name FROM users_stylists WHERE users_stylists.id = ?))`,
         [message.id_sender, message.id_recipient]
-    )});
+      );
+    });
 };
 
 var getMessages = (id, callback) => {
@@ -223,3 +242,5 @@ module.exports.updateImage = updateImage;
 module.exports.getImagePath = getImagePath;
 module.exports.validateUser = validateUser;
 module.exports.getAllStyles = getAllStyles;
+module.exports.getConfirmed = getConfirmed;
+module.exports.seenConfirmedBooking = seenConfirmedBooking;

@@ -1,21 +1,31 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { RequestService, BookingService, StateService} from '../../../services/';
+import {
+  RequestService,
+  BookingService,
+  StateService,
+  LocationService
+  } from '../../../services/';
 
 @Component({
    selector: 'stylist-home',
-   templateUrl: './stylist-home.component.html'
+   templateUrl: './stylist-home.component.html',
+   styleUrls: ['./stylist-home.component.css']
 })
 export class StylistHomeComponent implements OnInit {
+  public stylistLocation: any;
   constructor(
     private requestService: RequestService,
     private bookingService: BookingService,
-    private stateService: StateService
+    private stateService: StateService,
+    private locationService: LocationService
   ) {}
 
   @Input() stylistProfile;
   public isProfileFetched: boolean = false;
   public bookings: any;
+  public customerLat: number;
+  public customerLng: number;
 
   ngOnInit() {
     this.stylistProfile = this.stateService.retrieveCustomer();
@@ -29,10 +39,9 @@ export class StylistHomeComponent implements OnInit {
   }
 
   confirmBooking(id: number, index: number) {
-    console.log('TODO: color this booking div green');
     this.bookingService.confirmBooking(id)
       .subscribe(
-        result => console.log(result),
+        result => this.bookings[index].isconfirmed = 1,
         err => console.log(err)
       );
   }

@@ -49,8 +49,7 @@ app.post('/api/stripe', function(req, res) {
     description: "Example charge",
     source: token,
   }, function(err, charge) {
-  // asynchronously called
-  console.log('error charging card ', err, charge);
+    err ? console.log(err) : res.status(200).json(charge);
   });
 });
 
@@ -146,6 +145,7 @@ app.put('/api/userstylist/:id', function (req, res) {
   var gender = req.body.gender;
   var image_url = req.body.image_url;
   var location = req.body.location;
+  console.log(req.params);
   helpers.updateProfile(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, function() {
     res.send('Got a PUT request at /api/userstylist/' + req.params.id);
   });
@@ -229,7 +229,11 @@ app.put('/booking/:bookingid', function (req, res) {
   helpers.updateBooking(id_users, id_stylists, isconfirmed, time, location, id, function() {
     res.send('Got a PUT(update) request at /booking')
   });
+});
 
+app.put('/api/bookings/confirmed/seen/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.seenConfirmedBooking(id, result => res.status(200).json(result));
 });
 
 // HAIRCUT STYLES //
@@ -273,27 +277,35 @@ app.post('/api/messages', (req, res) => {
 app.get('/api/messages/:id', (req, res) => {
   helpers.getMessages(req.params.id, (data) => {
     let messages = {};
-    data.forEach(message => {
-      let convo = [message.sender, message.recipient];
-      // check if convo or convo reverse is already a key in messages
-      if (messages.hasOwnProperty(convo) || messages.hasOwnProperty(convo.reverse())) {
-        // if convo exists in messages
-        if (messages[convo]) {
-          // push message into that
-          messages[convo].push(message);
-        } else {
-        // if convo reverse exists in messages
-          // push message into that
-          messages[convo.reverse()].push(message);
-        }
+    data.forEach((message, index) => {
+      const sender = message.id_sender === Number(req.params.id) ? {id: message.id_recipient, name: message.recipient} : {id: message.id_sender, name: message.sender};
+      if (messages[sender.id]) {
+        messages[sender.id].messages.push(message);
       } else {
-        //initialize convo at message as empty array
-        messages[convo] = [];
-        messages[convo].push(message);
+        messages[sender.id] = {
+          messages: [message],
+          sender: sender.name
+        };
       }
+    //   let convo = [message.sender, message.recipient];
+    //   if (messages.hasOwnProperty(convo) || messages.hasOwnProperty(convo.reverse())) {
+    //     if (messages[convo]) {
+    //       messages[convo].push(message);
+    //     } else {
+    //       messages[convo.reverse()].push(message);
+    //     }
+    //   } else {
+    //     messages[convo] = {};
+    //     messages[convo].push(message);
+    //   }
     });
     res.status(200).json(messages);
   });
+});
+
+app.get('/api/bookings/confirmed/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.getConfirmed(id, results => res.status(200).json(results));
 });
 
 app.delete('/api/messages', (req, res) => {
