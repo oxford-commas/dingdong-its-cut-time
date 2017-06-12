@@ -9,7 +9,7 @@
     <nav class="superNav">
       <ul class="unorderedList">
         <li class="customerContainer">
-          <h4>Welcome {{currentCustomer.name}}, where are you located?</h4>
+          <h4>Welcome {{profile.name}}, where are you located?</h4>
         </li>
         <li class="search">
           <form class="superForm">
@@ -26,28 +26,10 @@
             </div>
           </form>
         </li>
-        <li class="dropdownList">
-          <div class="dropdown">
-            <span class="caret"><p>{{currentCustomer.name}}</p></span>
-            <div class="dropdown-content">
-              <ul class="dropdownUl">
-                <li
-                  *ngIf="stateService.retrieveCustomer().type===1"
-                  [routerLink]="['/home']">
-                  <h4>Home</h4>
-                </li>
-                <li
-                  *ngIf="stateService.retrieveCustomer().type===0"
-                  [routerLink]="['/stylisthome']">
-                  <h4>Home</h4>
-                </li>
-                <li [routerLink]="['/messages']"><h4>Messages</h4></li>
-                <li [routerLink]="['/customerProfile']"><h4>Settings</h4></li>
-                <li [routerLink]="['/login']"><h4>Logout</h4></li>
-              </ul>
-            </div>
-          </div>
-        </li>
+        <span [routerLink]="['/landing']">Appointments</span>
+        <span [routerLink]="['/customerProfile']">Profile</span>
+        <span [routerLink]="['/messages']">Messages</span>
+        <span [routerLink]="['/login']">Log out</span>
       </ul>
     </nav>
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { StylistService, LocationService, StateService } from '../../../services';
 
 @Component({
@@ -13,15 +13,10 @@ export class CustomerNavbarComponent {
     private stateService: StateService
   ) {}
 
-  @Input() customerId: number;
   @Input() searchLocation: string;
   @Output() locationChange = new EventEmitter();
 
-  private currentCustomer: any;
-
-  ngOnInit() {
-    this.currentCustomer = this.stateService.retrieveCustomer();
-  }
+  public profile = this.stateService.retrieveCustomer();
 
   public handleSearchLocationChange(newLocation) {
     this.searchLocation = newLocation;
