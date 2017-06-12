@@ -6,6 +6,16 @@
   color: white;
 }
 
+a {
+  align-self: center;
+  color: #F9B71A;
+  border-bottom: 1px solid #F9B71A;
+}
+
+a:hover{
+  color: white;
+}
+
 .header {
   height: 25%;
   padding-top: 10em;
@@ -73,4 +83,7 @@
   width: 20%;
   border-radius: 20px;
   margin-right: 4em;
+  margin-bottom: 1em;
 };
+
+
