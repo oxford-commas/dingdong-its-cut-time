@@ -17,11 +17,18 @@
 
 .formWrapper {
   background: rgba(255,255,255,0.4);
+  height: 70%;
   border-radius: 5px;
-  align-self: center;
-  width: 85%;
-  height: 50%;
-  margin-top: 1em;
-  padding-left: 2em;
-  padding-right: 2em;
+  width: 83%;
+  margin-top: 3em;
+  padding-left: 3em;
+  padding-right: 3em;
+  margin-left: 5em;
+  border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+}
+
+.usernamePassword {
+  border: 2px solid red;
 }

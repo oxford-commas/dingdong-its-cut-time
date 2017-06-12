@@ -39,6 +39,7 @@ export class SignupStylistComponent {
         styles.push(parseInt(key));
       }
     }
+    console.log(styles)
     this.requestService.postStylist(newStylist)
       .subscribe(
         data => {
