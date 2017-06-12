@@ -79,13 +79,20 @@ var getBookings = function(userId, callback) {
   model.con.query(sql, [userId], (err, results) => callback(results));
 };
 
-var getPendingBookings = (userId, callback) => {
-  var sql = `
-    SELECT b.id, b.id_stylists, b.isconfirmed, b.time, b.location, b.isComplete, us.phonenumber, us.name, us.image_url
-    FROM bookings b INNER JOIN users_stylists us
-    WHERE b.id_users = ? OR b.id_stylists = ? AND b.isconfirmed = 0
-  `;
-  model.con.query(sql, [userId, userId], (err, results) => callback(results));
+var getPendingBookings = (userId, type, callback) => {
+  if (type === 0) {
+    var sql = `
+      SELECT b.id, b.id_stylists, b.isconfirmed, b.time, b.location, b.isComplete, us.phonenumber, us.name, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.id_stylists = ? AND b.isconfirmed = 0 AND us.id = b.id_users`;
+  } else if (type === 1) {
+    var sql = `
+      SELECT b.id, b.id_stylists, b.isconfirmed, b.time, b.location, b.isComplete, us.phonenumber, us.name, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.id_users = ? AND b.isconfirmed = 0 AND us.id = b.id_stylists`;
+  }
+
+  model.con.query(sql, [userId], (err, results) => callback(results));
 };
 
 var confirmBooking = (bookingId, callback) => {
@@ -155,13 +162,23 @@ var updateBooking = function(id_users, id_stylists, isconfirmed, time, location,
   });
 }
 
-var getConfirmed = (id, callback) => {
-  model.con.query(`
-    SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
-    FROM bookings b INNER JOIN users_stylists us
-    WHERE b.isconfirmed = 1 AND b.id_users = ?
-    AND us.id = b.id_stylists AND b.isComplete = 0
-  `, [id], (err, results) => callback(results));
+var getConfirmed = (id, type, callback) => {
+  if (type === 0) {
+    var sql = `
+      SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.isconfirmed = 1 AND b.id_stylists = ?
+      AND us.id = b.id_users AND b.isComplete = 0
+    `;
+  } else if (type === 1) {
+    var sql = `
+      SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.isconfirmed = 1 AND b.id_users = ?
+      AND us.id = b.id_stylists AND b.isComplete = 0
+    `;
+  }
+  model.con.query(sql, [id], (err, results) => callback(results));
 }
 
 // helper to add service to the services table in database

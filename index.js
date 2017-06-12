@@ -170,9 +170,10 @@ app.post('/api/bookings', function(req, res) {
   });
 });
 
-app.get('/api/bookings/pending/:id', (req, res) => {
+app.get('/api/bookings/pending/:type/:id', (req, res) => {
   var id = req.params.id;
-  helpers.getPendingBookings(id, result => res.status(200).json(result));
+  var type = Number(req.params.type);
+  helpers.getPendingBookings(id, type, result => res.status(200).json(result));
 });
 
 // get bookings for a customer that need to be paid for
@@ -308,9 +309,10 @@ app.get('/api/messages/:id', (req, res) => {
   });
 });
 
-app.get('/api/bookings/confirmed/:id', (req, res) => {
+app.get('/api/bookings/confirmed/:type/:id', (req, res) => {
   var id = req.params.id;
-  helpers.getConfirmed(id, results => res.status(200).json(results));
+  var type = Number(req.params.type);
+  helpers.getConfirmed(id, type, results => res.status(200).json(results));
 });
 
 app.delete('/api/messages', (req, res) => {
