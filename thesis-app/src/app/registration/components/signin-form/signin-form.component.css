@@ -1,3 +1,7 @@
+body {
+  background-image: url('http://cdn.wallpapersafari.com/44/5/HQjIBU.jpg')
+}
+
 .componentWrapper {
   display: flex;
   flex-direction: column;
@@ -15,7 +19,7 @@
   flex-direction: row;
   margin-left: 2em;
   margin-right: 2em;
-  height: 50vh;
+  height: 35vh;
   width: 95%;
   border: 2px solid black;
   justify-content: center;
@@ -27,4 +31,28 @@
   height: 100%;
   width: 50%;
   border: 2px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginButtons {
+  background: rgba(255,255,255,0.5);
+}
+
+.flexItem * > {
+  flex: 1 1;
+  margin: 1em;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  background-color: #F9B71A;
+  width: 60%;
+  border-radius: 20px;
+  margin-top: 1em;
 }
