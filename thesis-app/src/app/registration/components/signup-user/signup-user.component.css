@@ -11,17 +11,16 @@
   padding-top: 10em;
   margin-left: 2em;
   margin-right: 2em;
-  width: 85%;
+  width: 83%;
   align-self: center;
 }
 
 .formWrapper {
   background: rgba(255,255,255,0.4);
-  border-radius: 10px;
+  border-radius: 5px;
   align-self: center;
   width: 85%;
   height: 50%;
-  padding: 1em;
   margin-top: 1em;
   padding-left: 2em;
   padding-right: 2em;
@@ -38,7 +37,6 @@
 .usernamePassword {
   display: flex;
   flex: 1 1 100%;
-  border: 2px solid red;
   width: 100%;
   height: 48%;
   align-items: center;
@@ -46,7 +44,6 @@
 
 .username {
   flex: 1 1 49%;
-  border: 2px solid yellow;
 }
 .username input {
   width: 85%;
@@ -63,7 +60,10 @@
 }
 
 .formItem2 {
-  border: 2px solid red;
   height: 55%;
+}
+
+.email input {
+  width: 92%;
 }
 
