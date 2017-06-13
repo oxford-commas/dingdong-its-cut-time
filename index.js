@@ -134,6 +134,7 @@ app.post('/api/userstylist', function (req, res) {
 
 // updates users or stylists information in the database
 app.put('/api/userstylist/:id', function (req, res) {
+  console.log('received account information: ',req.body);
   var id = req.params.id;
   var type = req.body.type;
   var name = req.body.name;
@@ -145,7 +146,6 @@ app.put('/api/userstylist/:id', function (req, res) {
   var gender = req.body.gender;
   var image_url = req.body.image_url;
   var location = req.body.location;
-  console.log(req.params);
   helpers.updateProfile(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, function() {
     res.send('Got a PUT request at /api/userstylist/' + req.params.id);
   });

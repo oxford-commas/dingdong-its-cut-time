@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { MessageService } from './message.service';
 import { BookingService } from './booking.service';
+import { RequestService } from './request.service';
 
 let customerProfile;
 
@@ -10,7 +11,8 @@ export class StateService {
 
   constructor(
     private messageService: MessageService,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private requestService: RequestService
   ) {}
 
   addCustomer(stylist) {
@@ -28,6 +30,12 @@ export class StateService {
       site_url: stylist.site_url,
       type: stylist.type
     };
+
+    this.requestService.getUserImg(stylist.id)
+      .subscribe(
+        data => customerProfile.image_url = data.url,
+        err => console.log(err)
+      );
 
     this.messageService.getMessages(stylist.id)
       .subscribe(
@@ -56,6 +64,13 @@ export class StateService {
 
   retrieveCustomer() {
     return customerProfile;
+  }
+
+  updateCustomer(updates) {
+    customerProfile = {
+      ...customerProfile,
+      ...updates
+    };
   }
 
 }

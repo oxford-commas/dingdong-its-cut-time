@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RequestService, DeletionService, StateService } from '../../../services';
 
-const URL = '/api/profile/';
 @Component({
   selector: 'customer-profile',
   templateUrl: './customer-profile.component.html',
   styleUrls: ['./customer-profile.component.css']
 })
-export class CustomerProfileComponent implements OnInit {
+export class CustomerProfileComponent {
   constructor(
     private route: ActivatedRoute,
     private requestService: RequestService,
@@ -18,19 +17,18 @@ export class CustomerProfileComponent implements OnInit {
     private router: Router
   ) {}
 
-  public profile: any; // TODO: INTERFACE THIS
+  public profile = this.stateService.retrieveCustomer();
+  // Form ngModels
+  public name;
+  public password;
+  public email;
+  public phonenumber;
+  public site_url;
+  public billingaddress;
+  public image_url;
+  //
   public modalStyle: string = 'none';
   public showModal: boolean = false;
-
-  ngOnInit() {
-    this.profile = this.stateService.retrieveCustomer();
-    this.requestService.getUserImg(this.profile.id)
-      .subscribe(
-        response => {
-          this.profile.url = response.url;
-        }
-      )
-  }
 
   public handleDeleteAccount() {
     this.deletionService.deleteAccount(this.profile.id)
@@ -41,33 +39,35 @@ export class CustomerProfileComponent implements OnInit {
       );
   }
 
-  public handleSaveChanges(form: NgForm) {
-    const newObj = {
-      name: form.value.username || this.profile.name,
-      password: form.value.password || this.profile.password,
-      billingaddress: form.value.billingaddress || this.profile.billingaddress,
-      image_url: this.profile.image_url,
-      email: form.value.email || this.profile.email,
-      phonenumber: form.value.phonenumber || this.profile.phonenumber,
-      site_url: form.value.website || this.profile.site_url,
+  public handleSaveChanges(updateForm) {
+    const accountInformation = {
+      billingaddress: updateForm.billingaddress || this.profile.billingaddress,
+      email: updateForm.email || this.profile.email,
       id: this.profile.id,
-      type: 1
-    }
-    this.profile.name = form.value.username || this.profile.name;
-    this.profile.password = form.value.password || this.profile.password;
-    this.profile.billingaddress = form.value.billingaddress || this.profile.billingaddress;
-    this.profile.image_url = this.profile.image_url;
-    this.profile.email = form.value.email || this.profile.email;
-    this.profile.phonenumber = form.value.phonenumber || this.profile.phonenumber;
-    this.profile.site_url = form.value.site_url || this.profile.site_url;
-    this.profile.id = form.value.id || this.profile.id;
+      image_url: updateForm.image_url || this.profile.image_url,
+      name: updateForm.name || this.profile.name,
+      password: updateForm.password || this.profile.password,
+      phonenumber: updateForm.phonenumber || this.profile.phonenumber,
+      site_url: updateForm.site_url || this.profile.site_url,
+      type: this.profile.type
+    };
+    // update the state
+    this.stateService.updateCustomer(accountInformation);
+    // refresh page state to reflect changes to user
+    this.profile = this.stateService.retrieveCustomer();
 
-    this.requestService.changeUser(newObj)
+    this.requestService.changeUser(accountInformation)
       .subscribe(
-        data => {
-          console.log(data);
-        }
-      )
+        data => console.log(data),
+        err => console.log(err)
+      );
+    // clear fields
+    this.name = '';
+    this.password = '';
+    this.email = '';
+    this.phonenumber = '';
+    this.billingaddress = '';
+
     this.showModal = false;
   }
 
@@ -79,8 +79,7 @@ export class CustomerProfileComponent implements OnInit {
     }
   }
 
-
- public toggleModal() {
+  public toggleModal() {
     this.showModal = !this.showModal;
   }
 }
