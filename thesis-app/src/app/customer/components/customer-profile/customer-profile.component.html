@@ -14,6 +14,7 @@
     <h4>Email: {{profile.email}}</h4>
     <h4>Phone Number: {{profile.phonenumber}}</h4>
     <h4 *ngIf="profile.type===0">Personal Website: {{profile.site_url}}</h4>
+    <h4>About Me: {{profile.aboutMe}}</h4>
   </div>
   <div class="buttonContainer2">
     <button (click)="toggleModal()">Edit Account Info</button>
@@ -46,8 +47,9 @@
         <h4>Billing Address: {{profile.billingaddress}}</h4>
           <input type="text" [(ngModel)]="billingaddress" name="billingaddress" />
           <br/>
-        <h4>Upload Profile Photo</h4>
-          <input type="file" name="image_url" />
+        <h4>About Me</h4>
+          <!-- <input type="file" name="image_url" (change)="uploadImage(this.files)"/> -->
+          <textarea [(ngModel)]="aboutMe" name="aboutMe"></textarea>
           <br />
         <div>
           <button type="submit">Save changes</button>

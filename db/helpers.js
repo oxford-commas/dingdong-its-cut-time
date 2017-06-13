@@ -54,9 +54,9 @@ var updateImage = function (imageUrl, id, callback) {
   });
 };
 
-var updateProfile = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, callback) {
-  var sql = 'UPDATE users_stylists SET type = ?, name = ?, password = ?, billingaddress = ?, phonenumber = ?, email = ?, site_url = ?, gender = ?, image_url = ? WHERE id = ?'
-  model.con.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id],function (err, result) {
+var updateProfile = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe, id, callback) {
+  var sql = 'UPDATE users_stylists SET type = ?, name = ?, password = ?, billingaddress = ?, phonenumber = ?, email = ?, site_url = ?, gender = ?, image_url = ?, aboutMe = ? WHERE id = ?'
+  model.con.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe, id],function (err, result) {
     if (err) throw err;
     console.log("1 record updated");
     callback();

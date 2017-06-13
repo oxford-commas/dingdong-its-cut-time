@@ -22,21 +22,22 @@ export class StateService {
       email: stylist.email,
       gender: stylist.gender,
       id: stylist.id,
-      image_url: stylist.image_url,
+      image_url: 'http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png',
       latitude: stylist.latitude,
       longitude: stylist.longitude,
       name: stylist.name,
       password: stylist.password,
       phonenumber: stylist.phonenumber,
       site_url: stylist.site_url,
-      type: stylist.type
+      type: stylist.type,
+      aboutMe: stylist.aboutMe
     };
 
-    this.requestService.getUserImg(stylist.id)
-      .subscribe(
-        data => customerProfile.image_url = data.url,
-        err => console.log(err)
-      );
+    // this.requestService.getUserImg(stylist.id)
+    //   .subscribe(
+    //     data => customerProfile.image_url = data.url,
+    //     err => console.log(err)
+    //   );
 
     this.messageService.getMessages(stylist.id)
       .subscribe(

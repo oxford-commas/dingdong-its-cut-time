@@ -26,6 +26,7 @@ export class CustomerProfileComponent {
   public site_url;
   public billingaddress;
   public image_url;
+  public aboutMe;
   //
   public modalStyle: string = 'none';
   public showModal: boolean = false;
@@ -40,17 +41,25 @@ export class CustomerProfileComponent {
   }
 
   public handleSaveChanges(updateForm) {
+    console.log('update form: ', updateForm);
     const accountInformation = {
       billingaddress: updateForm.billingaddress || this.profile.billingaddress,
       email: updateForm.email || this.profile.email,
       id: this.profile.id,
-      image_url: updateForm.image_url || this.profile.image_url,
+      // image_url: updateForm.image_url || this.profile.image_url,
       name: updateForm.name || this.profile.name,
       password: updateForm.password || this.profile.password,
       phonenumber: updateForm.phonenumber || this.profile.phonenumber,
       site_url: updateForm.site_url || this.profile.site_url,
-      type: this.profile.type
+      type: this.profile.type,
+      aboutMe: updateForm.aboutMe || this.profile.aboutMe
     };
+
+    // this.requestService.postUserImg(profile.id, )
+    //   .subscribe(
+    //     data => console.log(data),
+    //     err => console.log(err)
+    //   );
     // update the state
     this.stateService.updateCustomer(accountInformation);
     // refresh page state to reflect changes to user
@@ -68,6 +77,7 @@ export class CustomerProfileComponent {
     this.email = '';
     this.phonenumber = '';
     this.billingaddress = '';
+    this.aboutMe = '';
 
     this.showModal = false;
   }
