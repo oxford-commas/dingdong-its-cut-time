@@ -294,11 +294,11 @@ function userIndex(num) {
 
 }
 
-const booksingsArray = [
+const bookingsArray = [
   {
     name: 'Mateo',
-    userid: userIndex(4),
-    stylistid: userIndex(2),
+    id_users: userIndex(4),
+    id_stylists: userIndex(2),
     isconfirmed: 0,
     isComplete: 0,
     time: new Date(),
@@ -306,8 +306,8 @@ const booksingsArray = [
   },
   {
     name: 'mrhighland',
-    userid: userIndex(4),
-    stylistid: userIndex(2),
+    id_users: userIndex(4),
+    id_stylists: userIndex(2),
     isconfirmed: 1,
     isComplete: 0,
     time: new Date(),
@@ -315,8 +315,8 @@ const booksingsArray = [
   },
   {
     name: 'bigbess',
-    userid: userIndex(6),
-    stylistid: userIndex(2),
+    id_users: userIndex(6),
+    id_stylists: userIndex(2),
     isconfirmed: 0,
     isComplete: 0,
     time: '11:00am',
@@ -325,8 +325,8 @@ const booksingsArray = [
   {
 
     name: 'dnalounge',
-    userid: userIndex(15),
-    stylistid: userIndex(16),
+    id_users: userIndex(15),
+    id_stylists: userIndex(16),
     isconfirmed: 0,
     isComplete: 0,
     time: '1:00pm',
@@ -335,10 +335,9 @@ const booksingsArray = [
 
    {
     name: 'palaceoffinearts',
-    userid: userIndex(15),
-    stylistid: userIndex(19),
+    id_users: userIndex(15),
+    id_stylists: userIndex(19),
     isconfirmed: 0,
-
     isComplete: 0,
     time: '1:00pm',
     location: '2323 Lyon St, San Francisco'
@@ -652,7 +651,7 @@ const stylistServices = [
 ]
 
 
-/*
+
 stylistArray.forEach(stylist => {
   helpers.addUserStylist(
     stylist.id,
@@ -675,8 +674,8 @@ stylistArray.forEach(stylist => {
     });
 });
 
-*/
-booksingsArray.forEach(booking => {
+
+bookingsArray.forEach(booking => {
 
   helpers.addToBookings(
     booking.id_users,

@@ -1,5 +1,4 @@
-<div class="background"></div>
-<customer-navbar class="nav-bar"
+<customer-navbar
   [customerId]="customerProfile.id"
   [searchLocation]="searchLocation"
   (locationChange)="onSearchLocationChange($event)"
@@ -17,7 +16,7 @@
     </div>
   </div>
 
-  <div class="mapContainer">
+  <div>
     <customer-map
       class="map"
       [searchLocation]="searchLocation"
