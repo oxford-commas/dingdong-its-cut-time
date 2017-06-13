@@ -1,120 +1,27 @@
-.poppadiv {
-  border: 3px solid black;
-  border-radius: 20px;
-  box-shadow: 10px 10px 5px rgba(173, 216, 230, 0.9);
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 93%;
-  margin: 5ch;
-}
-
-.name {
-  width: 100%;
-  height: 10%;
-  flex: 1 1;
-}
-
-.profile {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 1.5em;
-}
-
-.profileImage {
-  border-radius: 150px;
-  width: 100%;
-  height: 100%;
-}
-
-.locationWrapper {
-  flex: 1 1;
-  width: 30%;
-  padding: 1em;
-  height: 100%;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.servicesContainer {
-  flex: 1 1 50%;
-  width: 65%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.buttonContainer {
-  width: 1%;
-  flex: 1 1 1%;
-}
-
-
-.latLong {
-  border-top: 2px solid;
-  height: 50%;
-  width: 100%;
-}
-
-
-.personalContainer {
-  padding: 1em;
-  margin: 1em;
-  display: flex;
-  width: 100%;
-}
-
-
-.heading {
-  flex: 1 1;
-}
-
-.location {
-  flex: 1 1;
-}
-
-.message {
-  flex: 1 1;
-}
-
-textarea {
-  width: 75ch;
-  height: 25ch;
-}
-
-.button {
-  flex: 1 1;
-  align-self: right;
-}
-
-.listStyles {
-  border-bottom: 2px solid black;
-  width: 100%;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.styleItems {
-  padding: 3px;
-  margin: 3px;
-}
-
-.linktosite {
-  border: 1px solid black;
-  width: 75%;
-}
-/*
-.link {
-  flex: 1 1 50%;
+.componentWrapper {
   border: 2px solid red;
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
 }
-*/
+
+.subHeader {
+  border: 2px solid red;
+  height: 25%;
+  width: 100%;
+}
+
+.profileContainer {
+  border: 2px solid red;
+  height: 75%;
+}
+
+
+
+
+
+
+
+
 .paragraph {
   overflow: scroll;
   width: 100%;

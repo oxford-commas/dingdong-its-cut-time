@@ -1,47 +1,34 @@
-<customer-navbar></customer-navbar>
-<div *ngIf="!!isProfileFetched">
-  <div class="poppadiv">
-    <div>
-      <h2 class="name">{{ stylistProfile.name }}</h2>
-    </div>
-    <div class="profile" >
-      <div class="locationWrapper">
-        <img class="profileImage" [src]=stylistProfile.image_url />
-        <h4>You can find me @</h4>
-        <div class="latLong">
-          <!-- Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}} -->
-          <p>{{ stylistProfile.billingaddress }}</p>
-          <p>{{ stylistProfile.phonenumber }}</p>
-        </div>
-      </div>
+<div class="componentWrapper">
+  <customer-navbar></customer-navbar>
 
-      <div class="servicesContainer">
-        <h4>Services I provide</h4>
-        <div class="listStyles">
-          <div class="styleItems" *ngFor="let style of ['hard', 'coded', 'styles']">
-            <h5>{{style}}</h5>
-          </div>
-        </div>
-        <div class="aboutMe">
-          <h4>About Me</h4>
-          <div class="paragraph">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-          </div>
-        </div>
-
-        <h4>Link to personal site:</h4>
-        <div class="container row personalContainer">
-          <a href="stylistProfile.site_url">{{stylistProfile.site_url}}</a>
-        </div>
-      </div>
+  <div class="subHeader">
+    <h4>My Profile</h4>
       <div class="buttonContainer">
         <button (click)="toggleModal()">Request a cut</button>
       </div>
-    </div>
   </div>
+
+  <!-- <div class="profileContainer">
+
+  </div> -->
 </div>
 
-<div class="container row modalWrapper" [style.display]="getStyle()">
+ <h2>{{ stylistProfile.name }}</h2>
+    <p>{{ stylistProfile.billingaddress }}</p>
+    <p>{{ stylistProfile.phonenumber }}</p>
+    <div class="styleItems" *ngFor="let style of ['hard', 'coded', 'styles']">
+      <h5>{{style}}</h5>
+    </div>
+
+    <h4>About Me</h4>
+    <div>
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </div>
+    <a href="stylistProfile.site_url">{{stylistProfile.site_url}}</a>
+
+<!-- <img class="profileImage" [src]=stylistProfile.image_url /> -->
+
+<!-- <div class="container row modalWrapper" [style.display]="getStyle()">
   <div class="bigWrapper">
     <form
       (ngSubmit)="submitMessage(f)" #f="ngForm"
@@ -70,3 +57,4 @@
     </form>
   </div>
 </div>
+ -->
