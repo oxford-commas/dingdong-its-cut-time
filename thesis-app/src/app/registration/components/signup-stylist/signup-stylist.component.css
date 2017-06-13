@@ -4,6 +4,7 @@
   background-image: url('http://cdn.wallpapersafari.com/44/5/HQjIBU.jpg');
   height: 100vh;
   color: white;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .header {
@@ -17,14 +18,13 @@
 
 .formWrapper {
   background: rgba(255,255,255,0.4);
-  height: 70%;
+  height: 60%;
   border-radius: 5px;
   width: 83%;
   margin-top: 3em;
   padding-left: 3em;
   padding-right: 3em;
   margin-left: 5em;
-  border: 2px solid red;
   display: flex;
   flex-direction: column;
 }
@@ -74,7 +74,7 @@
 }
 
 .spanContainer {
-  border: 2px solid red;
+  /*border: 2px solid red;*/
 }
 
 .buttonContainer {

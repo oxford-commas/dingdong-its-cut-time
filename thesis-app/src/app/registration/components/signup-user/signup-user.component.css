@@ -4,6 +4,7 @@
   background-image: url('http://cdn.wallpapersafari.com/44/5/HQjIBU.jpg');
   height: 100vh;
   color: white;
+  font-family: 'Montserrat', sans-serif;
 }
 
 a {
@@ -31,7 +32,7 @@ a:hover{
   align-self: center;
   width: 85%;
   height: 50%;
-  margin-top: 1em;
+  margin-top: 3em;
   padding-left: 2em;
   padding-right: 2em;
 }
@@ -72,7 +73,7 @@ a:hover{
 }
 
 .formItem2 {
-  height: 52%;
+  height: 48%;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
