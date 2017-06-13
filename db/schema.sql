@@ -15,7 +15,8 @@ CREATE TABLE IF NOT EXISTS `users_stylists` (
   `latitude` DOUBLE DEFAULT NULL,
   `site_url` VARCHAR(35) DEFAULT NULL,
   `gender` VARCHAR(8) DEFAULT NULL,
-  `image_url` VARCHAR(45) DEFAULT NULL,
+  `image_url` VARCHAR(100) DEFAULT NULL,
+  `aboutMe` VARCHAR(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 

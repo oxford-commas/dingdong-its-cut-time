@@ -27,7 +27,8 @@
           </form>
         </li> -->
         <span [routerLink]="['/landing']">Appointments</span>
-        <span [routerLink]="['/customerProfile']">Profile</span>
+        <span *ngIf="stateService.retrieveCustomer().type===1" [routerLink]="['/customerProfile']">Profile</span>
+        <span *ngIf="stateService.retrieveCustomer().type===0" [routerLink]="['/stylistProfile', stateService.retrieveCustomer().id]">Profile</span>
         <span [routerLink]="['/messages']">Messages</span>
         <span [routerLink]="['/login']">Log out</span>
       <!-- </ul> -->

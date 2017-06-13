@@ -117,7 +117,8 @@ app.post('/api/userstylist', function (req, res) {
   var gender = req.body.gender;
   var image_url = req.body.image_url;
   var location = req.body.location;
-  helpers.addUserStylist(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, function(result) {
+  var aboutMe = 'Welcome to my profile!';
+  helpers.addUserStylist(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe, function(result) {
     // Get id from result
     var id = result.insertId;
     // get location points/add longitude and latitude in stylists/users profile in database based on location provided

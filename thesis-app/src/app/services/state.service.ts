@@ -16,6 +16,7 @@ export class StateService {
   ) {}
 
   addCustomer(stylist) {
+    console.log('state service initialization: ', stylist);
     customerProfile = {
       billingaddress: stylist.billingaddress,
       email: stylist.email,

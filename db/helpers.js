@@ -1,8 +1,8 @@
 var model = require('./model.js');
 
-var addUserStylist = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, callback) {
-  var sql = "INSERT INTO users_stylists (type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-  model.con.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url],function (err, result) {
+var addUserStylist = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe, callback) {
+  var sql = "INSERT INTO users_stylists (type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  model.con.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe],function (err, result) {
     if (err) throw err;
     callback(result);
   });
