@@ -1,25 +1,43 @@
-<customer-navbar [customerId]="customerId"></customer-navbar>
-<div class="poppaDiv">
-  <div class="profileContainer">
-    <img class="profileImg" [src]="profile.url" />
-    <div class="billingAddressContainer">
-      <h4>Billing Address:</h4>
-      <h4 class="profAddress">{{profile.billingaddress}}</h4>
+<div class="componentWrapper">
+  <customer-navbar [customerId]="customerId"></customer-navbar>
+  <div class="subHeader">
+    <h2>My Profile</h2>
+    <div class="buttonContainer">
+      <button (click)="toggleModal()">Edit Account Info</button>
+      <button (click)="handleDeleteAccount()">Delete my account</button>
     </div>
   </div>
-  <div class="userInfoContainer">
-    <h1>{{profile.name}}'s profile</h1>
-    <h4>Username: {{profile.name}}</h4>
-    <h4>Password: *********</h4>
-    <h4>Email: {{profile.email}}</h4>
-    <h4>Phone Number: {{profile.phonenumber}}</h4>
-    <h4>Personal Website: {{profile.site_url}}</h4>
-  </div>
-  <div class="buttonContainer2">
-    <button (click)="toggleModal()">Edit Account Info</button>
-    <button (click)="handleDeleteAccount()">Delete my account</button>
+
+   <div class="profileContainer">
+    <div class="userInfoContainer">
+      <div class="imageContainer">
+        <img class="profileImage" [src]="profile.url" />
+        <h3>{{profile.name}}</h3>
+      </div>
+
+      <div class="userInfo">
+        <h5><span class="glyphicon glyphicon-question-sign"></span> {{ profile.billingaddress }}</h5>
+        <h5><span class="glyphicon glyphicon-question-sign"></span> {{profile.site_url}}</h5>
+        <h5><span class="glyphicon glyphicon-question-sign"></span> {{profile.phonenumber }}</h5>
+      </div>
+    </div>
+    <div class="aboutMeContainer">
+      <div>
+        <h4>About Me</h4>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </div>
+    </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+<!--
 
 
 <div class="modalWrapper" [style.display]="getStyle()">
@@ -57,4 +75,4 @@
       </form>
     </div>
   </div>
-</div>
+</div> -->
