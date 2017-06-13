@@ -1,0 +1,22 @@
+.componentWrapper {
+  border: 2px solid red;
+}
+
+.apptContainer {
+  border: 2px solid red;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 3em;
+  padding-right: 3em;
+  padding-top: 1em;
+}
+
+.apptContainer button {
+  background-color: #F9B71A;
+  color: #ffffff;
+  height: 50%;
+  width: 18%;
+  align-self: flex-end;
+  margin-bottom: 1em;
+  border-radius: 20px;
+}
