@@ -1,9 +1,9 @@
 .componentWrapper {
   border: 2px solid red;
+  height: 100vh;
 }
 
 .apptContainer {
-  border: 2px solid red;
   display: flex;
   justify-content: space-between;
   padding-left: 3em;
@@ -15,8 +15,26 @@
   background-color: #F9B71A;
   color: #ffffff;
   height: 50%;
-  width: 18%;
+  width: 15%;
   align-self: flex-end;
   margin-bottom: 1em;
-  border-radius: 20px;
+  border-radius: 23px;
+}
+
+.confirmedContainer {
+  border: 2px solid red;
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+.awaitingContainer {
+  border: 2px solid red;
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+.pendingContainer {
+  border: 2px solid red;
+  padding-left: 3em;
+  padding-right: 3em;
 }

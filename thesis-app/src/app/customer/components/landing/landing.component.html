@@ -3,59 +3,74 @@
 
   <!-- Customer Landing -->
   <div *ngIf="profile.type===1">
+
     <div class="apptContainer">
       <h2>Appointments</h2>
       <button [routerLink]="['/home']">Find Stylist</button>
     </div>
 
-    <h2>Confirmed</h2>
-    <div
-      *ngFor="let confirmedBooking of profile.confirmedBookings; let i = index"
-      class="booking-confirmed"
-    >
-      <booking
-        [name]="confirmedBooking.name"
-        [image_url]="confirmedBooking.image_url"
-        [time]="confirmedBooking.time"
-        [phoneNumber]="confirmedBooking.phonenumber"
-        [location]="confirmedBooking.location"
+    <div class="confirmedContainer">
+      <h2>Confirmed</h2>
+      <div
+        *ngFor="let confirmedBooking of profile.confirmedBookings; let i = index"
+        class="booking-confirmed"
       >
-      </booking>
+        <booking
+          [name]="confirmedBooking.name"
+          [image_url]="confirmedBooking.image_url"
+          [time]="confirmedBooking.time"
+          [phoneNumber]="confirmedBooking.phonenumber"
+          [location]="confirmedBooking.location"
+        >
+        </booking>
+      </div>
     </div>
 
-    <h2>Awaiting Payment</h2>
-    <div *ngFor="let dueBooking of profile.dueBookings; let i = index">
-      <booking
-        [name]="dueBooking.name"
-        [image_url]="dueBooking.image_url"
-        [time]="dueBooking.time"
-        [phoneNumber]="dueBooking.phonenumber"
-        [location]="dueBooking.location"
-      >
-      </booking>
-      <payment-input
-        (handleProcessedPayment)="payBooking(dueBooking.id, i)"
-        [stylistName]="dueBooking.name"
-      >
-      </payment-input>
+    <div class="awaitingContainer">
+      <h2>Awaiting Payment</h2>
+      <div *ngFor="let dueBooking of profile.dueBookings; let i = index">
+        <booking
+          [name]="dueBooking.name"
+          [image_url]="dueBooking.image_url"
+          [time]="dueBooking.time"
+          [phoneNumber]="dueBooking.phonenumber"
+          [location]="dueBooking.location"
+        >
+        </booking>
+        <payment-input
+          (handleProcessedPayment)="payBooking(dueBooking.id, i)"
+          [stylistName]="dueBooking.name"
+        >
+        </payment-input>
+      </div>
     </div>
 
-    <h2>Pending</h2>
-    <div
-      *ngFor="let pendingBooking of profile.pendingBookings; let i = index"
-      class="booking-confirmed"
-    >
-      <booking
-        [name]="pendingBooking.name"
-        [image_url]="pendingBooking.image_url"
-        [time]="pendingBooking.time"
-        [phoneNumber]="pendingBooking.phonenumber"
-        [location]="pendingBooking.location"
+    <div class="pendingContainer">
+      <h2>Pending</h2>
+      <div
+        *ngFor="let pendingBooking of profile.pendingBookings; let i = index"
+        class="booking-confirmed"
       >
-      </booking>
-      <button (click)="declineBooking(pendingBooking.id, i)">Decline</button>
+        <booking
+          [name]="pendingBooking.name"
+          [image_url]="pendingBooking.image_url"
+          [time]="pendingBooking.time"
+          [phoneNumber]="pendingBooking.phonenumber"
+          [location]="pendingBooking.location"
+        >
+        </booking>
+        <button (click)="declineBooking(pendingBooking.id, i)">Decline</button>
+      </div>
     </div>
+
+
   </div>
+
+
+
+
+
+
 
   <!-- Stylist Landing -->
   <div *ngIf="profile.type===0">
