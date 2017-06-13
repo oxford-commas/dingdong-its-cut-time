@@ -96,7 +96,8 @@ export class StylistProfileComponent implements OnInit {
         res => console.log(res),
         err => console.log(err)
       );
-    this.isShowBookingModal === false
+    this.stateService.updateCustomer(null);
+    this.isShowBookingModal = false;
   }
 
   public getStyle() {
@@ -120,12 +121,13 @@ export class StylistProfileComponent implements OnInit {
       id_sender: this.stateService.retrieveCustomer().id,
       id_recipient: this.stylistId,
       body: messageForm.body
-    }
+    };
     this.messageService.postMessage(message)
       .subscribe(
         res => console.log(res),
         err => console.log(err)
-      )
+      );
+    this.stateService.updateCustomer(null);
     this.isShowMessageModal = false;
   }
 }

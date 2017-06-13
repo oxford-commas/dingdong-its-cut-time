@@ -665,9 +665,9 @@ stylistArray.forEach(stylist => {
 });
 
 
-booksingsArray.forEach(booking => {
-  helpers.addToBookings(booking, resultFromServer => console.log(resultFromServer));
-});
+// booksingsArray.forEach(booking => {
+//   helpers.addToBookings(booking, resultFromServer => console.log(resultFromServer));
+// });
 
 stylesArray.forEach(style => {
   helpers.addService(style, (res) => {

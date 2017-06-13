@@ -71,6 +71,7 @@ export class StateService {
       ...customerProfile,
       ...updates
     };
+    this.addCustomer(customerProfile);
   }
 
 }
