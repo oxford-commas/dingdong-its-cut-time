@@ -1,39 +1,48 @@
-div {
-  width: 100%;
+.wrapper {
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 1em;
 }
 
-.is-confirmed {
-  background-color: #77A0A9;
-  color: #F4F1BB;
-  border-radius: 5px;
-  padding: 1rem 0.5rem;
-  margin-bottom: 1rem;
+.profileContainer {
+  flex: 1 1 50%;
 }
 
-.not-confirmed {
-  background-color: #ED6A5A;
-  color: #F4F1BB;
-  border-radius: 5px;
-  padding: 1rem 0.5rem;
-  margin-bottom: 1rem;
+.buttonContainer {
+  flex: 1 1 50%;
 }
 
-button {
-  color: black;
-  vertical-align: middle;
+.profileContainer {
+  display: flex;
 }
 
-.complete-btn {
-  background-color: #364156;
-  border-radius: 2px;
+.photoContainer {
+  height: 100%;
+  width: 20%;
+  border: 1px solid;
+  display: flex;
+  justify-content: flex-start;
 }
 
-.confirm-btn {
-  background-color: #6F7D8C;
-  border-radius: 2px;
+.infoContainer {
+  height: 100%;
+  width: 80%;
+  margin-left: 1em;
 }
 
-.delete-btn {
-  background-color: #6F7D8C;
-  border-radius: 2px;
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.buttonContainer > * {
+  background-color: #F9B71A;
+  color: #ffffff;
+  height: 50%;
+  width: 25%;
+  align-self: flex-end;
+  margin-bottom: 1em;
+  margin-left: 1em;
+  border-radius: 23px;
 }

@@ -3,14 +3,13 @@
 
   <!-- Customer Landing -->
   <div *ngIf="profile.type===1">
-
     <div class="apptContainer">
       <h2>Appointments</h2>
       <button [routerLink]="['/home']">Find Stylist</button>
     </div>
 
     <div class="confirmedContainer">
-      <h2>Confirmed</h2>
+      <h4>Confirmed</h4>
       <div
         *ngFor="let confirmedBooking of profile.confirmedBookings; let i = index"
         class="booking-confirmed"
@@ -27,7 +26,7 @@
     </div>
 
     <div class="awaitingContainer">
-      <h2>Awaiting Payment</h2>
+      <h4>Awaiting Payment</h4>
       <div *ngFor="let dueBooking of profile.dueBookings; let i = index">
         <booking
           [name]="dueBooking.name"
@@ -46,7 +45,7 @@
     </div>
 
     <div class="pendingContainer">
-      <h2>Pending</h2>
+      <h4>Pending</h4>
       <div
         *ngFor="let pendingBooking of profile.pendingBookings; let i = index"
         class="booking-confirmed"
@@ -62,8 +61,6 @@
         <button (click)="declineBooking(pendingBooking.id, i)">Decline</button>
       </div>
     </div>
-
-
   </div>
 
 
