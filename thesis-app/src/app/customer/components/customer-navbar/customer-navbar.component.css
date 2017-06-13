@@ -7,7 +7,7 @@
 }
 
 .photoContainer {
-  flex: 1 1 50%;
+  flex: 1 1 40%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -15,7 +15,7 @@
 }
 
 .listContainer {
-  flex: 1 1 50%;
+  flex: 1 1 60%;
 }
 
 .myList {
@@ -29,6 +29,6 @@
 }
 
 .myList > * {
-  flex: 1 1;
+  flex: 1 1 25%;
   margin: 1em;
 }
