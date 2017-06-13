@@ -55,15 +55,17 @@
             name="address">
       </div>
       <div class="spanContainer">
-        <h5>Types of Services</h5>
-        <span *ngFor="let service of stylesPlaceHolder">
-          <input
-            type="checkbox"
-            id="service"
-            ngModel
-            [name]="service.id"
-          >{{ service }}
-        </span>
+        <div class="serviceTitle">
+          <h5>Types of Services</h5>
+        </div>
+        <div class="style" *ngFor="let service of stylesPlaceHolder">
+            <p><input
+              type="checkbox"
+              id="service"
+              ngModel
+              [name]="service.id"
+            >{{ service.servicename }}</p>
+        </div>
       </div>
       <div class="buttonContainer">
         <button

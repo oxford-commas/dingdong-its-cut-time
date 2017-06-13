@@ -18,7 +18,7 @@
 
 .formWrapper {
   background: rgba(255,255,255,0.4);
-  height: 60%;
+  height: 65%;
   border-radius: 5px;
   width: 83%;
   margin-top: 3em;
@@ -27,6 +27,11 @@
   margin-left: 5em;
   display: flex;
   flex-direction: column;
+}
+
+.myForm {
+  height: 100%;
+  width: 100%;
 }
 
 .usernamePassword {
@@ -74,7 +79,22 @@
 }
 
 .spanContainer {
-  /*border: 2px solid red;*/
+  width: 95%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.serviceTitle {
+  width: 100%;
+  height: 1%;
+}
+
+.style {
+  flex: 1 1 25%;
+  height: 2em;
+  padding-left: 1em;
 }
 
 .buttonContainer {
