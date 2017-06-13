@@ -7,11 +7,13 @@ import { StylistService, LocationService, StateService } from '../../../services
   styleUrls: ['./customer-navbar.component.css']
 })
 export class CustomerNavbarComponent {
+  fullImagePath = '/assets/logo.png';
   constructor (
     private stylistService: StylistService,
     private locationService: LocationService,
     private stateService: StateService
-  ) {}
+  ) {
+  }
 
   @Input() customerId: number;
   @Input() searchLocation: string;

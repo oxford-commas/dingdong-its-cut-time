@@ -1,21 +1,21 @@
 <div class="navContainer">
   <div class="photoContainer">
-    <img src="logo.png" alt="scissors" />
+    <img [src]="fullImagePath" alt="scissors">
   </div>
   <div class="listContainer">
-    <ul>
+    <ul class="myList">
       <li
         *ngIf="stateService.retrieveCustomer().type===1"
         [routerLink]="['/home']">
-        <h4>Home</h4>
+        <h4>Appointments</h4>
       </li>
       <li
         *ngIf="stateService.retrieveCustomer().type===0"
         [routerLink]="['/stylisthome']">
-        <h4>Home</h4>
+        <h4>Appointments</h4>
       </li>
+      <li [routerLink]="['/customerProfile']"><h4>Profile</h4></li>
       <li [routerLink]="['/messages']"><h4>Messages</h4></li>
-      <li [routerLink]="['/customerProfile']"><h4>Settings</h4></li>
       <li [routerLink]="['/login']"><h4>Logout</h4></li>
     </ul>
   </div>
