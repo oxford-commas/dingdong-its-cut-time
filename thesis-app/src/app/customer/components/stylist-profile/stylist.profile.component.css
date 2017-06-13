@@ -2,18 +2,35 @@
   border: 2px solid red;
   height: 100vh;
   font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 .subHeader {
-  border: 2px solid red;
-  height: 25%;
+  height: 18%;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subHeader > * {
+  margin-left: 2em;
+  margin-right: 2em;
 }
 
 .profileContainer {
   border: 2px solid red;
   height: 75%;
+  display: flex;
 }
+
+.userInfoContainer {
+  flex: 1 1 30%;
+  border: 2px solid;
+}
+
+
 
 
 

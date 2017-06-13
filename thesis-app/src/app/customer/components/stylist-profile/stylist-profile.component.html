@@ -2,28 +2,38 @@
   <customer-navbar></customer-navbar>
 
   <div class="subHeader">
-    <h4>My Profile</h4>
-      <div class="buttonContainer">
-        <button (click)="toggleModal()">Request a cut</button>
-      </div>
+    <h3>My Profile</h3>
+    <div class="buttonContainer">
+      <button (click)="toggleModal()">Request a cut</button>
+    </div>
   </div>
 
-  <!-- <div class="profileContainer">
+  <div class="profileContainer">
+    <div class="userInfoContainer">
+    </div>
+    <div class="aboutMeContainer">
+      <div>
+        <h4>About Me</h4>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </div>
+      <div>
+        <h4>Services</h4>
+        <div class="styleItems" *ngFor="let style of ['hard', 'coded', 'styles']">
+          <h5>{{style}}</h5>
+        </div>
+      </div>
 
-  </div> -->
+    </div>
+  </div>
+
 </div>
 
- <h2>{{ stylistProfile.name }}</h2>
     <p>{{ stylistProfile.billingaddress }}</p>
     <p>{{ stylistProfile.phonenumber }}</p>
-    <div class="styleItems" *ngFor="let style of ['hard', 'coded', 'styles']">
-      <h5>{{style}}</h5>
-    </div>
 
-    <h4>About Me</h4>
-    <div>
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-    </div>
+
+
+
     <a href="stylistProfile.site_url">{{stylistProfile.site_url}}</a>
 
 <!-- <img class="profileImage" [src]=stylistProfile.image_url /> -->
