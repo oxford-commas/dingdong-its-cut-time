@@ -6,7 +6,8 @@ import {
   RequestService,
   MessageService,
   BookingService,
-  StateService } from '../../../services';
+  StateService,
+  StylistStylesService } from '../../../services';
 
 import { IMessage } from '../../interfaces';
 
@@ -22,11 +23,13 @@ export class StylistProfileComponent implements OnInit {
     private requestService: RequestService,
     private messageService: MessageService,
     private bookingService: BookingService,
-    private stateService: StateService
+    private stateService: StateService,
+    private stylistStylesService: StylistStylesService
   ) {}
 
   public isProfileFetched: boolean = false;
   public stylistProfile: any; // TODO: interface this
+  public styles: Array<string>;
   public isShowMessageModal: boolean = false;
   public isShowBookingModal: boolean = false;
   public modalStyle: string = 'none';
@@ -52,6 +55,12 @@ export class StylistProfileComponent implements OnInit {
        err => console.log(err),
        () => this.isProfileFetched = true
      );
+
+   this.stylistStylesService.fetchAllStyles()
+     .subscribe(
+       data => this.styles = data,
+       err => console.log(err)
+     );
   }
 
   public toggleMessageModal() {
@@ -59,11 +68,11 @@ export class StylistProfileComponent implements OnInit {
   }
 
   public toggleBookingModal() {
-    console.log('toggle bookingModal');
     this.isShowBookingModal = !this.isShowBookingModal;
   }
 
   public submitBooking(bookingForm) {
+    console.log('booking form: ',bookingForm);
     const booking = {
       id_users: this.stateService.retrieveCustomer().id,
       id_stylists: this.stylistId,
@@ -81,6 +90,14 @@ export class StylistProfileComponent implements OnInit {
 
   public getStyle() {
     if (this.isShowMessageModal === false) {
+      return 'none';
+    } else {
+      return 'block';
+    }
+  }
+
+  public getBookingModalStyle() {
+    if (this.isShowBookingModal === false) {
       return 'none';
     } else {
       return 'block';

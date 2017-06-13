@@ -47,9 +47,16 @@ CREATE TABLE IF NOT EXISTS `bookings` (
   `id_stylists` INTEGER NOT NULL,
   `isconfirmed` INTEGER NOT NULL,
   `isComplete` INTEGER NOT NULL,
+  `date` VARCHAR(45) NOT NULL,
   `time` VARCHAR(45) NOT NULL,
   `location` TEXT NOT NULL,
+  `detail` TEXT NOT NULL,
   PRIMARY KEY (`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `bookings_styles` (
+  `id_booking` INTEGER NOT NULL,
+  `id_style` INTEGER NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS `messages` (
@@ -66,6 +73,8 @@ ALTER TABLE `bookings` ADD FOREIGN KEY (id_users) REFERENCES `users_stylists` (`
 ALTER TABLE `bookings` ADD FOREIGN KEY (id_stylists) REFERENCES `users_stylists` (`id`) ON DELETE CASCADE;
 ALTER TABLE `recipients` ADD FOREIGN KEY (id) REFERENCES `users_stylists` (`id`) ON DELETE CASCADE;
 ALTER TABLE `recipients` ADD FOREIGN KEY (messageId) REFERENCES `messages` (`id`) ON DELETE CASCADE;
+ALTER TABLE `bookings_styles` ADD FOREIGN KEY (id_booking) REFERENCES `bookings` (`id`) ON DELETE CASCADE;
+ALTER TABLE `bookings_styles` ADD FOREIGN KEY (id_style) REFERENCES `services` (`id`) ON DELETE CASCADE;
 
 commit;
 

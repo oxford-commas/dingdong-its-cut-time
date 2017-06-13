@@ -63,9 +63,9 @@ var updateProfile = function(type, name, password, billingaddress, phonenumber, 
   });
 };
 
-var addToBookings = function(userId, stylistId, isConfirmed, isComplete, time, location, callback) {
-  var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, location, isComplete) VALUES (?, ?, ?, ?, ?, ?)';
-  model.con.query(sql, [userId, stylistId, isConfirmed, time, location, isComplete],function (err, result) {
+var addToBookings = function(booking, callback) {
+  var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, date, location, isComplete, detail) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+  model.con.query(sql, [booking.id_users, booking.id_stylists, booking.isconfirmed, booking.time, booking.date, booking.location, booking.isComplete, booking.detail], function (err, result) {
     if (err) throw err;
     callback(result);
   });
@@ -227,6 +227,15 @@ var getAllStyles = (callback) => {
   model.con.query('SELECT * FROM services', (err, results) => callback(results));
 };
 
+var updateStyles = (stylistId, styles, callback) => {
+  for (var i = 0; i < styles.length; i++) {
+    var sql = `
+      INSERT INTO stylists_services (id_services, id_users_stylists)
+      VALUES(?, ?)`;
+    model.con.query(sql, [styles[i], stylistId]);
+  }
+};
+
 /////////////////////
 // MESSAGE HELPERS //
 /////////////////////
@@ -299,3 +308,4 @@ module.exports.readyConfirmedBooking = readyConfirmedBooking;
 module.exports.getPendingBookings = getPendingBookings;
 module.exports.cancelConfirmedBooking = cancelConfirmedBooking;
 module.exports.cancelPaymentBooking = cancelPaymentBooking;
+module.exports.updateStyles = updateStyles;

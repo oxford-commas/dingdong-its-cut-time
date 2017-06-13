@@ -46,8 +46,10 @@
 <div class="container row modalWrapper" [style.display]="getStyle()">
   <div class="bigWrapper">
     <form
-      (ngSubmit)="submitMessage(messageForm.value)" #messageForm="ngForm"
-        class="container row modalContent">
+      class="container row modalContent"
+      (ngSubmit)="submitMessage(messageForm.value)"
+      #messageForm="ngForm"
+    >
       <span (click)="toggleMessageModal()">&times;</span>
       <div class="container row miniWrapper">
         <h4>Send a message</h4>
@@ -61,12 +63,31 @@
 </div>
 
 <!-- Booking Modal -->
-<div *ngIf="!!isShowBookingModal">
-  <form (ngSubmit)="submitBooking(bookingForm.value)" #bookingForm="ngForm">
-    Enter a time and date you would like your hair cut:
-    <input name="time" type="date" [(ngModel)]="time" />
-    Where would you like your hair cut? Enter an address.
-    <input name="location" ngModel />
-    <button type="submit">Book</button>
-  </form>
+<div class="container row modalWrapper" [style.display]="getBookingModalStyle()">
+  <div class="bigWrapper">
+    <form
+      class="container row modalContent"
+      (ngSubmit)="submitBooking(bookingForm.value)"
+      #bookingForm="ngForm"
+    >
+      <span (click)="toggleBookingModal()">&times;</span>
+      <div class="container row miniWrapper">
+        Date <input name="date" type="date" [(ngModel)]="date" />
+        Time <input name="time" [(ngModel)]="time" />
+        Address <input name="location" [(ngModel)]="location" />
+        <button type="submit">Book</button>
+      </div>
+      <div class="container row miniWrapper">
+        Services
+        <span *ngFor="let style of styles">
+          {{style.servicename}}
+          <input type="checkbox" id="styleGroup" [name]="style.servicename" value="style.id" ngModel />
+        </span>
+      </div>
+      <div class="container row miniWrapper">
+        Additional Details
+        <textarea name="detail" ngModel></textarea>
+      </div>
+    </form>
+  </div>
 </div>

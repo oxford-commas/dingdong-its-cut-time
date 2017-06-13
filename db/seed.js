@@ -299,32 +299,40 @@ const booksingsArray = [
     id_stylists: 2,
     isconfirmed: 0,
     isComplete: 0,
+    date: 'September, 1, 2017',
     time: '1:00am',
-    location: '1023 Lyon St, San Francisco'
+    location: '1023 Lyon St, San Francisco',
+    detail: 'details'
   },
   {
     id_users: 6,
     id_stylists: 2,
     isconfirmed: 0,
     isComplete: 0,
+    date: 'September, 1, 2017',
     time: '11:00am',
-    location: '2014 Lyon St, San Francisco'
+    location: '2014 Lyon St, San Francisco',
+    detail: 'details'
   },
   {
     id_users: 4,
     id_stylists: 2,
     isconfirmed: 1,
     isComplete: 0,
+    date: 'September, 1, 2017',
     time: '1:00pm',
-    location: '2323 Lyon St, San Francisco'
+    location: '2323 Lyon St, San Francisco',
+    detail: 'details'
   },
   {
     id_users: 10,
     id_stylists: 2,
     isconfirmed: 1,
     isComplete: 0,
+    date: 'September, 1, 2017',
     time: '1:00pm',
-    location: '2323 Lyon St, San Francisco'
+    location: '2323 Lyon St, San Francisco',
+    detail: 'details'
   }
 ]
 
@@ -658,16 +666,7 @@ stylistArray.forEach(stylist => {
 
 
 booksingsArray.forEach(booking => {
-
-  helpers.addToBookings(
-    booking.id_users,
-    booking.id_stylists,
-    booking.isconfirmed,
-    booking.isComplete,
-    booking.time,
-    booking.location, (resultFromServer) => {
-      console.log(resultFromServer);
-    });
+  helpers.addToBookings(booking, resultFromServer => console.log(resultFromServer));
 });
 
 stylesArray.forEach(style => {
