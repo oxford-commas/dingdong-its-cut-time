@@ -30,8 +30,8 @@
 }
 
 .usernamePassword {
-  border: 2px solid red;
   display: flex;
+  border: 2px solid yellow;
 }
 
 .username {
@@ -40,7 +40,6 @@
 
 .password {
   flex: 1 1 50%;
-  border: 2px solid red;
 }
 
 .username input {
@@ -49,4 +48,29 @@
 
 .password input {
   width: 85%;
+}
+
+.emailWebsite {
+  display: flex;
+  border: 2px solid red;
+}
+
+.email {
+  flex: 1 1 50%;
+}
+
+.website {
+  flex: 1 1 50%;
+}
+
+.email input {
+  width: 85%;
+}
+
+.website input {
+  width: 85%;
+}
+
+.billingAddress input {
+  width: 92%;
 }
