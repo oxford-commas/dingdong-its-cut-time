@@ -23,19 +23,16 @@
 }
 
 .confirmedContainer {
-  border: 2px solid red;
   padding-left: 3em;
   padding-right: 3em;
 }
 
 .awaitingContainer {
-  border: 2px solid red;
   padding-left: 3em;
   padding-right: 3em;
 }
 
 .pendingContainer {
-  border: 2px solid red;
   padding-left: 3em;
   padding-right: 3em;
 }

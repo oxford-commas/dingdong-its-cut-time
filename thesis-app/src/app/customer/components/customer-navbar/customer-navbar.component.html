@@ -6,12 +6,12 @@
     <ul class="myList">
       <li
         *ngIf="stateService.retrieveCustomer().type===1"
-        [routerLink]="['/home']">
+        [routerLink]="['/landing']">
         <h4>Appointments</h4>
       </li>
       <li
         *ngIf="stateService.retrieveCustomer().type===0"
-        [routerLink]="['/stylisthome']">
+        [routerLink]="['/home']">
         <h4>Appointments</h4>
       </li>
       <li [routerLink]="['/customerProfile']"><h4>Profile</h4></li>

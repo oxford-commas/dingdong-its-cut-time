@@ -2,11 +2,43 @@
   border: 2px solid red;
 }
 
+.mainContainer {
+  display: flex;
+}
+
 .stylistContainer {
   border: 2px solid yellow;
+  flex: 1 1 50%;
+  margin-left: 2em;
+  height: 20%;
+  flex-direction: column;
 }
 
 .mapContainer {
-  border: 2px solid red;
+  flex: 1 1 50%;
+  height: 100%;
 }
 
+.inputContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.inputContainer input {
+  flex: 1 1 55%;
+  border: 1px solid;
+}
+
+.inputContainer button {
+  flex: 1 1 40%;
+  background-color: #F9B71A;
+  color: #ffffff;
+  border-radius: 35px;
+  margin: 2em;
+}
+
+.closestContainer {
+  border: 2px solid red;
+}
