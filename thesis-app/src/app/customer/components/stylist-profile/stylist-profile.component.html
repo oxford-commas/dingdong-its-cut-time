@@ -28,8 +28,10 @@
       </div>
       <div>
         <h4>Services</h4>
-        <div class="styleItems" *ngFor="let style of ['hard', 'coded', 'styles']">
-          <h5>{{style}}</h5>
+        <div class="servicesContainer">
+          <div class="styleItems" *ngFor="let style of ['hard', 'coded', 'styles']">
+            <h5><input type="checkbox" checked="checked"> {{style}}</h5>
+          </div>
         </div>
       </div>
 
