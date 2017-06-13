@@ -1,28 +1,22 @@
-.poppaDiv {
-  height: 100%;
-  width: 100%;
+.componentWrapper {
+  border: 2px solid red;
+  font-family: 'Montserrat', sans-serif;
   display: flex;
   flex-direction: column;
 }
 
-.container {
-  width: 80%;
+.messagesContainer {
+  border: 2px solid red;
   display: flex;
 }
 
-.inbox-container {
-  display: flex;
-  flex: 1;
-  height: 35%;
-  width: 30%;
-  overflow: scroll;
-  padding-right: 4rem;
-  border-right: 1px solid black;
+.inboxContainer {
+  border: 2px solid red;
+  flex: 1 1 30%;
 }
 
-.chat-history-container {
+.messageHist {
   display: flex;
-  flex: 3;
-  border-right: 1px solid black;
-  padding: 0 4rem;
+  flex-direction: column;
+  flex: 1 1 70%;
 }

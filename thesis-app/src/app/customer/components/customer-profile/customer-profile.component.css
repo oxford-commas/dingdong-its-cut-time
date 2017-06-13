@@ -3,7 +3,6 @@
   font-family: 'Montserrat', sans-serif;
   display: flex;
   flex-direction: column;
-  border: 2px solid red;
 }
 
 .subHeader {
@@ -23,13 +22,15 @@
   flex: 1 1 50%;
   display: flex;
   justify-content: flex-end;
+  padding-right: 3em;
 }
 .buttonContainer button {
   background-color: #F9B71A;
   color: #ffffff;
   border-radius: 20px;
-  width: 21%;
-  margin-right: 6em;
+  width: 24%;
+  margin: .5em;
+  height: 2.5em;
 }
 
 .profileContainer {
