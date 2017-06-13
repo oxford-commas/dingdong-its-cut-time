@@ -17,6 +17,18 @@
   margin-left: 2em;
   margin-right: 2em;
 }
+.buttonContainer {
+  flex: 1 1 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+.buttonContainer button {
+  background-color: #F9B71A;
+  color: #ffffff;
+  border-radius: 20px;
+  width: 21%;
+  margin-right: 6em;
+}
 
 .profileContainer {
   height: 75%;
@@ -76,7 +88,6 @@
 }
 
 .servicesContainer {
-  border: 2px solid red;
   display: flex;
   flex-wrap: wrap;
 }
