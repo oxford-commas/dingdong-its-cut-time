@@ -77,11 +77,11 @@
         Address <input name="location" [(ngModel)]="location" />
         <button type="submit">Book</button>
       </div>
-      <div class="container row miniWrapper">
+      <div *ngIf="!!isStylesFetched" class="container row miniWrapper">
         Services
         <span *ngFor="let style of styles">
           {{style.servicename}}
-          <input type="checkbox" id="styleGroup" [name]="style.servicename" value="style.id" ngModel />
+          <input type="checkbox" id="styleGroup" [name]="style.id" value="style.id" ngModel />
         </span>
       </div>
       <div class="container row miniWrapper">

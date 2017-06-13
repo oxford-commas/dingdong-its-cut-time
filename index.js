@@ -166,7 +166,8 @@ app.post('/api/location', function(req, res) {
 
 // add bookings to the database
 app.post('/api/bookings', function(req, res) {
-  helpers.addToBookings(req.body.id_users, req.body.id_stylists, req.body.isconfirmed, req.body.isComplete, req.body.time, req.body.location, function() {
+  console.log('received a booking to post', req.body);
+  helpers.addToBookings(req.body, function() {
     res.sendStatus(201);
   });
 });
@@ -259,9 +260,14 @@ app.get('/api/stylistServices', (req, res) => {
   helpers.getAllStyles(results => res.status(200).send(results));
 });
 
+app.get('/api/stylistServices/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.getStyles(id, results => res.status(200).send(results));
+});
+
 app.put('/api/stylistServices/:id', (req, res) => {
   var id = req.params.id;
-  helpers.updateStyles(id, results => res.status(200).send(results));
+  helpers.getStylistServices(id, results => res.status(200).send(results));
 });
 
 //given stylistId, delete stylist info from the database along with the bookings(foreign key constraint)

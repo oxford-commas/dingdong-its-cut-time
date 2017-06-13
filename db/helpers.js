@@ -217,10 +217,13 @@ var stylistservices = function(serviceId, stylistId, callback) {
   });
 };
 
-var getStylistServices = function(stylistId, callback) {
-  model.con.query('select `servicename` from `stylists_services` as ss, `services` as s  where `id_users_stylists`= ? and ss.id_services = s.id', [stylistId], function(err, results) {
-    callback(results);
-  });
+var getStyles = function(stylistId, callback) {
+  var sql = `
+    SELECT s.servicename, s.id FROM
+    services s INNER JOIN stylists_services ss
+    WHERE ss.id_users_stylists = ?
+    AND ss.id_services = s.id`;
+  model.con.query(sql, [stylistId], (err, results) => callback(results));
 };
 
 var getAllStyles = (callback) => {
@@ -288,7 +291,7 @@ module.exports.getBookings = getBookings;
 module.exports.deleteUser = deleteUser;
 module.exports.addService = addService;
 module.exports.stylistservices = stylistservices;
-module.exports.getStylistServices = getStylistServices;
+module.exports.getStyles = getStyles;
 module.exports.getMessages = getMessages;
 module.exports.postMessage = postMessage;
 module.exports.deleteChat = deleteChat;
