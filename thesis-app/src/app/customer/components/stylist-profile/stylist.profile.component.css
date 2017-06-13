@@ -1,5 +1,4 @@
 .componentWrapper {
-  border: 2px solid red;
   height: 100vh;
   font-family: 'Montserrat', sans-serif;
   display: flex;
@@ -20,19 +19,58 @@
 }
 
 .profileContainer {
-  border: 2px solid red;
   height: 75%;
   display: flex;
 }
 
+.profileImage {
+  margin-top: 2em;
+  width: 70%;
+  height: 65%;
+}
 .userInfoContainer {
   flex: 1 1 30%;
-  border: 2px solid;
+  display: flex;
+  flex-direction: column;
 }
 
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #F9B71A;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  flex: 1 1 50%;
+  height: 50%;
+  margin-bottom: 1em;
+}
 
+.userInfo {
+  flex: 1 1 50%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: left;
+  margin-left: 3em;
+}
 
+.aboutMeContainer {
+  flex: 1 1 70%;
+}
 
+.aboutMeContainer > * {
+  margin-left: 2em;
+  margin-top: 2em;
+  width: 90%;
+}
+
+.glyphicon-question-sign {
+  color: #F9B71A;
+  border: 1px solid #F9B71A;
+  background-color: #ffffff;
+}
 
 
 

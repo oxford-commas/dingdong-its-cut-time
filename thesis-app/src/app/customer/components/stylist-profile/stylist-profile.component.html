@@ -10,6 +10,16 @@
 
   <div class="profileContainer">
     <div class="userInfoContainer">
+      <div class="imageContainer">
+        <img class="profileImage" [src]=stylistProfile.image_url />
+        <h3>{{stylistProfile.name}}</h3>
+      </div>
+
+      <div class="userInfo">
+        <h5><span class="glyphicon glyphicon-question-sign"></span> {{ stylistProfile.billingaddress }}</h5>
+        <h5><span class="glyphicon glyphicon-question-sign"></span> {{stylistProfile.site_url}}</h5>
+        <h5><span class="glyphicon glyphicon-question-sign"></span> {{ stylistProfile.phonenumber }}</h5>
+      </div>
     </div>
     <div class="aboutMeContainer">
       <div>
@@ -28,15 +38,9 @@
 
 </div>
 
-    <p>{{ stylistProfile.billingaddress }}</p>
-    <p>{{ stylistProfile.phonenumber }}</p>
 
 
 
-
-    <a href="stylistProfile.site_url">{{stylistProfile.site_url}}</a>
-
-<!-- <img class="profileImage" [src]=stylistProfile.image_url /> -->
 
 <!-- <div class="container row modalWrapper" [style.display]="getStyle()">
   <div class="bigWrapper">
