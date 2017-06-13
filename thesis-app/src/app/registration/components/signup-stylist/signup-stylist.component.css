@@ -31,7 +31,6 @@
 
 .usernamePassword {
   display: flex;
-  border: 2px solid yellow;
 }
 
 .username {
@@ -52,7 +51,6 @@
 
 .emailWebsite {
   display: flex;
-  border: 2px solid red;
 }
 
 .email {
@@ -73,4 +71,21 @@
 
 .billingAddress input {
   width: 92%;
+}
+
+.spanContainer {
+  border: 2px solid red;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+button {
+  background-color: #F9B71A;
+  border-radius: 20px;
+  width: 25%;
+  margin-right: 4em;
 }
