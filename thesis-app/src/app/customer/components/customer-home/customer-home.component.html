@@ -10,6 +10,7 @@
       placeholder="Enter your location"
       typer="search"
       [(ngModel)]="location"
+      (keypress)="updateCloseToYou(location)"
     />
     <div *ngFor="let stylist of stylistsCloseToYou">
       <close-to-you
@@ -20,7 +21,6 @@
       </close-to-you>
     </div>
   </div>
-
   <div class="mapContainer">
     <customer-map
       class="map"

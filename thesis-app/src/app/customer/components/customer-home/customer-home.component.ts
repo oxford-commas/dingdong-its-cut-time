@@ -1,13 +1,13 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { CustomerNavbarComponent } from '../customer-navbar/';
 import { CustomerMapComponent } from '../customer-map/';
 
-import { RequestService,
-       LocationService,
-       StylistService,
-       BookingService,
-       StateService } from '../../../services';
+import {
+  LocationService,
+  StylistService,
+  BookingService,
+  StateService } from '../../../services';
 
 @Component({
   selector: 'customer-home',
@@ -17,18 +17,16 @@ import { RequestService,
 })
 
 export class CustomerHomeComponent implements OnInit {
-  public location: string = null;
   public isProfileFetched = false;
   public currentLocation: any;
+  public location: string = this.location || this.currentLocation;
   public customerProfile: any;
   public stylistsCloseToYou: any;
   public searchLocation: string;
   public latitude: number;
   public longitude: number;
-  userProfile: any;
 
   constructor(
-    private requestService: RequestService,
     private locationService: LocationService,
     private stylistService: StylistService,
     private stateService: StateService
@@ -37,20 +35,13 @@ export class CustomerHomeComponent implements OnInit {
   ngOnInit() {
     this.customerProfile = this.stateService.retrieveCustomer();
     this.isProfileFetched = true;
-    this.getLocationCoordinates((lat, lng) => this.getLocationFromCoordinates(lat, lng, (location) => this.getStylistsInLocation(location)));
+    this.getLocationCoordinates((lat, lng) => this.getLocationFromCoordinates(lat, lng, (location) => this.updateCloseToYou(location)));
     this.searchLocation = this.location || this.currentLocation;
-  }
-
-  pinStylistsAtLocation(location: any) {
-    this.stylistService.getStylistsInLocation(location)
-      .subscribe(data => {
-        this.stylistsCloseToYou = data;
-      }, err => console.log(err));
   }
 
   onSearchLocationChange(): void {
     this.searchLocation = this.location;
-    this.getStylistsInLocation(this.searchLocation);
+    this.updateCloseToYou(this.searchLocation);
   }
 
   getLocationCoordinates(next) {
@@ -72,7 +63,7 @@ export class CustomerHomeComponent implements OnInit {
       }, err => console.log(err));
   }
 
-  getStylistsInLocation(location: string) {
+  updateCloseToYou(location: string) {
     this.stylistService.getStylistsInLocation(location)
       .subscribe(
         data => this.stylistsCloseToYou = data,
