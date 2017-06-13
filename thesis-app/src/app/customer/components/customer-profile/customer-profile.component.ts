@@ -61,6 +61,7 @@ export class CustomerProfileComponent {
         data => console.log(data),
         err => console.log(err)
       );
+
     // clear fields
     this.name = '';
     this.password = '';

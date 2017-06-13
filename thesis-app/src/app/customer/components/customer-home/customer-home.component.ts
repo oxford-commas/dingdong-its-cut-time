@@ -17,6 +17,7 @@ import { RequestService,
 })
 
 export class CustomerHomeComponent implements OnInit {
+  public location: string = null;
   public isProfileFetched = false;
   public currentLocation: any;
   public customerProfile: any;
@@ -37,7 +38,7 @@ export class CustomerHomeComponent implements OnInit {
     this.customerProfile = this.stateService.retrieveCustomer();
     this.isProfileFetched = true;
     this.getLocationCoordinates((lat, lng) => this.getLocationFromCoordinates(lat, lng, (location) => this.getStylistsInLocation(location)));
-    this.searchLocation = this.currentLocation;
+    this.searchLocation = this.location || this.currentLocation;
   }
 
   pinStylistsAtLocation(location: any) {
@@ -47,8 +48,8 @@ export class CustomerHomeComponent implements OnInit {
       }, err => console.log(err));
   }
 
-  onSearchLocationChange(location: string): void {
-    this.searchLocation = location;
+  onSearchLocationChange(): void {
+    this.searchLocation = this.location;
     this.getStylistsInLocation(this.searchLocation);
   }
 

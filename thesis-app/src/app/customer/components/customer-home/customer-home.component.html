@@ -6,6 +6,11 @@
 </customer-navbar>
 <div class="container">
   <div class="stylistContainer">
+    <input
+      placeholder="Enter your location"
+      typer="search"
+      [(ngModel)]="location"
+    />
     <div *ngFor="let stylist of stylistsCloseToYou">
       <close-to-you
         [stylistInformation]="stylist"
@@ -19,7 +24,7 @@
   <div class="mapContainer">
     <customer-map
       class="map"
-      [searchLocation]="searchLocation"
+      [searchLocation]="location"
     >
     </customer-map>
   </div>
