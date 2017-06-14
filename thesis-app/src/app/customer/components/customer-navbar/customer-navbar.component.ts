@@ -8,7 +8,9 @@ import { StateService } from '../../../services';
   styleUrls: ['./customer-navbar.component.css']
 })
 export class CustomerNavbarComponent {
-  
+
+  fullImagePath = './assets/logo.png';
+
   constructor(private stateService: StateService) {}
-  
+
 }

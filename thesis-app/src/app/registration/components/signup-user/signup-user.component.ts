@@ -16,8 +16,6 @@ export class SignupUserComponent {
     private router: Router
   ) {}
 
-  ngOnInit() {}
-
   handleSignup(form: NgForm) {
     let newUser = {
       name: form.value.username,
@@ -29,6 +27,7 @@ export class SignupUserComponent {
     this.requestService.postStylist(newUser)
       .subscribe(
         data => {
+          console.log('ran');
           this.requestService.getStylistByName(newUser.name, newUser.password)
             .subscribe(
               woo => {

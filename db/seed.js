@@ -694,7 +694,7 @@ stylistServices.forEach(style => {
   })
 });
 
-// implant image in users_stylists
+implant image in users_stylists
 for (var i = 0; i < 21; i++) {
     var id = i;
     var url = 'uploads/1496879961184.jpg';
