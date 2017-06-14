@@ -44,19 +44,23 @@
     <div class="formContainer">
       <form class="modalContent" (ngSubmit)="handleSaveChanges(updateForm.value)" #updateForm="ngForm">
         <div class="modalUsernamePassword">
-          <h4>Username: {{profile.name}}</h4>
-            <input type="text" name="name" [(ngModel)]="name" />
-          <h4>Password: *********</h4>
-            <input type="password" [(ngModel)]="password" name="password" />
+          <div>
+            <h4>Username</h4>
+              <input type="text" name="name" [(ngModel)]="name" />
+          </div>
+          <div>
+            <h4>Password</h4>
+              <input type="password" [(ngModel)]="password" name="password" />
+          </div>
         </div>
         <div class="modalEmailWebsite">
-          <h4>Email: {{profile.email}}</h4>
+          <h4>Email</h4>
             <input type="email" [(ngModel)]="email" name="email" />
-          <h4>Address: {{profile.billingaddress}}</h4>
+          <h4>Address</h4>
             <input type="text" [(ngModel)]="billingaddress" name="billingaddress" />
         </div>
         <div class="modalPhoneNumber">
-          <h4>Phone Number: {{profile.phonenumber}}</h4>
+          <h4>Phone Number</h4>
             <input [(ngModel)]="phonenumber" name="phonenumber" />
         </div>
         <div class="modalAboutMe">

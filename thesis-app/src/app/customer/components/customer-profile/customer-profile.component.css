@@ -133,11 +133,14 @@
 .modalContent {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-/*.modalUsernamePassword {
+.modalUsernamePassword {
   display: flex;
   border: 2px solid red;
 }
 
-.modalEmailWebsite*/
+.modalUsernamePassword input {
+  flex: 1 1 50%;
+}
