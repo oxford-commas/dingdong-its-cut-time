@@ -91,6 +91,7 @@ app.get('/api/stylists/:location', function(req, res) {
     var lat = points[0];
     var lng = points[1];
     helpers.getAllStylists(function(result) {
+      console.log(result);
       var data = [];
       result.forEach(function(el) {
         var lat2 = el.latitude;
