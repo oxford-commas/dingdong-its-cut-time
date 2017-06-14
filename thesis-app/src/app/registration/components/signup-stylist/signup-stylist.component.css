@@ -94,7 +94,7 @@
 .style {
   flex: 1 1 25%;
   height: 2em;
-  padding-left: 1em;
+  padding-left: .5em;
 }
 
 .buttonContainer {

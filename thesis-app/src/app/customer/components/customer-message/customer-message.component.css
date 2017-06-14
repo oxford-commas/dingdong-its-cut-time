@@ -31,7 +31,7 @@ h2 {
   display: flex;
   justify-content: center;
   border-bottom: black;
-  border: 1px solid black;
+  border-bottom: 1px solid black;
   height: 15%;
 }
 
