@@ -11,6 +11,7 @@ a {
   align-self: center;
   color: #F9B71A;
   border-bottom: 1px solid #F9B71A;
+  margin-top: 1em;
 }
 
 a:hover{

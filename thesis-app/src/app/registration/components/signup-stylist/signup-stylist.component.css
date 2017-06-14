@@ -101,6 +101,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  margin-top: 1em;
 }
 
 button {
