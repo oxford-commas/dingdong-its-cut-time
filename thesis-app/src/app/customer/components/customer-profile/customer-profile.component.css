@@ -114,3 +114,30 @@
   display: flex;
   flex-direction: column;
 }
+
+.modalHeader {
+  flex:1 1 100%;
+  height: 10%;
+  border: 2px solid red;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.formContainer {
+  flex:1 1 100%;
+  height: 70%;
+  border: 2px solid red;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+}
+
+/*.modalUsernamePassword {
+  display: flex;
+  border: 2px solid red;
+}
+
+.modalEmailWebsite*/
