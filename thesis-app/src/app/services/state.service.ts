@@ -41,7 +41,10 @@ export class StateService {
 
     this.messageService.getMessages(stylist.id)
       .subscribe(
-        data => customerProfile.messages = data,
+        data => {
+          data[0].messages = data[0].messages.sort((a, b) => a.id - b.id);
+          customerProfile.messages = data;
+        },
         err => console.log(err)
       );
 
