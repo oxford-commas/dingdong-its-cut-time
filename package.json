@@ -9,7 +9,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build"
   },
   "private": true,
   "author": "",
@@ -24,6 +25,7 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "angular2-google-maps": "^0.17.0",
     "body-parser": "^1.17.2",
     "buildpack": "0.0.0",
     "core-js": "^2.4.1",
