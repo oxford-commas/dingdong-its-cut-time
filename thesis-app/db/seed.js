@@ -2,9 +2,7 @@ const helpers = require('./helpers.js');
 const services = require('../locationServices.js');
 var model = require('./model.js');
 
-var CLEARDB_INSERT = false;
-
-
+var CLEARDB_INSERT = true;
 
 const stylistArray = [
   {
@@ -649,11 +647,10 @@ const stylistServices = [
     styleId: userIndex(3),
     stylistId: userIndex(19)
   }
-]
+];
 
-
-/*
 stylistArray.forEach(stylist => {
+
   helpers.addUserStylist(
     stylist.id,
     stylist.username,
@@ -665,6 +662,7 @@ stylistArray.forEach(stylist => {
     stylist.type,
     stylist.update, (resultFromServer) => {
       var id = resultFromServer.insertId;
+      console.log("Adding Stylists......", id);
       services.getLocationPoints(stylist.location, (points) => {
         let lat = points[0];
         let lng = points[1];
@@ -675,12 +673,11 @@ stylistArray.forEach(stylist => {
     });
 });
 
-*/
 booksingsArray.forEach(booking => {
-
+console.log(booking.userid);
   helpers.addToBookings(
-    booking.id_users,
-    booking.id_stylists,
+    booking.userid,
+    booking.stylistid,
     booking.isconfirmed,
     booking.isComplete,
     booking.time,
