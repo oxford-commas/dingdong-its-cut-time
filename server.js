@@ -23,7 +23,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, 'thesis-app/dist')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 /// placeholder validation for auth 0//
 app.get('/api/validate/:username/:password', function(req, res) {
@@ -348,7 +348,7 @@ app.get('/api/streetaddress/:latlng', function(req, res) {
 // });
 
 app.get('*', function(req, res) {
-res.sendFile(path.join(__dirname, 'thesis-app/dist/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 app.set('port', (process.env.PORT || 4200))
