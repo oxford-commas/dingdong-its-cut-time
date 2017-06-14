@@ -1,27 +1,40 @@
 .componentWrapper {
-  border: 2px solid red;
   font-family: 'Montserrat', sans-serif;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+}
+
+h2 {
+  color: #F9B71A;
 }
 
 .messagesContainer {
-  border: 2px solid red;
   display: flex;
+  height: 100%;
 }
 
 .inboxContainer {
-  border: 2px solid red;
+  border-right: 1px solid black;
   flex: 1 1 30%;
+  height: 100%;
 }
 
 .messageHist {
   display: flex;
   flex-direction: column;
-  flex: 1 1 70%;
+  flex: 1 1 85%;
+  height: 100%;
 }
 
 .username {
   display: flex;
   justify-content: center;
+  border-bottom: black;
+  border: 1px solid black;
+  height: 15%;
+}
+
+.chatHistoryContainer {
+  height: 85%;
 }
