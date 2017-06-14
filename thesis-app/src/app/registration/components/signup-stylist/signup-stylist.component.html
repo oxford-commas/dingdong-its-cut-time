@@ -1,7 +1,5 @@
 <div class="componentWrapper">
-  <registration-header
-    class="header"
-    [routerLink]="['/login']"></registration-header>
+  <registration-header class="header"[routerLink]="['/login']"></registration-header>
   <div class="formWrapper">
     <h3>Please Enter Your User Info</h3>
     <form class="myForm" (ngSubmit)="handleSignup(f)" #f="ngForm">
@@ -42,7 +40,7 @@
               type="url"
               id="url"
               ngModel
-              name="url">
+              name="site_url">
         </div>
       </div>
       <div class="billingAddress">

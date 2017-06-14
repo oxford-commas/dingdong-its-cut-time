@@ -12,7 +12,8 @@ import {
   StylistService,
   DeletionService,
   MessageService,
-  StateService
+  StateService,
+  StylistStylesService
 } from '../services';
 
 import {
@@ -60,7 +61,8 @@ import {
     StylistService,
     DeletionService,
     MessageService,
-    StateService
+    StateService,
+    StylistStylesService
    ],
  exports: [
    CustomerNavbarComponent,

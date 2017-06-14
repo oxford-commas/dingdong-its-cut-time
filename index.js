@@ -91,6 +91,7 @@ app.get('/api/stylists/:location', function(req, res) {
     var lat = points[0];
     var lng = points[1];
     helpers.getAllStylists(function(result) {
+      console.log(result);
       var data = [];
       result.forEach(function(el) {
         var lat2 = el.latitude;
@@ -117,11 +118,12 @@ app.post('/api/userstylist', function (req, res) {
   var gender = req.body.gender;
   var image_url = req.body.image_url;
   var location = req.body.location;
-  helpers.addUserStylist(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, function(result) {
+  var aboutMe = 'Welcome to my profile!';
+  helpers.addUserStylist(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe, function(result) {
     // Get id from result
     var id = result.insertId;
     // get location points/add longitude and latitude in stylists/users profile in database based on location provided
-    services.getLocationPoints(location, function(points) {
+    services.getLocationPoints(billingaddress, function(points) {
       var lat = points[0];
       var lng = points[1];
       helpers.addLocation(lat, lng, id, function() {
@@ -134,6 +136,7 @@ app.post('/api/userstylist', function (req, res) {
 
 // updates users or stylists information in the database
 app.put('/api/userstylist/:id', function (req, res) {
+  console.log('received account information: ',req.body);
   var id = req.params.id;
   var type = req.body.type;
   var name = req.body.name;
@@ -145,8 +148,12 @@ app.put('/api/userstylist/:id', function (req, res) {
   var gender = req.body.gender;
   var image_url = req.body.image_url;
   var location = req.body.location;
-  console.log(req.params);
-  helpers.updateProfile(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, function() {
+  var aboutMe = req.body.aboutMe;
+  if (req.body.styles) {
+    var styles = req.body.styles;
+    helpers.updateStyles(id, styles);
+  }
+  helpers.updateProfile(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe, id, function() {
     res.send('Got a PUT request at /api/userstylist/' + req.params.id);
   });
 });
@@ -166,7 +173,8 @@ app.post('/api/location', function(req, res) {
 
 // add bookings to the database
 app.post('/api/bookings', function(req, res) {
-  helpers.addToBookings(req.body.id_users, req.body.id_stylists, req.body.isconfirmed, req.body.isComplete, req.body.time, req.body.location, function() {
+  console.log('received a booking to post', req.body);
+  helpers.addToBookings(req.body, function() {
     res.sendStatus(201);
   });
 });
@@ -259,6 +267,16 @@ app.get('/api/stylistServices', (req, res) => {
   helpers.getAllStyles(results => res.status(200).send(results));
 });
 
+app.get('/api/stylistServices/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.getStyles(id, results => res.status(200).send(results));
+});
+
+app.put('/api/stylistServices/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.getStylistServices(id, results => res.status(200).send(results));
+});
+
 //given stylistId, delete stylist info from the database along with the bookings(foreign key constraint)
 app.delete('/stylist/:stylistid', function (req, res) {
   helpers.deleteUser(req.params.stylistid);
@@ -292,9 +310,11 @@ app.post('/api/messages', (req, res) => {
 });
 
 app.get('/api/messages/:id', (req, res) => {
-  helpers.getMessages(req.params.id, (data) => {
+  var id = Number(req.params.id);
+  helpers.getMessages(id, (data) => {
+    console.log('get all messages', data);
     let messages = {};
-    data.forEach((message, index) => {
+    if (data) data.forEach((message, index) => {
       const sender = message.id_sender === Number(req.params.id) ? {id: message.id_recipient, name: message.recipient} : {id: message.id_sender, name: message.sender};
       if (messages[sender.id]) {
         messages[sender.id].messages.push(message);

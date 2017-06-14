@@ -1,5 +1,6 @@
 <div class="componentWrapper">
-  <customer-navbar [customerId]="customerId"></customer-navbar>
+  <customer-navbar></customer-navbar>
+  
   <div class="subHeader">
     <h2>My Profile</h2>
     <div class="buttonContainer">
@@ -11,68 +12,59 @@
    <div class="profileContainer">
     <div class="userInfoContainer">
       <div class="imageContainer">
-        <img class="profileImage" [src]="profile.url" />
+        <img class="profileImage" [src]="profile.image_url" />
         <h3>{{profile.name}}</h3>
       </div>
 
       <div class="userInfo">
         <h5><span class="glyphicon glyphicon-question-sign"></span> {{ profile.billingaddress }}</h5>
-        <h5><span class="glyphicon glyphicon-question-sign"></span> {{profile.site_url}}</h5>
-        <h5><span class="glyphicon glyphicon-question-sign"></span> {{profile.phonenumber }}</h5>
+        <h5 *ngIf="profile.type===0">Personal Website: {{profile.site_url}}</h5>
+        <h5><span class="glyphicon glyphicon-question-sign"></span> {{ profile.phonenumber }}</h5>
       </div>
     </div>
+     
     <div class="aboutMeContainer">
       <div>
         <h4>About Me</h4>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+          {{ profile.aboutMe }}
       </div>
     </div>
+     
   </div>
 </div>
 
-
-
-
-
-
-
-
-<!--
-
-
-<div class="modalWrapper" [style.display]="getStyle()">
+<!-- <div class="modalWrapper" [style.display]="getStyle()">
   <div class="bigWrapper">
     <div class="miniWrapper">
       <span (click)="toggleModal()">&times;</span>
-      <form class="modalContent" (ngSubmit)="handleSaveChanges(form)" #form="ngForm">
+      <form class="modalContent" (ngSubmit)="handleSaveChanges(updateForm.value)" #updateForm="ngForm">
         <legend>User Info</legend>
         <h4>Username: {{profile.name}}</h4>
-          <input type="text" name="username" ngModel id="username"/>
+          <input type="text" name="name" [(ngModel)]="name" />
           <br/>
         <h4>Password: *********</h4>
-          <input type="password" name="password" ngModel id="password"/>
+          <input type="password" [(ngModel)]="password" name="password" />
           <br/>
         <h4>Email: {{profile.email}}</h4>
-          <input type="email" name="email" ngModel id="email" />
+          <input type="email" [(ngModel)]="email" name="email" />
           <br/>
         <h4>Phone Number: {{profile.phonenumber}}</h4>
-          <input name="phonenumber" ngModel id="phonenumber">
+          <input [(ngModel)]="phonenumber" name="phonenumber" />
           <br/>
-        <h4>Personal Website: {{profile.site_url}}</h4>
-          <input type="url" ngModel name="site_url">
+        <h4 *ngIf="profile.type===0">Personal Website: {{profile.site_url}}</h4>
+          <input *ngIf="profile.type===0" type="url" [(ngModel)]="site_url" name="site_url" />
           <br/>
         <h4>Billing Address: {{profile.billingaddress}}</h4>
-          <input type="text" ngModel name="billingaddress">
+          <input type="text" [(ngModel)]="billingaddress" name="billingaddress" />
           <br/>
-        <h4>Upload Profile Photo</h4>
-          <input type="file" ngModel name="image_url">
+        <h4>About Me</h4> -->
+          <!-- <input type="file" name="image_url" (change)="uploadImage(this.files)"/> -->
+<!--           <textarea [(ngModel)]="aboutMe" name="aboutMe"></textarea>
           <br />
         <div>
-          <button type="submit" (click)="handleSaveChanges(form)">
-            Save changes
-          </button>
+          <button type="submit">Save changes</button>
         </div>
       </form>
     </div>
   </div>
-</div> -->
+</div>  -->

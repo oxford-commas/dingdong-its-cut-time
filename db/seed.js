@@ -291,8 +291,8 @@ function userIndex(num) {
   } else {
     return num;
   }
-
 }
+
 
 const bookingsArray = [
   {
@@ -319,19 +319,23 @@ const bookingsArray = [
     id_stylists: userIndex(2),
     isconfirmed: 0,
     isComplete: 0,
+    date: 'September, 1, 2017',
     time: '11:00am',
-    location: '2014 Lyon St, San Francisco'
+    location: '2014 Lyon St, San Francisco',
+    detail: 'details'
   },
   {
-
     name: 'dnalounge',
     id_users: userIndex(15),
     id_stylists: userIndex(16),
     isconfirmed: 0,
     isComplete: 0,
+    date: 'September, 1, 2017',
     time: '1:00pm',
-    location: '2323 Lyon St, San Francisco'
+    location: '2323 Lyon St, San Francisco',
+    detail: 'details'
   },
+
 
    {
     name: 'palaceoffinearts',
@@ -339,10 +343,11 @@ const bookingsArray = [
     id_stylists: userIndex(19),
     isconfirmed: 0,
     isComplete: 0,
+    date: 'September, 1, 2017',
     time: '1:00pm',
-    location: '2323 Lyon St, San Francisco'
+    location: '2323 Lyon St, San Francisco',
+    detail: 'details'
   }
-
 ]
 
 const messagesArray = [
@@ -384,7 +389,6 @@ const messagesArray = [
     location: 'San francisco'
   },
   {
-
     id_sender: userIndex(2),
     id_recipient: userIndex(3),
     subjectHeading: 'idk',
@@ -674,18 +678,8 @@ stylistArray.forEach(stylist => {
     });
 });
 
-
 bookingsArray.forEach(booking => {
-
-  helpers.addToBookings(
-    booking.id_users,
-    booking.id_stylists,
-    booking.isconfirmed,
-    booking.isComplete,
-    booking.time,
-    booking.location, (resultFromServer) => {
-      console.log(resultFromServer);
-    });
+  helpers.addToBookings(booking, resultFromServer => console.log(resultFromServer));
 });
 
 stylesArray.forEach(style => {

@@ -1,8 +1,8 @@
 var model = require('./model.js');
 
-var addUserStylist = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, callback) {
-  var sql = "INSERT INTO users_stylists (type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-  model.con.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url],function (err, result) {
+var addUserStylist = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe, callback) {
+  var sql = "INSERT INTO users_stylists (type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  model.con.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe],function (err, result) {
     if (err) throw err;
     callback(result);
   });
@@ -54,21 +54,27 @@ var updateImage = function (imageUrl, id, callback) {
   });
 };
 
-var updateProfile = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, callback) {
-  var sql = 'UPDATE users_stylists SET type = ?, name = ?, password = ?, billingaddress = ?, phonenumber = ?, email = ?, site_url = ?, gender = ?, image_url = ? WHERE id = ?'
-  model.con.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id],function (err, result) {
+var updateProfile = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe, id, callback) {
+  var sql = 'UPDATE users_stylists SET type = ?, name = ?, password = ?, billingaddress = ?, phonenumber = ?, email = ?, site_url = ?, gender = ?, image_url = ?, aboutMe = ? WHERE id = ?'
+  model.con.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe, id],function (err, result) {
     if (err) throw err;
     console.log("1 record updated");
     callback();
   });
 };
 
-var addToBookings = function(userId, stylistId, isConfirmed, isComplete, time, location, callback) {
-  var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, location, isComplete) VALUES (?, ?, ?, ?, ?, ?)';
-  model.con.query(sql, [userId, stylistId, isConfirmed, time, location, isComplete],function (err, result) {
-    if (err) throw err;
-    callback(result);
-  });
+var addToBookings = function(booking, callback) {
+  var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, date, location, isComplete, detail) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+
+  model.con.query(
+    sql,
+    [booking.id_users, booking.id_stylists, booking.isconfirmed, booking.time, booking.date, booking.location, booking.isComplete, booking.detail],
+    (err, results) => {
+      for (var i = 0; i < booking.styles.length; i++) {
+        model.con.query('INSERT INTO bookings_styles (id_booking, id_style) VALUES (?, ?)', [results.insertId, booking.styles[i]]);
+      }
+    }
+  );
 };
 
 var getBookings = function(userId, callback) {
@@ -217,22 +223,35 @@ var stylistservices = function(serviceId, stylistId, callback) {
   });
 };
 
-var getStylistServices = function(stylistId, callback) {
-  model.con.query('select `servicename` from `stylists_services` as ss, `services` as s  where `id_users_stylists`= ? and ss.id_services = s.id', [stylistId], function(err, results) {
-    callback(results);
-  });
+var getStyles = function(stylistId, callback) {
+  var sql = `
+    SELECT s.servicename, s.id FROM
+    services s INNER JOIN stylists_services ss
+    WHERE ss.id_users_stylists = ?
+    AND ss.id_services = s.id`;
+  model.con.query(sql, [stylistId], (err, results) => callback(results));
 };
 
 var getAllStyles = (callback) => {
   model.con.query('SELECT * FROM services', (err, results) => callback(results));
 };
 
+var updateStyles = (stylistId, styles) => {
+  model.con.query('DELETE FROM stylists_services WHERE id_users_stylists = ?', [stylistId]);
+  for (var i = 0; i < styles.length; i++) {
+    var sql = `
+      INSERT INTO stylists_services (id_services, id_users_stylists)
+      VALUES(?, ?)`;
+    model.con.query(sql, [styles[i], stylistId]);
+  }
+};
+
 /////////////////////
 // MESSAGE HELPERS //
 /////////////////////
 var postMessage = (message, callback) => {
-  var sql = 'INSERT INTO messages (id_sender, id_recipient, subjectHeading, body, time, location) VALUES (?, ?, ?, ?, ?, ?)';
-  model.con.query(sql, [message.id_sender, message.id_recipient, message.subjectHeading, message.body, message.time, message.location],
+  var sql = 'INSERT INTO messages (id_sender, id_recipient, body) VALUES (?, ?, ?)';
+  model.con.query(sql, [message.id_sender, message.id_recipient, message.body],
     (err, results) => {
       model.con.query(
         `INSERT INTO recipients (id, name)
@@ -244,10 +263,7 @@ var postMessage = (message, callback) => {
 
 var getMessages = (id, callback) => {
   model.con.query(
-    `SELECT r.name as recipient, us.name as sender, m.subjectHeading, m.body, m.time, m.location, m.id, m.id_sender, m.id_recipient
-    FROM messages m
-    INNER JOIN recipients r ON (m.id_recipient = ${id} OR m.id_sender = ${id}) AND m.id = r.messageId
-    INNER JOIN users_stylists us ON us.id = m.id_sender`,
+    `SELECT r.name as recipient, us.name as sender, m.body, m.id, m.id_sender, m.id_recipient FROM messages m INNER JOIN recipients r ON r.messageId = m.id AND (m.id_recipient = ? OR m.id_sender = ?) INNER JOIN users_stylists us ON us.id = r.id`, [id, id],
     (err, results) => callback(results)
   );
 };
@@ -279,7 +295,7 @@ module.exports.getBookings = getBookings;
 module.exports.deleteUser = deleteUser;
 module.exports.addService = addService;
 module.exports.stylistservices = stylistservices;
-module.exports.getStylistServices = getStylistServices;
+module.exports.getStyles = getStyles;
 module.exports.getMessages = getMessages;
 module.exports.postMessage = postMessage;
 module.exports.deleteChat = deleteChat;
@@ -299,3 +315,4 @@ module.exports.readyConfirmedBooking = readyConfirmedBooking;
 module.exports.getPendingBookings = getPendingBookings;
 module.exports.cancelConfirmedBooking = cancelConfirmedBooking;
 module.exports.cancelPaymentBooking = cancelPaymentBooking;
+module.exports.updateStyles = updateStyles;

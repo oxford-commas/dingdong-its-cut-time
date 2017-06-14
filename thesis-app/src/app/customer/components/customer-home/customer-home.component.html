@@ -1,10 +1,5 @@
 <div class="componentWrapper">
-  <customer-navbar
-    [customerId]="customerProfile.id"
-    [searchLocation]="searchLocation"
-    (locationChange)="onSearchLocationChange($event)"
-  >
-  </customer-navbar>
+  <customer-navbar></customer-navbar>
   <div class="mainContainer">
     <div class="stylistContainer">
       <div>
@@ -13,32 +8,25 @@
       <div class="inputContainer">
         <input
           placeholder="Enter your location"
-          typer="search"
-          #streetAddress
-          (ngModelChange)="locationChange.emit(streetAddress)"
+          type="search"
+          [(ngModel)]="location"
+          (keypress)="updateCloseToYou(location)"
         >
-        <button (click)="handleSearchLocationChange(streetAddress.value)">Search</button>
       </div>
       <div class="closestContainer" *ngFor="let stylist of stylistsCloseToYou">
         <close-to-you
           [stylistInformation]="stylist"
-          [searchLocation]="searchLocation"
           [routerLink]="['/stylistProfile', stylist.id]"
         >
         </close-to-you>
       </div>
     </div>
-
     <div class="mapContainer">
       <customer-map
         class="map"
-        [searchLocation]="searchLocation"
+        [searchLocation]="location"
       >
       </customer-map>
     </div>
   </div>
 </div>
-
-
-
-
