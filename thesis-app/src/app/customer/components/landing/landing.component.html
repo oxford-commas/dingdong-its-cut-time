@@ -64,31 +64,25 @@
   </div>
 
 
-
-
-
-
-
   <!-- Stylist Landing -->
   <div *ngIf="profile.type===0">
-    <button [routerLink]="['/stylisthome']">View Map</button>
-
     <div class="confirmedContainer">
       <h2>Confirmed</h2>
       <div
         *ngFor="let confirmedBooking of profile.confirmedBookings; let i = index"
         class="booking-confirmed"
       >
-      <booking
-        [name]="confirmedBooking.name"
-        [image_url]="confirmedBooking.image_url"
-        [time]="confirmedBooking.time"
-        [phoneNumber]="confirmedBooking.phonenumber"
-        [location]="confirmedBooking.location"
-      >
-      </booking>
-      <button (click)="cancelBooking(confirmedBooking.id, i)">Cancel</button>
-      <button (click)="completeBooking(confirmedBooking.id, i)">Get paid!</button>
+        <booking
+          [name]="confirmedBooking.name"
+          [image_url]="confirmedBooking.image_url"
+          [time]="confirmedBooking.time"
+          [phoneNumber]="confirmedBooking.phonenumber"
+          [location]="confirmedBooking.location"
+        >
+        </booking>
+        <button (click)="cancelBooking(confirmedBooking.id, i)">Cancel</button>
+        <button (click)="completeBooking(confirmedBooking.id, i)">Get paid!</button>
+      </div>
     </div>
 
     <div class="awaitingContainer">
@@ -124,7 +118,6 @@
         <button (click)="declineBooking(pendingBooking.id, i)">Decline</button> -->
       </div>
     </div>
-  </div>
 </div>
 
 
