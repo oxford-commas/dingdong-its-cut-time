@@ -262,10 +262,7 @@ var postMessage = (message, callback) => {
 
 var getMessages = (id, callback) => {
   model.con.query(
-    `SELECT r.name as recipient, us.name as sender, m.body, m.id, m.id_sender, m.id_recipient
-    FROM messages m
-    INNER JOIN recipients r ON (m.id_recipient = 7 OR m.id_sender = 7) AND m.id = r.messageId
-    INNER JOIN users_stylists us ON us.id = m.id_sender`,
+    `SELECT r.name as recipient, us.name as sender, m.body, m.id, m.id_sender, m.id_recipient FROM messages m INNER JOIN recipients r ON r.messageId = m.id AND (m.id_recipient = ? OR m.id_sender = ?) INNER JOIN users_stylists us ON us.id = r.id`, [id, id],
     (err, results) => callback(results)
   );
 };

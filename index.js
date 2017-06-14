@@ -122,7 +122,7 @@ app.post('/api/userstylist', function (req, res) {
     // Get id from result
     var id = result.insertId;
     // get location points/add longitude and latitude in stylists/users profile in database based on location provided
-    services.getLocationPoints(location, function(points) {
+    services.getLocationPoints(billingaddress, function(points) {
       var lat = points[0];
       var lng = points[1];
       helpers.addLocation(lat, lng, id, function() {
@@ -305,7 +305,9 @@ app.post('/api/messages', (req, res) => {
 });
 
 app.get('/api/messages/:id', (req, res) => {
-  helpers.getMessages(req.params.id, (data) => {
+  var id = Number(req.params.id);
+  helpers.getMessages(id, (data) => {
+    console.log('get all messages', data);
     let messages = {};
     if (data) data.forEach((message, index) => {
       const sender = message.id_sender === Number(req.params.id) ? {id: message.id_recipient, name: message.recipient} : {id: message.id_sender, name: message.sender};
