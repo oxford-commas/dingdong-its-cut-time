@@ -83,6 +83,7 @@ export class CustomerProfileComponent {
   }
 
   public getStyle() {
+    console.log(this.showModal);
     if (this.showModal === false) {
       return 'none';
     } else {

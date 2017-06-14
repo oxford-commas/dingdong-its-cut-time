@@ -1,6 +1,6 @@
 <div class="componentWrapper">
   <customer-navbar></customer-navbar>
-  
+
   <div class="subHeader">
     <h2>My Profile</h2>
     <div class="buttonContainer">
@@ -22,49 +22,41 @@
         <h5><span class="glyphicon glyphicon-question-sign"></span> {{ profile.phonenumber }}</h5>
       </div>
     </div>
-     
+
     <div class="aboutMeContainer">
       <div>
         <h4>About Me</h4>
           {{ profile.aboutMe }}
       </div>
     </div>
-     
   </div>
 </div>
 
-<!-- <div class="modalWrapper" [style.display]="getStyle()">
-  <div class="bigWrapper">
-    <div class="miniWrapper">
-      <span (click)="toggleModal()">&times;</span>
-      <form class="modalContent" (ngSubmit)="handleSaveChanges(updateForm.value)" #updateForm="ngForm">
-        <legend>User Info</legend>
-        <h4>Username: {{profile.name}}</h4>
-          <input type="text" name="name" [(ngModel)]="name" />
-          <br/>
-        <h4>Password: *********</h4>
-          <input type="password" [(ngModel)]="password" name="password" />
-          <br/>
-        <h4>Email: {{profile.email}}</h4>
-          <input type="email" [(ngModel)]="email" name="email" />
-          <br/>
-        <h4>Phone Number: {{profile.phonenumber}}</h4>
-          <input [(ngModel)]="phonenumber" name="phonenumber" />
-          <br/>
-        <h4 *ngIf="profile.type===0">Personal Website: {{profile.site_url}}</h4>
-          <input *ngIf="profile.type===0" type="url" [(ngModel)]="site_url" name="site_url" />
-          <br/>
-        <h4>Billing Address: {{profile.billingaddress}}</h4>
-          <input type="text" [(ngModel)]="billingaddress" name="billingaddress" />
-          <br/>
-        <h4>About Me</h4> -->
-          <!-- <input type="file" name="image_url" (change)="uploadImage(this.files)"/> -->
-<!--           <textarea [(ngModel)]="aboutMe" name="aboutMe"></textarea>
-          <br />
-        <div>
-          <button type="submit">Save changes</button>
-        </div>
-      </form>
+    <!-- <span (click)="toggleModal()">&times;</span> -->
+<div class="modalWrapper" [style.display]="getStyle()">
+  <div class="miniWrapper">
+    <div class="modalHeader">
+      <h2>Edit Profile</h2>
+      <div (click)="toggleModal()">&times;</div>
     </div>
+    <form class="modalContent" (ngSubmit)="handleSaveChanges(updateForm.value)" #updateForm="ngForm">
+      <h4>Username: {{profile.name}}</h4>
+        <input type="text" name="name" [(ngModel)]="name" />
+      <h4>Password: *********</h4>
+        <input type="password" [(ngModel)]="password" name="password" />
+      <h4>Email: {{profile.email}}</h4>
+        <input type="email" [(ngModel)]="email" name="email" />
+      <h4>Phone Number: {{profile.phonenumber}}</h4>
+        <input [(ngModel)]="phonenumber" name="phonenumber" />
+      <h4 *ngIf="profile.type===0">Personal Website: {{profile.site_url}}</h4>
+        <input *ngIf="profile.type===0" type="url" [(ngModel)]="site_url" name="site_url" />
+      <h4>Address: {{profile.billingaddress}}</h4>
+        <input type="text" [(ngModel)]="billingaddress" name="billingaddress" />
+      <h4>About Me</h4>
+        <textarea [(ngModel)]="aboutMe" name="aboutMe"></textarea>
+      <div>
+        <button type="submit">Save changes</button>
+      </div>
+    </form>
   </div>
-</div>  -->
+</div>
