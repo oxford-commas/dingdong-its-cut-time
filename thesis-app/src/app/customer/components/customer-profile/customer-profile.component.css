@@ -1,120 +1,91 @@
-h1 {
-  border-bottom: 2px solid black;
+.componentWrapper {
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
-.poppaDiv {
-  border: 2px solid black;
-  display: flex;
+.subHeader {
+  height: 18%;
   width: 100%;
-  height: 100%;
-  border-radius: 20px;
-}
-
-.profileContainer {
-  flex: 1 1 30%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.profileImg {
-  height: 60%;
-  width: 60%;
-  margin: 1em;
-  border-radius: 50px;
-}
-
-.billingAddressContainer {
-  flex: 1 1 100%;
-  height: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 1em;
-  margin: 1em;
-}
-
-.userInfoContainer {
-  flex: 1 1 60%;
-  padding: 1em;
-  margin: 1em;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: left;
-  text-indent: 1em;
-}
-
-.profAddress {
-  text-indent: 1em;
-}
-
-.buttonContainer2 {
-  flex: 1 1 9%;
-  padding: 1em;
-  margin: 1em;
-  border-left: 2px solid black;
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 
-input {
-  background-color: #d3d3d3;
+.subHeader > * {
   margin-left: 2em;
+  margin-right: 2em;
 }
 
-button {
-  border: 2px solid black;
-  background-color: rgba(173, 216, 230, 0.9);
-  border-radius: 10px;
-}
-
-.modalWrapper {
+.buttonContainer {
+  flex: 1 1 50%;
   display: flex;
-  color: black;
-  justify-content: center;
+  justify-content: flex-end;
+  padding-right: 3em;
+}
+.buttonContainer button {
+  background-color: #F9B71A;
+  color: #ffffff;
+  border-radius: 20px;
+  width: 24%;
+  margin: .5em;
+  height: 2.5em;
+}
+
+.profileContainer {
+  height: 75%;
+  display: flex;
+}
+
+.profileImage {
+  margin-top: 2em;
+  width: 70%;
+  height: 65%;
+}
+.userInfoContainer {
+  flex: 1 1 30%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid black;
+}
+
+.imageContainer {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  padding-top: 1em;
-  margin-top: 1em;
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
+  color: #F9B71A;
+  border-bottom: 1px solid black;
+  flex: 1 1 50%;
+  height: 50%;
+  width: 95%;
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+
+.userInfo {
+  flex: 1 1 50%;
+  height: 50%;
   width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(173, 216, 230, 0.9);
-}
-
-.modalContent {
-  border: 2px solid black;
-  flex: 1 1;
-  width: 82%;
-  height: 80%;
-  padding: 5ch;
-  margin: 5ch;
-  margin-left: 12ch;
-  position: absolute;
-  /*margin-left: -35%;
-  margin-top: -35%;*/
-  /*top: 50%;
-  left: 50%;*/
-  background-color: white;
-}
-
-.modeitem {
-  padding: 1ch;
-  margin: 1ch;
-}
-
-input, textarea {
-  background-color: #d3d3d3;
-}
-
-.bigWrapper {
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: left;
+  margin-left: 3em;
+}
+
+.aboutMeContainer {
+  flex: 1 1 70%;
+}
+
+.aboutMeContainer > * {
+  margin-left: 2em;
+  margin-top: 2em;
+  width: 90%;
+}
+
+.glyphicon-question-sign {
+  color: #F9B71A;
+  border: 1px solid #F9B71A;
+  background-color: #ffffff;
 }

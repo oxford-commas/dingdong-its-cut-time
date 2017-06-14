@@ -1,24 +1,26 @@
-<div class="map-container" style="flex: 1 1;">
+<div class="sebm-google-map-container">
   <sebm-google-map
     [latitude]="lat"
     [longitude]="lng"
     [zoom]="zoom"
     [disableDefaultUI]="false"
     [zoomControl]="false"
-    (mapClick)="mapClicked($event)">
+    (mapClick)="mapClicked($event)"
+  >
     <sebm-google-map-marker
       [markerDraggable]="true"
       [(latitude)]="markerLat"
       [(longitude)]="markerLng"
       ondragend="onMarkerClick(e)"
-      >
+    >
     </sebm-google-map-marker>
     <sebm-google-map-marker
-        *ngFor="let stylist of stylists; let i = index;"
-        [latitude]="stylist.latitude"
-        [longitude]="stylist.longitude"
-        [label]="stylist.label"
-        [iconUrl]="icon">
+      *ngFor="let stylist of stylists; let i = index;"
+      [latitude]="stylist.latitude"
+      [longitude]="stylist.longitude"
+      [label]="stylist.label"
+      [iconUrl]="icon"
+    >
       <sebm-google-map-info-window>
         <p (click)="goToStylist(stylist.id)"><strong>{{stylist.label.text}} Info</strong></p>
       </sebm-google-map-info-window>

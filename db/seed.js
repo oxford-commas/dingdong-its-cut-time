@@ -293,20 +293,30 @@ function userIndex(num) {
   }
 }
 
-const booksingsArray = [
-    {
-    id_users: 7,
-    id_stylists: 2,
+
+const bookingsArray = [
+  {
+    name: 'Mateo',
+    id_users: userIndex(4),
+    id_stylists: userIndex(2),
     isconfirmed: 0,
     isComplete: 0,
-    date: 'September, 1, 2017',
-    time: '1:00am',
-    location: '1023 Lyon St, San Francisco',
-    detail: 'details'
+    time: new Date(),
+    location: 'San Mateo, CA, CA'
   },
   {
-    id_users: 6,
-    id_stylists: 2,
+    name: 'mrhighland',
+    id_users: userIndex(4),
+    id_stylists: userIndex(2),
+    isconfirmed: 1,
+    isComplete: 0,
+    time: new Date(),
+    location: '1851 Lexington Ave, San Mateo, CA'
+  },
+  {
+    name: 'bigbess',
+    id_users: userIndex(6),
+    id_stylists: userIndex(2),
     isconfirmed: 0,
     isComplete: 0,
     date: 'September, 1, 2017',
@@ -315,19 +325,23 @@ const booksingsArray = [
     detail: 'details'
   },
   {
-    id_users: 4,
-    id_stylists: 2,
-    isconfirmed: 1,
+    name: 'dnalounge',
+    id_users: userIndex(15),
+    id_stylists: userIndex(16),
+    isconfirmed: 0,
     isComplete: 0,
     date: 'September, 1, 2017',
     time: '1:00pm',
     location: '2323 Lyon St, San Francisco',
     detail: 'details'
   },
-  {
-    id_users: 10,
-    id_stylists: 2,
-    isconfirmed: 1,
+
+
+   {
+    name: 'palaceoffinearts',
+    id_users: userIndex(15),
+    id_stylists: userIndex(19),
+    isconfirmed: 0,
     isComplete: 0,
     date: 'September, 1, 2017',
     time: '1:00pm',
@@ -664,8 +678,7 @@ stylistArray.forEach(stylist => {
     });
 });
 
-
-booksingsArray.forEach(booking => {
+bookingsArray.forEach(booking => {
   helpers.addToBookings(booking, resultFromServer => console.log(resultFromServer));
 });
 

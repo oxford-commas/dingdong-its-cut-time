@@ -1,120 +1,106 @@
-.poppadiv {
-  border: 3px solid black;
-  border-radius: 20px;
-  box-shadow: 10px 10px 5px rgba(173, 216, 230, 0.9);
+.componentWrapper {
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 93%;
-  margin: 5ch;
 }
 
-.name {
+.subHeader {
+  height: 18%;
   width: 100%;
-  height: 10%;
-  flex: 1 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.profile {
+.subHeader > * {
+  margin-left: 2em;
+  margin-right: 2em;
+}
+.buttonContainer {
+  flex: 1 1 50%;
   display: flex;
-  flex-wrap: wrap;
-  padding: 1.5em;
+  justify-content: flex-end;
+}
+.buttonContainer button {
+  background-color: #F9B71A;
+  color: #ffffff;
+  border-radius: 20px;
+  width: 21%;
+  margin-right: 6em;
+}
+
+.profileContainer {
+  height: 75%;
+  display: flex;
 }
 
 .profileImage {
-  border-radius: 150px;
-  width: 100%;
-  height: 100%;
+  margin-top: 2em;
+  width: 70%;
+  height: 65%;
+}
+.userInfoContainer {
+  flex: 1 1 30%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid black;
 }
 
-.locationWrapper {
-  flex: 1 1;
-  width: 30%;
-  padding: 1em;
-  height: 100%;
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #F9B71A;
+  border-bottom: 1px solid black;
+  flex: 1 1 50%;
+  height: 50%;
+  width: 95%;
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+
+.userInfo {
+  flex: 1 1 50%;
+  height: 50%;
+  width: 90%;
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: left;
+  margin-left: 3em;
 }
+
+.aboutMeContainer {
+  flex: 1 1 70%;
+}
+
+.aboutMeContainer > * {
+  margin-left: 2em;
+  margin-top: 2em;
+  width: 90%;
+}
+
+.glyphicon-question-sign {
+  color: #F9B71A;
+  border: 1px solid #F9B71A;
+  background-color: #ffffff;
+}
+
 .servicesContainer {
-  flex: 1 1 50%;
-  width: 65%;
-  height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.buttonContainer {
-  width: 1%;
-  flex: 1 1 1%;
-}
-
-
-.latLong {
-  border-top: 2px solid;
-  height: 50%;
-  width: 100%;
-}
-
-
-.personalContainer {
-  padding: 1em;
-  margin: 1em;
-  display: flex;
-  width: 100%;
-}
-
-
-.heading {
-  flex: 1 1;
-}
-
-.location {
-  flex: 1 1;
-}
-
-.message {
-  flex: 1 1;
-}
-
-textarea {
-  width: 75ch;
-  height: 25ch;
-}
-
-.button {
-  flex: 1 1;
-  align-self: right;
-}
-
-.listStyles {
-  border-bottom: 2px solid black;
-  width: 100%;
-  display: flex;
-  justify-content: left;
-  align-items: center;
   flex-wrap: wrap;
 }
 
-.styleItems {
-  padding: 3px;
-  margin: 3px;
+.servicesContainer > * {
+  flex: 1 1 25%;
 }
 
-.linktosite {
-  border: 1px solid black;
-  width: 75%;
-}
-/*
-.link {
-  flex: 1 1 50%;
-  border: 2px solid red;
-}
-*/
+
+
+
+
+
 .paragraph {
   overflow: scroll;
   width: 100%;

@@ -1,28 +1,40 @@
-.poppaDiv {
-  height: 100%;
-  width: 100%;
+.componentWrapper {
+  font-family: 'Montserrat', sans-serif;
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
-.container {
-  width: 80%;
-  display: flex;
+h2 {
+  color: #F9B71A;
 }
 
-.inbox-container {
+.messagesContainer {
   display: flex;
-  flex: 1;
-  height: 35%;
-  width: 30%;
-  overflow: scroll;
-  padding-right: 4rem;
+  height: 100%;
+}
+
+.inboxContainer {
   border-right: 1px solid black;
+  flex: 1 1 30%;
+  height: 100%;
 }
 
-.chat-history-container {
+.messageHist {
   display: flex;
-  flex: 3;
-  border-right: 1px solid black;
-  padding: 0 4rem;
+  flex-direction: column;
+  flex: 1 1 85%;
+  height: 100%;
+}
+
+.username {
+  display: flex;
+  justify-content: center;
+  border-bottom: black;
+  border-bottom: 1px solid black;
+  height: 15%;
+}
+
+.chatHistoryContainer {
+  height: 85%;
 }

@@ -8,5 +8,7 @@ import { StateService } from '../../../services';
   styleUrls: ['./customer-navbar.component.css']
 })
 export class CustomerNavbarComponent {
+  
   constructor(private stateService: StateService) {}
+  
 }

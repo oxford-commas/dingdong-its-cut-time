@@ -1,50 +1,47 @@
-<customer-navbar></customer-navbar>
-<div *ngIf="!!isProfileFetched">
-  <div class="poppadiv">
-    <div>
-      <h2 class="name">{{ stylistProfile.name }}</h2>
+<div class="componentWrapper">
+  <customer-navbar></customer-navbar>
+
+  <div class="subHeader">
+    <h3>My Profile</h3>
+    <div class="buttonContainer">
+      <button (click)="toggleMessageModal()">Message</button>
+      <button (click)="toggleBookingModal()">Book Appointment</button>
     </div>
-    <div class="profile" >
-      <div class="locationWrapper">
+  </div>
+
+  <div class="profileContainer">
+    <div class="userInfoContainer">
+      <div class="imageContainer">
         <img class="profileImage" [src]=stylistProfile.image_url />
-        <h4>You can find me @</h4>
-        <div class="latLong">
-          <!-- Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}} -->
-          <p>{{ stylistProfile.billingaddress }}</p>
-          <p>{{ stylistProfile.phonenumber }}</p>
-        </div>
+        <h3>{{stylistProfile.name}}</h3>
       </div>
-
-      <div class="servicesContainer">
-        <h4>Services I provide</h4>
-        <div class="listStyles">
-          <div class="styleItems" *ngFor="let style of styles">
-            <h5>{{style.servicename}}</h5>
-          </div>
-        </div>
-        <div class="aboutMe">
-          <h4>About Me</h4>
-          <div class="paragraph">
-            {{stylistProfile.aboutMe}}
-          </div>
-        </div>
-
-        <h4>Link to personal site:</h4>
-        <div class="container row personalContainer">
-          <a href="stylistProfile.site_url">{{stylistProfile.site_url}}</a>
-        </div>
-      </div>
-      <div class="buttonContainer">
-        <button *ngIf="stateService.retrieveCustomer().type===1" (click)="toggleMessageModal()">Message me</button>
-        <button *ngIf="stateService.retrieveCustomer().type===1" (click)="toggleBookingModal()">Book with me</button>
-        <button *ngIf="stateService.retrieveCustomer().type===0" (click)="toggleEditModal()">Edit</button>
+      <div class="userInfo">
+        <h5><span class="glyphicon glyphicon-question-sign"></span> {{ stylistProfile.billingaddress }}</h5>
+        <h5><span class="glyphicon glyphicon-question-sign"></span> {{ stylistProfile.site_url }}</h5>
+        <h5><span class="glyphicon glyphicon-question-sign"></span> {{ stylistProfile.phonenumber }}</h5>
       </div>
     </div>
+    
+    <div class="aboutMeContainer">
+      <div>
+        <h4>About Me</h4>
+          {{ stylistProfile.aboutMe }}
+      </div>
+      <div>
+        <h4>Services</h4>
+        <div class="servicesContainer">
+          <div class="styleItems" *ngFor="let style of styles">
+            <h5><input type="checkbox" checked="checked"> {{ style.servicename }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </div>
 </div>
 
 <!-- Message Modal -->
-<div class="container row modalWrapper" [style.display]="getStyle()">
+<!-- <div class="container row modalWrapper" [style.display]="getStyle()">
   <div class="bigWrapper">
     <form
       class="container row modalContent"
@@ -61,10 +58,10 @@
       </div>
     </form>
   </div>
-</div>
+</div> -->
 
 <!-- Booking Modal -->
-<div class="container row modalWrapper" [style.display]="getBookingModalStyle()">
+<!-- <div class="container row modalWrapper" [style.display]="getBookingModalStyle()">
   <div class="bigWrapper">
     <form
       class="container row modalContent"
@@ -91,46 +88,4 @@
       </div>
     </form>
   </div>
-</div>
-
-<!-- EDIT MODAL -->
-<div class="modalWrapper" [style.display]="getEditModalStyle()">
-  <div class="bigWrapper">
-    <div class="miniWrapper">
-      <span (click)="toggleEditModal()">&times;</span>
-      <form class="modalContent" (ngSubmit)="handleSaveChanges(updateForm.value)" #updateForm="ngForm">
-        <legend>Edit Profile</legend>
-        <h4>Username: {{profile.name}}</h4>
-          <input type="text" name="name" [(ngModel)]="name" />
-          <br/>
-        <h4>Password: *********</h4>
-          <input type="password" [(ngModel)]="password" name="password" />
-          <br/>
-        <h4>Email: {{profile.email}}</h4>
-          <input type="email" [(ngModel)]="email" name="email" />
-          <br/>
-        <h4>Phone Number: {{profile.phonenumber}}</h4>
-          <input [(ngModel)]="phonenumber" name="phonenumber" />
-          <br/>
-        <h4>Personal Website: {{profile.site_url}}</h4>
-          <input type="url" [(ngModel)]="site_url" name="site_url" />
-          <br/>
-        <h4>Billing Address: {{profile.billingaddress}}</h4>
-          <input type="text" [(ngModel)]="billingaddress" name="billingaddress" />
-          <br/>
-        <h4>About Me</h4>
-          <!-- <input type="file" name="image_url" (change)="uploadImage(this.files)"/> -->
-          <textarea [(ngModel)]="aboutMe" name="aboutMe"></textarea>
-          <br />
-        <h4>Types Of Services</h4>
-          <span *ngFor="let style of allStyles">
-            {{style.servicename}}
-            <input type="checkbox" id="styleGroup" [name]="style.id" value="style.id" ngModel />
-          </span>
-        <div>
-          <button type="submit">Save changes</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+</div> -->
