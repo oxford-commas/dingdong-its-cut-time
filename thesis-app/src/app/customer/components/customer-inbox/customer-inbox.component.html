@@ -1,15 +1,20 @@
-<h1>Inbox</h1>
-<div
-  *ngFor="let conversation of conversations"
-  class="title"
-  (click)="this.openHistory.emit(conversation.sender_id)"
->
-  <div class="messageUser">
-    <h4>{{conversation.sender}}: </h4>
-  </div>
+<div class="componentWrapper">
+  <h1>Messages</h1>
   <div
-    class="buttonContainer glyphicon glyphicon-remove"
-    (click)="deleteChat.emit(conversation.sender_id)"
+    *ngFor="let conversation of conversations"
+    class="title"
+    (click)="this.openHistory.emit(conversation.sender_id)"
   >
+    <div class="nameContainer">
+      <h4>{{conversation.sender}}: </h4>
+    </div>
+    <div class="spanContainer">
+      <span
+        class="buttonContainer glyphicon glyphicon-remove"
+        (click)="deleteChat.emit(conversation.sender_id)"
+      >
+      </span>
+    </div>
   </div>
+
 </div>

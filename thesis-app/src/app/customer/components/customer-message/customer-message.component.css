@@ -20,3 +20,8 @@
   flex-direction: column;
   flex: 1 1 70%;
 }
+
+.username {
+  display: flex;
+  justify-content: center;
+}
