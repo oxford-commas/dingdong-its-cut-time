@@ -384,7 +384,7 @@ const messagesArray = [
   }
 ];
 
-// messagesArray.forEach(message => helpers.postMessage(message));
+messagesArray.forEach(message => helpers.postMessage(message));
 
 const stylesArray = [
   'Afro',
@@ -642,32 +642,32 @@ const stylistServices = [
 
 
 
-// stylistArray.forEach(stylist => {
-//   helpers.addUserStylist(
-//     stylist.id,
-//     stylist.username,
-//     stylist.password,
-//     stylist.location,
-//     stylist.phoneNumber,
-//     stylist.email,
-//     stylist.website,
-//     stylist.type,
-//     stylist.update, (resultFromServer) => {
-//       var id = resultFromServer.insertId;
-//       services.getLocationPoints(stylist.location, (points) => {
-//         let lat = points[0];
-//         let lng = points[1];
-//         helpers.addLocation(lat, lng, id, (res) => {
-//           console.log(res);
-//         })
-//       })
-//     });
-// });
+stylistArray.forEach(stylist => {
+  helpers.addUserStylist(
+    stylist.id,
+    stylist.username,
+    stylist.password,
+    stylist.location,
+    stylist.phoneNumber,
+    stylist.email,
+    stylist.website,
+    stylist.type,
+    stylist.update, (resultFromServer) => {
+      var id = resultFromServer.insertId;
+      services.getLocationPoints(stylist.location, (points) => {
+        let lat = points[0];
+        let lng = points[1];
+        helpers.addLocation(lat, lng, id, (res) => {
+          console.log(res);
+        })
+      })
+    });
+});
 
 
-// booksingsArray.forEach(booking => {
-//   helpers.addToBookings(booking, resultFromServer => console.log(resultFromServer));
-// });
+booksingsArray.forEach(booking => {
+  helpers.addToBookings(booking, resultFromServer => console.log(resultFromServer));
+});
 
 stylesArray.forEach(style => {
   helpers.addService(style, (res) => {
@@ -675,11 +675,11 @@ stylesArray.forEach(style => {
   });
 });
 
-// stylistServices.forEach(style => {
-//   helpers.stylistservices(style.styleId, style.stylistId, (res) => {
-//     console.log(res)
-//   })
-// });
+stylistServices.forEach(style => {
+  helpers.stylistservices(style.styleId, style.stylistId, (res) => {
+    console.log(res)
+  })
+});
 
 // implant image in users_stylists
 for (var i = 0; i < 21; i++) {
