@@ -27,41 +27,55 @@ export class StylistProfileComponent implements OnInit {
     private stylistStylesService: StylistStylesService
   ) {}
 
+  //form models
+  public name;
+  public password;
+  public email;
+  public phonenumber;
+  public billingaddress;
+  public aboutMe;
+
   public isProfileFetched: boolean = false;
   public isStylesFetched: boolean = false;
   public stylistProfile: any; // TODO: interface this
+  public profile; // used if a stylist is logged in
+  public allStyles;
   public styles: Array<string>;
   public isShowMessageModal: boolean = false;
   public isShowBookingModal: boolean = false;
+  public isShowEditModal: boolean = false;
   public modalStyle: string = 'none';
   private stylistId: number;
 
   ngOnInit() {
+    // if navigated to from close to you
     this.route.params
       .subscribe(
         params => this.stylistId = +params['id'],
         err => console.log(err)
       );
+
+    // if navigated to as logged in stylist
+    this.profile = this.stateService.retrieveCustomer();
+
     this.requestService.getStylistById(this.stylistId)
      .subscribe(
-       data => {
-        this.stylistProfile = data
-        this.requestService.getUserImg(this.stylistProfile.id)
-          .subscribe(
-            response => {
-              this.stylistProfile.image_url = response.url;
-            }
-          )
-      },
+       data => this.stylistProfile = data,
        err => console.log(err),
        () => this.isProfileFetched = true
      );
 
    this.stylistStylesService.fetchStyles(this.stylistId)
      .subscribe(
-       data => {this.styles = data;console.log(this.styles);},
+       data => this.styles = data,
        err => console.log(err),
        () => this.isStylesFetched = true
+     );
+
+   this.stylistStylesService.fetchAllStyles()
+     .subscribe(
+       data => this.allStyles = data,
+       err => console.log(err)
      );
   }
 
@@ -71,6 +85,10 @@ export class StylistProfileComponent implements OnInit {
 
   public toggleBookingModal() {
     this.isShowBookingModal = !this.isShowBookingModal;
+  }
+
+  public toggleEditModal() {
+    this.isShowEditModal = !this.isShowEditModal;
   }
 
   public submitBooking(bookingForm) {
@@ -116,6 +134,14 @@ export class StylistProfileComponent implements OnInit {
     }
   }
 
+  public getEditModalStyle() {
+    if (this.isShowEditModal === false) {
+      return 'none';
+    } else {
+      return 'block';
+    }
+  }
+
   public submitMessage(messageForm) {
     const message = {
       id_sender: this.stateService.retrieveCustomer().id,
@@ -129,5 +155,55 @@ export class StylistProfileComponent implements OnInit {
       );
     this.stateService.updateCustomer(null);
     this.isShowMessageModal = false;
+  }
+
+  public handleSaveChanges(updateForm) {
+
+
+    let styles = [];
+    for (var key in updateForm) {
+      if (updateForm[key] === true) {
+        styles.push(key);
+      }
+    }
+
+    const accountInformation = {
+      billingaddress: updateForm.billingaddress || this.stylistProfile.billingaddress,
+      email: updateForm.email || this.stylistProfile.email,
+      id: this.stylistProfile.id,
+      name: updateForm.name || this.stylistProfile.name,
+      password: updateForm.password || this.stylistProfile.password,
+      phonenumber: updateForm.phonenumber || this.stylistProfile.phonenumber,
+      site_url: updateForm.site_url || this.stylistProfile.site_url,
+      type: this.stylistProfile.type,
+      aboutMe: updateForm.aboutMe || this.stylistProfile.aboutMe,
+      styles: styles
+    };
+
+    // update the state
+    this.stateService.updateCustomer(accountInformation);
+    // reflect state changes on page
+    this.stylistProfile = this.stateService.retrieveCustomer();
+    // update the database
+    this.requestService.changeUser(accountInformation)
+      .subscribe(
+        data => console.log(data),
+        err => console.log(err)
+      );
+    this.stylistStylesService.fetchStyles(this.stylistId)
+     .subscribe(
+       data => this.styles = data,
+       err => console.log(err)
+     );
+
+    // clear fields
+    this.name = '';
+    this.password = '';
+    this.email = '';
+    this.phonenumber = '';
+    this.billingaddress = '';
+    this.aboutMe = '';
+
+    this.isShowEditModal = false;
   }
 }

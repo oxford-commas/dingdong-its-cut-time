@@ -236,7 +236,8 @@ var getAllStyles = (callback) => {
   model.con.query('SELECT * FROM services', (err, results) => callback(results));
 };
 
-var updateStyles = (stylistId, styles, callback) => {
+var updateStyles = (stylistId, styles) => {
+  model.con.query('DELETE FROM stylists_services WHERE id_users_stylists = ?', [stylistId]);
   for (var i = 0; i < styles.length; i++) {
     var sql = `
       INSERT INTO stylists_services (id_services, id_users_stylists)

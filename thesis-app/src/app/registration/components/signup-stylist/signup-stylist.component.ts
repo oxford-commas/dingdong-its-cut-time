@@ -32,7 +32,8 @@ export class SignupStylistComponent {
       email: form.value.email,
       type: 0,
       billingaddress: form.value.address,
-      site_url: form.value.site_url
+      site_url: form.value.site_url,
+      image_url: 'http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png'
     };
     let styles = [];
     for (var key in form.value) {

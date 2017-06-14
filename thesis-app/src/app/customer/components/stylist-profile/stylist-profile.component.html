@@ -37,7 +37,7 @@
       <div class="buttonContainer">
         <button *ngIf="stateService.retrieveCustomer().type===1" (click)="toggleMessageModal()">Message me</button>
         <button *ngIf="stateService.retrieveCustomer().type===1" (click)="toggleBookingModal()">Book with me</button>
-        <button *ngIf="stateService.retrieveCustomer().type===0" (click)="editProfile()">Edit</button>
+        <button *ngIf="stateService.retrieveCustomer().type===0" (click)="toggleEditModal()">Edit</button>
       </div>
     </div>
   </div>
@@ -90,5 +90,47 @@
         <textarea name="detail" ngModel></textarea>
       </div>
     </form>
+  </div>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="modalWrapper" [style.display]="getEditModalStyle()">
+  <div class="bigWrapper">
+    <div class="miniWrapper">
+      <span (click)="toggleEditModal()">&times;</span>
+      <form class="modalContent" (ngSubmit)="handleSaveChanges(updateForm.value)" #updateForm="ngForm">
+        <legend>Edit Profile</legend>
+        <h4>Username: {{profile.name}}</h4>
+          <input type="text" name="name" [(ngModel)]="name" />
+          <br/>
+        <h4>Password: *********</h4>
+          <input type="password" [(ngModel)]="password" name="password" />
+          <br/>
+        <h4>Email: {{profile.email}}</h4>
+          <input type="email" [(ngModel)]="email" name="email" />
+          <br/>
+        <h4>Phone Number: {{profile.phonenumber}}</h4>
+          <input [(ngModel)]="phonenumber" name="phonenumber" />
+          <br/>
+        <h4>Personal Website: {{profile.site_url}}</h4>
+          <input type="url" [(ngModel)]="site_url" name="site_url" />
+          <br/>
+        <h4>Billing Address: {{profile.billingaddress}}</h4>
+          <input type="text" [(ngModel)]="billingaddress" name="billingaddress" />
+          <br/>
+        <h4>About Me</h4>
+          <!-- <input type="file" name="image_url" (change)="uploadImage(this.files)"/> -->
+          <textarea [(ngModel)]="aboutMe" name="aboutMe"></textarea>
+          <br />
+        <h4>Types Of Services</h4>
+          <span *ngFor="let style of allStyles">
+            {{style.servicename}}
+            <input type="checkbox" id="styleGroup" [name]="style.id" value="style.id" ngModel />
+          </span>
+        <div>
+          <button type="submit">Save changes</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
