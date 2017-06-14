@@ -291,59 +291,49 @@ function userIndex(num) {
   } else {
     return num;
   }
-
 }
 
 const booksingsArray = [
-  {
-    name: 'Mateo',
-    userid: userIndex(4),
-    stylistid: userIndex(2),
+    {
+    id_users: 7,
+    id_stylists: 2,
     isconfirmed: 0,
     isComplete: 0,
-    time: new Date(),
-    location: 'San Mateo, CA, CA'
+    date: 'September, 1, 2017',
+    time: '1:00am',
+    location: '1023 Lyon St, San Francisco',
+    detail: 'details'
   },
   {
-    name: 'mrhighland',
-    userid: userIndex(4),
-    stylistid: userIndex(2),
+    id_users: 6,
+    id_stylists: 2,
+    isconfirmed: 0,
+    isComplete: 0,
+    date: 'September, 1, 2017',
+    time: '11:00am',
+    location: '2014 Lyon St, San Francisco',
+    detail: 'details'
+  },
+  {
+    id_users: 4,
+    id_stylists: 2,
     isconfirmed: 1,
     isComplete: 0,
-    time: new Date(),
-    location: '1851 Lexington Ave, San Mateo, CA'
+    date: 'September, 1, 2017',
+    time: '1:00pm',
+    location: '2323 Lyon St, San Francisco',
+    detail: 'details'
   },
   {
-    name: 'bigbess',
-    userid: userIndex(6),
-    stylistid: userIndex(2),
-    isconfirmed: 0,
+    id_users: 10,
+    id_stylists: 2,
+    isconfirmed: 1,
     isComplete: 0,
-    time: '11:00am',
-    location: '2014 Lyon St, San Francisco'
-  },
-  {
-
-    name: 'dnalounge',
-    userid: userIndex(15),
-    stylistid: userIndex(16),
-    isconfirmed: 0,
-    isComplete: 0,
+    date: 'September, 1, 2017',
     time: '1:00pm',
-    location: '2323 Lyon St, San Francisco'
-  },
-
-   {
-    name: 'palaceoffinearts',
-    userid: userIndex(15),
-    stylistid: userIndex(19),
-    isconfirmed: 0,
-
-    isComplete: 0,
-    time: '1:00pm',
-    location: '2323 Lyon St, San Francisco'
+    location: '2323 Lyon St, San Francisco',
+    detail: 'details'
   }
-
 ]
 
 const messagesArray = [
@@ -385,7 +375,6 @@ const messagesArray = [
     location: 'San francisco'
   },
   {
-
     id_sender: userIndex(2),
     id_recipient: userIndex(3),
     subjectHeading: 'idk',
@@ -652,7 +641,7 @@ const stylistServices = [
 ]
 
 
-/*
+
 stylistArray.forEach(stylist => {
   helpers.addUserStylist(
     stylist.id,
@@ -675,18 +664,9 @@ stylistArray.forEach(stylist => {
     });
 });
 
-*/
-booksingsArray.forEach(booking => {
 
-  helpers.addToBookings(
-    booking.id_users,
-    booking.id_stylists,
-    booking.isconfirmed,
-    booking.isComplete,
-    booking.time,
-    booking.location, (resultFromServer) => {
-      console.log(resultFromServer);
-    });
+booksingsArray.forEach(booking => {
+  helpers.addToBookings(booking, resultFromServer => console.log(resultFromServer));
 });
 
 stylesArray.forEach(style => {

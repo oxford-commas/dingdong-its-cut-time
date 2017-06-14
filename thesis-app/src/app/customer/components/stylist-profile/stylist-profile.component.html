@@ -18,14 +18,14 @@
       <div class="servicesContainer">
         <h4>Services I provide</h4>
         <div class="listStyles">
-          <div class="styleItems" *ngFor="let style of ['hard', 'coded', 'styles']">
-            <h5>{{style}}</h5>
+          <div class="styleItems" *ngFor="let style of styles">
+            <h5>{{style.servicename}}</h5>
           </div>
         </div>
         <div class="aboutMe">
           <h4>About Me</h4>
           <div class="paragraph">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            {{stylistProfile.aboutMe}}
           </div>
         </div>
 
@@ -35,38 +35,102 @@
         </div>
       </div>
       <div class="buttonContainer">
-        <button (click)="toggleModal()">Request a cut</button>
+        <button *ngIf="stateService.retrieveCustomer().type===1" (click)="toggleMessageModal()">Message me</button>
+        <button *ngIf="stateService.retrieveCustomer().type===1" (click)="toggleBookingModal()">Book with me</button>
+        <button *ngIf="stateService.retrieveCustomer().type===0" (click)="toggleEditModal()">Edit</button>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Message Modal -->
 <div class="container row modalWrapper" [style.display]="getStyle()">
   <div class="bigWrapper">
     <form
-      (ngSubmit)="submitMessage(f)" #f="ngForm"
-        class="container row modalContent">
-      <span (click)="toggleModal()">&times;</span>
+      class="container row modalContent"
+      (ngSubmit)="submitMessage(messageForm.value)"
+      #messageForm="ngForm"
+    >
+      <span (click)="toggleMessageModal()">&times;</span>
       <div class="container row miniWrapper">
         <h4>Send a message</h4>
-        <div class="row location modeitem">
-          Where would you like your hair cut? Enter an address.
-          <input name="location" ngModel/>
-        </div>
-        <div class="row heading modeitem">
-          Header:
-          <input name="subjectHeading" placeholder="Subject Heading" ngModel/>
-          <br>
-          <br>
-          Enter a time and date you would like your hair cut:
-          <input name="time" type="date" ngModel />
-          <br>
-        </div>
         <div class="row message modeitem">
           <textarea name="body" ngModel>Body of the message</textarea>
           <button class="btn btn-primary" type="submit">Send</button>
         </div>
       </div>
     </form>
+  </div>
+</div>
+
+<!-- Booking Modal -->
+<div class="container row modalWrapper" [style.display]="getBookingModalStyle()">
+  <div class="bigWrapper">
+    <form
+      class="container row modalContent"
+      (ngSubmit)="submitBooking(bookingForm.value)"
+      #bookingForm="ngForm"
+    >
+      <span (click)="toggleBookingModal()">&times;</span>
+      <div class="container row miniWrapper">
+        Date <input name="date" type="date" [(ngModel)]="date" />
+        Time <input name="time" [(ngModel)]="time" />
+        Address <input name="location" [(ngModel)]="location" />
+        <button type="submit">Book</button>
+      </div>
+      <div *ngIf="!!isStylesFetched" class="container row miniWrapper">
+        Services
+        <span *ngFor="let style of styles">
+          {{style.servicename}}
+          <input type="checkbox" id="styleGroup" [name]="style.id" value="style.id" ngModel />
+        </span>
+      </div>
+      <div class="container row miniWrapper">
+        Additional Details
+        <textarea name="detail" ngModel></textarea>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="modalWrapper" [style.display]="getEditModalStyle()">
+  <div class="bigWrapper">
+    <div class="miniWrapper">
+      <span (click)="toggleEditModal()">&times;</span>
+      <form class="modalContent" (ngSubmit)="handleSaveChanges(updateForm.value)" #updateForm="ngForm">
+        <legend>Edit Profile</legend>
+        <h4>Username: {{profile.name}}</h4>
+          <input type="text" name="name" [(ngModel)]="name" />
+          <br/>
+        <h4>Password: *********</h4>
+          <input type="password" [(ngModel)]="password" name="password" />
+          <br/>
+        <h4>Email: {{profile.email}}</h4>
+          <input type="email" [(ngModel)]="email" name="email" />
+          <br/>
+        <h4>Phone Number: {{profile.phonenumber}}</h4>
+          <input [(ngModel)]="phonenumber" name="phonenumber" />
+          <br/>
+        <h4>Personal Website: {{profile.site_url}}</h4>
+          <input type="url" [(ngModel)]="site_url" name="site_url" />
+          <br/>
+        <h4>Billing Address: {{profile.billingaddress}}</h4>
+          <input type="text" [(ngModel)]="billingaddress" name="billingaddress" />
+          <br/>
+        <h4>About Me</h4>
+          <!-- <input type="file" name="image_url" (change)="uploadImage(this.files)"/> -->
+          <textarea [(ngModel)]="aboutMe" name="aboutMe"></textarea>
+          <br />
+        <h4>Types Of Services</h4>
+          <span *ngFor="let style of allStyles">
+            {{style.servicename}}
+            <input type="checkbox" id="styleGroup" [name]="style.id" value="style.id" ngModel />
+          </span>
+        <div>
+          <button type="submit">Save changes</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

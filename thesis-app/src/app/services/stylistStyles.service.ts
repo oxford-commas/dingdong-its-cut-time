@@ -10,4 +10,9 @@ export class StylistStylesService {
     return this.http.get('/api/stylistServices')
       .map(res => res.json());
   }
+
+  fetchStyles(id: number) {
+    return this.http.get(`/api/stylistServices/${id}`)
+      .map(res => res.json());
+  }
 }
