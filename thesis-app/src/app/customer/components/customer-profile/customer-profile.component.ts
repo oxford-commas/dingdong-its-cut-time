@@ -51,13 +51,13 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   public handleSaveChanges(updateForm) {
+    console.log('update fomr:' , updateForm);
     let styles = [];
     for (var key in updateForm) {
       if (updateForm[key] === true) {
-        styles.push(key);
+        styles.push(Number(key));
       }
     }
-    console.log('update form: ', updateForm);
     const accountInformation = {
       billingaddress: updateForm.billingaddress || this.profile.billingaddress,
       email: updateForm.email || this.profile.email,
@@ -68,24 +68,30 @@ export class CustomerProfileComponent implements OnInit {
       phonenumber: updateForm.phonenumber || this.profile.phonenumber,
       site_url: updateForm.site_url || this.profile.site_url,
       type: this.profile.type,
-      aboutMe: updateForm.aboutMe || this.profile.aboutMe
+      aboutMe: updateForm.aboutMe || this.profile.aboutMe,
+      styles: styles
     };
-
-    // this.requestService.postUserImg(profile.id, )
-    //   .subscribe(
-    //     data => console.log(data),
-    //     err => console.log(err)
-    //   );
-    // update the state
-    this.stateService.updateCustomer(accountInformation);
-    // refresh page state to reflect changes to user
-    this.profile = this.stateService.retrieveCustomer();
 
     this.requestService.changeUser(accountInformation)
       .subscribe(
         data => console.log(data),
         err => console.log(err)
       );
+
+    // this.stylistStylesService.fetchStyles(this.profile.id)
+    //  .subscribe(
+    //    data => this.styles = data,
+    //    err => console.log(err)
+    //  );
+
+    // update the state
+    this.stateService.updateCustomer(accountInformation);
+    // refresh page state to reflect changes to user
+    this.profile = this.stateService.retrieveCustomer();
+
+
+
+
 
     // clear fields
     this.name = '';

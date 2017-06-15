@@ -3,6 +3,7 @@ import "rxjs/add/operator/takeWhile";
 import { MessageService } from './message.service';
 import { BookingService } from './booking.service';
 import { RequestService } from './request.service';
+import { StylistStylesService } from './stylistStyles.service';
 let customerProfile;
 
 @Injectable()
@@ -10,7 +11,8 @@ export class StateService implements OnDestroy {
   constructor(
     private messageService: MessageService,
     private bookingService: BookingService,
-    private requestService: RequestService
+    private requestService: RequestService,
+    private stylistStylesService: StylistStylesService
   ) {}
 
   private fetchMessageIntervalId;
@@ -39,11 +41,13 @@ export class StateService implements OnDestroy {
       type: stylist.type,
       aboutMe: stylist.aboutMe
     };
-    // this.requestService.getUserImg(stylist.id)
-    //   .subscribe(
-    //     data => customerProfile.image_url = data.url,
-    //     err => console.log(err)
-    //   );
+
+    this.stylistStylesService.fetchStyles(stylist.id)
+      .subscribe(
+        data => customerProfile.styles = data,
+        err => console.log(err)
+      );
+
     this.fetchMessageIntervalId = setInterval(() => this.messageTimer(stylist.id), 2000);
     this.fetchDueBookingsIntervalId = setInterval(() => this.dueBookingTimer(stylist.id, stylist.type), 2000);
     this.fetchConfirmedBookingsIntervalId = setInterval(() => this.confirmedBookingTimer(stylist.id, stylist.type), 2000);

@@ -88,7 +88,7 @@
             <h4>Services</h4>
             <div class="servicesContainer">
               <div class="styleItems" *ngFor="let style of styles">
-                <h5><input type="checkbox"> {{ style.servicename }}</h5>
+                <h5><input type="checkbox" ngModel [name]="style.id"> {{ style.servicename }}</h5>
               </div>
             </div>
           </div>
