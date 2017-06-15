@@ -1,6 +1,11 @@
-<!-- <h1>Chat Log</h1> -->
-<div *ngFor="let chat of chatHistory">
-  <span>{{ chat.sender}}:</span>
-  <span>{{ chat.body }}</span>
+<div class="componentWrapper">
+  <div class="chatHistory">
+    <div *ngFor="let chat of chatHistory">
+      <div>{{ chat.sender}}: {{ chat.body }}</div>
+    </div>
+  </div>
+  <div class="inputWrapper">
+    <input [(ngModel)]="inputValue" (keyup.enter)=postMessage() />
+    <button>Send</button>
+  </div>
 </div>
-<input [(ngModel)]="inputValue" (keyup.enter)="postMessage()" />

@@ -2,11 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'registration-header',
-  template: `
-    <div class="pageHeader">
-      <h1>It's Cut Time</h1>
-    </div>
-  `,
+  templateUrl: './registration-header.component.html',
   styleUrls: ['./registration-header.component.css']
 })
 export class RegistrationHeaderComponent {

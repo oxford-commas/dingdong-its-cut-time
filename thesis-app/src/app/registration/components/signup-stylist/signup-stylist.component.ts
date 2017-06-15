@@ -20,7 +20,10 @@ export class SignupStylistComponent {
     this.requestService.getStyles()
       .subscribe(
         styles => {
-          styles.forEach(style => this.stylesPlaceHolder.push(style));
+          styles.forEach(style => {
+            console.log(style);
+            this.stylesPlaceHolder.push(style)
+          });
         }
       )
   }

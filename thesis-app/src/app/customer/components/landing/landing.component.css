@@ -1,0 +1,37 @@
+.componentWrapper {
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.apptContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 3em;
+  padding-right: 3em;
+  padding-top: 1em;
+}
+
+.apptContainer button {
+  background-color: #F9B71A;
+  color: #ffffff;
+  height: 50%;
+  width: 15%;
+  align-self: flex-end;
+  margin-bottom: 1em;
+  border-radius: 23px;
+}
+
+.confirmedContainer {
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+.awaitingContainer {
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+.pendingContainer {
+  padding-left: 3em;
+  padding-right: 3em;
+}

@@ -4,7 +4,8 @@ import { StateService, BookingService } from '../../../services';
 
 @Component({
   selector: 'landing',
-  templateUrl: './landing.component.html'
+  templateUrl: './landing.component.html',
+  styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnDestroy {
   constructor(

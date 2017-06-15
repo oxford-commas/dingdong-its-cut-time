@@ -1,12 +1,15 @@
-<div class="poppaDiv">
-
-  <!-- <div class="glyphicon glyphicon-scissors"> -->
-  <h4>{{stylistInformation.name}}</h4>
-  <!-- </div> -->
-  <div class="stylistInfo glyphicon glyphicon-earphone">
-    {{stylistInformation.phonenumber}}
+<div class="wrapper">
+  <div class="profileContainer">
+    <div class="photoContainer">
+      <img src="image_url"/>
+    </div>
+    <div class="infoContainer">
+      <h6>{{stylistInformation.name}}</h6>
+      <h6>Contact: {{stylistInformation.phoneNumber}}</h6>
+      <h6>Email: {{stylistInformation.email}}</h6>
+    </div>
   </div>
-  <div class="stylistInfo glyphicon glyphicon-envelope">
-    {{stylistInformation.site_url}}
+  <div class="buttonContainer">
+    <button>Manage</button>
   </div>
 </div>

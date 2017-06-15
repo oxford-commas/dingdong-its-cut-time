@@ -1,38 +1,15 @@
-<div class="poppaDiv">
-  <div class="miniContainer">
-<!--     <div class="title">
-      <div>
-        <h1>It's Cut Time</h1>
-      </div>
-    </div> -->
-
-    <nav class="superNav">
-<!--       <ul class="unorderedList">
-        <li class="customerContainer">
-          <h4>Welcome {{profile.name}}, where are you located?</h4>
-        </li>
-        <li class="search">
-          <form class="superForm">
-            <div>
-              <input
-                placeholder="Enter your location"
-                typer="search"
-                #streetAddress
-                (ngModelChange)="locationChange.emit(streetAddress)"
-              >
-              <span>
-                <button class="btn btn-default" (click)="handleSearchLocationChange(streetAddress.value)">Search</button>
-              </span>
-            </div>
-          </form>
-        </li> -->
-        <span [routerLink]="['/landing']">Appointments</span>
-        <span *ngIf="stateService.retrieveCustomer().type===1" [routerLink]="['/customerProfile']">Profile</span>
-        <span *ngIf="stateService.retrieveCustomer().type===0" [routerLink]="['/stylistProfile', stateService.retrieveCustomer().id]">Profile</span>
-        <span [routerLink]="['/messages']">Messages</span>
-        <span (click)="handleLogout()">Log out</span>
-      <!-- </ul> -->
-    </nav>
-
+<div class="navContainer">
+  <div class="photoContainer">
+    <img [src]="fullImagePath" alt="scissors">
+  </div>
+  <div class="listContainer">
+    <ul class="myList">
+      <li [routerLink]="['/landing']"><h4>Appointments</h4></li>
+      <li [routerLink]="['/customerProfile']"><h4>Profile</h4></li>
+      <li [routerLink]="['/messages']"><h4>Messages</h4></li>
+      <li (click)="handleLogout()"><h4>Log out</h4></li>
+    </ul>
   </div>
 </div>
+
+

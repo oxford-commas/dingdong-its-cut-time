@@ -1,26 +1,32 @@
-<div class="background"></div>
-<customer-navbar class="nav-bar"></customer-navbar>
-<div class="container">
-  <div class="stylistContainer">
-    <input
-      placeholder="Enter your location"
-      type="search"
-      [(ngModel)]="location"
-      (keypress)="updateCloseToYou(location)"
-    />
-    <div *ngFor="let stylist of stylistsCloseToYou">
-      <close-to-you
-        [stylistInformation]="stylist"
-        [routerLink]="['/stylistProfile', stylist.id]"
-      >
-      </close-to-you>
+<div class="componentWrapper">
+  <customer-navbar></customer-navbar>
+  <div class="mainContainer">
+    <div class="stylistContainer">
+      <div>
+        <h2>Find A Stylist</h2>
+      </div>
+      <div class="inputContainer">
+        <input
+          placeholder="Enter your location"
+          type="search"
+          [(ngModel)]="location"
+          (keypress)="updateCloseToYou(location)"
+        >
+      </div>
+      <div class="closestContainer" *ngFor="let stylist of stylistsCloseToYou">
+        <close-to-you
+          [stylistInformation]="stylist"
+          [routerLink]="['/stylistProfile', stylist.id]"
+        >
+        </close-to-you>
+      </div>
     </div>
-  </div>
-  <div class="mapContainer">
-    <customer-map
-      class="map"
-      [searchLocation]="location"
-    >
-    </customer-map>
+    <div class="mapContainer">
+      <customer-map
+        class="map"
+        [searchLocation]="location"
+      >
+      </customer-map>
+    </div>
   </div>
 </div>
