@@ -58,7 +58,9 @@
           [location]="pendingBooking.location"
         >
         </booking>
-        <!-- <button (click)="declineBooking(pendingBooking.id, i)">Decline</button> -->
+        <div class="buttonContainer">
+          <button (click)="declineBooking(pendingBooking.id, i)">Decline</button>
+        </div>
       </div>
     </div>
   </div>
@@ -80,8 +82,10 @@
           [location]="confirmedBooking.location"
         >
         </booking>
-        <button (click)="cancelBooking(confirmedBooking.id, i)">Cancel</button>
-        <button (click)="completeBooking(confirmedBooking.id, i)">Get paid!</button>
+        <div class="buttonContainer">
+          <button (click)="cancelBooking(confirmedBooking.id, i)">Cancel</button>
+          <button (click)="completeBooking(confirmedBooking.id, i)">Get paid!</button>
+        </div>
       </div>
     </div>
 
@@ -96,7 +100,9 @@
           [location]="dueBooking.location"
         >
         </booking>
-        <button (click)="cancelPayment(dueBooking.id, i)">Cancel</button>
+        <div class="buttonContainer">
+          <button (click)="cancelPayment(dueBooking.id, i)">Cancel</button>
+        </div>
       </div>
     </div>
 
@@ -114,8 +120,10 @@
           [location]="pendingBooking.location"
         >
         </booking>
-  <!--       <button (click)="acceptBooking(pendingBooking.id, i)">Accept</button>
-        <button (click)="declineBooking(pendingBooking.id, i)">Decline</button> -->
+        <div class="buttonContainer">
+          <button (click)="acceptBooking(pendingBooking.id, i)">Accept</button>
+          <button (click)="declineBooking(pendingBooking.id, i)">Decline</button>
+        </div>
       </div>
     </div>
 </div>

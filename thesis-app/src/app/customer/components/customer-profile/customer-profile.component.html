@@ -17,7 +17,7 @@
       </div>
 
       <div class="userInfo">
-        <h5><span class="glyphicon glyphicon-question-sign"></span> {{ profile.billingaddress }}</h5>
+        <h5><span class="glyphicon glyphicon-question-sign"></span> {{ profile.email }}</h5>
         <h5 *ngIf="profile.type===0">Personal Website: {{profile.site_url}}</h5>
         <h5><span class="glyphicon glyphicon-question-sign"></span> {{ profile.phonenumber }}</h5>
       </div>
@@ -73,7 +73,12 @@
               <input class="modalInput" [(ngModel)]="phonenumber" name="phonenumber" />
           </div>
         </div>
-
+        <div>
+          <div>
+            <h4>Image Url</h4>
+              <input class="modalInput" [(ngModel)]="image_url" name="image_url" />
+          </div>
+        </div>
         <div class="modalAboutMe">
           <div>
             <h4>About Me</h4>

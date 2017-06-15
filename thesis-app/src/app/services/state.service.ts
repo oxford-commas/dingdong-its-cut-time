@@ -12,17 +12,17 @@ export class StateService implements OnDestroy {
     private bookingService: BookingService,
     private requestService: RequestService
   ) {}
-  
+
   private fetchMessageIntervalId;
   private fetchDueBookingsIntervalId;
   private fetchConfirmedBookingsIntervalId;
   private fetchPendingBookingsIntervalId;
   private alive: boolean = true;
-  
+
   ngOnDestroy() {
     this.alive = false;
   }
-  
+
   addCustomer(stylist) {
     customerProfile = {
       billingaddress: stylist.billingaddress,
@@ -64,7 +64,7 @@ export class StateService implements OnDestroy {
     clearInterval(this.fetchDueBookingsIntervalId);
     clearInterval(this.fetchConfirmedBookingsIntervalId);
     clearInterval(this.fetchPendingBookingsIntervalId);
-    customerProfile = null;
+    customerProfile = {};
   }
   messageTimer(id) {
     this.messageService.getMessages(id)
