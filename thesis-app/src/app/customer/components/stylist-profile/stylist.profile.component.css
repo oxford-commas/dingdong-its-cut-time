@@ -174,7 +174,6 @@ textarea {
 
 .modalContent {
   display: flex;
-  border: 2px solid red;
   flex-direction: column;
 }
 
@@ -185,12 +184,11 @@ textarea {
 }
 
 .topRow > * {
-  flex: 1 1;
+  flex: 1 1 100%;
 }
 
-.serviceContainer {
+.serviceContainer2 {
   flex: 1 1 100%;
-  border: 2px solid red;
   height: 20%;
   display: flex;
   flex-direction: column;
@@ -200,8 +198,32 @@ textarea {
   display: flex;
   flex-wrap: wrap;
   height: 100%;
+  width: 100%;
 }
 
-.wrapcontainer input {
+.wrapContainer > * {
   flex: 1 1 25%;
 }
+
+.lastContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid red;
+}
+
+.ultimoContainer {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.ultimoContainer {
+  width: 20%;
+  background-color: #F9B71A;
+  color: white;
+  margin-right: .5em;
+  margin-top: 1em;
+  border-radius: 35px;
+}
+
