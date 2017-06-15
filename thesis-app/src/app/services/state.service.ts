@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { MessageService } from './message.service';
 import { BookingService } from './booking.service';
 import { RequestService } from './request.service';
+import { StylistStylesService } from './stylistStyles.service';
 
 let customerProfile;
 
@@ -12,7 +13,8 @@ export class StateService {
   constructor(
     private messageService: MessageService,
     private bookingService: BookingService,
-    private requestService: RequestService
+    private requestService: RequestService,
+    private stylistStylesService: StylistStylesService
   ) {}
 
   addCustomer(stylist) {
@@ -39,7 +41,7 @@ export class StateService {
     //     err => console.log(err)
     //   );
 
-    this.messageService.getMessages(stylist.id)
+    this.messageService.getMessages(customerProfile.id)
       .subscribe(
         data => customerProfile.messages = data,
         err => console.log(err)
@@ -62,6 +64,12 @@ export class StateService {
         data => customerProfile.pendingBookings = data,
         err => console.log(err)
       );
+
+    this.stylistStylesService.fetchStyles(stylist.id)
+     .subscribe(
+       data => customerProfile.styles = data,
+       err => console.log(err)
+     );
   }
 
   retrieveCustomer() {

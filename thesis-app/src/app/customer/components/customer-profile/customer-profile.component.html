@@ -28,6 +28,16 @@
         <h4>About Me</h4>
           {{ profile.aboutMe }}
       </div>
+
+      <div *ngIf="stateService.retrieveCustomer().type === 0">
+        <h4>Services</h4>
+        <div class="servicesContainer">
+          <div class="styleItems" *ngFor="let style of stateService.retrieveCustomer().styles">
+            <h5><input type="checkbox" checked="checked"> {{ style.servicename }}</h5>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -79,5 +89,3 @@
 
   </div>
 </div>
-        <!-- <h4 *ngIf="profile.type===0">Personal Website: {{profile.site_url}}</h4>
-          <input *ngIf="profile.type===0" type="url" [(ngModel)]="site_url" name="site_url" /> -->

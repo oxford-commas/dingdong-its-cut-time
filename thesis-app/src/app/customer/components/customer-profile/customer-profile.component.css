@@ -90,6 +90,14 @@
   background-color: #ffffff;
 }
 
+.servicesContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.servicesContainer > * {
+  flex: 1 1 25%;
+}
 
 .modalWrapper {
   display: none;
