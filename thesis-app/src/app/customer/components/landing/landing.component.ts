@@ -92,4 +92,14 @@ export class LandingComponent implements OnDestroy {
         err => console.log(err)
       );
   }
+
+  clearHistory(id: number, index: number) {
+    this.profile.pendingBookings.splice(index, 1);
+    this.bookingService.deleteBooking(id)
+      .takeWhile(() => this.alive)
+      .subscribe(
+        result => console.log(result),
+        err => console.log(err)
+      );
+  }
 }

@@ -64,6 +64,8 @@
         </div>
       </div>
     </div>
+
+    <div class="pendingContainer">
       <h4>History</h4>
       <div
         *ngFor="let historyBooking of profile.historyBookings; let i = index"
@@ -77,14 +79,18 @@
           [location]="historyBooking.location"
         >
         </booking>
+        <div class="buttonContainer">
+          <button (click)="clearHistory(historyBooking.id, i)">Clear</button>
+        </div>
       </div>
+    </div>
   </div>
 
 
   <!-- Stylist Landing -->
   <div *ngIf="profile.type===0">
     <div class="confirmedContainer">
-      <h2>Confirmed</h2>
+      <h4>Confirmed</h4>
       <div
         *ngFor="let confirmedBooking of profile.confirmedBookings; let i = index"
         class="booking-confirmed"
@@ -105,7 +111,7 @@
     </div>
 
     <div class="awaitingContainer">
-      <h2>Awaiting Payment</h2>
+      <h4>Awaiting Payment</h4>
       <div *ngFor="let dueBooking of profile.dueBookings; let i = index">
         <booking
           [name]="dueBooking.name"
@@ -122,7 +128,7 @@
     </div>
 
     <div class="pendingContainer">
-      <h2>Pending</h2>
+      <h4>Pending</h4>
       <div
         *ngFor="let pendingBooking of profile.pendingBookings; let i = index"
         class="booking-confirmed"
@@ -142,7 +148,25 @@
       </div>
     </div>
 
-
+    <div class="pendingContainer">
+      <h4>History</h4>
+      <div
+        *ngFor="let historyBooking of profile.historyBookings; let i = index"
+        class="booking-confirmed"
+      >
+        <booking
+          [name]="historyBooking.name"
+          [image_url]="historyBooking.image_url"
+          [time]="historyBooking.time"
+          [phoneNumber]="historyBooking.phonenumber"
+          [location]="historyBooking.location"
+        >
+        </booking>
+        <div class="buttonContainer">
+          <button (click)="clearHistory(historyBooking.id, i)">Clear</button>
+        </div>
+      </div>
+    </div>
 </div>
 
 
