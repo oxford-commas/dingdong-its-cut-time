@@ -51,6 +51,12 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   public handleSaveChanges(updateForm) {
+    let styles = [];
+    for (var key in updateForm) {
+      if (updateForm[key] === true) {
+        styles.push(key);
+      }
+    }
     console.log('update form: ', updateForm);
     const accountInformation = {
       billingaddress: updateForm.billingaddress || this.profile.billingaddress,
