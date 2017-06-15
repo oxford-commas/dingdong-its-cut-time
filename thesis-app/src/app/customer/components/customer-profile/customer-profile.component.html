@@ -65,11 +65,13 @@
         </div>
 
         <div class="modalAboutMe">
-          <h4>About Me</h4>
-            <textarea [(ngModel)]="aboutMe" name="aboutMe"></textarea>
+          <div>
+            <h4>About Me</h4>
+              <textarea class="modalTextArea" [(ngModel)]="aboutMe" name="aboutMe"></textarea>
+          </div>
         </div>
 
-        <div>
+        <div class="btnContainer">
           <button type="submit">Save changes</button>
         </div>
       </form>
