@@ -56,7 +56,7 @@ export class CustomerProfileComponent implements OnInit {
       billingaddress: updateForm.billingaddress || this.profile.billingaddress,
       email: updateForm.email || this.profile.email,
       id: this.profile.id,
-      // image_url: updateForm.image_url || this.profile.image_url,
+      image_url: updateForm.image_url || this.profile.image_url,
       name: updateForm.name || this.profile.name,
       password: updateForm.password || this.profile.password,
       phonenumber: updateForm.phonenumber || this.profile.phonenumber,
