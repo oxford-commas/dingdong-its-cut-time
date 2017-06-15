@@ -267,6 +267,12 @@ app.put('/api/bookings/history/:id', (req, res) => {
   helpers.historyBooking(id, results => res.status(200).json(results));
 });
 
+app.get('/api/bookings/history/:type/:id', (req, res) => {
+  var id = req.params.id;
+  var type = Number(req.params.type);
+  helpers.getHistoryBookings(id, type, results => res.status(200).json(results));
+});
+
 // HAIRCUT STYLES //
 
 app.get('/api/stylistServices', (req, res) => {

@@ -19,6 +19,7 @@ export class StateService implements OnDestroy {
   private fetchDueBookingsIntervalId;
   private fetchConfirmedBookingsIntervalId;
   private fetchPendingBookingsIntervalId;
+  private fetchHistoryBookingsIntervalId;
   private alive: boolean = true;
 
   ngOnDestroy() {
@@ -52,6 +53,7 @@ export class StateService implements OnDestroy {
     this.fetchDueBookingsIntervalId = setInterval(() => this.dueBookingTimer(stylist.id, stylist.type), 2000);
     this.fetchConfirmedBookingsIntervalId = setInterval(() => this.confirmedBookingTimer(stylist.id, stylist.type), 2000);
     this.fetchPendingBookingsIntervalId = setInterval(() => this.pendingBookingTimer(stylist.id, stylist.type), 2000);
+    this.fetchHistoryBookingsIntervalId = setInterval(() => this.historyBookingTimer(stylist.id, stylist.type), 2000);
   }
   retrieveCustomer() {
     return customerProfile;
@@ -104,6 +106,14 @@ export class StateService implements OnDestroy {
       .takeWhile(() => this.alive)
       .subscribe(
         data => customerProfile.pendingBookings = data,
+        err => console.log(err)
+      );
+  }
+  historyBookingTimer(id, type) {
+    this.bookingService.fetchHistoryBookings(id, type)
+      .takeWhile(() => this.alive)
+      .subscribe(
+        data => customerProfile.historyBookings = data,
         err => console.log(err)
       );
   }

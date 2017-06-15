@@ -175,7 +175,24 @@ var deleteBooking = (id, callback) => {
 };
 
 var historyBooking = (id, callback) => {
-  model.con.query('UPDATE BOOKINGS SET isComplete = 2 WHERE bookings.id = ?', [id], (err, results) => callback(results));
+  model.con.query('UPDATE bookings SET isComplete = 2 WHERE bookings.id = ?', [id], (err, results) => callback(results));
+};
+
+var getHistoryBookings = (id, type, callback) => {
+  if (type === 0) {
+    var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.isconfirmed = 2
+      AND b.id_stylists = ?
+      AND us.id = b.id_users`;
+  } else if (type === 1) {
+    var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.isComplete = 2
+      AND b.id_users = ?
+      AND us.id = b.id_stylists`;
+  }
+  model.con.query(sql, [id], (err, results) => callback(results));
 };
 
 var deleteUser = function(userId) {
@@ -330,3 +347,4 @@ module.exports.cancelConfirmedBooking = cancelConfirmedBooking;
 module.exports.cancelPaymentBooking = cancelPaymentBooking;
 module.exports.updateStyles = updateStyles;
 module.exports.historyBooking = historyBooking;
+module.exports.getHistoryBookings = getHistoryBookings;

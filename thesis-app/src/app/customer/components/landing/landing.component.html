@@ -64,6 +64,20 @@
         </div>
       </div>
     </div>
+      <h4>History</h4>
+      <div
+        *ngFor="let historyBooking of profile.historyBookings; let i = index"
+        class="booking-confirmed"
+      >
+        <booking
+          [name]="historyBooking.name"
+          [image_url]="historyBooking.image_url"
+          [time]="historyBooking.time"
+          [phoneNumber]="historyBooking.phonenumber"
+          [location]="historyBooking.location"
+        >
+        </booking>
+      </div>
   </div>
 
 
@@ -127,6 +141,8 @@
         </div>
       </div>
     </div>
+
+
 </div>
 
 

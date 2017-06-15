@@ -62,4 +62,9 @@ export class BookingService {
       .map(res => res.json());
   }
 
+  fetchHistoryBookings(id: number, type: number) {
+    return this.http.get(`/api/bookings/history/${type}/${id}`)
+      .map(res => res.json());
+  }
+
 }
