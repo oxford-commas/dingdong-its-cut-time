@@ -113,6 +113,15 @@
   background-color: rgba(0,0,0,0.2);
 }
 
+.modalWrapper input {
+  background-color: white;
+  color: black;
+}
+
+.modalWrapper textarea {
+  color: black;
+}
+
 /* Modal Content/Box */
 .miniWrapper {
   background-color: #6F6F6F;
