@@ -3,4 +3,4 @@
   <span>{{ chat.sender}}:</span>
   <span>{{ chat.body }}</span>
 </div>
-<input [(ngModel)]="inputValue" (keyup.enter)=renderMessage() />
+<input [(ngModel)]="inputValue" (keyup.enter)="postMessage()" />

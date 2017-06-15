@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import "rxjs/add/operator/takeWhile";
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
@@ -17,7 +18,7 @@ import { IMessage } from '../../interfaces';
   styleUrls: ['./stylist.profile.component.css']
 })
 
-export class StylistProfileComponent implements OnInit {
+export class StylistProfileComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private requestService: RequestService,
@@ -34,6 +35,7 @@ export class StylistProfileComponent implements OnInit {
   public phonenumber;
   public billingaddress;
   public aboutMe;
+  public body;
 
   public isProfileFetched: boolean = false;
   public isStylesFetched: boolean = false;
@@ -46,10 +48,12 @@ export class StylistProfileComponent implements OnInit {
   public isShowEditModal: boolean = false;
   public modalStyle: string = 'none';
   private stylistId: number;
+  private alive: boolean = true;
 
   ngOnInit() {
     // if navigated to from close to you
     this.route.params
+      .takeWhile(() => this.alive)
       .subscribe(
         params => this.stylistId = +params['id'],
         err => console.log(err)
@@ -59,6 +63,7 @@ export class StylistProfileComponent implements OnInit {
     this.profile = this.stateService.retrieveCustomer();
 
     this.requestService.getStylistById(this.stylistId)
+     .takeWhile(() => this.alive)
      .subscribe(
        data => this.stylistProfile = data,
        err => console.log(err),
@@ -66,6 +71,7 @@ export class StylistProfileComponent implements OnInit {
      );
 
    this.stylistStylesService.fetchStyles(this.stylistId)
+     .takeWhile(() => this.alive)
      .subscribe(
        data => this.styles = data,
        err => console.log(err),
@@ -73,10 +79,15 @@ export class StylistProfileComponent implements OnInit {
      );
 
    this.stylistStylesService.fetchAllStyles()
+     .takeWhile(() => this.alive)
      .subscribe(
        data => this.allStyles = data,
        err => console.log(err)
      );
+  }
+
+  ngOnDestroy() {
+    this.alive = false;
   }
 
   public toggleMessageModal() {
@@ -110,6 +121,7 @@ export class StylistProfileComponent implements OnInit {
       styles: styles
     };
     this.bookingService.addBooking(booking)
+      .takeWhile(() => this.alive)
       .subscribe(
         res => console.log(res),
         err => console.log(err)
@@ -142,18 +154,20 @@ export class StylistProfileComponent implements OnInit {
     }
   }
 
-  public submitMessage(messageForm) {
+  public submitMessage() {
     const message = {
       id_sender: this.stateService.retrieveCustomer().id,
       id_recipient: this.stylistId,
-      body: messageForm.body
+      body: this.body
     };
     this.messageService.postMessage(message)
+      .takeWhile(() => this.alive)
       .subscribe(
-        res => console.log(res),
+        data => console.log(data),
         err => console.log(err)
       );
-    this.stateService.updateCustomer(null);
+    this.body = null;
+    // this.stateService.updateCustomer(null);
     this.isShowMessageModal = false;
   }
 
@@ -186,11 +200,13 @@ export class StylistProfileComponent implements OnInit {
     this.stylistProfile = this.stateService.retrieveCustomer();
     // update the database
     this.requestService.changeUser(accountInformation)
+      .takeWhile(() => this.alive)
       .subscribe(
         data => console.log(data),
         err => console.log(err)
       );
     this.stylistStylesService.fetchStyles(this.stylistId)
+     .takeWhile(() => this.alive)
      .subscribe(
        data => this.styles = data,
        err => console.log(err)

@@ -46,20 +46,17 @@
 <!-- Message Modal -->
 <div class="container row modalWrapper" [style.display]="getStyle()">
   <div class="bigWrapper">
-    <form
-      class="container row modalContent"
-      (ngSubmit)="submitMessage(messageForm.value)"
-      #messageForm="ngForm"
-    >
+    <div
+      class="container row modalContent">
       <span (click)="toggleMessageModal()">&times;</span>
       <div class="container row miniWrapper">
         <h4>Send a message</h4>
         <div class="row message modeitem">
-          <textarea name="body" ngModel>Body of the message</textarea>
-          <button class="btn btn-primary" type="submit">Send</button>
+          <textarea [(ngModel)]="body">Body of the message</textarea>
+          <button class="btn btn-primary" (click)="submitMessage()">Send</button>
         </div>
       </div>
-    </form>
+    </div>
   </div>
 </div>
 
@@ -68,6 +65,7 @@
   <div class="bigWrapper">
     <form
       class="container row modalContent"
+      id="form2"
       (ngSubmit)="submitBooking(bookingForm.value)"
       #bookingForm="ngForm"
     >

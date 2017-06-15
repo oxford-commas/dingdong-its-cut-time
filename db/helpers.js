@@ -73,6 +73,7 @@ var addToBookings = function(booking, callback) {
       for (var i = 0; i < booking.styles.length; i++) {
         model.con.query('INSERT INTO bookings_styles (id_booking, id_style) VALUES (?, ?)', [results.insertId, booking.styles[i]]);
       }
+      callback(results);
     }
   );
 };
@@ -167,7 +168,10 @@ var cancelPaymentBooking = (id, callback) => {
 };
 
 var deleteBooking = (id, callback) => {
-  model.con.query('DELETE FROM bookings WHERE id = ?', [id], (err, res) => callback(res));
+  model.con.query('DELETE FROM bookings WHERE id = ?', [id], (err, res) => {
+    console.log('DELET BOOOIJING', res);
+    callback(res);
+  });
 };
 
 var deleteUser = function(userId) {
@@ -253,11 +257,13 @@ var postMessage = (message, callback) => {
   var sql = 'INSERT INTO messages (id_sender, id_recipient, body) VALUES (?, ?, ?)';
   model.con.query(sql, [message.id_sender, message.id_recipient, message.body],
     (err, results) => {
+      console.log('POSTED MESSAGE', results);
       model.con.query(
         `INSERT INTO recipients (id, name)
         VALUES (?, (SELECT name FROM users_stylists WHERE users_stylists.id = ?))`,
         [message.id_sender, message.id_recipient]
       );
+      callback(results);
     });
 };
 
@@ -269,7 +275,11 @@ var getMessages = (id, callback) => {
 };
 
 var deleteChat = (ids, callback) => {
-  model.con.query(`DELETE FROM messages WHERE id in (${ids})`, (err, results) => callback(results));
+  console.log('deleting messages with id: ', ids);
+  model.con.query(`DELETE FROM messages WHERE id in (${ids})`, (err, results) => {
+    console.log(results);
+    callback(results);
+  });
 };
 
 //get image_url from users_Stylists
@@ -304,7 +314,6 @@ module.exports.completeBooking = completeBooking;
 module.exports.deleteBooking = deleteBooking;
 module.exports.getBookingsDue = getBookingsDue;
 module.exports.updateProfile = updateProfile;
-module.exports.deleteBooking = deleteBooking;
 module.exports.updateBooking = updateBooking;
 module.exports.updateImage = updateImage;
 module.exports.getImagePath = getImagePath;

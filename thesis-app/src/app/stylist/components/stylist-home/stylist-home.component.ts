@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
+import "rxjs/add/operator/takeWhile";
 import {
   RequestService,
   BookingService,
@@ -22,12 +22,17 @@ export class StylistHomeComponent implements OnInit {
   public isMapViewInit: boolean = false;
   public lng: number;
   public lat: number;
+  private alive: boolean = true;
 
   ngOnInit() {
     this.stylistProfile = this.stateService.retrieveCustomer();
     this.stylistProfile.markers = [];
     this.adjustMapViewForStylistLocation(this.stylistProfile.billingaddress);
     this.renderMarkers();
+  }
+
+  ngOnDestroy() {
+    this.alive = false;
   }
 
   renderMarkers() {
@@ -48,11 +53,13 @@ export class StylistHomeComponent implements OnInit {
 
   decorateMarkerCoordinates(location: string, callback) {
     this.locationService.getCoordinatesFromLocation(location)
+      .takeWhile(() => this.alive)
       .subscribe(res => callback(res.lat, res.lng));
   }
 
   adjustMapViewForStylistLocation(location: string) {
     this.locationService.getCoordinatesFromLocation(location)
+      .takeWhile(() => this.alive)
       .subscribe(res =>
         this.stylistProfile.currentLocation = {
           lat: res.lat,
