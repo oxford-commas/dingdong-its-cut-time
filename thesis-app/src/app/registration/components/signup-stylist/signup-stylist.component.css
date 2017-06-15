@@ -18,7 +18,6 @@
 
 .formWrapper {
   background: rgba(255,255,255,0.4);
-  border: 2px solid red;
   height: 65%;
   border-radius: 5px;
   width: 83%;
@@ -48,10 +47,12 @@
 }
 
 .username input {
+  color: black;
   width: 85%;
 }
 
 .password input {
+  color: black;
   width: 85%;
 }
 
@@ -68,14 +69,17 @@
 }
 
 .email input {
+  color: black;
   width: 85%;
 }
 
 .website input {
+  color: black;
   width: 85%;
 }
 
 .billingAddress input {
+  color: black;
   width: 92%;
 }
 
