@@ -51,7 +51,6 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   public handleSaveChanges(updateForm) {
-    console.log('update form: ', updateForm);
     const accountInformation = {
       billingaddress: updateForm.billingaddress || this.profile.billingaddress,
       email: updateForm.email || this.profile.email,
@@ -93,7 +92,6 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   public getStyle() {
-    console.log(this.showModal);
     if (this.showModal === false) {
       return 'none';
     } else {
