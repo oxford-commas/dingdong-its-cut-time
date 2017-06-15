@@ -43,12 +43,10 @@
 <!-- Message Modal -->
 <div class="modalWrapper" [style.display]="getStyle()">
   <div class="miniWrapper">
-
     <div class="modalHeader">
       <h4>Message: {{stylistProfile.name}}</h4>
       <div (click)="toggleMessageModal()">&times;</div>
     </div>
-
     <div class="formContainer">
       <form
         (ngSubmit)="submitMessage(messageForm.value)"
@@ -62,36 +60,54 @@
         </div>
       </form>
     </div>
-
   </div>
 </div>
 
 <!-- Booking Modal -->
-<!-- <div class="container row modalWrapper" [style.display]="getBookingModalStyle()">
-  <div class="bigWrapper">
-    <form
-      class="container row modalContent"
-      (ngSubmit)="submitBooking(bookingForm.value)"
-      #bookingForm="ngForm"
-    >
-      <span (click)="toggleBookingModal()">&times;</span>
-      <div class="container row miniWrapper">
-        Date <input name="date" type="date" [(ngModel)]="date" />
-        Time <input name="time" [(ngModel)]="time" />
-        Address <input name="location" [(ngModel)]="location" />
-        <button type="submit">Book</button>
+<div class="modalWrapper" [style.display]="getBookingModalStyle()">
+  <div class="miniWrapper">
+    <div class="modalHeader">
+      <h2>Appointment: {{stylistProfile.name}}</h2>
+      <div (click)="toggleBookingModal()">&times;</div>
+    </div>
+
+    <div class="formContainer2">
+      <form
+        class="modalContent"
+        (ngSubmit)="submitBooking(bookingForm.value)"
+        #bookingForm="ngForm"
+      >
+      <div class="topRow">
+        <div>
+          <h4>Date</h4>
+          <input name="date" type="date" [(ngModel)]="date" />
+        </div>
+        <div>
+          <h4>Time</h4>
+          <input name="time" [(ngModel)]="time" />
+        </div>
+        <div>
+          <h4>Address</h4>
+          <input name="location" [(ngModel)]="location" />
+        </div>
       </div>
-      <div *ngIf="!!isStylesFetched" class="container row miniWrapper">
-        Services
-        <span *ngFor="let style of styles">
-          {{style.servicename}}
-          <input type="checkbox" id="styleGroup" [name]="style.id" value="style.id" ngModel />
-        </span>
+
+      <div class="serviceContainer" *ngIf="!!isStylesFetched">
+        <h4>Services</h4>
+        <div class="wrapContainer">
+          <div *ngFor="let style of styles">
+            {{style.servicename}}
+            <input type="checkbox" id="styleGroup" [name]="style.id" value="style.id" ngModel />
+          </div>
+        </div>
       </div>
-      <div class="container row miniWrapper">
+
+      <div class="">
         Additional Details
         <textarea name="detail" ngModel></textarea>
+        <button type="submit">Book</button>
       </div>
     </form>
+    </div>
   </div>
-</div> -->
+</div>
