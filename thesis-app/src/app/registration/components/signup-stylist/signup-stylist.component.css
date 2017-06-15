@@ -120,6 +120,7 @@
 button {
   background-color: #F9B71A;
   border-radius: 20px;
-  width: 25%;
+  width: 23%;
   margin-right: 4em;
+  border: 1px solid #F9B71A;
 }

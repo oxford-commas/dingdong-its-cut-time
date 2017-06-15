@@ -67,6 +67,7 @@ button {
   width: 60%;
   border-radius: 20px;
   margin-top: 1em;
+  border: 1px solid #F9B71A;
 }
 
 a {
