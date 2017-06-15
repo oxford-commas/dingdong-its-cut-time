@@ -259,8 +259,8 @@ var postMessage = (message, callback) => {
     (err, results) => {
       console.log('POSTED MESSAGE', results);
       model.con.query(
-        `INSERT INTO recipients (id, name)
-        VALUES (?, (SELECT name FROM users_stylists WHERE users_stylists.id = ?))`,
+        `INSERT INTO recipients (messageId, id, name)
+        VALUES (LAST_INSERT_ID(), ?, (SELECT name FROM users_stylists WHERE users_stylists.id = ?))`,
         [message.id_sender, message.id_recipient]
       );
       callback(results);
