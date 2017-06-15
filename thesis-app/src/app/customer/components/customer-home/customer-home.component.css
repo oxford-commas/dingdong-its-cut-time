@@ -22,11 +22,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 97%;
 }
 
 .inputContainer input {
-  flex: 1 1 55%;
+  flex: 1 1 50%;
   border: 1px solid;
 }
 
