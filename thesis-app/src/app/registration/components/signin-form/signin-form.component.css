@@ -8,7 +8,7 @@
 
 .header {
   height: 25%;
-  padding-top: 10em;
+  padding-top: 8em;
   margin-left: 2em;
   margin-right: 2em;
   width: 85%;
@@ -18,7 +18,7 @@
 .loginWrapper {
   display: flex;
   flex-direction: row;
-  margin-top: 2em;
+  margin-top: 1em;
   margin-left: 2em;
   margin-right: 2em;
   height: 35vh;
