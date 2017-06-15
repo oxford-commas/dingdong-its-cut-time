@@ -37,8 +37,8 @@
           </div>
         </div>
       </div>
-
     </div>
+
   </div>
 </div>
 
@@ -79,7 +79,7 @@
             <h4>About Me</h4>
               <textarea class="modalTextArea" [(ngModel)]="aboutMe" name="aboutMe"></textarea>
           </div>
-          <div *ngIf="stateService.retrieveCustomer().type === 0">
+          <div class="modalStyles" *ngIf="stateService.retrieveCustomer().type === 0">
             <h4>Services</h4>
             <div class="servicesContainer">
               <div class="styleItems" *ngFor="let style of styles">

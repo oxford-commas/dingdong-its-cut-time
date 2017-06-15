@@ -12,7 +12,7 @@
   <div class="profileContainer">
     <div class="userInfoContainer">
       <div class="imageContainer">
-        <img class="profileImage" [src]=stylistProfile.image_url />
+        <!-- <img class="profileImage" [src]=stylistProfile.image_url /> -->
         <h3>{{stylistProfile.name}}</h3>
       </div>
       <div class="userInfo">
@@ -21,7 +21,7 @@
         <h5><span class="glyphicon glyphicon-question-sign"></span> {{ stylistProfile.phonenumber }}</h5>
       </div>
     </div>
-    
+
     <div class="aboutMeContainer">
       <div>
         <h4>About Me</h4>
@@ -36,29 +36,36 @@
         </div>
       </div>
     </div>
-    
+
   </div>
 </div>
 
 <!-- Message Modal -->
-<!-- <div class="container row modalWrapper" [style.display]="getStyle()">
-  <div class="bigWrapper">
-    <form
-      class="container row modalContent"
-      (ngSubmit)="submitMessage(messageForm.value)"
-      #messageForm="ngForm"
-    >
-      <span (click)="toggleMessageModal()">&times;</span>
-      <div class="container row miniWrapper">
-        <h4>Send a message</h4>
-        <div class="row message modeitem">
+<div class="modalWrapper" [style.display]="getStyle()">
+  <div class="miniWrapper">
+    <div class="modalHeader">
+      <h4>Message: {{stylistProfile.name}}</h4>
+      <div (click)="toggleMessageModal()">&times;</div>
+    </div>
+
+    <div class="formContainer">
+      <form
+        class="modalContent"
+        (ngSubmit)="submitMessage(messageForm.value)"
+        #messageForm="ngForm"
+      >
+        <div class="textAreaContainer">
           <textarea name="body" ngModel>Body of the message</textarea>
+        </div>
+        <div class="buttonContainer">
           <button class="btn btn-primary" type="submit">Send</button>
         </div>
-      </div>
-    </form>
+      </form>
+
+    </div>
+
   </div>
-</div> -->
+</div>
 
 <!-- Booking Modal -->
 <!-- <div class="container row modalWrapper" [style.display]="getBookingModalStyle()">
