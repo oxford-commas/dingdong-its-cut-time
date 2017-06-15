@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { StateService } from '../../../services';
 
 @Component({
@@ -8,9 +8,11 @@ import { StateService } from '../../../services';
   styleUrls: ['./customer-navbar.component.css']
 })
 export class CustomerNavbarComponent {
-
-  fullImagePath = './assets/logo.png';
-
-  constructor(private stateService: StateService) {}
-
+  constructor(private stateService: StateService, private router: Router) {}
+  public fullImagePath = './assets/logo.png';
+  
+  handleLogout() {
+    this.stateService.logout();
+    this.router.navigate(['/login']);
+  }
 }

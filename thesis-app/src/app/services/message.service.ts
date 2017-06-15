@@ -8,17 +8,22 @@ export class MessageService {
   constructor(private http: Http) {}
 
   postMessage(message: IMessage) {
-    return this.http.post('/api/messages', message);
+    return this.http.post('/api/messages', message)
+      .map(res => res.json())
+      .share();
   }
 
   getMessages(id: number) {
     return this.http.get(`/api/messages/${id}`)
-      .map(res => this.convertToArray(res.json()));
+      .map(res => this.convertToArray(res.json()))
+      .share();
   }
 
   deleteChatHistory(ids) {
     const requestOptions = new RequestOptions({body: ids});
-    return this.http.delete('/api/messages', requestOptions);
+    return this.http.delete('/api/messages', requestOptions)
+      .map(res => res.json())
+      .share();
   }
 
   convertToArray(obj) {

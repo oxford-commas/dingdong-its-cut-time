@@ -398,7 +398,7 @@ const messagesArray = [
   }
 ];
 
-messagesArray.forEach(message => helpers.postMessage(message));
+// messagesArray.forEach(message => helpers.postMessage(message));
 
 const stylesArray = [
   'Afro',
@@ -677,6 +677,7 @@ stylistArray.forEach(stylist => {
       })
     });
 });
+
 
 bookingsArray.forEach(booking => {
   helpers.addToBookings(booking, resultFromServer => console.log(resultFromServer));

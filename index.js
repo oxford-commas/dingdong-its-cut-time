@@ -146,14 +146,13 @@ app.put('/api/userstylist/:id', function (req, res) {
   var email = req.body.email;
   var site_url = req.body.site_url;
   var gender = req.body.gender;
-  var image_url = req.body.image_url;
   var location = req.body.location;
   var aboutMe = req.body.aboutMe;
   if (req.body.styles) {
     var styles = req.body.styles;
     helpers.updateStyles(id, styles);
   }
-  helpers.updateProfile(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe, id, function() {
+  helpers.updateProfile(type, name, password, billingaddress, phonenumber, email, site_url, gender, aboutMe, id, function() {
     res.send('Got a PUT request at /api/userstylist/' + req.params.id);
   });
 });
