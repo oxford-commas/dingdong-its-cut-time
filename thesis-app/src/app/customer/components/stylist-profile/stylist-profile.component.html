@@ -43,6 +43,7 @@
 <!-- Message Modal -->
 <div class="modalWrapper" [style.display]="getStyle()">
   <div class="miniWrapper">
+
     <div class="modalHeader">
       <h4>Message: {{stylistProfile.name}}</h4>
       <div (click)="toggleMessageModal()">&times;</div>
@@ -50,18 +51,16 @@
 
     <div class="formContainer">
       <form
-        class="modalContent"
         (ngSubmit)="submitMessage(messageForm.value)"
         #messageForm="ngForm"
       >
-        <div class="textAreaContainer">
+        <div>
           <textarea name="body" ngModel>Body of the message</textarea>
         </div>
-        <div class="buttonContainer">
-          <button class="btn btn-primary" type="submit">Send</button>
+        <div class="btnContainer">
+          <button type="submit">Send</button>
         </div>
       </form>
-
     </div>
 
   </div>

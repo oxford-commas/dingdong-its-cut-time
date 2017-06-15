@@ -135,49 +135,28 @@
 }
 
 .modalHeader {
-  flex:1 1 100%;
+  flex: 1 1 100%;
   height: 10%;
   display: flex;
   justify-content: space-between;
   color: #F9B71A;
-}
-
-.modalContent {
-  background-color: #6F6F6F;
-  color: white;
-  margin: 15% auto;
-  padding: 2em;
-  border: 1px solid #979797;
-  border-radius: 6px;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  border: 2px solid red;
+  margin-bottom: 1em;
 }
 
 .formContainer {
+  flex: 1 1 100%;
+  height: 90%;
   border: 2px solid red;
-  flex: 1 1 90%;
-  height: 80%;
 }
 
-.textAreaContainer {
-  flex: 1 1 100%;
+textarea {
+  width: 100%;
+  height: 16em;
 }
 
 .btnContainer {
-  flex: 1 1 100%;
-}
-
-.modeitem {
-  padding: 1ch;
-  margin: 1ch;
-}
-
-input, textarea {
-  background-color: #d3d3d3;
-}
-
-.bigWrapper {
   display: flex;
+  width: 100%;
+  justify-content: flex-end;
 }
