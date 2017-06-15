@@ -209,7 +209,6 @@ textarea {
   width: 100%;
   display: flex;
   flex-direction: column;
-  border: 2px solid red;
 }
 
 .ultimoContainer {
@@ -218,7 +217,7 @@ textarea {
   justify-content: flex-end;
 }
 
-.ultimoContainer {
+.ultimoContainer > * {
   width: 20%;
   background-color: #F9B71A;
   color: white;
