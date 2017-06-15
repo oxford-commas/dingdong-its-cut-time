@@ -46,27 +46,29 @@
         <div class="modalUsernamePassword">
           <div>
             <h4>Username</h4>
-              <input type="text" name="name" [(ngModel)]="name" />
+              <input class="modalInput" type="text" name="name" [(ngModel)]="name" />
           </div>
           <div>
             <h4>Password</h4>
-              <input type="password" [(ngModel)]="password" name="password" />
+              <input class="modalInput" type="password" [(ngModel)]="password" name="password" />
           </div>
         </div>
-        <div class="modalEmailWebsite">
-          <h4>Email</h4>
-            <input type="email" [(ngModel)]="email" name="email" />
-          <h4>Address</h4>
-            <input type="text" [(ngModel)]="billingaddress" name="billingaddress" />
+        <div class="modalUsernamePassword">
+          <div>
+            <h4>Email</h4>
+              <input class="modalInput" type="email" [(ngModel)]="email" name="email" />
+          </div>
+          <div>
+            <h4>Phone Number</h4>
+              <input class="modalInput" [(ngModel)]="phonenumber" name="phonenumber" />
+          </div>
         </div>
-        <div class="modalPhoneNumber">
-          <h4>Phone Number</h4>
-            <input [(ngModel)]="phonenumber" name="phonenumber" />
-        </div>
+
         <div class="modalAboutMe">
           <h4>About Me</h4>
             <textarea [(ngModel)]="aboutMe" name="aboutMe"></textarea>
         </div>
+
         <div>
           <button type="submit">Save changes</button>
         </div>

@@ -694,17 +694,17 @@ stylistServices.forEach(style => {
   })
 });
 
-implant image in users_stylists
-for (var i = 0; i < 21; i++) {
-    var id = i;
-    var url = 'uploads/1496879961184.jpg';
-    var url1 = 'uploads/1496880013410.jpg';
-  model.con.query('UPDATE users_stylists SET image_url = ? WHERE type = 1', [url],function (err, result) {
-    if (err) throw err;
-    console.log('inserted');
-  });
-  model.con.query('UPDATE users_stylists SET image_url = ? WHERE type = 0', [url1],function (err, result) {
-    if (err) throw err;
-    console.log('inserted');
-  });
-}
+//implant image in users_stylists
+// for (var i = 0; i < 21; i++) {
+//     var id = i;
+//     var url = 'uploads/1496879961184.jpg';
+//     var url1 = 'uploads/1496880013410.jpg';
+//   model.con.query('UPDATE users_stylists SET image_url = ? WHERE type = 1', [url],function (err, result) {
+//     if (err) throw err;
+//     console.log('inserted');
+//   });
+//   model.con.query('UPDATE users_stylists SET image_url = ? WHERE type = 0', [url1],function (err, result) {
+//     if (err) throw err;
+//     console.log('inserted');
+//   });
+// }
