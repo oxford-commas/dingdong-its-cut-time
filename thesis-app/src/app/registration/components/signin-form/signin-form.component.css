@@ -38,6 +38,11 @@
   align-items: center;
 }
 
+.flexItem input {
+  background-color: white;
+  color: black;
+}
+
 .loginButtons {
   background: rgba(255,255,255,0.4);
   padding: 1em;

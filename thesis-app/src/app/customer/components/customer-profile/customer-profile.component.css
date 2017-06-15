@@ -196,14 +196,20 @@
   width: 95%;
 }
 
-.imageContainer {
-  flex: 1 1 100%;
+.modalImageContainer {
+  flex: 1 1;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: left;
   color: white;
   border: none;
+}
+
+.modalImageContainer input {
+  width: 95%;
+  background-color: white;
+  font: black;
 }
 
 .btnContainer {
