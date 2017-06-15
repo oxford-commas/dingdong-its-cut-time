@@ -96,10 +96,15 @@
   flex: 1 1 25%;
 }
 
+.modalWrapper textarea {
+  background-color: white;
+  color: black;
+}
 
-
-
-
+.modalWrapper input {
+  background-color: white;
+  color: black;
+}
 
 .paragraph {
   overflow: scroll;

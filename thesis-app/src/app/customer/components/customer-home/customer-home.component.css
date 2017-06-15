@@ -39,5 +39,6 @@
 }
 
 .closestContainer {
-  border: 2px solid red;
+  margin-left: 1em;
+  margin-right: 1em;
 }
