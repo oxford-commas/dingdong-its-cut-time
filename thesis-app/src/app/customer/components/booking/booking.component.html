@@ -6,7 +6,7 @@
 <div class="glyphicon glyphicon-home">{{location}}</div>
 
  -->
-<div class="wrapper">
+<div *ngIf="!!isPictureFetched" class="wrapper">
   <div class="profileContainer">
     <div class="photoContainer">
       <img [src]="image_url"/>

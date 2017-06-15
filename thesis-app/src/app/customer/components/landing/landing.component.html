@@ -16,7 +16,7 @@
       >
         <booking
           [name]="confirmedBooking.name"
-          [image_url]="confirmedBooking.image_url"
+          [id_stylists]="confirmedBooking.id_stylists"
           [time]="confirmedBooking.time"
           [phoneNumber]="confirmedBooking.phonenumber"
           [location]="confirmedBooking.location"
@@ -30,7 +30,7 @@
       <div *ngFor="let dueBooking of profile.dueBookings; let i = index">
         <booking
           [name]="dueBooking.name"
-          [image_url]="dueBooking.image_url"
+          [id_stylists]="dueBooking.id_stylists"
           [time]="dueBooking.time"
           [phoneNumber]="dueBooking.phonenumber"
           [location]="dueBooking.location"
@@ -52,7 +52,7 @@
       >
         <booking
           [name]="pendingBooking.name"
-          [image_url]="pendingBooking.image_url"
+          [id_stylists]="pendingBooking.id_stylists"
           [time]="pendingBooking.time"
           [phoneNumber]="pendingBooking.phonenumber"
           [location]="pendingBooking.location"
@@ -76,7 +76,7 @@
       >
         <booking
           [name]="confirmedBooking.name"
-          [image_url]="confirmedBooking.image_url"
+          [id_stylists]="confirmedBooking.id_stylists"
           [time]="confirmedBooking.time"
           [phoneNumber]="confirmedBooking.phonenumber"
           [location]="confirmedBooking.location"
@@ -94,7 +94,7 @@
       <div *ngFor="let dueBooking of profile.dueBookings; let i = index">
         <booking
           [name]="dueBooking.name"
-          [image_url]="dueBooking.image_url"
+          [id_stylists]="dueBooking.id_stylists"
           [time]="dueBooking.time"
           [phoneNumber]="dueBooking.phonenumber"
           [location]="dueBooking.location"
@@ -114,7 +114,7 @@
       >
         <booking
           [name]="pendingBooking.name"
-          [image_url]="pendingBooking.image_url"
+          [id_stylists]="pendingBooking.id_stylists"
           [time]="pendingBooking.time"
           [phoneNumber]="pendingBooking.phonenumber"
           [location]="pendingBooking.location"
