@@ -108,12 +108,6 @@
 }
 
 .modalWrapper {
-  display: flex;
-  color: black;
-  justify-content: center;
-  align-items: center;
-  padding-top: 1em;
-  margin-top: 1em;
   display: none;
   position: fixed;
   z-index: 1;
@@ -122,34 +116,113 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(173, 216, 230, 0.9);
+  background-color: #ffffff;
+  opacity: 75%;
+  background-color: rgba(0,0,0,0.2);
+}
+
+.miniWrapper {
+  background-color: #6F6F6F;
+  color: white;
+  margin: 15% auto;
+  padding: 2em;
+  border: 1px solid #979797;
+  border-radius: 6px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader {
+  flex: 1 1 100%;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  color: #F9B71A;
+  margin-bottom: 1em;
+}
+
+.formContainer {
+  flex: 1 1 100%;
+  height: 90%;
+}
+
+textarea {
+  width: 100%;
+  height: 16em;
+}
+
+.btnContainer {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.btnContainer button {
+  width: 20%;
+  background-color: #F9B71A;
+  color: white;
+  margin-right: .5em;
+  margin-top: 1em;
+  border-radius: 35px;
+}
+
+.formContainer2 {
+  display: flex;
+  flex-direction: column;
 }
 
 .modalContent {
-  border: 2px solid black;
-  flex: 1 1;
-  width: 82%;
-  height: 80%;
-  padding: 5ch;
-  margin: 5ch;
-  margin-left: 12ch;
-  position: absolute;
-  /*margin-left: -35%;
-  margin-top: -35%;*/
-  /*top: 50%;
-  left: 50%;*/
-  background-color: white;
-}
-
-.modeitem {
-  padding: 1ch;
-  margin: 1ch;
-}
-
-input, textarea {
-  background-color: #d3d3d3;
-}
-
-.bigWrapper {
   display: flex;
+  flex-direction: column;
 }
+
+.topRow {
+  display: flex;
+  width: 100%;
+  height: 20%;
+}
+
+.topRow > * {
+  flex: 1 1 100%;
+}
+
+.serviceContainer2 {
+  flex: 1 1 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapContainer {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+}
+
+.wrapContainer > * {
+  flex: 1 1 25%;
+}
+
+.lastContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ultimoContainer {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.ultimoContainer > * {
+  width: 20%;
+  background-color: #F9B71A;
+  color: white;
+  margin-right: .5em;
+  margin-top: 1em;
+  border-radius: 35px;
+}
+

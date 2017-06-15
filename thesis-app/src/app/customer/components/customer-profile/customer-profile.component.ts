@@ -1,21 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RequestService, DeletionService, StateService } from '../../../services';
+import { RequestService, DeletionService, StateService, StylistStylesService } from '../../../services';
 
 @Component({
   selector: 'customer-profile',
   templateUrl: './customer-profile.component.html',
   styleUrls: ['./customer-profile.component.css']
 })
-export class CustomerProfileComponent {
+export class CustomerProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private requestService: RequestService,
     private deletionService: DeletionService,
     private stateService: StateService,
-    private router: Router
+    private router: Router,
+    private stylistStylesService: StylistStylesService
   ) {}
+
+  ngOnInit() {
+    this.stylistStylesService.fetchAllStyles()
+     .subscribe(
+       data => this.styles = data,
+       err => console.log(err)
+     );
+  }
 
   public profile = this.stateService.retrieveCustomer();
   // Form ngModels
@@ -30,6 +39,7 @@ export class CustomerProfileComponent {
   //
   public modalStyle: string = 'none';
   public showModal: boolean = false;
+  public styles;
 
   public handleDeleteAccount() {
     this.deletionService.deleteAccount(this.profile.id)
@@ -83,6 +93,7 @@ export class CustomerProfileComponent {
   }
 
   public getStyle() {
+    console.log(this.showModal);
     if (this.showModal === false) {
       return 'none';
     } else {
@@ -93,5 +104,6 @@ export class CustomerProfileComponent {
   public toggleModal() {
     this.showModal = !this.showModal;
   }
+
 }
 
