@@ -66,12 +66,17 @@
 .userInfo {
   flex: 1 1 50%;
   height: 50%;
-  width: 100%;
+  width: 80%;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: flex-start;
   align-items: left;
   margin-left: 3em;
+}
+
+.userInfo > * {
+  width: 90%;
 }
 
 .aboutMeContainer {
