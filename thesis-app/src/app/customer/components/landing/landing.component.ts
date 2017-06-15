@@ -45,6 +45,7 @@ export class LandingComponent implements OnDestroy {
   }
 
   payBooking(id: number, index: number) {
+    console.log('PAY BOOKING');
     this.profile.dueBookings.splice(index, 1);
     this.bookingService.deleteBooking(id)
       .takeWhile(() => this.alive)

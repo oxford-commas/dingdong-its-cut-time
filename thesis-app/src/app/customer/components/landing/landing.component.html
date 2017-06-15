@@ -39,6 +39,7 @@
         <payment-input
           (handleProcessedPayment)="payBooking(dueBooking.id, i)"
           [stylistName]="dueBooking.name"
+          [bookingId]="dueBooking.id"
         >
         </payment-input>
       </div>

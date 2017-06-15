@@ -261,6 +261,12 @@ app.put('/booking/:bookingid', function (req, res) {
   });
 });
 
+// update booking when paid
+app.put('/api/bookings/history/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.historyBooking(id, results => res.status(200).json(results));
+});
+
 // HAIRCUT STYLES //
 
 app.get('/api/stylistServices', (req, res) => {

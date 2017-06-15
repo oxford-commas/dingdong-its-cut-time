@@ -174,6 +174,10 @@ var deleteBooking = (id, callback) => {
   });
 };
 
+var historyBooking = (id, callback) => {
+  model.con.query('UPDATE BOOKINGS SET isComplete = 2 WHERE bookings.id = ?', [id], (err, results) => callback(results));
+};
+
 var deleteUser = function(userId) {
   model.con.query('delete from `users_stylists` where `id` = ?', [userId]);
 };
@@ -325,3 +329,4 @@ module.exports.getPendingBookings = getPendingBookings;
 module.exports.cancelConfirmedBooking = cancelConfirmedBooking;
 module.exports.cancelPaymentBooking = cancelPaymentBooking;
 module.exports.updateStyles = updateStyles;
+module.exports.historyBooking = historyBooking;
