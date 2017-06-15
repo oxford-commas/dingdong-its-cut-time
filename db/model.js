@@ -22,6 +22,7 @@ con.getConnection(function(err, connection) {
     if (error) throw error;
 
     // Don't use the connection here, it has been returned to the pool.
+  }
 });
 
 module.exports.con = con;
