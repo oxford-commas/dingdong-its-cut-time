@@ -1,4 +1,4 @@
-<div class="componentWrapper">
+<div *ngIf="!!isProfileFetched" class="componentWrapper">
   <customer-navbar></customer-navbar>
 
   <div class="subHeader">
@@ -10,16 +10,16 @@
   </div>
 
   <div class="profileContainer">
-    
+
     <div class="userInfoContainer">
       <div class="imageContainer">
         <img class="profileImage" [src]=stylistProfile.image_url />
         <h3>{{stylistProfile.name}}</h3>
       </div>
       <div class="userInfo">
-        <h5><span class="glyphicon glyphicon-question-sign"></span> {{ stylistProfile.billingaddress }}</h5>
-        <h5><span class="glyphicon glyphicon-question-sign"></span> {{ stylistProfile.site_url }}</h5>
-        <h5><span class="glyphicon glyphicon-question-sign"></span> {{ stylistProfile.phonenumber }}</h5>
+        <h5><span class="glyphicon glyphicon-home"></span> {{ stylistProfile.billingaddress }}</h5>
+        <h5><span class="glyphicon glyphicon-globe"></span> {{ stylistProfile.site_url }}</h5>
+        <h5><span class="glyphicon glyphicon-earphone"></span> {{ stylistProfile.phonenumber }}</h5>
       </div>
     </div>
 
@@ -42,32 +42,32 @@
 </div>
 
 <!-- Message Modal -->
-<div class="modalWrapper" [style.display]="getStyle()">
+<div *ngIf="!!isProfileFetched" class="modalWrapper" [style.display]="getStyle()">
   <div class="miniWrapper">
     <div class="modalHeader">
       <h4>Message: {{stylistProfile.name}}</h4>
       <div (click)="toggleMessageModal()">&times;</div>
     </div>
-    
+
     <div class="formContainer">
       <form
         (ngSubmit)="submitMessage()"
         #messageForm="ngForm"
       >
         <div>
-          <textarea [(ngModel)]="body">Body of the message</textarea>
+          <textarea [(ngModel)]="body" name="body">Body of the message</textarea>
         </div>
         <div class="btnContainer">
           <button type="submit">Send</button>
         </div>
       </form>
     </div>
-    
+
   </div>
 </div>
 
 <!-- Booking Modal -->
-<div class="modalWrapper" [style.display]="getBookingModalStyle()">
+<div *ngIf="!!isProfileFetched" class="modalWrapper" [style.display]="getBookingModalStyle()">
   <div class="miniWrapper">
     <div class="modalHeader">
       <h2>Appointment: {{stylistProfile.name}}</h2>
@@ -111,7 +111,7 @@
           <button type="submit">Book</button>
         </div>
       </div>
-        
+
     </form>
     </div>
   </div>

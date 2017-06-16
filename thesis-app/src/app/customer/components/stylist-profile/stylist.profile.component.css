@@ -26,8 +26,10 @@
   background-color: #F9B71A;
   color: #ffffff;
   border-radius: 20px;
-  width: 21%;
+  width: 25%;
+  height: 10%;
   margin-right: 6em;
+  border: 1px solid #F9B71A;
 }
 
 .profileContainer {
@@ -96,10 +98,15 @@
   flex: 1 1 25%;
 }
 
+.modalWrapper textarea {
+  background-color: white;
+  color: black;
+}
 
-
-
-
+.modalWrapper input {
+  background-color: white;
+  color: black;
+}
 
 .paragraph {
   overflow: scroll;
@@ -165,6 +172,7 @@ textarea {
   margin-right: .5em;
   margin-top: 1em;
   border-radius: 35px;
+  border: 1px solid #F9B71A;
 }
 
 .formContainer2 {
@@ -224,5 +232,6 @@ textarea {
   margin-right: .5em;
   margin-top: 1em;
   border-radius: 35px;
+  border: 1px solid #F9B71A;
 }
 

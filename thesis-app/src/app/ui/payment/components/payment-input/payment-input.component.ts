@@ -1,17 +1,21 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { StripeService } from '../../../../services';
+import { StripeService, BookingService } from '../../../../services';
 
 @Component({
   selector: 'payment-input',
-  template: `<button (click)="openCheckout()">Pay</button>`,
+  template: `
+  <div class="buttonContainer">
+    <button (click)="openCheckout()">Pay</button>
+  </div>`,
   styleUrls: ['./payment-input.component.css']
 })
 export class PaymentInputComponent {
-  constructor(private stripeService: StripeService) {}
+  constructor(private stripeService: StripeService, private bookingService: BookingService) {}
 
   @Input() stylistName: string;
   @Output() handleProcessedPayment = new EventEmitter<any>();
+  @Input() bookingId: number;
   public data: any;
 
   openCheckout() {
@@ -37,6 +41,12 @@ export class PaymentInputComponent {
   }
 
   emitPayment(data) {
-    this.handleProcessedPayment.emit(data);
+    // console.log('emitting', data, ' from ', this.handleProcessedPayment);
+    // this.handleProcessedPayment.emit(data);
+    this.bookingService.putHistoryBooking(this.bookingId)
+      .subscribe(
+        data => console.log(data),
+        err => console.log(err)
+      );
   }
 }

@@ -706,11 +706,11 @@ stylesArray.forEach(style => {
   });
 });
 
-stylistServices.forEach(style => {
-  helpers.stylistservices(style.styleId, style.stylistId, (res) => {
-    console.log(res)
-  })
-});
+// stylistServices.forEach(style => {
+//   helpers.stylistservices(style.styleId, style.stylistId, (res) => {
+//     console.log(res)
+//   })
+// });
 
 // implant (image) in users_stylists
 //   for (var i = 0; i < 21; i++) {

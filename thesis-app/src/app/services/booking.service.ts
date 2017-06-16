@@ -57,4 +57,19 @@ export class BookingService {
       .map(res => res.json());
   }
 
+  putHistoryBooking(id: number) {
+    return this.http.put(`/api/bookings/history/${id}`, id)
+      .map(res => res.json());
+  }
+
+  fetchHistoryBookings(id: number, type: number) {
+    return this.http.get(`/api/bookings/history/${type}/${id}`)
+      .map(res => res.json());
+  }
+
+  fetchBookingStyles(id: number) {
+    return this.http.get(`/api/bookings/styles/${id}`)
+      .map(res => res.json());
+  }
+
 }

@@ -30,7 +30,7 @@ export class CustomerHomeComponent implements OnInit, OnDestroy {
   private alive: boolean = true;
 
   ngOnInit() {
-    this.getLocationCoordinates((lat, lng) => this.getLocationFromCoordinates(lat, lng, (location) => this.updateCloseToYou(location)));
+    this.getLocationCoordinates((lat, lng) => this.getLocationFromCoordinates(lat, lng, (location) => this.debounce(this.updateCloseToYou(location))));
     this.searchLocation = this.location || this.currentLocation;
   }
 
@@ -40,7 +40,7 @@ export class CustomerHomeComponent implements OnInit, OnDestroy {
 
   onSearchLocationChange(): void {
     this.searchLocation = this.location;
-    this.updateCloseToYou(this.searchLocation);
+    this.debounce(this.updateCloseToYou(this.searchLocation));
   }
 
   getLocationCoordinates(next) {
@@ -71,6 +71,21 @@ export class CustomerHomeComponent implements OnInit, OnDestroy {
         data => this.stylistsCloseToYou = data,
         err => console.log(err)
       );
+  }
+
+  debounce(func, wait = 20, immediate = true) {
+    let timeout;
+    return function() {
+      let context = this, args = arguments;
+      let later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      let callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
   }
 
 }

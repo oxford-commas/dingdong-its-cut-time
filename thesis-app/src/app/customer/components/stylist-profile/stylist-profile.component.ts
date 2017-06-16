@@ -65,7 +65,10 @@ export class StylistProfileComponent implements OnInit, OnDestroy {
     this.requestService.getStylistById(this.stylistId)
      .takeWhile(() => this.alive)
      .subscribe(
-       data => this.stylistProfile = data,
+       data => {
+         console.log('inside stylist profile ', data);
+         this.stylistProfile = data;
+       },
        err => console.log(err),
        () => this.isProfileFetched = true
      );

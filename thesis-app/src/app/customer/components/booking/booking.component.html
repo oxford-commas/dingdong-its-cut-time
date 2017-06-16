@@ -1,24 +1,29 @@
-<!-- <h4 *ngIf="isPending===true">{{name}} (pending)</h4>
-<h4 *ngIf="isPending===false">{{name}}</h4>
-<img [src]="image_url" />
-<div class="glyphicon glyphicon-time">{{time}}</div>
-<div class="glyphicon glyphicon-earphone">{{phoneNumber}}</div>
-<div class="glyphicon glyphicon-home">{{location}}</div>
-
- -->
 <div class="wrapper">
   <div class="profileContainer">
     <div class="photoContainer">
-      <img src="image_url"/>
-    </div>
-    <div class="infoContainer">
-      <h6>{{name}}</h6>
-      <h6>Date: {{time}}</h6>
-      <h6>Contact: {{phoneNumber}}</h6>
+      <img class="profileImage" [src]="image_url"/>
     </div>
   </div>
-  <div class="buttonContainer">
-    <button>Accept</button>
-    <button>Decline</button>
+  <div class="infoContainer">
+    <h5>{{name}}</h5>
+    <h6 class="glyphicon glyphicon-time"> Date: {{time}}</h6>
+    <h6 class="glyphicon glyphicon-earphone"> Contact: {{phoneNumber}}</h6>
+    <h6 class="glyphicon glyphicon-envelope"> Location: {{location}}</h6>
+  </div>
+  <div class="buttonContainer" *ngIf="!isPay">
+    <button *ngIf="!!isAccept" (click)="handleAccept.emit()">Accept</button>
+    <button *ngIf="!!isDecline" (click)="handleDecline.emit()">Decline</button>
+    <button *ngIf="!!isHistory" (click)="handleClearHistory.emit()">Clear</button>
+    <button *ngIf="!!isCancel" (click)="handleCancel.emit()">Cancel</button>
+    <button *ngIf="!!isReady" (click)="handleComplete.emit()">Get paid!</button>
+    <button *ngIf="!!isCancelComplete || !!isConfirmed" (click)="handleCancelComplete.emit()">Cancel</button>
+  </div>
+  <div *ngIf="!!isPay" class="paymentInput">
+    <payment-input
+      (handleProcessedPayment)="handlePay.emit()"
+      [stylistName]="stylistName"
+      [bookingId]="bookingId"
+    >
+    </payment-input>
   </div>
 </div>
