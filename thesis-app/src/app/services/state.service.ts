@@ -70,6 +70,7 @@ export class StateService implements OnDestroy {
     clearInterval(this.fetchDueBookingsIntervalId);
     clearInterval(this.fetchConfirmedBookingsIntervalId);
     clearInterval(this.fetchPendingBookingsIntervalId);
+    clearInterval(this.fetchHistoryBookingsIntervalId);
     customerProfile = {};
   }
   messageTimer(id) {

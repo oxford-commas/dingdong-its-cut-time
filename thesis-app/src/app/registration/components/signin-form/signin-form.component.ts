@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { Router } from '@angular/router';
@@ -21,8 +21,6 @@ export class SignInFormComponent {
     private requestService: RequestService,
     private stateService: StateService){}
 
-  ngOnInit() {}
-
   setUserData(userInput: IUserInformationData) {
     this.userInformationData = {
       ...this.userInformationData,
@@ -41,10 +39,10 @@ export class SignInFormComponent {
               this.router.navigate(['/error']);
             } else if (data[0].type === 1) {
               this.stateService.addCustomer(data[0]);
-              this.router.navigate(['/landing']);
+              this.router.navigate(['/appointments']);
             } else if (data[0].type === 0) {
               this.stateService.addCustomer(data[0]);
-              this.router.navigate(['/landing']);
+              this.router.navigate(['/appointments']);
             } else {
               this.router.navigate(['/error']);
             }
