@@ -78,10 +78,10 @@ var updateImage = function (imageUrl, id, callback) {
   });
 };
 
-var updateProfile = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, callback) {
-  var sql = 'UPDATE users_stylists SET type = ?, name = ?, password = ?, billingaddress = ?, phonenumber = ?, email = ?, site_url = ?, gender = ?, image_url = ? WHERE id = ?'
+var updateProfile = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, aboutMe, image_url, id, callback) {
+  var sql = 'UPDATE users_stylists SET type = ?, name = ?, password = ?, billingaddress = ?, phonenumber = ?, email = ?, site_url = ?, gender = ?, aboutMe = ?, image_url = ? WHERE id = ?'
 
-  var values = [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id];
+  var values = [type, name, password, billingaddress, phonenumber, email, site_url, gender, aboutMe, image_url, id];
 
   executeQuery(sql, values, function(err, results) {
     if (err) throw err;
