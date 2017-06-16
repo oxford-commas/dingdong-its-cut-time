@@ -7,7 +7,6 @@ var addUserStylist = function(type, name, password, billingaddress, phonenumber,
     connection.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url], function (err, result) {
       connection.release();
       if (err) throw err;
-      console.log("Got results: ",result);
       callback(result);
     });
   });
@@ -61,9 +60,11 @@ var calculateDistance = function distance(lat1, lon1, lat2, lon2, unit) {
 };
 
 function executeQuery(sql, vals, callback) {
+
   model.con.getConnection(function(err, connection) {
-    connection.query(sql, function(error, results, fields) {
+    connection.query(sql, vals, function(error, results, fields) {
       connection.release();
+      console.log("Query results: ", sql, vals, results, error);
       callback(err, results);
     });
   });
