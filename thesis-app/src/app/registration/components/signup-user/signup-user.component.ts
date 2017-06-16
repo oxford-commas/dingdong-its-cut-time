@@ -32,7 +32,7 @@ export class SignupUserComponent {
             .subscribe(
               woo => {
                 this.stateService.addCustomer(woo[0]);
-                this.router.navigate(['/landing']);
+                this.router.navigate(['/appointments']);
               }
             )
         }

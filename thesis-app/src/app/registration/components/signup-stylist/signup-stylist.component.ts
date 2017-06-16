@@ -56,10 +56,10 @@ export class SignupStylistComponent {
                 });
                 if (woo[0].type === 1) {
                   this.stateService.addCustomer(woo[0]);
-                  this.router.navigate(['/landing']);
+                  this.router.navigate(['/appointments']);
                 } else if (woo[0].type === 0) {
                   this.stateService.addCustomer(woo[0]);
-                  this.router.navigate(['/landing']);
+                  this.router.navigate(['/appointments']);
                 } else {
                   this.router.navigate(['/login']);
                 }
