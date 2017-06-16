@@ -35,3 +35,8 @@
   padding-left: 3em;
   padding-right: 3em;
 }
+
+.booking-confirmed {
+  height: 100%;
+  border: 2px solid orange;
+}

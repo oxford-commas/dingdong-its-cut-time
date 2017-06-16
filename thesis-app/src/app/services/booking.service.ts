@@ -67,4 +67,9 @@ export class BookingService {
       .map(res => res.json());
   }
 
+  fetchBookingStyles(id: number) {
+    return this.http.get(`/api/bookings/styles/${id}`)
+      .map(res => res.json());
+  }
+
 }
