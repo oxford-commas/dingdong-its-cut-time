@@ -1,8 +1,10 @@
 .componentWrapper {
   display: flex;
   flex-direction: column;
+  background-color: black;
   background-image: url('http://cdn.wallpapersafari.com/44/5/HQjIBU.jpg');
   height: 100vh;
+  background-repeat: no-repeat;
   color: white;
   font-family: 'Montserrat', sans-serif;
 }
