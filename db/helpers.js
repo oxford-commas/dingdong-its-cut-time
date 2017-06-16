@@ -68,7 +68,7 @@ function executeQuery(sql, vals, callback) {
       callback(err, results);
     });
   });
-}
+};
 
 //update image url for the userStylists
 var updateImage = function (imageUrl, id, callback) {
@@ -324,6 +324,7 @@ var getStylistServices = function(stylistId, callback) {
     if (err) throw err;
     callback(results);
   });
+};
 
 var getStyles = function(stylistId, callback) {
   var sql = `
@@ -350,7 +351,9 @@ var updateStyles = (stylistId, styles) => {
     var sql = `
       INSERT INTO stylists_services (id_services, id_users_stylists)
       VALUES(?, ?)`;
-    model.con.query(sql, [styles[i], stylistId]);
+    executeQuery(sql, [styles[i], stylistId], function(err, results){
+      if (err) throw err;
+    });
   }
 };
 
