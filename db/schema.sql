@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `users_stylists` (
 );
 
 CREATE TABLE IF NOT EXISTS `recipients` (
-  `messageId` INTEGER NOT NULL AUTO_INCREMENT,
+  `messageId` INTEGER NOT NULL,
   `id` INTEGER NOT NULL,
   `name` VARCHAR(35) NOT NULL,
   PRIMARY KEY (`messageId`)

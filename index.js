@@ -148,11 +148,12 @@ app.put('/api/userstylist/:id', function (req, res) {
   var gender = req.body.gender;
   var location = req.body.location;
   var aboutMe = req.body.aboutMe;
+  var image_url = req.body.image_url;
   if (req.body.styles) {
     var styles = req.body.styles;
     helpers.updateStyles(id, styles);
   }
-  helpers.updateProfile(type, name, password, billingaddress, phonenumber, email, site_url, gender, aboutMe, id, function() {
+  helpers.updateProfile(type, name, password, billingaddress, phonenumber, email, site_url, gender, aboutMe, image_url, id, function() {
     res.send('Got a PUT request at /api/userstylist/' + req.params.id);
   });
 });
@@ -258,6 +259,18 @@ app.put('/booking/:bookingid', function (req, res) {
   helpers.updateBooking(id_users, id_stylists, isconfirmed, time, location, id, function() {
     res.send('Got a PUT(update) request at /booking')
   });
+});
+
+// update booking when paid
+app.put('/api/bookings/history/:id', (req, res) => {
+  var id = req.params.id;
+  helpers.historyBooking(id, results => res.status(200).json(results));
+});
+
+app.get('/api/bookings/history/:type/:id', (req, res) => {
+  var id = req.params.id;
+  var type = Number(req.params.type);
+  helpers.getHistoryBookings(id, type, results => res.status(200).json(results));
 });
 
 // HAIRCUT STYLES //

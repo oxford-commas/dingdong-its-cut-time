@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="inputWrapper">
-    <input [(ngModel)]="inputValue" (keyup.enter)=postMessage() />
-    <button>Send</button>
+    <input [(ngModel)]="inputValue" (keyup.enter)="postMessage()" />
+    <button (click)="postMessage()">Send</button>
   </div>
 </div>

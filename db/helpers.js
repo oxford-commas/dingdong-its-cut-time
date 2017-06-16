@@ -54,9 +54,9 @@ var updateImage = function (imageUrl, id, callback) {
   });
 };
 
-var updateProfile = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, aboutMe, id, callback) {
-  var sql = 'UPDATE users_stylists SET type = ?, name = ?, password = ?, billingaddress = ?, phonenumber = ?, email = ?, site_url = ?, gender = ?, aboutMe = ? WHERE id = ?'
-  model.con.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, aboutMe, id],function (err, result) {
+var updateProfile = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, aboutMe, image_url, id, callback) {
+  var sql = 'UPDATE users_stylists SET type = ?, name = ?, password = ?, billingaddress = ?, phonenumber = ?, email = ?, site_url = ?, gender = ?, aboutMe = ?, image_url = ? WHERE id = ?'
+  model.con.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, aboutMe, image_url, id],function (err, result) {
     if (err) throw err;
     console.log("1 record updated");
     callback();
@@ -136,7 +136,7 @@ var getBookingsDue = (id, type, callback) => {
   if (type === 0) {
     var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
       FROM bookings b INNER JOIN users_stylists us
-      WHERE b.isconfirmed = 2
+      WHERE b.isComplete = 1
       AND b.id_stylists = ?
       AND us.id = b.id_users`;
   } else if (type === 1) {
@@ -172,6 +172,27 @@ var deleteBooking = (id, callback) => {
     console.log('DELET BOOOIJING', res);
     callback(res);
   });
+};
+
+var historyBooking = (id, callback) => {
+  model.con.query('UPDATE bookings SET isComplete = 2 WHERE bookings.id = ?', [id], (err, results) => callback(results));
+};
+
+var getHistoryBookings = (id, type, callback) => {
+  if (type === 0) {
+    var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.isconfirmed = 2
+      AND b.id_stylists = ?
+      AND us.id = b.id_users`;
+  } else if (type === 1) {
+    var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.isComplete = 2
+      AND b.id_users = ?
+      AND us.id = b.id_stylists`;
+  }
+  model.con.query(sql, [id], (err, results) => callback(results));
 };
 
 var deleteUser = function(userId) {
@@ -259,8 +280,8 @@ var postMessage = (message, callback) => {
     (err, results) => {
       console.log('POSTED MESSAGE', results);
       model.con.query(
-        `INSERT INTO recipients (id, name)
-        VALUES (?, (SELECT name FROM users_stylists WHERE users_stylists.id = ?))`,
+        `INSERT INTO recipients (messageId, id, name)
+        VALUES (LAST_INSERT_ID(), ?, (SELECT name FROM users_stylists WHERE users_stylists.id = ?))`,
         [message.id_sender, message.id_recipient]
       );
       callback(results);
@@ -325,3 +346,5 @@ module.exports.getPendingBookings = getPendingBookings;
 module.exports.cancelConfirmedBooking = cancelConfirmedBooking;
 module.exports.cancelPaymentBooking = cancelPaymentBooking;
 module.exports.updateStyles = updateStyles;
+module.exports.historyBooking = historyBooking;
+module.exports.getHistoryBookings = getHistoryBookings;

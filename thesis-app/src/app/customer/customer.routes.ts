@@ -31,7 +31,7 @@ export const customerRoutes: Routes = [
     component: CloseToYouComponent
   },
   {
-    path: 'landing',
+    path: 'appointments',
     component: LandingComponent
   }
 ]

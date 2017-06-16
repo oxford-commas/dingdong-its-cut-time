@@ -17,12 +17,16 @@
         *ngFor="let confirmedBooking of profile.confirmedBookings; let i = index"
         class="booking-confirmed"
       >
-        <booking
+        <booking class="booking"
           [name]="confirmedBooking.name"
           [image_url]="confirmedBooking.image_url"
           [time]="confirmedBooking.time"
           [phoneNumber]="confirmedBooking.phonenumber"
           [location]="confirmedBooking.location"
+          [isCancel]="true"
+          [isConfirmed]="true"
+          (handleCancel)="cancelBooking(confirmedBooking.id, i)"
+          (handleComplete)="completeBooking(confirmedBooking.id, i)"
         >
         </booking>
       </div>
@@ -40,13 +44,12 @@
           [time]="dueBooking.time"
           [phoneNumber]="dueBooking.phonenumber"
           [location]="dueBooking.location"
+          [isPay]="true"
+          [stylistName]="dueBooking.name"
+          [bookingId]="dueBooking.id"
+          (handlePay)="payBooking(dueBooking.id, i)"
         >
         </booking>
-        <payment-input
-          (handleProcessedPayment)="payBooking(dueBooking.id, i)"
-          [stylistName]="dueBooking.name"
-        >
-        </payment-input>
       </div>
     </div>
 
@@ -65,18 +68,37 @@
           [time]="pendingBooking.time"
           [phoneNumber]="pendingBooking.phonenumber"
           [location]="pendingBooking.location"
+          (handleCancel)="declineBooking(pendingBooking.id, i)"
+          [isCancel]="true"
         >
         </booking>
-        <!-- <button (click)="declineBooking(pendingBooking.id, i)">Decline</button> -->
+      </div>
+    </div>
+
+    <div class="pendingContainer">
+      <h4>History</h4>
+      <div
+        *ngFor="let historyBooking of profile.historyBookings; let i = index"
+        class="booking-confirmed"
+      >
+        <booking
+          [name]="historyBooking.name"
+          [image_url]="historyBooking.image_url"
+          [time]="historyBooking.time"
+          [phoneNumber]="historyBooking.phonenumber"
+          [location]="historyBooking.location"
+          (handleClearHistory)="clearHistory(historyBooking.id, i)"
+          [isHistory]="true"
+        >
+        </booking>
       </div>
     </div>
   </div>
 
-
   <!-- Stylist Landing -->
   <div *ngIf="profile.type===0">
     <div class="confirmedContainer">
-      <h2>Confirmed</h2>
+      <h4>Confirmed</h4>
         <div *ngIf="profile.confirmedBookings.length === 0 || !profile.confirmedBookings">
           <p>You don't have any confirmed booking.</p>
         </div>
@@ -90,15 +112,17 @@
           [time]="confirmedBooking.time"
           [phoneNumber]="confirmedBooking.phonenumber"
           [location]="confirmedBooking.location"
+          (handleCancel)="cancelBooking(confirmedBooking.id, i)"
+          (handleComplete)="completeBooking(confirmedBooking.id, i)"
+          [isReady]="true"
+          [isCancel]="true"
         >
         </booking>
-        <button (click)="cancelBooking(confirmedBooking.id, i)">Cancel</button>
-        <button (click)="completeBooking(confirmedBooking.id, i)">Get paid!</button>
       </div>
     </div>
 
     <div class="awaitingContainer">
-      <h2>Awaiting Payment</h2>
+      <h4>Awaiting Payment</h4>
         <div *ngIf="profile.dueBookings.length === 0 || !profile.dueBookings">
           <p>You don't have any booking awaiting payment.</p>
         </div>
@@ -109,14 +133,15 @@
           [time]="dueBooking.time"
           [phoneNumber]="dueBooking.phonenumber"
           [location]="dueBooking.location"
+          (handleCancelComplete)="cancelPayment(dueBooking.id, i)"
+          [isCancelComplete]="true"
         >
         </booking>
-        <button (click)="cancelPayment(dueBooking.id, i)">Cancel</button>
       </div>
     </div>
 
     <div class="pendingContainer">
-      <h2>Pending</h2>
+      <h4>Pending</h4>
         <div *ngIf="profile.pendingBookings.length === 0 || !profile.pendingBookings">
           <p>You don't have any pending booking.</p>
         </div>
@@ -130,10 +155,31 @@
           [time]="pendingBooking.time"
           [phoneNumber]="pendingBooking.phonenumber"
           [location]="pendingBooking.location"
+          (handleDecline)="declineBooking(pendingBooking.id, i)"
+          (handleAccept)="acceptBooking(pendingBooking.id, i)"
+          [isConfirmed]="true"
+          [isAccept]="true"
         >
         </booking>
-  <!--       <button (click)="acceptBooking(pendingBooking.id, i)">Accept</button>
-        <button (click)="declineBooking(pendingBooking.id, i)">Decline</button> -->
+      </div>
+    </div>
+
+    <div class="pendingContainer">
+      <h4>History</h4>
+      <div
+        *ngFor="let historyBooking of profile.historyBookings; let i = index"
+        class="booking-confirmed"
+      >
+        <booking
+          [name]="historyBooking.name"
+          [image_url]="historyBooking.image_url"
+          [time]="historyBooking.time"
+          [phoneNumber]="historyBooking.phonenumber"
+          [location]="historyBooking.location"
+          (handleClearHistory)="clearHistory(historyBooking.id, i)"
+          [isHistory]="true"
+        >
+        </booking>
       </div>
     </div>
 </div>

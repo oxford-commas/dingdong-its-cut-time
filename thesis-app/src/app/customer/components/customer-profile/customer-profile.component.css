@@ -31,6 +31,7 @@
   width: 24%;
   margin: .5em;
   height: 2.5em;
+  border: 1px solid #F9B71A;
 }
 
 .profileContainer {
@@ -66,12 +67,17 @@
 .userInfo {
   flex: 1 1 50%;
   height: 50%;
-  width: 100%;
+  width: 80%;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: flex-start;
   align-items: left;
   margin-left: 3em;
+}
+
+.userInfo > * {
+  width: 90%;
 }
 
 .aboutMeContainer {
@@ -111,6 +117,15 @@
   background-color: #ffffff;
   opacity: 75%;
   background-color: rgba(0,0,0,0.2);
+}
+
+.modalWrapper input {
+  background-color: white;
+  color: black;
+}
+
+.modalWrapper textarea {
+  color: black;
 }
 
 /* Modal Content/Box */
@@ -181,14 +196,37 @@
   width: 95%;
 }
 
-.btnContainer {
+.modalImageContainer {
   flex: 1 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  color: white;
+  border: none;
+}
+
+.modalImageContainer input {
+  width: 95%;
+  background-color: white;
+  font: black;
+}
+
+.btnContainer {
+  flex: 1 1 100%;
+  height: 10%;
+  width: 95%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btnContainer button {
+  border: 1px solid #F9B71A;
   width: 20%;
-  align-self: flex-end;
   background-color: #F9B71A;
   color: white;
   margin-right: 2em;
   margin-top: 1em;
   border-radius: 35px;
-  text-align: center;
+  align-self: flex-end;
 }

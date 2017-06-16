@@ -9,8 +9,10 @@ import { StateService } from '../../../services';
 })
 export class CustomerNavbarComponent {
   constructor(private stateService: StateService, private router: Router) {}
+
   public fullImagePath = './assets/logo.png';
-  
+  public name: string = this.stateService.retrieveCustomer().name;
+
   handleLogout() {
     this.stateService.logout();
     this.router.navigate(['/login']);

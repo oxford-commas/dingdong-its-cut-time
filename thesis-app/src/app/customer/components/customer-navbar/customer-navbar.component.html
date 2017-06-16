@@ -4,8 +4,8 @@
   </div>
   <div class="listContainer">
     <ul class="myList">
-      <li [routerLink]="['/landing']"><h4>Appointments</h4></li>
-      <li [routerLink]="['/customerProfile']"><h4>Profile</h4></li>
+      <li [routerLink]="['/appointments']"><h4>Appointments</h4></li>
+      <li [routerLink]="['/customerProfile']"><h4>{{name}}</h4></li>
       <li [routerLink]="['/messages']"><h4>Messages</h4></li>
       <li (click)="handleLogout()"><h4>Log out</h4></li>
     </ul>
