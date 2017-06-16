@@ -1,12 +1,12 @@
 var model = require('./model.js');
 
-var addUserStylist = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, callback) {
-  var sql = "INSERT INTO users_stylists (type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+var addUserStylist = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe, callback) {
+  var sql = "INSERT INTO users_stylists (type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   model.con.getConnection(function(err, connection){
-    connection.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url], function (err, result) {
+    connection.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe], function (err, result) {
       connection.release();
-      if (err) throw err;
+      if (err) console.log(err);
       callback(result);
     });
   });
@@ -90,11 +90,17 @@ var updateProfile = function(type, name, password, billingaddress, phonenumber, 
   });
 };
 
-var addToBookings = function(userId, stylistId, isConfirmed, isComplete, time, location, callback) {
-  var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, location, isComplete) VALUES (?, ?, ?, ?, ?, ?)';
-  var values = [userId, stylistId, isConfirmed, time, location, isComplete];
+var addToBookings = function(booking, callback) {
+  var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, date, location, isComplete, detail) VALUES (?, ?, ?, ?, ?, ?,?,?)';
+  var values = [booking.id_users, booking.id_stylists, booking.isconfirmed, booking.time, booking.date, booking.location, booking.isComplete, booking.detail];
   executeQuery(sql, values, function(err, results) {
     if (err) throw err;
+    for (var i = 0; i < booking.styles.length; i++) {
+      executeQuery('INSERT INTO bookings_styles (id_booking, id_style) VALUES (?, ?)', [results.insertId, booking.styles[i]], function(err, results) {
+        if (err) throw err;
+      });
+
+    }
     callback(results);
   });
 };
