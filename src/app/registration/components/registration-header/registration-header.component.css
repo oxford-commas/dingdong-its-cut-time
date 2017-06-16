@@ -1,5 +1,3 @@
-.pageHeader {
-  display: flex;
-  justify-content: center;
-  border-bottom: 2px solid black;
+h1 {
+  color: #F9B71A
 }

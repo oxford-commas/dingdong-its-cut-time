@@ -1,37 +1,33 @@
-<div class="poppaDiv">
-  <registration-header headerText="Login Page" logo="insert logo url here"></registration-header>
-    <form class="myForm" (ngSubmit)="handleLogin(f)" #f="ngForm">
-      <label><h1>Login</h1></label>
-      <label for="form-group">Username</label>
-        <input
-          type="text"
-          id="username"
-          ngModel
-          name="username">
-      <br>
-      <label for="form-group">Password</label>
-        <input
-          type="password"
-          id="password"
-          ngModel
-          name="password">
-      <br>
-      <div class="row buttonContainer">
-        <button
-          class="btn btn-primary btn-group"
-          [routerLink]="['/signupuser']"
-        >User Signup</button>
-        <button
-          class="btn btn-primary btn-group"
-          [routerLink]="['/signupstylist']"
-        >Stylist Signup</button>
-        <button
-          class="btn btn-primary btn-group"
-          type="submit"
-        >Login</button>
-      </div>
-    </form>
-  <div class="woo">
-    <p class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+<div class="componentWrapper">
+  <registration-header class="header" headerText="Login Page"></registration-header>
+  <div class="loginWrapper">
+    <div class="flexItem">
+      <p>At It's Cut Time, we aim to offer a clean and intuitive communication platform for hairstylists and consumers. If you are looking for haircare at your doorstep, we are excited to introduce tools that you can use for free! After matching with a stylist, you can reachout to them via our integrated messaging service and set-up an appointment with them. If you are a stylist, we offer you the tools to manage your appointments efficiently. Chat with customers easily using our massaging system to ensure their experience is always improved upon. Payments are processed through Stripe for hassle-free direct deposits.
+       </p>
+    </div>
+    <div class="flexItem loginButtons">
+      <form (ngSubmit)="handleLogin(f)" #f="ngForm">
+        <h5>Username</h5>
+          <input
+            type="text"
+            id="username"
+            ngModel
+            name="username">
+        <br>
+        <h5>Password</h5>
+          <input
+            type="password"
+            id="password"
+            ngModel
+            name="password">
+        <br>
+        <div class="btnContainer">
+          <button
+            type="submit"
+          >Sign In</button>
+        </div>
+      </form>
+    </div>
   </div>
+  <a [routerLink]="['/signupuser']">Create Account</a>
 </div>

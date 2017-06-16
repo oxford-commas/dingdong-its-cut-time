@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import "rxjs/add/operator/takeWhile";
 import { StateService, MessageService } from '../../../services';
 import { IMessage } from '../../interfaces';
 
@@ -7,7 +8,7 @@ import { IMessage } from '../../interfaces';
   templateUrl: './customer-message.component.html',
   styleUrls: ['./customer-message.component.css']
 })
-export class CustomerMessageComponent {
+export class CustomerMessageComponent implements OnDestroy{
   constructor(
     private stateService: StateService,
     private messageService: MessageService
@@ -15,6 +16,11 @@ export class CustomerMessageComponent {
 
   public conversations = this.stateService.retrieveCustomer().messages;
   public currentChat;
+  private alive: boolean = true;
+
+  ngOnDestroy() {
+    this.alive = false;
+  }
 
   setCurrentChat(senderId) {
     this.currentChat = this.conversations.find(conversation => conversation.sender_id === senderId).messages;
@@ -25,6 +31,7 @@ export class CustomerMessageComponent {
     const conversationIndex = this.conversations.findIndex(conversation => conversation.sender_id === senderId);
     const messageIds = this.conversations[conversationIndex].messages.map(message => message.id);
     this.messageService.deleteChatHistory(messageIds)
+      .takeWhile(() => this.alive)
       .subscribe(
         res => {
           this.conversations.splice(conversationIndex, 1);
@@ -32,28 +39,6 @@ export class CustomerMessageComponent {
         },
         err => console.log(err)
       );
-  }
-
-  postMessage(body) {
-    const message = this.decorateMessage(body);
-    this.messageService.postMessage(message)
-      .subscribe(
-        data => console.log(data),
-        err => console.log(err)
-      );
-  }
-
-  decorateMessage(body) {
-    const message = {
-      id_sender: this.stateService.retrieveCustomer().id,
-      id_recipient: this.stateService.retrieveCustomer().chatSenderId,
-      subjectHeading: '',
-      body: body,
-      time: 2,
-      location: ''
-    };
-    console.log('decorating.. ', message);
-    return message;
   }
 
 }

@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, OnDestroy } from '@angular/core';
+import "rxjs/add/operator/takeWhile";
 import { Router } from '@angular/router';
-import { LocationService } from '../../../services';
-import { StylistService } from '../../../services';
+import { LocationService, StylistService } from '../../../services';
 
 @Component({
   selector: 'customer-map',
@@ -9,7 +9,7 @@ import { StylistService } from '../../../services';
   styleUrls: [ './customer-map.component.css' ]
 })
 
-export class CustomerMapComponent implements OnInit {
+export class CustomerMapComponent implements OnInit, OnDestroy {
   constructor(
     private locationService: LocationService,
     private stylistService: StylistService,
@@ -20,12 +20,17 @@ export class CustomerMapComponent implements OnInit {
   public lng: number;
   public lat: number;
   public zoom: number = 12;
+  private alive: boolean = true;
 
   @Input() searchLocation: string;
 
   ngOnInit() {
     this.getLatLng((lat, lng) => this.getLocationFromCoordinates(lat, lng, (location) => this.getStylistsInLocation(location)));
     this.getLatLng((lat, lng) => this.getLocationFromCoordinates(lat, lng, (location) => this.adjustMapViewForLocation(location)));
+  }
+
+  ngOnDestroy() {
+    this.alive = false;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -36,6 +41,7 @@ export class CustomerMapComponent implements OnInit {
 
   getLatLng(next) {
     this.locationService.getCurrentPosition(null, null)
+      .takeWhile(() => this.alive)
       .subscribe(res =>  {
         this.lat = res.coords.latitude;
         this.lng = res.coords.longitude;
@@ -45,6 +51,7 @@ export class CustomerMapComponent implements OnInit {
 
   adjustMapViewForLocation(location: string) {
     this.locationService.getCoordinatesFromLocation(location)
+      .takeWhile(() => this.alive)
       .subscribe(res => {
         this.lat = res.lat;
         this.lng = res.lng;
@@ -53,6 +60,7 @@ export class CustomerMapComponent implements OnInit {
 
   getStylistsInLocation(location: string) {
     this.stylistService.getStylistsInLocation(location)
+      .takeWhile(() => this.alive)
       .subscribe(data => {
         this.stylists = data;
         this.stylists.map(stylist => {
@@ -67,6 +75,7 @@ export class CustomerMapComponent implements OnInit {
 
   getLocationFromCoordinates(lat, lng, next) {
     this.locationService.getLocationFromCoordinates(lat, lng)
+      .takeWhile(() => this.alive)
       .subscribe(location => {
         this.currentLocation = location;
         next(this.currentLocation);

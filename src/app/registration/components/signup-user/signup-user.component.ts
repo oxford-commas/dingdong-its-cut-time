@@ -16,18 +16,18 @@ export class SignupUserComponent {
     private router: Router
   ) {}
 
-  ngOnInit() {}
-
   handleSignup(form: NgForm) {
     let newUser = {
       name: form.value.username,
       password: form.value.password,
       email: form.value.email,
+      image_url: 'http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png',
       type: 1
     }
     this.requestService.postStylist(newUser)
       .subscribe(
         data => {
+          console.log('ran');
           this.requestService.getStylistByName(newUser.name, newUser.password)
             .subscribe(
               woo => {

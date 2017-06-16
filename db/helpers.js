@@ -174,7 +174,7 @@ var getBookingsDue = (id, type, callback) => {
   if (type === 0) {
     var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
       FROM bookings b INNER JOIN users_stylists us
-      WHERE b.isconfirmed = 2
+      WHERE b.isComplete = 1
       AND b.id_stylists = ?
       AND us.id = b.id_users`;
   } else if (type === 1) {
@@ -218,6 +218,34 @@ var cancelPaymentBooking = (id, callback) => {
 
 var deleteBooking = (id, callback) => {
   var sql = 'DELETE FROM bookings WHERE id = ?';
+  executeQuery(sql, [id], function(err, results){
+    if (err) throw err;
+    callback(results);
+  });
+};
+
+var historyBooking = (id, callback) => {
+  var sql = 'UPDATE bookings SET isComplete = 2 WHERE bookings.id = ?';
+  executeQuery(sql, [id], function(err, results){
+    if (err) throw err;
+    callback(results);
+  });
+};
+
+var getHistoryBookings = (id, type, callback) => {
+  if (type === 0) {
+    var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.isconfirmed = 2
+      AND b.id_stylists = ?
+      AND us.id = b.id_users`;
+  } else if (type === 1) {
+    var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
+      FROM bookings b INNER JOIN users_stylists us
+      WHERE b.isComplete = 2
+      AND b.id_users = ?
+      AND us.id = b.id_stylists`;
+  }
   executeQuery(sql, [id], function(err, results){
     if (err) throw err;
     callback(results);
@@ -296,6 +324,17 @@ var getStylistServices = function(stylistId, callback) {
     if (err) throw err;
     callback(results);
   });
+
+var getStyles = function(stylistId, callback) {
+  var sql = `
+    SELECT s.servicename, s.id FROM
+    services s INNER JOIN stylists_services ss
+    WHERE ss.id_users_stylists = ?
+    AND ss.id_services = s.id`;
+  executeQuery(sql, [stylistId], function(err, results){
+    if (err) throw err;
+    callback(results);
+  });
 };
 
 var getAllStyles = (callback) => {
@@ -303,6 +342,16 @@ var getAllStyles = (callback) => {
     if (err) throw err;
     callback(results);
   });
+};
+
+var updateStyles = (stylistId, styles) => {
+  model.con.query('DELETE FROM stylists_services WHERE id_users_stylists = ?', [stylistId]);
+  for (var i = 0; i < styles.length; i++) {
+    var sql = `
+      INSERT INTO stylists_services (id_services, id_users_stylists)
+      VALUES(?, ?)`;
+    model.con.query(sql, [styles[i], stylistId]);
+  }
 };
 
 /////////////////////
@@ -368,7 +417,7 @@ module.exports.getBookings = getBookings;
 module.exports.deleteUser = deleteUser;
 module.exports.addService = addService;
 module.exports.stylistservices = stylistservices;
-module.exports.getStylistServices = getStylistServices;
+module.exports.getStyles = getStyles;
 module.exports.getMessages = getMessages;
 module.exports.postMessage = postMessage;
 module.exports.deleteChat = deleteChat;
@@ -377,7 +426,6 @@ module.exports.completeBooking = completeBooking;
 module.exports.deleteBooking = deleteBooking;
 module.exports.getBookingsDue = getBookingsDue;
 module.exports.updateProfile = updateProfile;
-module.exports.deleteBooking = deleteBooking;
 module.exports.updateBooking = updateBooking;
 module.exports.updateImage = updateImage;
 module.exports.getImagePath = getImagePath;
@@ -388,3 +436,6 @@ module.exports.readyConfirmedBooking = readyConfirmedBooking;
 module.exports.getPendingBookings = getPendingBookings;
 module.exports.cancelConfirmedBooking = cancelConfirmedBooking;
 module.exports.cancelPaymentBooking = cancelPaymentBooking;
+module.exports.updateStyles = updateStyles;
+module.exports.historyBooking = historyBooking;
+module.exports.getHistoryBookings = getHistoryBookings;

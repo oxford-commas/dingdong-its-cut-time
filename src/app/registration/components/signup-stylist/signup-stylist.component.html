@@ -1,67 +1,77 @@
-<div class="poppaDiv">
-  <registration-header
-    [routerLink]="['/login']"
-    headerText="Login Page"
-    logo="insert logo url here"></registration-header>
-  <form class="myForm" (ngSubmit)="handleSignup(f)" #f="ngForm">
-    <div>
-      <h3>Please Enter Your User Info</h3>
-    </div>
-    <label for="form-group">Username</label>
-      <input
-        required
-        type="text"
-        id="username"
-        ngModel
-        name="username">
-    <br>
-    <label for="form-group">Password</label>
-      <input
-        required
-        type="password"
-        id="password"
-        ngModel
-        name="password">
-    <br>
-    <label for="form-group">Email Address</label>
-      <input
-        required
-        type="email"
-        id="email"
-        ngModel
-        name="email">
-    <br>
-    <label for="form-group">Billing Address</label>
-      <input
-        required
-        type="address"
-        id="address"
-        ngModel
-        name="address">
-    <br>
-    <label for="form-group">Link to Personal Site (optional)</label>
-      <input
-        required
-        type="url"
-        id="url"
-        ngModel
-        name="url">
-    <br>
-    <label for="form-group">Please select a list of services you offer</label>
-      <span class="spanContainer">
-        <span *ngFor="let service of stylesPlaceHolder">
+<div class="componentWrapper">
+  <registration-header class="header"[routerLink]="['/login']"></registration-header>
+  <div class="formWrapper">
+    <h3>Please Enter Your User Info</h3>
+    <form class="myForm" (ngSubmit)="handleSignup(f)" #f="ngForm">
+      <div class="usernamePassword">
+        <div class="username">
+          <h5>Username</h5>
+            <input
+              required
+              type="text"
+              id="username"
+              ngModel
+              name="username">
+        </div>
+        <div class="password">
+          <h5>Password</h5>
+            <input
+              required
+              type="password"
+              id="password"
+              ngModel
+              name="password">
+        </div>
+      </div>
+      <div class="emailWebsite">
+        <div class="email">
+          <h5>Email Address</h5>
+            <input
+              required
+              type="email"
+              id="email"
+              ngModel
+              name="email">
+        </div>
+        <div class="website">
+          <h5>Link to Personal Site (optional)</h5>
+            <input
+              required
+              type="url"
+              id="url"
+              ngModel
+              name="site_url">
+        </div>
+      </div>
+      <div class="billingAddress">
+        <h5>Billing Address</h5>
           <input
-            type="checkbox"
-            id="service"
+            required
+            type="address"
+            id="address"
             ngModel
-            [name]="service.id"
-          >{{ service.servicename }}
-        </span>
-    </span>
-<!-- <div *ngFor="let stylist of stylistsCloseToYou"> -->
-    <button
-      class="btn btn-primary btn-group"
-      type="submit"
-    >Submit</button>
-  </form>
+            name="address">
+      </div>
+      <div class="spanContainer">
+        <div class="serviceTitle">
+          <h5>Types of Services</h5>
+        </div>
+        <div class="styleContainer">
+          <div class="style" *ngFor="let service of stylesPlaceHolder">
+              <p><input
+                type="checkbox"
+                id="service"
+                ngModel
+                [name]="service.id"
+              >{{ service.servicename }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="buttonContainer">
+        <button
+          type="submit"
+        >Submit</button>
+      </div>
+    </form>
+  </div>
 </div>

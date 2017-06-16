@@ -15,12 +15,13 @@ CREATE TABLE IF NOT EXISTS `users_stylists` (
   `latitude` DOUBLE DEFAULT NULL,
   `site_url` VARCHAR(35) DEFAULT NULL,
   `gender` VARCHAR(8) DEFAULT NULL,
-  `image_url` VARCHAR(45) DEFAULT NULL,
+  `image_url` VARCHAR(100) DEFAULT NULL,
+  `aboutMe` VARCHAR(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
 CREATE TABLE IF NOT EXISTS `recipients` (
-  `messageId` INTEGER NOT NULL AUTO_INCREMENT,
+  `messageId` INTEGER NOT NULL,
   `id` INTEGER NOT NULL,
   `name` VARCHAR(35) NOT NULL,
   PRIMARY KEY (`messageId`)
@@ -47,19 +48,23 @@ CREATE TABLE IF NOT EXISTS `bookings` (
   `id_stylists` INTEGER NOT NULL,
   `isconfirmed` INTEGER NOT NULL,
   `isComplete` INTEGER NOT NULL,
+  `date` VARCHAR(45) NOT NULL,
   `time` VARCHAR(45) NOT NULL,
   `location` TEXT NOT NULL,
+  `detail` TEXT NOT NULL,
   PRIMARY KEY (`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `bookings_styles` (
+  `id_booking` INTEGER NOT NULL,
+  `id_style` INTEGER NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS `messages` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `id_sender` INTEGER NOT NULL,
   `id_recipient` INTEGER NOT NULL,
-  `subjectHeading` VARCHAR(45) NOT NULL,
   `body` VARCHAR(150) NOT NULL,
-  `time` VARCHAR(45) NOT NULL,
-  `location` TEXT NOT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -69,6 +74,8 @@ ALTER TABLE `bookings` ADD FOREIGN KEY (id_users) REFERENCES `users_stylists` (`
 ALTER TABLE `bookings` ADD FOREIGN KEY (id_stylists) REFERENCES `users_stylists` (`id`) ON DELETE CASCADE;
 ALTER TABLE `recipients` ADD FOREIGN KEY (id) REFERENCES `users_stylists` (`id`) ON DELETE CASCADE;
 ALTER TABLE `recipients` ADD FOREIGN KEY (messageId) REFERENCES `messages` (`id`) ON DELETE CASCADE;
+ALTER TABLE `bookings_styles` ADD FOREIGN KEY (id_booking) REFERENCES `bookings` (`id`) ON DELETE CASCADE;
+ALTER TABLE `bookings_styles` ADD FOREIGN KEY (id_style) REFERENCES `services` (`id`) ON DELETE CASCADE;
 
 commit;
 

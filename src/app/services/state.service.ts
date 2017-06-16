@@ -1,17 +1,30 @@
-import { Injectable } from '@angular/core';
-
+import { Injectable, OnDestroy } from '@angular/core';
+import "rxjs/add/operator/takeWhile";
 import { MessageService } from './message.service';
 import { BookingService } from './booking.service';
-
+import { RequestService } from './request.service';
+import { StylistStylesService } from './stylistStyles.service';
 let customerProfile;
 
 @Injectable()
-export class StateService {
-
+export class StateService implements OnDestroy {
   constructor(
     private messageService: MessageService,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private requestService: RequestService,
+    private stylistStylesService: StylistStylesService
   ) {}
+
+  private fetchMessageIntervalId;
+  private fetchDueBookingsIntervalId;
+  private fetchConfirmedBookingsIntervalId;
+  private fetchPendingBookingsIntervalId;
+  private fetchHistoryBookingsIntervalId;
+  private alive: boolean = true;
+
+  ngOnDestroy() {
+    this.alive = false;
+  }
 
   addCustomer(stylist) {
     customerProfile = {
@@ -26,36 +39,82 @@ export class StateService {
       password: stylist.password,
       phonenumber: stylist.phonenumber,
       site_url: stylist.site_url,
-      type: stylist.type
+      type: stylist.type,
+      aboutMe: stylist.aboutMe
     };
 
-    this.messageService.getMessages(stylist.id)
+    this.stylistStylesService.fetchStyles(stylist.id)
       .subscribe(
-        data => customerProfile.messages = data,
+        data => customerProfile.styles = data,
         err => console.log(err)
       );
 
-    this.bookingService.fetchDueBookings(stylist.id, stylist.type)
+    this.fetchMessageIntervalId = setInterval(() => this.messageTimer(stylist.id), 2000);
+    this.fetchDueBookingsIntervalId = setInterval(() => this.dueBookingTimer(stylist.id, stylist.type), 2000);
+    this.fetchConfirmedBookingsIntervalId = setInterval(() => this.confirmedBookingTimer(stylist.id, stylist.type), 2000);
+    this.fetchPendingBookingsIntervalId = setInterval(() => this.pendingBookingTimer(stylist.id, stylist.type), 2000);
+    this.fetchHistoryBookingsIntervalId = setInterval(() => this.historyBookingTimer(stylist.id, stylist.type), 2000);
+  }
+  retrieveCustomer() {
+    return customerProfile;
+  }
+  updateCustomer(updates) {
+    customerProfile = {
+      ...customerProfile,
+      ...updates
+    };
+    this.addCustomer(customerProfile);
+  }
+  logout() {
+    clearInterval(this.fetchMessageIntervalId);
+    clearInterval(this.fetchDueBookingsIntervalId);
+    clearInterval(this.fetchConfirmedBookingsIntervalId);
+    clearInterval(this.fetchPendingBookingsIntervalId);
+    customerProfile = {};
+  }
+  messageTimer(id) {
+    this.messageService.getMessages(id)
+      .takeWhile(() => this.alive)
+      .subscribe(
+        data => {
+          if (data[0]) {
+            data[0].messages = data[0].messages.sort((a, b) => a.id - b.id);
+          }
+          customerProfile.messages = data;
+        },
+        err => console.log(err)
+      );
+  }
+  dueBookingTimer(id, type) {
+    this.bookingService.fetchDueBookings(id, type)
+      .takeWhile(() => this.alive)
       .subscribe(
         data => customerProfile.dueBookings = data,
         err => console.log(err)
       );
-
-    this.bookingService.fetchConfirmedBookings(stylist.id, stylist.type)
+  }
+  confirmedBookingTimer(id, type) {
+    this.bookingService.fetchConfirmedBookings(id, type)
+      .takeWhile(() => this.alive)
       .subscribe(
         data => customerProfile.confirmedBookings = data,
         err => console.log(err)
       );
-
-    this.bookingService.fetchPendingBookings(stylist.id, stylist.type)
+  }
+  pendingBookingTimer(id, type) {
+    this.bookingService.fetchPendingBookings(id, type)
+      .takeWhile(() => this.alive)
       .subscribe(
         data => customerProfile.pendingBookings = data,
         err => console.log(err)
       );
   }
-
-  retrieveCustomer() {
-    return customerProfile;
+  historyBookingTimer(id, type) {
+    this.bookingService.fetchHistoryBookings(id, type)
+      .takeWhile(() => this.alive)
+      .subscribe(
+        data => customerProfile.historyBookings = data,
+        err => console.log(err)
+      );
   }
-
 }

@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { StylistService, LocationService, StateService } from '../../../services';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { StateService } from '../../../services';
 
 @Component({
   selector: 'customer-navbar',
@@ -7,24 +8,13 @@ import { StylistService, LocationService, StateService } from '../../../services
   styleUrls: ['./customer-navbar.component.css']
 })
 export class CustomerNavbarComponent {
-  constructor (
-    private stylistService: StylistService,
-    private locationService: LocationService,
-    private stateService: StateService
-  ) {}
+  constructor(private stateService: StateService, private router: Router) {}
 
-  @Input() customerId: number;
-  @Input() searchLocation: string;
-  @Output() locationChange = new EventEmitter();
+  public fullImagePath = './assets/logo.png';
+  public name: string = this.stateService.retrieveCustomer().name;
 
-  private currentCustomer: any;
-
-  ngOnInit() {
-    this.currentCustomer = this.stateService.retrieveCustomer();
-  }
-
-  public handleSearchLocationChange(newLocation) {
-    this.searchLocation = newLocation;
-    this.locationChange.emit(newLocation);
+  handleLogout() {
+    this.stateService.logout();
+    this.router.navigate(['/login']);
   }
 }

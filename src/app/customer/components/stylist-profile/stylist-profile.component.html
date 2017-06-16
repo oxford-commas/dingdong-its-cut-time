@@ -1,72 +1,118 @@
-<customer-navbar></customer-navbar>
-<div *ngIf="!!isProfileFetched">
-  <div class="poppadiv">
-    <div>
-      <h2 class="name">{{ stylistProfile.name }}</h2>
+<div *ngIf="!!isProfileFetched" class="componentWrapper">
+  <customer-navbar></customer-navbar>
+
+  <div class="subHeader">
+    <h3>My Profile</h3>
+    <div class="buttonContainer">
+      <button (click)="toggleMessageModal()">Message</button>
+      <button (click)="toggleBookingModal()">Book Appointment</button>
     </div>
-    <div class="profile" >
-      <div class="locationWrapper">
+  </div>
+
+  <div class="profileContainer">
+
+    <div class="userInfoContainer">
+      <div class="imageContainer">
         <img class="profileImage" [src]=stylistProfile.image_url />
-        <h4>You can find me @</h4>
-        <div class="latLong">
-          <!-- Longitude: {{stylistProfile.longitude}}, Latitude: {{stylistProfile.latitude}} -->
-          <p>{{ stylistProfile.billingaddress }}</p>
-          <p>{{ stylistProfile.phonenumber }}</p>
-        </div>
+        <h3>{{stylistProfile.name}}</h3>
       </div>
-
-      <div class="servicesContainer">
-        <h4>Services I provide</h4>
-        <div class="listStyles">
-          <div class="styleItems" *ngFor="let style of ['hard', 'coded', 'styles']">
-            <h5>{{style}}</h5>
-          </div>
-        </div>
-        <div class="aboutMe">
-          <h4>About Me</h4>
-          <div class="paragraph">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-          </div>
-        </div>
-
-        <h4>Link to personal site:</h4>
-        <div class="container row personalContainer">
-          <a href="stylistProfile.site_url">{{stylistProfile.site_url}}</a>
-        </div>
-      </div>
-      <div class="buttonContainer">
-        <button (click)="toggleModal()">Request a cut</button>
+      <div class="userInfo">
+        <h5><span class="glyphicon glyphicon-home"></span> {{ stylistProfile.billingaddress }}</h5>
+        <h5><span class="glyphicon glyphicon-globe"></span> {{ stylistProfile.site_url }}</h5>
+        <h5><span class="glyphicon glyphicon-earphone"></span> {{ stylistProfile.phonenumber }}</h5>
       </div>
     </div>
+
+    <div class="aboutMeContainer">
+      <div>
+        <h4>About Me</h4>
+          {{ stylistProfile.aboutMe }}
+      </div>
+      <div>
+        <h4>Services</h4>
+        <div class="servicesContainer">
+          <div class="styleItems" *ngFor="let style of styles">
+            <h5><input type="checkbox" checked="checked"> {{ style.servicename }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
-<div class="container row modalWrapper" [style.display]="getStyle()">
-  <div class="bigWrapper">
-    <form
-      (ngSubmit)="submitMessage(f)" #f="ngForm"
-        class="container row modalContent">
-      <span (click)="toggleModal()">&times;</span>
-      <div class="container row miniWrapper">
-        <h4>Send a message</h4>
-        <div class="row location modeitem">
-          Where would you like your hair cut? Enter an address.
-          <input name="location" ngModel/>
+<!-- Message Modal -->
+<div *ngIf="!!isProfileFetched" class="modalWrapper" [style.display]="getStyle()">
+  <div class="miniWrapper">
+    <div class="modalHeader">
+      <h4>Message: {{stylistProfile.name}}</h4>
+      <div (click)="toggleMessageModal()">&times;</div>
+    </div>
+
+    <div class="formContainer">
+      <form
+        (ngSubmit)="submitMessage()"
+        #messageForm="ngForm"
+      >
+        <div>
+          <textarea [(ngModel)]="body" name="body">Body of the message</textarea>
         </div>
-        <div class="row heading modeitem">
-          Header:
-          <input name="subjectHeading" placeholder="Subject Heading" ngModel/>
-          <br>
-          <br>
-          Enter a time and date you would like your hair cut:
-          <input name="time" type="date" ngModel />
-          <br>
+        <div class="btnContainer">
+          <button type="submit">Send</button>
         </div>
-        <div class="row message modeitem">
-          <textarea name="body" ngModel>Body of the message</textarea>
-          <button class="btn btn-primary" type="submit">Send</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<!-- Booking Modal -->
+<div *ngIf="!!isProfileFetched" class="modalWrapper" [style.display]="getBookingModalStyle()">
+  <div class="miniWrapper">
+    <div class="modalHeader">
+      <h2>Appointment: {{stylistProfile.name}}</h2>
+      <div (click)="toggleBookingModal()">&times;</div>
+    </div>
+
+    <div class="formContainer2">
+      <form
+        class="modalContent"
+        (ngSubmit)="submitBooking(bookingForm.value)"
+        #bookingForm="ngForm"
+      >
+      <div class="topRow">
+        <div>
+          <h4>Date</h4>
+          <input name="date" type="date" [(ngModel)]="date" />
+        </div>
+        <div>
+          <h4>Time</h4>
+          <input name="time" [(ngModel)]="time" />
+        </div>
+        <div>
+          <h4>Address</h4>
+          <input name="location" [(ngModel)]="location" />
         </div>
       </div>
+
+      <div class="serviceContainer2" *ngIf="!!isStylesFetched">
+        <h4>Services</h4>
+        <div class="wrapContainer">
+          <div *ngFor="let style of styles">
+            <h6><input type="checkbox" id="styleGroup" [name]="style.id" value="style.id" ngModel /> {{style.servicename}}</h6>
+          </div>
+        </div>
+      </div>
+
+      <div class="lastContainer">
+        <h4>Additional Details</h4>
+        <textarea name="detail" ngModel></textarea>
+        <div class="ultimoContainer">
+          <button type="submit">Book</button>
+        </div>
+      </div>
+
     </form>
+    </div>
   </div>
 </div>

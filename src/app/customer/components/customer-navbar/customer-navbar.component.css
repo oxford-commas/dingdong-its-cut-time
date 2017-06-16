@@ -1,118 +1,41 @@
-.poppaDiv {
-  height: 25%;
-  width: 90%;
+.navContainer {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-left: 3em;
-  margin-top: 3em;
+  background-color: rgba(0,0,0, 50);
+  color: white;
+  background-image: url('http://cdn.wallpapersafari.com/44/5/HQjIBU.jpg');
+  padding: 1em;
+  font-family: 'Montserrat', sans-serif;
 }
 
-h1 {
-  text-shadow: 3px 3px 1px rgba(173, 216, 230, 0.9);
-  width: 100%;
-  flex: 1 1;
-  align-self: center;
-}
-
-h4 {
-  color: black;
-  width: 100%;
-}
-
-.title {
-  flex: 1 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-}
-
-.container-fluid,
-.miniContainer {
-  width: 100%;
-  height: 20%;
-  flex: 1 1 100%;
-  border-bottom: 2px solid black;
-  margin-bottom: 2em;
-}
-
-.superNav {
-  width: 100%;
-    box-shadow: 5px 5px 3px rgba(173, 216, 230, 0.9);
-}
-
-.unorderedList {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  list-style: none;
-  width: 100%;
-}
-
-.superForm {
-  display: flex;
-}
-
-input {
-  width: 20em;
-  background-color: #d3d3d3;
-}
-
-.customerContainer {
-  flex: 1 1 30%;
-}
-
-.search {
+.photoContainer {
   flex: 1 1 40%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 2em;
 }
 
-.dropdownList {
-  flex: 1 1 15%;
+.listContainer {
+  flex: 1 1 60%;
 }
 
-.dropdown {
-  position: relative;
-  display: absolute;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #ffffff;
-  min-width: 25ch;
-  width: 100%;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 0ch 3ch 0ch 0ch;
-  z-index: 1;
-  border: 1px solid black;
-}
-
-p {
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-  font-weight: bold;
-  background-color: #ffffff;
-}
-
-.dropdownUl * {
-  list-style-type: none;
+.myList {
   width: 100%;
   height: 100%;
-  background-color: #ffffff;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 1em;
 }
 
-.dropdownUl *:hover {
-  list-style-type: none;
-  color: rgba(173, 216, 230, 0.9);
+.myList > * {
+  flex: 1 1;
+  margin: 1em;
 }
 
-button {
-  color: #e5e3e3;
+li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

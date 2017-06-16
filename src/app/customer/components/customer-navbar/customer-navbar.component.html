@@ -1,55 +1,15 @@
-<div class="poppaDiv">
-  <div class="miniContainer">
-    <div class="title">
-      <div>
-        <h1>It's Cut Time</h1>
-      </div>
-    </div>
-
-    <nav class="superNav">
-      <ul class="unorderedList">
-        <li class="customerContainer">
-          <h4>Welcome {{currentCustomer.name}}, where are you located?</h4>
-        </li>
-        <li class="search">
-          <form class="superForm">
-            <div>
-              <input
-                placeholder="Enter your location"
-                typer="search"
-                #streetAddress
-                (ngModelChange)="locationChange.emit(streetAddress)"
-              >
-              <span>
-                <button class="btn btn-default" (click)="handleSearchLocationChange(streetAddress.value)">Search</button>
-              </span>
-            </div>
-          </form>
-        </li>
-        <li class="dropdownList">
-          <div class="dropdown">
-            <span class="caret"><p>{{currentCustomer.name}}</p></span>
-            <div class="dropdown-content">
-              <ul class="dropdownUl">
-                <li
-                  *ngIf="stateService.retrieveCustomer().type===1"
-                  [routerLink]="['/home']">
-                  <h4>Home</h4>
-                </li>
-                <li
-                  *ngIf="stateService.retrieveCustomer().type===0"
-                  [routerLink]="['/stylisthome']">
-                  <h4>Home</h4>
-                </li>
-                <li [routerLink]="['/messages']"><h4>Messages</h4></li>
-                <li [routerLink]="['/customerProfile']"><h4>Settings</h4></li>
-                <li [routerLink]="['/login']"><h4>Logout</h4></li>
-              </ul>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </nav>
-
+<div class="navContainer">
+  <div class="photoContainer">
+    <img [src]="fullImagePath" alt="scissors">
+  </div>
+  <div class="listContainer">
+    <ul class="myList">
+      <li [routerLink]="['/landing']"><h4>Appointments</h4></li>
+      <li [routerLink]="['/customerProfile']"><h4>{{name}}</h4></li>
+      <li [routerLink]="['/messages']"><h4>Messages</h4></li>
+      <li (click)="handleLogout()"><h4>Log out</h4></li>
+    </ul>
   </div>
 </div>
+
+

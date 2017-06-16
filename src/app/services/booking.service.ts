@@ -7,6 +7,7 @@ export class BookingService {
   constructor(private http: Http) {}
 
   addBooking(booking) {
+    console.log('POSTING BOOKING!!!!');
     return this.http.post(`/api/bookings`, booking)
       .map(res => res);
   }
@@ -18,7 +19,7 @@ export class BookingService {
 
   deleteBooking(id: number) {
     return this.http.delete(`/api/bookings/${id}`)
-      .map(res => res);
+      .map(res => res.json());
   }
 
   fetchDueBookings(id: number, type: number) {
@@ -53,6 +54,21 @@ export class BookingService {
 
   fetchPendingBookings(id: number, type: number) {
     return this.http.get(`/api/bookings/pending/${type}/${id}`)
+      .map(res => res.json());
+  }
+
+  putHistoryBooking(id: number) {
+    return this.http.put(`/api/bookings/history/${id}`, id)
+      .map(res => res.json());
+  }
+
+  fetchHistoryBookings(id: number, type: number) {
+    return this.http.get(`/api/bookings/history/${type}/${id}`)
+      .map(res => res.json());
+  }
+
+  fetchBookingStyles(id: number) {
+    return this.http.get(`/api/bookings/styles/${id}`)
       .map(res => res.json());
   }
 

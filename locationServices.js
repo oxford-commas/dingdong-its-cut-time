@@ -1,5 +1,5 @@
 var https = require('https');
-
+var config = require('./config/config');
 // config/environment variables
 //const key = process.env.API_KEY
 

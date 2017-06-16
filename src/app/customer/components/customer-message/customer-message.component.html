@@ -1,18 +1,26 @@
-<customer-navbar></customer-navbar>
-<div class="container">
-  <div class="inbox-container">
-    <customer-inbox
-      [conversations]="conversations"
-      (openHistory)="setCurrentChat($event)"
-      (deleteChat)="deleteChat($event)"
-    >
-    </customer-inbox>
-  </div>
-  <div class="chat-history-container">
-    <chat-history
-      *ngIf="!!currentChat"
-      [chatHistory]="currentChat"
-      (handleSendInputValue)="postMessage($event)"
-    ></chat-history>
+<div class="componentWrapper">
+  <customer-navbar></customer-navbar>
+  <div class="messagesContainer">
+    <div class="inboxContainer">
+      <customer-inbox
+        [conversations]="conversations"
+        (openHistory)="setCurrentChat($event)"
+        (deleteChat)="deleteChat($event)"
+      >
+      </customer-inbox>
+    </div>
+    <div class="messageHist">
+      <div class="username">
+        <h2>hello</h2>
+      </div>
+      <div class="chatHistoryContainer">
+        <chat-history
+          *ngIf="!!currentChat"
+          [chatHistory]="currentChat"
+          (handleSendInputValue)="postMessage($event)"
+        ></chat-history>
+      </div>
+    </div>
   </div>
 </div>
+

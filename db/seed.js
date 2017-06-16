@@ -289,14 +289,14 @@ function userIndex(num) {
   } else {
     return num;
   }
-
 }
 
-const booksingsArray = [
+
+const bookingsArray = [
   {
     name: 'Mateo',
-    userid: userIndex(4),
-    stylistid: userIndex(2),
+    id_users: userIndex(4),
+    id_stylists: userIndex(2),
     isconfirmed: 0,
     isComplete: 0,
     time: new Date(),
@@ -304,8 +304,8 @@ const booksingsArray = [
   },
   {
     name: 'mrhighland',
-    userid: userIndex(4),
-    stylistid: userIndex(2),
+    id_users: userIndex(4),
+    id_stylists: userIndex(2),
     isconfirmed: 1,
     isComplete: 0,
     time: new Date(),
@@ -313,35 +313,39 @@ const booksingsArray = [
   },
   {
     name: 'bigbess',
-    userid: userIndex(6),
-    stylistid: userIndex(2),
+    id_users: userIndex(6),
+    id_stylists: userIndex(2),
     isconfirmed: 0,
     isComplete: 0,
+    date: 'September, 1, 2017',
     time: '11:00am',
-    location: '2014 Lyon St, San Francisco'
+    location: '2014 Lyon St, San Francisco',
+    detail: 'details'
   },
   {
-
     name: 'dnalounge',
-    userid: userIndex(15),
-    stylistid: userIndex(16),
+    id_users: userIndex(15),
+    id_stylists: userIndex(16),
     isconfirmed: 0,
     isComplete: 0,
+    date: 'September, 1, 2017',
     time: '1:00pm',
-    location: '2323 Lyon St, San Francisco'
+    location: '2323 Lyon St, San Francisco',
+    detail: 'details'
   },
+
 
    {
     name: 'palaceoffinearts',
-    userid: userIndex(15),
-    stylistid: userIndex(19),
+    id_users: userIndex(15),
+    id_stylists: userIndex(19),
     isconfirmed: 0,
-
     isComplete: 0,
+    date: 'September, 1, 2017',
     time: '1:00pm',
-    location: '2323 Lyon St, San Francisco'
+    location: '2323 Lyon St, San Francisco',
+    detail: 'details'
   }
-
 ]
 
 const messagesArray = [
@@ -383,7 +387,6 @@ const messagesArray = [
     location: 'San francisco'
   },
   {
-
     id_sender: userIndex(2),
     id_recipient: userIndex(3),
     subjectHeading: 'idk',
@@ -393,7 +396,7 @@ const messagesArray = [
   }
 ];
 
-messagesArray.forEach(message => helpers.postMessage(message));
+// messagesArray.forEach(message => helpers.postMessage(message));
 
 const stylesArray = [
   'Afro',
@@ -692,11 +695,11 @@ stylesArray.forEach(style => {
   });
 });
 
-stylistServices.forEach(style => {
-  helpers.stylistservices(style.styleId, style.stylistId, (res) => {
-    console.log(res)
-  })
-});
+// stylistServices.forEach(style => {
+//   helpers.stylistservices(style.styleId, style.stylistId, (res) => {
+//     console.log(res)
+//   })
+// });
 
 // implant image in users_stylists
 for (var i = 0; i < 21; i++) {
