@@ -13,4 +13,3 @@ var con = mysql.createConnection({
 con.connect();
 
 module.exports.con = con;
-
