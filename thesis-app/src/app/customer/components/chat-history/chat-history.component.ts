@@ -47,14 +47,14 @@ export class ChatHistoryComponent implements OnDestroy {
   }
 
  postMessage() {
-  const message = this.decorateMessage(this.inputValue);
-  this.messageService.postMessage(message)
-    .takeWhile(() => this.alive)
-    .subscribe(
-      data => console.log(data),
-      err => console.log(err)
-    );
-    this.renderMessage();
-  }
+   const message = this.decorateMessage(this.inputValue);
+   this.messageService.postMessage(message)
+     .takeWhile(() => this.alive)
+     .subscribe(
+       data => console.log(data),
+       err => console.log(err)
+     );
+   this.renderMessage();
+ }
 }
 
