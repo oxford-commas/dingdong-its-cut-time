@@ -316,28 +316,30 @@ function userIndex(num) {
   }
 }
 
-
 const bookingsArray = [
   {
-    name: 'Mateo',
     id_users: userIndex(4),
     id_stylists: userIndex(2),
     isconfirmed: 0,
     isComplete: 0,
-    time: new Date(),
-    location: 'San Mateo, CA, CA'
+    time: 'in a minute',
+    date: 'today',
+    location: 'San Mateo, CA, CA',
+    styles: [],
+    detail: 'Mateo'
   },
   {
-    name: 'mrhighland',
     id_users: userIndex(4),
     id_stylists: userIndex(2),
     isconfirmed: 1,
     isComplete: 0,
-    time: new Date(),
-    location: '1851 Lexington Ave, San Mateo, CA'
+    time: 'in a minute',
+    date: 'today',
+    location: '1851 Lexington Ave, San Mateo, CA',
+    styles: [],
+    detail: 'mrhighland'
   },
   {
-    name: 'bigbess',
     id_users: userIndex(6),
     id_stylists: userIndex(2),
     isconfirmed: 0,
@@ -345,10 +347,10 @@ const bookingsArray = [
     date: 'September, 1, 2017',
     time: '11:00am',
     location: '2014 Lyon St, San Francisco',
+    styles: [],
     detail: 'details'
   },
   {
-    name: 'dnalounge',
     id_users: userIndex(15),
     id_stylists: userIndex(16),
     isconfirmed: 0,
@@ -356,10 +358,10 @@ const bookingsArray = [
     date: 'September, 1, 2017',
     time: '1:00pm',
     location: '2323 Lyon St, San Francisco',
+    styles: [],
     detail: 'details'
   },
   {
-    name: 'palaceoffinearts',
     id_users: userIndex(15),
     id_stylists: userIndex(19),
     isconfirmed: 0,
@@ -367,6 +369,7 @@ const bookingsArray = [
     date: 'September, 1, 2017',
     time: '1:00pm',
     location: '2323 Lyon St, San Francisco',
+    styles: [],
     detail: 'details'
   }
 ]
@@ -670,44 +673,44 @@ const stylistServices = [
   }
 ]
 
-// stylistArray.forEach(stylist => {
-//   helpers.addUserStylist(
-//     stylist.type,
-//     stylist.username,
-//     stylist.password,
-//     stylist.location,
-//     stylist.phoneNumber,
-//     stylist.email,
-//     stylist.website,
-//     stylist.gender,
-//     stylist.image_url,
-//     stylist.update, (resultFromServer) => {
-//       var id = resultFromServer.insertId;
-//       services.getLocationPoints(stylist.location, (points) => {
-//         let lat = points[0];
-//         let lng = points[1];
-//         helpers.addLocation(lat, lng, id, (res) => {
-//           console.log(res);
-//         })
-//       })
-//     });
-// });
+stylistArray.forEach(stylist => {
+  helpers.addUserStylist(
+    stylist.type,
+    stylist.username,
+    stylist.password,
+    stylist.location,
+    stylist.phoneNumber,
+    stylist.email,
+    stylist.website,
+    stylist.gender,
+    stylist.image_url,
+    stylist.update, (resultFromServer) => {
+      var id = resultFromServer.insertId;
+      services.getLocationPoints(stylist.location, (points) => {
+        let lat = points[0];
+        let lng = points[1];
+        helpers.addLocation(lat, lng, id, (res) => {
+          console.log(res);
+        })
+      })
+    });
+});
 
-// bookingsArray.forEach(booking => {
-//   helpers.addToBookings(booking, resultFromServer => console.log(resultFromServer));
-// });
+bookingsArray.forEach(booking => {
+  helpers.addToBookings(booking, resultFromServer => console.log(resultFromServer));
+});
 
-// stylesArray.forEach(style => {
-//   helpers.addService(style, (res) => {
-//     console.log(res);
-//   });
-// });
+stylesArray.forEach(style => {
+  helpers.addService(style, (res) => {
+    console.log(res);
+  });
+});
 
-// stylistServices.forEach(style => {
-//   helpers.stylistservices(style.styleId, style.stylistId, (res) => {
-//     console.log(res)
-//   })
-// });
+stylistServices.forEach(style => {
+  helpers.stylistservices(style.styleId, style.stylistId, (res) => {
+    console.log(res)
+  })
+});
 
 // implant (image) in users_stylists
 //   for (var i = 0; i < 21; i++) {
@@ -723,19 +726,3 @@ const stylistServices = [
 //     console.log('inserted');
 //   });
 // }
-
-
-
-let testObj = {
-  id_users: 4,
-  id_stylists: 2,
-  isconfirmed: 0,
-  isComplete: 0,
-  time: 'in a minute',
-  date: 'today',
-  location: 'San Mateo, CA, CA',
-  styles: [],
-  detail: 'Mateo',
-};
-
-helpers.addToBookings(testObj, (result) => console.log('result from 739:', result));
