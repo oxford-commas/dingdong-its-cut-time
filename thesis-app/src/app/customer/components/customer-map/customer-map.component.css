@@ -1,6 +1,7 @@
 .sebm-google-map-container {
   height: 45em;
   width: 37em;
+  position: fixed;
 }
 
 .map-title {
