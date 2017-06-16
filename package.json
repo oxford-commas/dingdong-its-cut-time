@@ -17,5 +17,8 @@
     "mysql": "^2.13.0",
     "stripe": "^4.22.0",
     "webpack": "^2.6.1"
+  },
+  "devDependencies": {
+    "@angular/cli": "^1.1.2"
   }
 }
