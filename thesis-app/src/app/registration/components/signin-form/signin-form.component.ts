@@ -15,6 +15,7 @@ import { RequestService, StateService } from '../../../services';
 export class SignInFormComponent {
   public logo: string = 'placeholder for logo url';
   private userInformationData: IUserInformationData;
+  public isError = false;
 
   constructor(
     private router: Router,
@@ -30,13 +31,15 @@ export class SignInFormComponent {
 
   handleLogin(form: NgForm) {
     if (form.value.username === '' || form.value.password === '') {
-      this.router.navigate(['/error'])
+      // this.router.navigate(['/error'])
+      this.isError = true;
     } else {
       this.requestService.getStylistByName(form.value.username, form.value.password)
         .subscribe(
           data => {
             if (data.length === 0) {
-              this.router.navigate(['/error']);
+              // this.router.navigate(['/error']);
+              this.isError = true;
             } else if (data[0].type === 1) {
               this.stateService.addCustomer(data[0]);
               this.router.navigate(['/appointments']);
@@ -44,7 +47,8 @@ export class SignInFormComponent {
               this.stateService.addCustomer(data[0]);
               this.router.navigate(['/appointments']);
             } else {
-              this.router.navigate(['/error']);
+              // this.router.navigate(['/error']);
+              this.isError = true;
             }
           }
         );
