@@ -30,6 +30,12 @@
 }
 
 .myList > * {
-  flex: 1 1 25%;
+  flex: 1 1;
   margin: 1em;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

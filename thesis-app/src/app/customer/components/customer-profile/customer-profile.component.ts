@@ -51,7 +51,6 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   public handleSaveChanges(updateForm) {
-    console.log('update fomr:' , updateForm);
     let styles = [];
     for (var key in updateForm) {
       if (updateForm[key] === true) {
@@ -78,20 +77,10 @@ export class CustomerProfileComponent implements OnInit {
         err => console.log(err)
       );
 
-    // this.stylistStylesService.fetchStyles(this.profile.id)
-    //  .subscribe(
-    //    data => this.styles = data,
-    //    err => console.log(err)
-    //  );
-
     // update the state
     this.stateService.updateCustomer(accountInformation);
     // refresh page state to reflect changes to user
     this.profile = this.stateService.retrieveCustomer();
-
-
-
-
 
     // clear fields
     this.name = '';
@@ -100,7 +89,6 @@ export class CustomerProfileComponent implements OnInit {
     this.phonenumber = '';
     this.billingaddress = '';
     this.aboutMe = '';
-
     this.showModal = false;
   }
 
