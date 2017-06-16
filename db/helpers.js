@@ -60,11 +60,10 @@ var calculateDistance = function distance(lat1, lon1, lat2, lon2, unit) {
 };
 
 function executeQuery(sql, vals, callback) {
-
   model.con.getConnection(function(err, connection) {
     connection.query(sql, vals, function(error, results, fields) {
       connection.release();
-      console.log("Query results: ", sql, vals, results, error);
+      //console.log("Query results: ", sql, vals, results, error);
       callback(err, results);
     });
   });
