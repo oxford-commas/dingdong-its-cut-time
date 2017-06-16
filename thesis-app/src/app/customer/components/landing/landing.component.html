@@ -10,6 +10,9 @@
 
     <div class="confirmedContainer">
       <h4>Confirmed</h4>
+      <div *ngIf="profile.confirmedBookings.length === 0 || !profile.confirmedBookings">
+        <p>You don't have any confirmed booking.</p>
+      </div>
       <div
         *ngFor="let confirmedBooking of profile.confirmedBookings; let i = index"
         class="booking-confirmed"
@@ -27,6 +30,9 @@
 
     <div class="awaitingContainer">
       <h4>Awaiting Payment</h4>
+      <div *ngIf="profile.dueBookings.length === 0 || !profile.dueBookings">
+        <p>You don't have any booking awaiting payment.</p>
+      </div>
       <div *ngFor="let dueBooking of profile.dueBookings; let i = index">
         <booking
           [name]="dueBooking.name"
@@ -46,6 +52,9 @@
 
     <div class="pendingContainer">
       <h4>Pending</h4>
+        <div *ngIf="profile.pendingBookings.length === 0 || !profile.pendingBookings">
+          <p>You don't have any pending booking.</p>
+        </div>
       <div
         *ngFor="let pendingBooking of profile.pendingBookings; let i = index"
         class="booking-confirmed"
@@ -68,6 +77,9 @@
   <div *ngIf="profile.type===0">
     <div class="confirmedContainer">
       <h2>Confirmed</h2>
+        <div *ngIf="profile.confirmedBookings.length === 0 || !profile.confirmedBookings">
+          <p>You don't have any confirmed booking.</p>
+        </div>
       <div
         *ngFor="let confirmedBooking of profile.confirmedBookings; let i = index"
         class="booking-confirmed"
@@ -87,6 +99,9 @@
 
     <div class="awaitingContainer">
       <h2>Awaiting Payment</h2>
+        <div *ngIf="profile.dueBookings.length === 0 || !profile.dueBookings">
+          <p>You don't have any booking awaiting payment.</p>
+        </div>
       <div *ngFor="let dueBooking of profile.dueBookings; let i = index">
         <booking
           [name]="dueBooking.name"
@@ -102,6 +117,9 @@
 
     <div class="pendingContainer">
       <h2>Pending</h2>
+        <div *ngIf="profile.pendingBookings.length === 0 || !profile.pendingBookings">
+          <p>You don't have any pending booking.</p>
+        </div>
       <div
         *ngFor="let pendingBooking of profile.pendingBookings; let i = index"
         class="booking-confirmed"
