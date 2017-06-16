@@ -49,11 +49,11 @@ export class StateService implements OnDestroy {
         err => console.log(err)
       );
 
-    this.fetchMessageIntervalId = setInterval(() => this.messageTimer(stylist.id), 2000);
-    this.fetchDueBookingsIntervalId = setInterval(() => this.dueBookingTimer(stylist.id, stylist.type), 2000);
-    this.fetchConfirmedBookingsIntervalId = setInterval(() => this.confirmedBookingTimer(stylist.id, stylist.type), 2000);
-    this.fetchPendingBookingsIntervalId = setInterval(() => this.pendingBookingTimer(stylist.id, stylist.type), 2000);
-    this.fetchHistoryBookingsIntervalId = setInterval(() => this.historyBookingTimer(stylist.id, stylist.type), 2000);
+    this.fetchMessageIntervalId = setInterval(() => this.messageTimer(stylist.id), 10000);
+    this.fetchDueBookingsIntervalId = setInterval(() => this.dueBookingTimer(stylist.id, stylist.type), 10000);
+    this.fetchConfirmedBookingsIntervalId = setInterval(() => this.confirmedBookingTimer(stylist.id, stylist.type), 10000);
+    this.fetchPendingBookingsIntervalId = setInterval(() => this.pendingBookingTimer(stylist.id, stylist.type), 10000);
+    this.fetchHistoryBookingsIntervalId = setInterval(() => this.historyBookingTimer(stylist.id, stylist.type), 10000);
   }
   retrieveCustomer() {
     return customerProfile;
