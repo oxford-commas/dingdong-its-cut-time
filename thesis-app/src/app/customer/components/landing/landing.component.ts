@@ -58,12 +58,12 @@ export class LandingComponent implements OnDestroy {
   completeBooking(id: number, index: number) {
     const confirmedBooking = this.profile.confirmedBookings.splice(index, 1).pop();
     this.profile.dueBookings.push(confirmedBooking);
-    this.bookingService.putCompleteBooking(id)
-      .takeWhile(() => this.alive)
-      .subscribe(
-        result => console.log(result),
-        err => console.log(err)
-      );
+    // this.bookingService.putCompleteBooking(id)
+    //   .takeWhile(() => this.alive)
+    //   .subscribe(
+    //     result => console.log(result),
+    //     err => console.log(err)
+    //   );
     this.bookingService.putDueBooking(id)
       .subscribe(
         result => console.log(result),

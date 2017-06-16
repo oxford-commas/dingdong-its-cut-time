@@ -21,6 +21,7 @@
             ngModel
             name="password">
         <br>
+        <h6 *ngIf="!!isError">Please try again</h6>
         <div class="btnContainer">
           <button
             type="submit"
