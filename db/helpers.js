@@ -4,6 +4,7 @@ var addUserStylist = function(type, name, password, billingaddress, phonenumber,
   var sql = "INSERT INTO users_stylists (type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   model.con.getConnection(function(err, connection){
+    console.log("Error: ", err);
     connection.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, aboutMe], function (err, result) {
       connection.release();
       if (err) console.log(err);
@@ -19,7 +20,7 @@ var getUser = function(userId, callback) {
     connection.query(sql, [userId], function (err, result) {
       connection.release();
       if (err) throw err;
-      callback(results);
+      callback(result);
     });
   });
 };
@@ -63,7 +64,7 @@ function executeQuery(sql, vals, callback) {
   model.con.getConnection(function(err, connection) {
     connection.query(sql, vals, function(error, results, fields) {
       connection.release();
-      //console.log("Query results: ", sql, vals, results, error);
+      console.log("Query results: ", sql, vals, results, error);
       callback(err, results);
     });
   });
@@ -84,6 +85,7 @@ var updateProfile = function(type, name, password, billingaddress, phonenumber, 
   var values = [type, name, password, billingaddress, phonenumber, email, site_url, gender, aboutMe, image_url, id];
 
   executeQuery(sql, values, function(err, results) {
+    console.log("---------", err, results);
     if (err) throw err;
     callback();
   });
@@ -366,13 +368,13 @@ var updateStyles = (stylistId, styles) => {
 // MESSAGE HELPERS //
 /////////////////////
 var postMessage = (message, callback) => {
-  var sql = 'INSERT INTO messages (id_sender, id_recipient, subjectHeading, body, time, location) VALUES (?, ?, ?, ?, ?, ?)';
-  var vals = [message.id_sender, message.id_recipient, message.subjectHeading, message.body, message.time, message.location];
+  var sql = 'INSERT INTO messages (id_sender, id_recipient, body) VALUES (?, ?, ?)';
+  var vals = [message.id_sender, message.id_recipient, message.body];
   executeQuery(sql, vals, function(err, results){
     if (err) throw err;
-    executeQuery(`INSERT INTO recipients (id, name)
-        VALUES (?, (SELECT name FROM users_stylists WHERE users_stylists.id = ?))`,
-        [message.id_sender, message.id_recipient], function(err, results) {
+    executeQuery(`INSERT INTO recipients (messageId, id, name)
+        VALUES (?, ?, (SELECT name FROM users_stylists WHERE users_stylists.id = ?))`,
+        [results.insertId, message.id_sender, message.id_recipient], function(err, results) {
           if (err) throw err;
           callback();
         });
@@ -381,11 +383,8 @@ var postMessage = (message, callback) => {
 };
 
 var getMessages = (id, callback) => {
-  var sql =  `SELECT r.name as recipient, us.name as sender, m.subjectHeading, m.body, m.time, m.location, m.id, m.id_sender, m.id_recipient
-    FROM messages m
-    INNER JOIN recipients r ON (m.id_recipient = ? OR m.id_sender = ?) AND m.id = r.messageId
-    INNER JOIN users_stylists us ON us.id = m.id_sender`;
-  executeQuery(sql, [id, id, ], function(err, results){
+  var sql =  `SELECT r.name as recipient, us.name as sender, m.body, m.id, m.id_sender, m.id_recipient FROM messages m INNER JOIN recipients r ON r.messageId = m.id AND (m.id_recipient = ? OR m.id_sender = ?) INNER JOIN users_stylists us ON us.id = r.id`;
+  executeQuery(sql, [id, id], function(err, results){
     if (err) throw err;
     callback(results);
   });
