@@ -2,31 +2,46 @@ var model = require('./model.js');
 
 var addUserStylist = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, callback) {
   var sql = "INSERT INTO users_stylists (type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-  model.con.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url],function (err, result) {
-    if (err) throw err;
-    callback(result);
+
+  model.con.getConnection(function(err, connection){
+    connection.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url], function (err, result) {
+      connection.release();
+      if (err) throw err;
+      console.log("Got results: ",result);
+      callback(result);
+    });
   });
 };
 
 var getUser = function(userId, callback) {
-  model.con.query('SELECT * FROM `users_stylists` WHERE `id` = ?', [userId], function (error, results, fields) {
-    console.log(results)
-    callback(results);
+  var sql = 'SELECT * FROM `users_stylists` WHERE `id` = ?';
+
+  model.con.getConnection(function(err, connection){
+    connection.query(sql, [userId], function (err, result) {
+      connection.release();
+      if (err) throw err;
+      callback(results);
+    });
   });
 };
 
 // stylists are saved in database with type 0
 var getAllStylists = function(callback) {
-  model.con.query('SELECT * FROM `users_stylists` WHERE `type` = 0', function(error, results, fields) {
-    callback(results);
+  var sql = 'SELECT * FROM `users_stylists` WHERE `type` = 0';
+  model.con.getConnection(function(err, connection){
+    connection.query(sql, function(error, results, fields) {
+      connection.release();
+      if (err) throw err;
+      callback(results);
+    });
   });
+
 };
 
 var addLocation = function (latitude, longitude, id, callback) {
   var sql = 'UPDATE users_stylists SET latitude = ?, longitude = ? WHERE id = ?'
-  model.con.query(sql, [latitude, longitude, id],function (err, result) {
+  executeQuery(sql, [latitude, longitude, id], function(err, results) {
     if (err) throw err;
-    console.log("1 record inserted");
     callback();
   });
 };
@@ -45,10 +60,19 @@ var calculateDistance = function distance(lat1, lon1, lat2, lon2, unit) {
   return dist
 };
 
+function executeQuery(sql, vals, callback) {
+  model.con.getConnection(function(err, connection) {
+    connection.query(sql, function(error, results, fields) {
+      connection.release();
+      callback(err, results);
+    });
+  });
+}
+
 //update image url for the userStylists
 var updateImage = function (imageUrl, id, callback) {
-  var sql = 'UPDATE users_stylists SET image_url = ? WHERE id = ?'
-  model.con.query(sql, [imageUrl, id],function (err, result) {
+  var sql = 'UPDATE users_stylists SET image_url = ? WHERE id = ?';
+  executeQuery(sql, [imageUrl, id], function(err, results) {
     if (err) throw err;
     callback();
   });
@@ -56,18 +80,21 @@ var updateImage = function (imageUrl, id, callback) {
 
 var updateProfile = function(type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id, callback) {
   var sql = 'UPDATE users_stylists SET type = ?, name = ?, password = ?, billingaddress = ?, phonenumber = ?, email = ?, site_url = ?, gender = ?, image_url = ? WHERE id = ?'
-  model.con.query(sql, [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id],function (err, result) {
+
+  var values = [type, name, password, billingaddress, phonenumber, email, site_url, gender, image_url, id];
+
+  executeQuery(sql, values, function(err, results) {
     if (err) throw err;
-    console.log("1 record updated");
     callback();
   });
 };
 
 var addToBookings = function(userId, stylistId, isConfirmed, isComplete, time, location, callback) {
   var sql = 'INSERT INTO bookings (id_users, id_stylists, isconfirmed, time, location, isComplete) VALUES (?, ?, ?, ?, ?, ?)';
-  model.con.query(sql, [userId, stylistId, isConfirmed, time, location, isComplete],function (err, result) {
+  var values = [userId, stylistId, isConfirmed, time, location, isComplete];
+  executeQuery(sql, values, function(err, results) {
     if (err) throw err;
-    callback(result);
+    callback(results);
   });
 };
 
@@ -76,7 +103,10 @@ var getBookings = function(userId, callback) {
     SELECT b.id, b.id_stylists, b.isconfirmed, b.time, b.location, b.isComplete
     FROM bookings b INNER JOIN users_stylists us
     WHERE b.id_stylists = ? AND b.id_users = us.id`;
-  model.con.query(sql, [userId], (err, results) => callback(results));
+  executeQuery(sql, [userId], function(err, results){
+    if (err) throw err;
+    callback(results);
+  });
 };
 
 var getPendingBookings = (userId, type, callback) => {
@@ -91,8 +121,10 @@ var getPendingBookings = (userId, type, callback) => {
       FROM bookings b INNER JOIN users_stylists us
       WHERE b.id_users = ? AND b.isconfirmed = 0 AND us.id = b.id_stylists`;
   }
-
-  model.con.query(sql, [userId], (err, results) => callback(results));
+  executeQuery(sql, [userId], function(err, results){
+    if (err) throw err;
+    callback(results);
+  });
 };
 
 var confirmBooking = (bookingId, callback) => {
@@ -100,7 +132,11 @@ var confirmBooking = (bookingId, callback) => {
     UPDATE bookings
     SET isconfirmed = 1
     WHERE bookings.id = ?`;
-  model.con.query(sql, [bookingId], (err, results) => callback(results));
+
+  executeQuery(sql, [bookingId], function(err, results){
+    if (err) throw err;
+    callback(results);
+  });
 };
 
 var cancelConfirmedBooking = (bookingId, callback) => {
@@ -108,7 +144,10 @@ var cancelConfirmedBooking = (bookingId, callback) => {
     UPDATE bookings
     SET isconfirmed = 0
     WHERE bookings.id = ?`;
-  model.con.query(sql, [bookingId], (err, results) => callback(results));
+  executeQuery(sql, [bookingId], function(err, results){
+    if (err) throw err;
+    callback(results);
+  });
 };
 
 var completeBooking = (id, callback) => {
@@ -116,11 +155,16 @@ var completeBooking = (id, callback) => {
     UPDATE bookings
     SET isComplete = 1
     WHERE bookings.id = ?`;
-    model.con.query(sql, [id], (err, results) => callback(results));
+  executeQuery(sql, [id], function(err, results){
+    if (err) throw err;
+    callback(results);
+  });
 };
 
 var getStylistBookings = function(stylistId, callback) {
-  model.con.query('SELECT * FROM `bookings` WHERE `id_stylists` = ?', [stylistId], function (error, results, fields) {
+  var sql = 'SELECT * FROM `bookings` WHERE `id_stylists` = ?';
+  executeQuery(sql, [stylistId], function(err, results){
+    if (err) throw err;
     callback(results);
   });
 };
@@ -139,7 +183,11 @@ var getBookingsDue = (id, type, callback) => {
       AND b.id_users = ?
       AND us.id = b.id_stylists`;
   }
-  model.con.query(sql, [id], (err, results) => callback(results));
+
+  executeQuery(sql, [id], function(err, results){
+    if (err) throw err;
+    callback(results);
+  });
 };
 
 var readyConfirmedBooking = (id, callback) => {
@@ -148,7 +196,11 @@ var readyConfirmedBooking = (id, callback) => {
     SET isconfirmed = 2
     WHERE bookings.id = ?
   `;
-  model.con.query(sql, [id], (err, results) => callback(results));
+
+  executeQuery(sql, [id], function(err, results){
+    if (err) throw err;
+    callback(results);
+  });
 };
 
 var cancelPaymentBooking = (id, callback) => {
@@ -157,28 +209,44 @@ var cancelPaymentBooking = (id, callback) => {
     SET isComplete = 0, isconfirmed = 1
     WHERE bookings.id = ?
   `;
-  model.con.query(sql, [id], (err, results) => callback(results));
+  executeQuery(sql, [id], function(err, results){
+    if (err) throw err;
+    callback(results);
+  });
 };
 
 var deleteBooking = (id, callback) => {
-  model.con.query('DELETE FROM bookings WHERE id = ?', [id], (err, res) => callback(res));
+  var sql = 'DELETE FROM bookings WHERE id = ?';
+  executeQuery(sql, [id], function(err, results){
+    if (err) throw err;
+    callback(results);
+  });
 };
 
 var deleteUser = function(userId) {
-  model.con.query('delete from `users_stylists` where `id` = ?', [userId]);
+  var sql = 'delete from `users_stylists` where `id` = ?';
+  executeQuery(sql, [userId], function(err, results){
+    if (err) throw err;
+  });
 };
 
 var deleteBooking = function(bookingId) {
-  model.con.query('delete from `bookings` where `id` = ?', [bookingId]);
+
+  var sql = 'delete from `bookings` where `id` = ?';
+  executeQuery(sql, [bookingId], function(err, results){
+    if (err) throw err;
+  });
 };
 
 var updateBooking = function(id_users, id_stylists, isconfirmed, time, location, id, callback) {
   var sql = 'UPDATE `bookings` SET id_users = ?, id_stylists = ?, isconfirmed = ?, time = ?, location = ? where id = ?'
-   model.con.query(sql, [id_users, id_stylists, isconfirmed, time, location, id],function (err, result) {
+  var vals = [id_users, id_stylists, isconfirmed, time, location, id];
+  executeQuery(sql, vals, function(err, results){
     if (err) throw err;
-    console.log("1 record updated");
     callback();
   });
+
+
 };
 
 var getConfirmed = (id, type, callback) => {
@@ -197,34 +265,43 @@ var getConfirmed = (id, type, callback) => {
       AND us.id = b.id_stylists AND b.isComplete = 0
     `;
   }
-  model.con.query(sql, [id], (err, results) => callback(results));
+  executeQuery(sql, [id], function(err, results){
+    if (err) throw err;
+    callback(results);
+  });
 };
 
 // helper to add service to the services table in database
 var addService = function(serviceName, callback) {
   var sql = 'INSERT INTO services (servicename) VALUES (?)';
-  model.con.query(sql, [serviceName], function(err, results) {
-    if(err)  throw err;
+  executeQuery(sql, [serviceName], function(err, results){
+    if (err) throw err;
     callback(results);
   });
 };
 
 var stylistservices = function(serviceId, stylistId, callback) {
   var sql = 'INSERT INTO stylists_services (id_services, id_users_stylists) VALUES (?, ?)';
-  model.con.query(sql, [serviceId, stylistId], function(err, results) {
-    if(err)  throw err;
+  executeQuery(sql, [serviceId, stylistId], function(err, results){
+    if (err) throw err;
     callback();
   });
 };
 
 var getStylistServices = function(stylistId, callback) {
-  model.con.query('select `servicename` from `stylists_services` as ss, `services` as s  where `id_users_stylists`= ? and ss.id_services = s.id', [stylistId], function(err, results) {
+
+  var sql = 'select `servicename` from `stylists_services` as ss, `services` as s  where `id_users_stylists`= ? and ss.id_services = s.id';
+  executeQuery(sql, [stylistId], function(err, results){
+    if (err) throw err;
     callback(results);
   });
 };
 
 var getAllStyles = (callback) => {
-  model.con.query('SELECT * FROM services', (err, results) => callback(results));
+  executeQuery('SELECT * FROM services', [], function(err, results){
+    if (err) throw err;
+    callback(results);
+  });
 };
 
 /////////////////////
@@ -232,40 +309,51 @@ var getAllStyles = (callback) => {
 /////////////////////
 var postMessage = (message, callback) => {
   var sql = 'INSERT INTO messages (id_sender, id_recipient, subjectHeading, body, time, location) VALUES (?, ?, ?, ?, ?, ?)';
-  model.con.query(sql, [message.id_sender, message.id_recipient, message.subjectHeading, message.body, message.time, message.location],
-    (err, results) => {
-      model.con.query(
-        `INSERT INTO recipients (id, name)
+  var vals = [message.id_sender, message.id_recipient, message.subjectHeading, message.body, message.time, message.location];
+  executeQuery(sql, vals, function(err, results){
+    if (err) throw err;
+    executeQuery(`INSERT INTO recipients (id, name)
         VALUES (?, (SELECT name FROM users_stylists WHERE users_stylists.id = ?))`,
-        [message.id_sender, message.id_recipient]
-      );
-    });
+        [message.id_sender, message.id_recipient], function(err, results) {
+          if (err) throw err;
+          callback();
+        });
+  });
+
 };
 
 var getMessages = (id, callback) => {
-  model.con.query(
-    `SELECT r.name as recipient, us.name as sender, m.subjectHeading, m.body, m.time, m.location, m.id, m.id_sender, m.id_recipient
+  var sql =  `SELECT r.name as recipient, us.name as sender, m.subjectHeading, m.body, m.time, m.location, m.id, m.id_sender, m.id_recipient
     FROM messages m
-    INNER JOIN recipients r ON (m.id_recipient = ${id} OR m.id_sender = ${id}) AND m.id = r.messageId
-    INNER JOIN users_stylists us ON us.id = m.id_sender`,
-    (err, results) => callback(results)
-  );
+    INNER JOIN recipients r ON (m.id_recipient = ? OR m.id_sender = ?) AND m.id = r.messageId
+    INNER JOIN users_stylists us ON us.id = m.id_sender`;
+  executeQuery(sql, [id, id, ], function(err, results){
+    if (err) throw err;
+    callback(results);
+  });
 };
 
 var deleteChat = (ids, callback) => {
-  model.con.query(`DELETE FROM messages WHERE id in (${ids})`, (err, results) => callback(results));
+  executeQuery(`DELETE FROM messages WHERE id in (?)`, [ids], function(err, results){
+    if (err) throw err;
+    callback(results);
+  });
 };
 
 //get image_url from users_Stylists
 var getImagePath = function(id, callback) {
-  model.con.query('select `image_url` from `users_stylists` where id = ?', [id], function(err, results) {
+  executeQuery('select `image_url` from `users_stylists` where id = ?', [id], function(err, results){
+    if (err) throw err;
     callback(results);
   });
 };
 
 var validateUser = (username, password, callback) => {
   var sql = 'SELECT * FROM users_stylists WHERE name = ? AND password = ?';
-  model.con.query(sql, [username, password],(err, results) => callback(results));
+  executeQuery(sql, [username, password], function(err, results){
+    if (err) throw err;
+    callback(results);
+  });
 };
 
 module.exports.addLocation = addLocation;
