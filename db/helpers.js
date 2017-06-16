@@ -241,7 +241,7 @@ var getHistoryBookings = (id, type, callback) => {
   if (type === 0) {
     var sql = `SELECT b.id, b.id_stylists, b.time, b.location, us.name, us.email, us.phonenumber, us.image_url
       FROM bookings b INNER JOIN users_stylists us
-      WHERE b.isconfirmed = 2
+      WHERE b.isComplete = 2
       AND b.id_stylists = ?
       AND us.id = b.id_users`;
   } else if (type === 1) {

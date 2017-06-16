@@ -17,16 +17,14 @@
         *ngFor="let confirmedBooking of profile.confirmedBookings; let i = index"
         class="booking-confirmed"
       >
-        <booking class="booking"
+        <booking
           [name]="confirmedBooking.name"
           [image_url]="confirmedBooking.image_url"
           [time]="confirmedBooking.time"
           [phoneNumber]="confirmedBooking.phonenumber"
           [location]="confirmedBooking.location"
           [isCancel]="true"
-          [isConfirmed]="true"
           (handleCancel)="cancelBooking(confirmedBooking.id, i)"
-          (handleComplete)="completeBooking(confirmedBooking.id, i)"
         >
         </booking>
       </div>
