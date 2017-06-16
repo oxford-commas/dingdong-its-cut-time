@@ -5,9 +5,25 @@
     </div>
   </div>
   <div class="infoContainer">
-    <h6>{{name}}</h6>
-    <h6 class="glyphicon glyphicon-time">{{time}}</h6>
-    <h6 class="glyphicon glyphicon-earphone">{{phoneNumber}}</h6>
-    <h6 class="glyphicon glyphicon-envelope">{{location}}</h6>
+    <h5>{{name}}</h5>
+    <h6 class="glyphicon glyphicon-time"> Date: {{time}}</h6>
+    <h6 class="glyphicon glyphicon-earphone"> Contact: {{phoneNumber}}</h6>
+    <h6 class="glyphicon glyphicon-envelope"> Location: {{location}}</h6>
+  </div>
+  <div class="buttonContainer" *ngIf="!isPay">
+    <button *ngIf="!!isAccept" (click)="handleAccept.emit()">Accept</button>
+    <button *ngIf="!!isDecline" (click)="handleDecline.emit()">Decline</button>
+    <button *ngIf="!!isHistory" (click)="handleClearHistory.emit()">Clear</button>
+    <button *ngIf="!!isCancel" (click)="handleCancel.emit()">Cancel</button>
+    <button *ngIf="!!isReady" (click)="handleComplete.emit()">Get paid!</button>
+    <button *ngIf="!!isCancelComplete || !!isConfirmed" (click)="handleCancelComplete.emit()">Cancel</button>
+  </div>
+  <div *ngIf="!!isPay" class="paymentInput">
+    <payment-input
+      (handleProcessedPayment)="handlePay.emit()"
+      [stylistName]="stylistName"
+      [bookingId]="bookingId"
+    >
+    </payment-input>
   </div>
 </div>
