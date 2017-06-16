@@ -23,6 +23,7 @@
   justify-content: center;
   align-items: center;
   width: 97%;
+  margin-bottom: 1em;
 }
 
 .inputContainer input {
