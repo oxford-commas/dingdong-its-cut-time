@@ -10,16 +10,16 @@
   </div>
 
   <div class="profileContainer">
-    
+
     <div class="userInfoContainer">
       <div class="imageContainer">
         <img class="profileImage" [src]=stylistProfile.image_url />
         <h3>{{stylistProfile.name}}</h3>
       </div>
       <div class="userInfo">
-        <h5><span class="glyphicon glyphicon-question-sign"></span> {{ stylistProfile.billingaddress }}</h5>
-        <h5><span class="glyphicon glyphicon-question-sign"></span> {{ stylistProfile.site_url }}</h5>
-        <h5><span class="glyphicon glyphicon-question-sign"></span> {{ stylistProfile.phonenumber }}</h5>
+        <h5><span class="glyphicon glyphicon-home"></span> {{ stylistProfile.billingaddress }}</h5>
+        <h5><span class="glyphicon glyphicon-globe"></span> {{ stylistProfile.site_url }}</h5>
+        <h5><span class="glyphicon glyphicon-earphone"></span> {{ stylistProfile.phonenumber }}</h5>
       </div>
     </div>
 
@@ -48,7 +48,7 @@
       <h4>Message: {{stylistProfile.name}}</h4>
       <div (click)="toggleMessageModal()">&times;</div>
     </div>
-    
+
     <div class="formContainer">
       <form
         (ngSubmit)="submitMessage()"
@@ -62,7 +62,7 @@
         </div>
       </form>
     </div>
-    
+
   </div>
 </div>
 
@@ -111,7 +111,7 @@
           <button type="submit">Book</button>
         </div>
       </div>
-        
+
     </form>
     </div>
   </div>

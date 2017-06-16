@@ -8,7 +8,7 @@
 
 .header {
   height: 25%;
-  padding-top: 10em;
+  padding-top: 8em;
   margin-left: 2em;
   margin-right: 2em;
   width: 85%;
@@ -18,7 +18,7 @@
 .loginWrapper {
   display: flex;
   flex-direction: row;
-  margin-top: 2em;
+  margin-top: 1em;
   margin-left: 2em;
   margin-right: 2em;
   height: 35vh;
@@ -36,6 +36,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.flexItem input {
+  background-color: white;
+  color: black;
 }
 
 .loginButtons {
@@ -67,6 +72,7 @@ button {
   width: 60%;
   border-radius: 20px;
   margin-top: 1em;
+  border: 1px solid #F9B71A;
 }
 
 a {
