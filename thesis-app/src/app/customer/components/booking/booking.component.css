@@ -1,35 +1,37 @@
-.wrapper {
+.profileContainer {
   display: flex;
+  height: 100%;
+  width: 100%;
   font-family: 'Montserrat', sans-serif;
   margin-bottom: 2em;
   padding-bottom: 1em;
+  border: 2px solid red;
   border-bottom: 1px solid;
 }
 
-.profileContainer {
-  flex: 1 1 50%;
-}
-
-.buttonContainer {
-  flex: 1 1 50%;
-}
-
-.profileContainer {
-  display: flex;
-}
-
 .photoContainer {
+  flex: 1 1 5%;
   height: 100%;
-  width: 20%;
-  border: 1px solid;
-  display: flex;
-  justify-content: flex-start;
+  width: 5%;
+  /*border: 1px solid;*/
+  border: 2px solid red;
+  /*display: flex;*/
+  /*justify-content: center;*/
+  /*align-items: center;*/
+}
+
+.photoContainer img {
+  width: 85%;
+  height: 85%;
 }
 
 .infoContainer {
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  width: 80%;
+  width: 89%;
   margin-left: 1em;
+  border: 2px solid blue;
 }
 
 .buttonContainer {

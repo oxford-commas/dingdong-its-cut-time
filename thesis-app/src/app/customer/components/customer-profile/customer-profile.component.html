@@ -19,7 +19,7 @@
       <div class="userInfo">
         <h5><span class="glyphicon glyphicon-home"></span> {{ profile.billingaddress }}</h5>
         <h5 *ngIf="profile.type===0"><span class="glyphicon glyphicon-globe"></span> {{profile.site_url}}</h5>
-        <h5 *ngIf="profile.type===0"><span class="glyphicon glyphicon-inbox"></span> {{profile.email}}</h5>
+        <h5><span class="glyphicon glyphicon-inbox"></span> {{profile.email}}</h5>
         <h5><span class="glyphicon glyphicon-earphone"></span> {{ profile.phonenumber }}</h5>
       </div>
     </div>
@@ -89,7 +89,7 @@
             <h4>Services</h4>
             <div class="servicesContainer">
               <div class="styleItems" *ngFor="let style of styles">
-                <h5><input type="checkbox"> {{ style.servicename }}</h5>
+                <h5><input type="checkbox" ngModel [name]="style.id"> {{ style.servicename }}</h5>
               </div>
             </div>
           </div>

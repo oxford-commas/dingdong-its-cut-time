@@ -1,4 +1,4 @@
-<div class="componentWrapper">
+<div *ngIf="!!isProfileFetched" class="componentWrapper">
   <customer-navbar></customer-navbar>
 
   <div class="subHeader">
@@ -42,7 +42,7 @@
 </div>
 
 <!-- Message Modal -->
-<div class="modalWrapper" [style.display]="getStyle()">
+<div *ngIf="!!isProfileFetched" class="modalWrapper" [style.display]="getStyle()">
   <div class="miniWrapper">
     <div class="modalHeader">
       <h4>Message: {{stylistProfile.name}}</h4>
@@ -55,7 +55,7 @@
         #messageForm="ngForm"
       >
         <div>
-          <textarea [(ngModel)]="body">Body of the message</textarea>
+          <textarea [(ngModel)]="body" name="body">Body of the message</textarea>
         </div>
         <div class="btnContainer">
           <button type="submit">Send</button>
@@ -67,7 +67,7 @@
 </div>
 
 <!-- Booking Modal -->
-<div class="modalWrapper" [style.display]="getBookingModalStyle()">
+<div *ngIf="!!isProfileFetched" class="modalWrapper" [style.display]="getBookingModalStyle()">
   <div class="miniWrapper">
     <div class="modalHeader">
       <h2>Appointment: {{stylistProfile.name}}</h2>

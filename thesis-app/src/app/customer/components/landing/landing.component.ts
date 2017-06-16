@@ -45,6 +45,7 @@ export class LandingComponent implements OnDestroy {
   }
 
   payBooking(id: number, index: number) {
+    console.log('PAY BOOKING');
     this.profile.dueBookings.splice(index, 1);
     this.bookingService.deleteBooking(id)
       .takeWhile(() => this.alive)
@@ -85,6 +86,16 @@ export class LandingComponent implements OnDestroy {
     const dueBooking = this.profile.dueBookings.splice(index, 1).pop();
     this.profile.confirmedBookings.push(dueBooking);
     this.bookingService.putCancelPayment(id)
+      .takeWhile(() => this.alive)
+      .subscribe(
+        result => console.log(result),
+        err => console.log(err)
+      );
+  }
+
+  clearHistory(id: number, index: number) {
+    this.profile.pendingBookings.splice(index, 1);
+    this.bookingService.deleteBooking(id)
       .takeWhile(() => this.alive)
       .subscribe(
         result => console.log(result),

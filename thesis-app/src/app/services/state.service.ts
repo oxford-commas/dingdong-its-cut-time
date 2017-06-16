@@ -3,6 +3,7 @@ import "rxjs/add/operator/takeWhile";
 import { MessageService } from './message.service';
 import { BookingService } from './booking.service';
 import { RequestService } from './request.service';
+import { StylistStylesService } from './stylistStyles.service';
 let customerProfile;
 
 @Injectable()
@@ -10,19 +11,21 @@ export class StateService implements OnDestroy {
   constructor(
     private messageService: MessageService,
     private bookingService: BookingService,
-    private requestService: RequestService
+    private requestService: RequestService,
+    private stylistStylesService: StylistStylesService
   ) {}
-  
+
   private fetchMessageIntervalId;
   private fetchDueBookingsIntervalId;
   private fetchConfirmedBookingsIntervalId;
   private fetchPendingBookingsIntervalId;
+  private fetchHistoryBookingsIntervalId;
   private alive: boolean = true;
-  
+
   ngOnDestroy() {
     this.alive = false;
   }
-  
+
   addCustomer(stylist) {
     customerProfile = {
       billingaddress: stylist.billingaddress,
@@ -39,15 +42,18 @@ export class StateService implements OnDestroy {
       type: stylist.type,
       aboutMe: stylist.aboutMe
     };
-    // this.requestService.getUserImg(stylist.id)
-    //   .subscribe(
-    //     data => customerProfile.image_url = data.url,
-    //     err => console.log(err)
-    //   );
+
+    this.stylistStylesService.fetchStyles(stylist.id)
+      .subscribe(
+        data => customerProfile.styles = data,
+        err => console.log(err)
+      );
+
     this.fetchMessageIntervalId = setInterval(() => this.messageTimer(stylist.id), 2000);
     this.fetchDueBookingsIntervalId = setInterval(() => this.dueBookingTimer(stylist.id, stylist.type), 2000);
     this.fetchConfirmedBookingsIntervalId = setInterval(() => this.confirmedBookingTimer(stylist.id, stylist.type), 2000);
     this.fetchPendingBookingsIntervalId = setInterval(() => this.pendingBookingTimer(stylist.id, stylist.type), 2000);
+    this.fetchHistoryBookingsIntervalId = setInterval(() => this.historyBookingTimer(stylist.id, stylist.type), 2000);
   }
   retrieveCustomer() {
     return customerProfile;
@@ -64,7 +70,7 @@ export class StateService implements OnDestroy {
     clearInterval(this.fetchDueBookingsIntervalId);
     clearInterval(this.fetchConfirmedBookingsIntervalId);
     clearInterval(this.fetchPendingBookingsIntervalId);
-    customerProfile = null;
+    customerProfile = {};
   }
   messageTimer(id) {
     this.messageService.getMessages(id)
@@ -100,6 +106,14 @@ export class StateService implements OnDestroy {
       .takeWhile(() => this.alive)
       .subscribe(
         data => customerProfile.pendingBookings = data,
+        err => console.log(err)
+      );
+  }
+  historyBookingTimer(id, type) {
+    this.bookingService.fetchHistoryBookings(id, type)
+      .takeWhile(() => this.alive)
+      .subscribe(
+        data => customerProfile.historyBookings = data,
         err => console.log(err)
       );
   }

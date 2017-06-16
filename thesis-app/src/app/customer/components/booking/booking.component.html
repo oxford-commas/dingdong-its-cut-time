@@ -1,24 +1,13 @@
-<!-- <h4 *ngIf="isPending===true">{{name}} (pending)</h4>
-<h4 *ngIf="isPending===false">{{name}}</h4>
-<img [src]="image_url" />
-<div class="glyphicon glyphicon-time">{{time}}</div>
-<div class="glyphicon glyphicon-earphone">{{phoneNumber}}</div>
-<div class="glyphicon glyphicon-home">{{location}}</div>
-
- -->
 <div class="wrapper">
   <div class="profileContainer">
     <div class="photoContainer">
       <img [src]="image_url"/>
     </div>
-    <div class="infoContainer">
-      <h6>{{name}}</h6>
-      <h6>Date: {{time}}</h6>
-      <h6>Contact: {{phoneNumber}}</h6>
-    </div>
   </div>
-  <div class="buttonContainer">
-    <button>Accept</button>
-    <button>Decline</button>
+  <div class="infoContainer">
+    <h6>{{name}}</h6>
+    <h6 class="glyphicon glyphicon-time">{{time}}</h6>
+    <h6 class="glyphicon glyphicon-earphone">{{phoneNumber}}</h6>
+    <h6 class="glyphicon glyphicon-envelope">{{location}}</h6>
   </div>
 </div>
