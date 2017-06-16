@@ -4,7 +4,10 @@ import { StripeService, BookingService } from '../../../../services';
 
 @Component({
   selector: 'payment-input',
-  template: `<button (click)="openCheckout()">Pay</button>`,
+  template: `
+  <div class="buttonContainer">
+    <button (click)="openCheckout()">Pay</button>
+  </div>`,
   styleUrls: ['./payment-input.component.css']
 })
 export class PaymentInputComponent {
