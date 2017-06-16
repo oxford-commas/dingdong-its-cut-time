@@ -16,6 +16,7 @@ export class CustomerMessageComponent implements OnDestroy{
 
   public conversations = this.stateService.retrieveCustomer().messages;
   public currentChat;
+  public currentChatName;
   private alive: boolean = true;
 
   ngOnDestroy() {
@@ -24,6 +25,10 @@ export class CustomerMessageComponent implements OnDestroy{
 
   setCurrentChat(senderId) {
     this.currentChat = this.conversations.find(conversation => conversation.sender_id === senderId).messages;
+    console.log('asdfasdf', this.currentChat);
+    if (!!this.currentChat) {
+      this.currentChatName = this.currentChat[0].recipient;
+    }
     this.stateService.retrieveCustomer().chatSenderId = Number(senderId);
   }
 
