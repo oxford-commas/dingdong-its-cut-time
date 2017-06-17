@@ -2,7 +2,7 @@ const helpers = require('./helpers.js');
 const services = require('../locationServices.js');
 var model = require('./model.js');
 
-var CLEARDB_INSERT = false;
+var CLEARDB_INSERT = true;
 
 const stylistArray = [
   {
@@ -599,7 +599,7 @@ const stylistServices = [
     styleId: userIndex(3),
     stylistId: userIndex(19)
   }
-]
+];
 
 stylistArray.forEach(stylist => {
   helpers.addUserStylist(

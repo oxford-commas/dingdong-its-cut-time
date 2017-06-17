@@ -1,63 +1,28 @@
-# dingdong-its-cut-time
+# ThesisApp
 
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.6.
 
---- To start the database
-mysql.server start
-mysql -u root -p
+## Development server
 
---- to initialize the database
-run \. schema.sql
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
---- type
-stylists are identified with type === 0, and users are identified by type === 1
+## Code scaffolding
 
-Time to get cut.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
 
-## Team
+## Build
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Table of Contents
+## Running unit tests
 
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-    1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
-1. [Team](#team)
-1. [Contributing](#contributing)
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Usage
+## Running end-to-end tests
 
-> Some usage instructions
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Before running the tests make sure you are serving the app via `ng serve`.
 
-## Requirements
+## Further help
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
-
-## Development
-
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-sudo npm install -g bower
-npm install
-bower install
-```
-
-### Roadmap
-
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
-
-
-## Contributing
-
-See [CONTRIBUTING.md](_CONTRIBUTING.md) for contribution guidelines.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
